@@ -37,7 +37,8 @@ class Seed {
         for (const key in extendObject) {
                 seed[key] = extendObject[key]
         }
-    };
+    }; 
+    
 
     CreatePlugings(plugins){
         var seed = this;
