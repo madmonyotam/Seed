@@ -38,7 +38,6 @@ class Seed {
                 seed[key] = extendObject[key]
         }
     }; 
-    
 
     CreatePlugings(plugins){
         var seed = this;
