@@ -1,0 +1,42 @@
+{
+  "general": {
+    "save":"save",  
+    "menu": "menu",
+    "more": "more_vert",
+    "folder": "folder",
+    "addFolder": "create_new_folder",
+    "folderShared": "folder_shared",
+    "download": "file_download",
+    "arrow_right": "arrow_right"
+  },
+  "notify":{
+    "error": "error",
+    "success": "check_circle",
+    "info": "info",
+    "warning": "warning"
+  },
+  "files":{
+    "edit": "edit",
+    "copy": "file_copy"
+  },
+  "nav": {
+    "home": "home",
+    "settings": "settings",
+    "examples": "school"
+  },
+  "navigate": {
+    "close": "close",
+    "up": "keyboard_arrow_up",
+    "arrow_up": "arrow_drop_up",
+    "down": "keyboard_arrow_down",
+    "arrow_down": "arrow_drop_down",
+    "left": "keyboard_arrow_left",
+    "arrow_left": "arrow_left",
+    "right": "keyboard_arrow_right",
+    "arrow_right": "arrow_right"
+  },
+  "panel":{
+    "expandMore": "expand_more",
+    "expandLess": "expand_less"
+  }
+}

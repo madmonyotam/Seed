@@ -1,0 +1,40 @@
+{
+    "colors": {
+        "black": "#333333",
+        "dark": "#333333",
+        "gray": "#999999",
+        "secondary": "#2979ff",
+        "primary": "#01579b",
+        "white": "#ffffff",
+        "boxShadow": "#cacaca",
+        "borderDark": "#4e4e4e",
+        "borderLight": "#eceff1"
+    },
+    "backgrounds": {
+        "default": "#ffffff",
+        "nav": "#333333",
+        "primary": "#004175",
+        "light_gray": "#ededed",
+        "menu": "#efefef",
+        "blue": "#007AFF"
+    },
+    "transparent": {
+        "black_12": "#0000001F",
+        "black_14": "#00000024",
+        "black_20": "#00000033",
+        "black_40": "#00000066",
+        "black_75": "#000000bf", 
+        "black_80": "#000000cc",
+        "white_45": "#ffffff73",
+        "white_85": "#ffffffd9"
+    },
+    "components":{
+        "noResults": "#808080"
+    },
+    "notify": {
+        "success": "#56b631",
+        "error": "#cf3c3e",
+        "warning": "#2a3640",
+        "info": "#0085c2"
+    }
+}

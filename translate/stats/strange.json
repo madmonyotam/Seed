@@ -1,0 +1,382 @@
+{
+    "AddInsightPopup.label.${entity.title}": {
+        "defaultValue": "AddInsightPopup.label.${entity.title}",
+        "value": null
+    },
+    "AddLinkPopup.chip.label.${text}": {
+        "defaultValue": "AddLinkPopup.chip.label.${text}",
+        "value": null
+    },
+    "AddLinkPopup.select.entity": {
+        "defaultValue": "${label}",
+        "value": null
+    },
+    "AuditLine.audit.line.${activity}": {
+        "defaultValue": "AuditLine.audit.line.${activity}",
+        "value": null
+    },
+    "AuditLine.audit.line.${description}": {
+        "defaultValue": "AuditLine.audit.line.${description}",
+        "value": null
+    },
+    "AuditLine.audit.line.${name}": {
+        "defaultValue": "AuditLine.audit.line.${name}",
+        "value": null
+    },
+    "Autocomplete.queryBuilder.errors.${error}": {
+        "defaultValue": "Autocomplete.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "Boolean.queryBuilder.errors.${error}": {
+        "defaultValue": "Boolean.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "ChipsAutocomplete.queryBuilder.errors.${error}": {
+        "defaultValue": "ChipsAutocomplete.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "ChipsInput.queryBuilder.errors.${error}": {
+        "defaultValue": "ChipsInput.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "ChipsInputIn.queryBuilder.errors.${error}": {
+        "defaultValue": "ChipsInputIn.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "ClosedList.queryBuilder.errors.${error}": {
+        "defaultValue": "ClosedList.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "ClosedList.queryBuilder.operator.closedList.values.${val}": {
+        "defaultValue": "ClosedList.queryBuilder.operator.closedList.values.${val}",
+        "value": null
+    },
+    "DatePicker.queryBuilder.errors.${error}": {
+        "defaultValue": "DatePicker.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "DateRelative.queryBuilder.errors.${error}": {
+        "defaultValue": "DateRelative.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "Drawer.queryTooBig": {
+        "defaultValue": "Query contains ${ total } results. it should be less then ${ limit }",
+        "value": null
+    },
+    "EntitySelect.queryBuilder.mainEntityType.${val}": {
+        "defaultValue": "EntitySelect.queryBuilder.mainEntityType.${val}",
+        "value": null
+    },
+    "ExpandNodeFilter.queryBuilder.relationStatement.relation.label.${relation.label}": {
+        "defaultValue": "ExpandNodeFilter.queryBuilder.relationStatement.relation.label.${relation.label}",
+        "value": null
+    },
+    "Facets.Show.facets.as": {
+        "defaultValue": "Show facets as: ${ selectedViewTitle }",
+        "value": null
+    },
+    "Facets.view.type": {
+        "defaultValue": "${ title }",
+        "value": null
+    },
+    "FacetsList.Facets.view.type": {
+        "defaultValue": "${ title }",
+        "value": null
+    },
+    "FacetsList.Show.facets.as": {
+        "defaultValue": "Show facets as: ${ selectedViewTitle }",
+        "value": null
+    },
+    "GroupPopup.chip.label.${text}": {
+        "defaultValue": "GroupPopup.chip.label.${text}",
+        "value": null
+    },
+    "InfoLine.info.line.${icon.tooltip}": {
+        "defaultValue": "InfoLine.info.line.${icon.tooltip}",
+        "value": null
+    },
+    "InfoLineClickable.info.line.${icon.tooltip}": {
+        "defaultValue": "InfoLineClickable.info.line.${icon.tooltip}",
+        "value": null
+    },
+    "InfoLineClickable.info.line.${teaser}": {
+        "defaultValue": "InfoLineClickable.info.line.${teaser}",
+        "value": null
+    },
+    "InfoLineClickable.info.line.${title}": {
+        "defaultValue": "InfoLineClickable.info.line.${title}",
+        "value": null
+    },
+    "Lightbox.cantPrint": {
+        "defaultValue": "can't print ${ type }",
+        "value": null
+    },
+    "Lightbox.itemLabel": {
+        "defaultValue": "${ itemLabel }",
+        "value": null
+    },
+    "LinkPopup.original.text": {
+        "defaultValue": "Original text: ${ keyWord }",
+        "value": null
+    },
+    "LoaderButton.button.label.${label}": {
+        "defaultValue": "LoaderButton.button.label.${label}",
+        "value": null
+    },
+    "MapAutocomplete.queryBuilder.errors.${error}": {
+        "defaultValue": "MapAutocomplete.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "MediaWidget.NoPreviewForType": {
+        "defaultValue": "There is no preview for type ${ type }",
+        "value": null
+    },
+    "Modal.button.label.${cancelButtonLabel}": {
+        "defaultValue": "Modal.button.label.${cancelButtonLabel}",
+        "value": null
+    },
+    "Modal.button.label.${submitButtonLabel}": {
+        "defaultValue": "Modal.button.label.${submitButtonLabel}",
+        "value": null
+    },
+    "Modal.title.${title}": {
+        "defaultValue": "Modal.title.${title}",
+        "value": null
+    },
+    "Number.queryBuilder.errors.${error}": {
+        "defaultValue": "Number.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "PermissionAndGroupsForm.chip.label.${text}": {
+        "defaultValue": "PermissionAndGroupsForm.chip.label.${text}",
+        "value": null
+    },
+    "Popup.chip.label.${text}": {
+        "defaultValue": "Popup.chip.label.${text}",
+        "value": null
+    },
+    "RelationStatement.queryBuilder.relationStatement.relation.label.${relation.label}": {
+        "defaultValue": "RelationStatement.queryBuilder.relationStatement.relation.label.${relation.label}",
+        "value": null
+    },
+    "SaveInInvestigationPopup.chip.label.${text}": {
+        "defaultValue": "SaveInInvestigationPopup.chip.label.${text}",
+        "value": null
+    },
+    "SaveVlaPopup.chip.label.${text}": {
+        "defaultValue": "SaveVlaPopup.chip.label.${text}",
+        "value": null
+    },
+    "SelectViewButton.Show.facets.as": {
+        "defaultValue": "Show facets as: ${ selectedView }",
+        "value": null
+    },
+    "SharePopup.chip.label.${text}": {
+        "defaultValue": "SharePopup.chip.label.${text}",
+        "value": null
+    },
+    "Stringify.stringify.${item.label}": {
+        "defaultValue": "Stringify.stringify.${item.label}",
+        "value": null
+    },
+    "Stringify.stringify.${value.label}": {
+        "defaultValue": "Stringify.stringify.${value.label}",
+        "value": null
+    },
+    "Stringify.stringify.${value}": {
+        "defaultValue": "Stringify.stringify.${value}",
+        "value": null
+    },
+    "TextInput.queryBuilder.errors.${error}": {
+        "defaultValue": "TextInput.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "TimePicker.queryBuilder.errors.${error}": {
+        "defaultValue": "TimePicker.queryBuilder.errors.${error}",
+        "value": null
+    },
+    "Tools.confirmDeleteSingleLink": {
+        "defaultValue": "Unlink \"${itemTitle}\"?",
+        "value": null
+    },
+    "TopMenuShare.share.body.message": {
+        "defaultValue": "Hi, I want to share ${ documentName } with you.",
+        "value": null
+    },
+    "VLAExtended.imagesLoaded": {
+        "defaultValue": "Loaded ${ images } images",
+        "value": null
+    },
+    "VLAExtended.loadingImages": {
+        "defaultValue": "Loading ${ images } images",
+        "value": null
+    },
+    "Widgets.Facets.view.type": {
+        "defaultValue": "${view.title}",
+        "value": null
+    },
+    "Widgets.Show.facets.as": {
+        "defaultValue": "Show facets as: ${ selectedViewTitle }",
+        "value": null
+    },
+    "applied.filters.date.from.to": {
+        "defaultValue": "From ${from} To ${to}",
+        "value": null
+    },
+    "artifacts.deleteMultipleSuccess": {
+        "defaultValue": "${ itemsLength } items deleted",
+        "value": null
+    },
+    "artifacts.resolveEntity.getError": {
+        "defaultValue": "Unable to load the ${ pluralType }",
+        "value": null
+    },
+    "attachments.deleteMultipleSuccess": {
+        "defaultValue": "${ attachmentsLength } attachments deleted",
+        "value": null
+    },
+    "confirmUnlinkSingle": {
+        "defaultValue": "Un-link \"${itemTitle}\"?",
+        "value": null
+    },
+    "document.select.minidocviewer.noFields": {
+        "defaultValue": "No fields for ${entity.label}",
+        "value": null
+    },
+    "entities.deleteMultipleSuccess": {
+        "defaultValue": "${ itemsLength } items deleted",
+        "value": null
+    },
+    "facets.values.${item.filter.substring(0, item.filter.indexOf(':'))}.${item.label}": {
+        "defaultValue": "facets.values.${item.filter.substring(0, item.filter.indexOf(':'))}.${item.label}",
+        "value": null
+    },
+    "generic.Checkbox.facet.checkbox.${field}": {
+        "defaultValue": "generic.Checkbox.facet.checkbox.${field}",
+        "value": null
+    },
+    "getFeed.feed.createRelation": {
+        "defaultValue": "{0} \"{1}\" ${WAS_CREATED_FOR} {2} {3} ({4}) ${BY} {5}",
+        "value": null
+    },
+    "getFeed.feed.defaultText": {
+        "defaultValue": "{0} \"{1}\" ${WAS} {2} ${BY} {3}",
+        "value": null
+    },
+    "getFeed.feed.deleteRelation": {
+        "defaultValue": "{0} \"{1}\" ${WAS_DELETED_FROM} {2} {3} ({4}) ${BY} {5}",
+        "value": null
+    },
+    "getFeed.feed.group.addMember": {
+        "defaultValue": "${USER} {0} ${WAS_ADDED_TO_GROUP} \"{1}\" ${BY} {2}",
+        "value": null
+    },
+    "getFeed.feed.group.addMembers": {
+        "defaultValue": "${USERS} {0} ${WERE_ADDED_TO_GROUP} \"{1}\" ${BY} {2}",
+        "value": null
+    },
+    "getFeed.feed.group.addMembersUnknown": {
+        "defaultValue": "${USERS} ${WERE_ADDED_TO_GROUP} \"{1}\" ${BY} {2}",
+        "value": null
+    },
+    "getFeed.feed.group.removeMember": {
+        "defaultValue": "${USER} {0} ${WAS_REMOVED_FROM_GROUP} \"{1}\" ${BY} {2}",
+        "value": null
+    },
+    "getFeed.feed.group.removeMembers": {
+        "defaultValue": "${USERS} {0} ${WERE_REMOVED_FROM_GROUP} \"{1}\" ${BY} {2}",
+        "value": null
+    },
+    "getFeed.feed.group.removeMembersUnknown": {
+        "defaultValue": "${USERS} ${WERE_REMOVED_FROM_GROUP} \"{1}\" ${BY} {2}",
+        "value": null
+    },
+    "getFeed.feed.modifyRelation": {
+        "defaultValue": "{0} \"{1}\" ${WAS_MODIFIED_IN} {2} {3} ({4}) ${BY} {5}",
+        "value": null
+    },
+    "getFeed.feed.received": {
+        "defaultValue": "{0} \"{1}\" ${WAS_RECEIVED_BY} {2}",
+        "value": null
+    },
+    "getFeed.feed.sent": {
+        "defaultValue": "{0} \"{1}\" ${WAS_SENT_BY} {2} ${TO} {3}",
+        "value": null
+    },
+    "getFeed.feed.share": {
+        "defaultValue": "{0} \"{1}\" ${WAS_SHARED_BY} {2}",
+        "value": null
+    },
+    "home.audit.tool.deleted.message": {
+        "defaultValue": "This ${tool} has been deleted",
+        "value": null
+    },
+    "insights.deleteMultipleSuccess": {
+        "defaultValue": "${ insightsLength } insights deleted",
+        "value": null
+    },
+    "listRow.button.label.${item.btnTitle}": {
+        "defaultValue": "listRow.button.label.${item.btnTitle}",
+        "value": null
+    },
+    "listRow.created.by.${data.createdBy}": {
+        "defaultValue": "Created by ${data.createdBy}",
+        "value": null
+    },
+    "listRow.title.${data.title}": {
+        "defaultValue": "listRow.title.${data.title}",
+        "value": null
+    },
+    "multi.links.partial.success": {
+        "defaultValue": "${_this.multiLinksSuccess}/${multiLinksLength} Links created",
+        "value": null
+    },
+    "no.": {
+        "defaultValue": "${label}",
+        "value": null
+    },
+    "passwordDaysRemains": {
+        "defaultValue": "${passDaysRemainCount} days left to change password",
+        "value": null
+    },
+    "queryBuilder.operator.${operator.label}": {
+        "defaultValue": "queryBuilder.operator.${operator.label}",
+        "value": null
+    },
+    "queryBuilder.propertyStatement.${propertyCategory[0]}": {
+        "defaultValue": "queryBuilder.propertyStatement.${propertyCategory[0]}",
+        "value": null
+    },
+    "reports.deleteMultipleSuccess": {
+        "defaultValue": "${ reportsLength } reports deleted",
+        "value": null
+    },
+    "saveQueryPopup.chip.label.${text}": {
+        "defaultValue": "saveQueryPopup.chip.label.${text}",
+        "value": null
+    },
+    "snackbar.message.${message}": {
+        "defaultValue": "snackbar.message.${message}",
+        "value": null
+    },
+    "tools.unlinkMultipleSuccess": {
+        "defaultValue": "${ itemsLength } items unlinked",
+        "value": null
+    },
+    "tooltip.label.${label}": {
+        "defaultValue": "tooltip.label.${label}",
+        "value": null
+    },
+    "translateToLanguage": {
+        "defaultValue": "Translate to ${ lang }",
+        "value": null
+    },
+    "translatedToLanguage": {
+        "defaultValue": "Translated to ${ lang }",
+        "value": null
+    },
+    "vlas.deleteMultipleSuccess": {
+        "defaultValue": "${ vlasLength } VLAs deleted",
+        "value": null
+    }
+}

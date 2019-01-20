@@ -1,0 +1,3781 @@
+{
+    "AddInsightPopup.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/AddInsightPopup/AddInsightPopup.module.jsx:124",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/AddInsightPopup/AddInsightPopup.module.jsx:129",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/AddInsightPopup/AddInsightPopup.module.jsx:299",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/AddInsightPopup/AddInsightPopup.module.jsx:310",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "AddLocationRangePopup.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/MapWidget/AddLocationRangePopup.module.jsx:36",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/MapWidget/AddLocationRangePopup.module.jsx:100",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "AddNodes.add.entity": {
+        "defaultValue": "Add entity",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/AddNodes/AddNodes.jsx:292",
+                "defaultValue": "Add entity"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/AddNodes/AddNodes.jsx:355",
+                "defaultValue": "Add entity"
+            }
+        ]
+    },
+    "AddOntology.cancel": {
+        "defaultValue": "Cancel",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/ontology/AddOntology.module.jsx:276",
+                "defaultValue": "Cancel"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/ontology/AddOntology.module.jsx:285",
+                "defaultValue": "Cancel"
+            }
+        ]
+    },
+    "AddOntology.importList": {
+        "defaultValue": "Import list",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/ontology/AddOntology.module.jsx:224",
+                "defaultValue": "Import list"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/ontology/AddOntology.module.jsx:354",
+                "defaultValue": "Import list"
+            }
+        ]
+    },
+    "AddOntology.update": {
+        "defaultValue": "Update",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/ontology/AddOntology.module.jsx:294",
+                "defaultValue": "Update"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/ontology/AddOntology.module.jsx:301",
+                "defaultValue": "Update"
+            }
+        ]
+    },
+    "AddReportPopup.popup.classification.field": {
+        "defaultValue": "Classification",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/CreateReport/AddReportPopup.module.jsx:171",
+                "defaultValue": "Classification"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/ReportEdit/EditReportPopup.module.jsx:106",
+                "defaultValue": "Classification"
+            }
+        ]
+    },
+    "AddReportPopup.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/CreateReport/AddReportPopup.module.jsx:16",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/ReportEdit/EditReportPopup.module.jsx:12",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "AppliedFilters.unknown": {
+        "defaultValue": "Unknown",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/AppliedFilters.jsx:53",
+                "defaultValue": "Unknown"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/AppliedFilters.jsx:90",
+                "defaultValue": "Unknown"
+            }
+        ]
+    },
+    "ChipsInputIn.select.ontologies": {
+        "defaultValue": "Select Ontologies",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/TextMulti.jsx:167",
+                "defaultValue": "Select Ontologies"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/TextMulti.jsx:174",
+                "defaultValue": "SELECT ONTOLOGIES"
+            }
+        ]
+    },
+    "Conversation.imageNotFound": {
+        "defaultValue": "Image not found",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Conversation.jsx:258",
+                "defaultValue": "Image not found"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Conversation.jsx:352",
+                "defaultValue": "Image not found"
+            }
+        ]
+    },
+    "DatePicker.queryBuilder.errors.${error}": {
+        "defaultValue": "DatePicker.queryBuilder.errors.${error}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/DatePicker.jsx:63",
+                "defaultValue": "DatePicker.queryBuilder.errors.${error}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/DateTimePicker.jsx:87",
+                "defaultValue": "DatePicker.queryBuilder.errors.${error}"
+            }
+        ]
+    },
+    "DatePicker.queryBuilder.hintTexts.Select": {
+        "defaultValue": "Select",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/DatePicker.jsx:56",
+                "defaultValue": "Select"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/DateTimePicker.jsx:80",
+                "defaultValue": "Select"
+            }
+        ]
+    },
+    "DocumentViewer.goBack": {
+        "defaultValue": "Go Back",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/DocumentViewer.jsx:354",
+                "defaultValue": "Go Back"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/MiniDocumentViewerWidget.jsx:225",
+                "defaultValue": "Go Back"
+            }
+        ]
+    },
+    "DocumentViewer.retry": {
+        "defaultValue": "Retry",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/DocumentViewer.jsx:351",
+                "defaultValue": "Retry"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/MiniDocumentViewerWidget.jsx:222",
+                "defaultValue": "Retry"
+            }
+        ]
+    },
+    "EntityRelatedDataGrid.buttons.Info": {
+        "defaultValue": "Info",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/Ontologies/InvestigationOntologiesGrid.module.jsx:146",
+                "defaultValue": "Info"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/Polygons/InvestigationPolygonsGrid.module.jsx:128",
+                "defaultValue": "Info"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/SavedQueries/InvestigationSavedQueriesGrid.module.jsx:170",
+                "defaultValue": "Info"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/ToolsGrid/ToolsGrid.module.jsx:149",
+                "defaultValue": "Info"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/RelatedData/EntityRelatedDataGrid.jsx:194",
+                "defaultValue": "Info"
+            }
+        ]
+    },
+    "EntityRelatedDataGrid.linksgrid.columns.linkType": {
+        "defaultValue": "Link type",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Activities/ActivitiesGrid/ActivitiesGrid.module.jsx:116",
+                "defaultValue": "Link type"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Artifacts/ArtifactsGrid/ArtifactsGrid.module.jsx:127",
+                "defaultValue": "Link type"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Links/LinksGrid/LinksGrid.module.jsx:115",
+                "defaultValue": "Link type"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/RelatedData/EntityRelatedDataGrid.jsx:122",
+                "defaultValue": "Link type"
+            }
+        ]
+    },
+    "EntitySelect.queryBuilder.mainEntityType.${val}": {
+        "defaultValue": "EntitySelect.queryBuilder.mainEntityType.${val}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/views/EntitySelect.jsx:55",
+                "defaultValue": "EntitySelect.queryBuilder.mainEntityType.${val}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/views/EntitySelect.jsx:62",
+                "defaultValue": "EntitySelect.queryBuilder.mainEntityType.${val}"
+            }
+        ]
+    },
+    "EntityUi.location": {
+        "defaultValue": "Location",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/entity/EntityUi.module.js:80",
+                "defaultValue": "Location"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/entity/EntityUi.module.js:91",
+                "defaultValue": "Location"
+            }
+        ]
+    },
+    "Facets.Close": {
+        "defaultValue": "Close",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Facets.jsx:445",
+                "defaultValue": "Close"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Facets.jsx:500",
+                "defaultValue": "Close"
+            }
+        ]
+    },
+    "Facets.Search": {
+        "defaultValue": "Search",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Facets.jsx:442",
+                "defaultValue": "Search"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Facets.jsx:497",
+                "defaultValue": "Search"
+            }
+        ]
+    },
+    "Facets.sidebarTitle": {
+        "defaultValue": "Analytics",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Facets.jsx:439",
+                "defaultValue": "Analytics"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Facets.jsx:494",
+                "defaultValue": "Analytics"
+            }
+        ]
+    },
+    "ForgottenPassword.userEmail": {
+        "defaultValue": "User Email",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ForgottenPassword.jsx:105",
+                "defaultValue": "User Email"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ForgottenPassword.jsx:106",
+                "defaultValue": "User Email"
+            }
+        ]
+    },
+    "ForgottenPassword.username": {
+        "defaultValue": "User Name",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ForgottenPassword.jsx:97",
+                "defaultValue": "User Name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ForgottenPassword.jsx:98",
+                "defaultValue": "User Name"
+            }
+        ]
+    },
+    "FusionVLA.Could.not.find.nodes": {
+        "defaultValue": "Could not find nodes",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:1215",
+                "defaultValue": "Could not find nodes"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:1274",
+                "defaultValue": "Could not find nodes"
+            }
+        ]
+    },
+    "FusionVLA.ExportSuccessfuly": {
+        "defaultValue": "Export successfuly",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:880",
+                "defaultValue": "Export successfuly"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:889",
+                "defaultValue": "Export successfuly"
+            }
+        ]
+    },
+    "FusionVLA.vla.export.entity.unassigned": {
+        "defaultValue": "Unassigned",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:877",
+                "defaultValue": "Unassigned"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:887",
+                "defaultValue": "Unassigned"
+            }
+        ]
+    },
+    "FusionVLA.vla.export.title.untitled": {
+        "defaultValue": "Untitled",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:878",
+                "defaultValue": "Untitled"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/FusionVLA/FusionVLA.jsx:888",
+                "defaultValue": "Untitled"
+            }
+        ]
+    },
+    "GeneralInfoForm.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GeneralInfoForm.jsx:81",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GeneralInfoForm.jsx:109",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "GroupPopup.cancel": {
+        "defaultValue": "Cancel",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:227",
+                "defaultValue": "Cancel"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:424",
+                "defaultValue": "cancel"
+            }
+        ]
+    },
+    "GroupPopup.createGroup": {
+        "defaultValue": "CREATE GROUP",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:209",
+                "defaultValue": "CREATE GROUP"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:422",
+                "defaultValue": "CREATE GROUP"
+            }
+        ]
+    },
+    "GroupPopup.editGroup": {
+        "defaultValue": "EDIT GROUP",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:210",
+                "defaultValue": "EDIT GROUP"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:422",
+                "defaultValue": "EDIT GROUP"
+            }
+        ]
+    },
+    "GroupPopup.save": {
+        "defaultValue": "Save",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:232",
+                "defaultValue": "Save"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:425",
+                "defaultValue": "save"
+            }
+        ]
+    },
+    "GroupPopup.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:122",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:242",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GroupPopup.jsx:314",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "GroupsGrid.show.groupMembers": {
+        "defaultValue": "Show group members",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigationWizard/components/MembersGrid.jsx:125",
+                "defaultValue": "Show group members"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/GroupsGrid.jsx:181",
+                "defaultValue": "Show group members"
+            }
+        ]
+    },
+    "Header.commentedOnA": {
+        "defaultValue": "commented on a",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Header.jsx:233",
+                "defaultValue": "commented on a"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Header.jsx:234",
+                "defaultValue": "commented on a"
+            }
+        ]
+    },
+    "Header.noTitle": {
+        "defaultValue": "No Title",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Header.jsx:280",
+                "defaultValue": "No Title"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Header.jsx:290",
+                "defaultValue": "No Title"
+            }
+        ]
+    },
+    "Header.publishedThis": {
+        "defaultValue": "published this",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Header.jsx:230",
+                "defaultValue": "published this"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/Header.jsx:231",
+                "defaultValue": "published this"
+            }
+        ]
+    },
+    "InfoLineClickable.no.title": {
+        "defaultValue": "No Title",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/infoLine/InfoLineClickable.module.jsx:68",
+                "defaultValue": "No Title"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/infoLine/InfoLineClickable.module.jsx:83",
+                "defaultValue": "No Description"
+            }
+        ]
+    },
+    "InvestigationWizard.update": {
+        "defaultValue": "Update",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigationWizard/components/InvestigationWizard.jsx:678",
+                "defaultValue": "Update"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigationWizard/components/InvestigationWizard.jsx:695",
+                "defaultValue": "Update"
+            }
+        ]
+    },
+    "InvestigationsAll.Investigations.title": {
+        "defaultValue": "Investigations",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Investigations/InvestigationsAll.module.jsx:129",
+                "defaultValue": "Investigations"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Investigations/InvestigationsAll.module.jsx:134",
+                "defaultValue": "Investigations"
+            }
+        ]
+    },
+    "Lightbox.Close": {
+        "defaultValue": "Close",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:475",
+                "defaultValue": "Close"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:571",
+                "defaultValue": "Close"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:475",
+                "defaultValue": "Close"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:571",
+                "defaultValue": "Close"
+            }
+        ]
+    },
+    "Lightbox.Download": {
+        "defaultValue": "Download",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:376",
+                "defaultValue": "Download"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:390",
+                "defaultValue": "Download"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:431",
+                "defaultValue": "Download"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:376",
+                "defaultValue": "Download"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:390",
+                "defaultValue": "Download"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:431",
+                "defaultValue": "Download"
+            }
+        ]
+    },
+    "Lightbox.Information": {
+        "defaultValue": "Information",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:460",
+                "defaultValue": "Information"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:460",
+                "defaultValue": "Information"
+            }
+        ]
+    },
+    "Lightbox.Options": {
+        "defaultValue": "Options",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:433",
+                "defaultValue": "Options"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:433",
+                "defaultValue": "Options"
+            }
+        ]
+    },
+    "Lightbox.Print": {
+        "defaultValue": "Print",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:432",
+                "defaultValue": "Print"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:432",
+                "defaultValue": "Print"
+            }
+        ]
+    },
+    "Lightbox.Untitled": {
+        "defaultValue": "Untitled",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:565",
+                "defaultValue": "Untitled"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:565",
+                "defaultValue": "Untitled"
+            }
+        ]
+    },
+    "Lightbox.analyze": {
+        "defaultValue": "Analyze",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:452",
+                "defaultValue": "Analyze"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:532",
+                "defaultValue": "Analyze"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:452",
+                "defaultValue": "Analyze"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:532",
+                "defaultValue": "Analyze"
+            }
+        ]
+    },
+    "Lightbox.cantDownload": {
+        "defaultValue": "Download file is not available",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:344",
+                "defaultValue": "Download file is not available"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:344",
+                "defaultValue": "Download file is not available"
+            }
+        ]
+    },
+    "Lightbox.cantPrint": {
+        "defaultValue": "can't print ${ type }",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:336",
+                "defaultValue": "can't print ${ type }"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:336",
+                "defaultValue": "can't print ${ type }"
+            }
+        ]
+    },
+    "Lightbox.download": {
+        "defaultValue": "Download",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:598",
+                "defaultValue": "Download"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:598",
+                "defaultValue": "Download"
+            }
+        ]
+    },
+    "Lightbox.downloadFailed": {
+        "defaultValue": "Download Failed",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:343",
+                "defaultValue": "Download Failed"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:343",
+                "defaultValue": "Download Failed"
+            }
+        ]
+    },
+    "Lightbox.gallery.no.images.to.display": {
+        "defaultValue": "No images to display",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:616",
+                "defaultValue": "No images to display"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:616",
+                "defaultValue": "No images to display"
+            }
+        ]
+    },
+    "Lightbox.itemLabel": {
+        "defaultValue": "${ itemLabel }",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:368",
+                "defaultValue": "${ itemLabel }"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:368",
+                "defaultValue": "${ itemLabel }"
+            }
+        ]
+    },
+    "Lightbox.links": {
+        "defaultValue": "LINKS",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:688",
+                "defaultValue": "LINKS"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:688",
+                "defaultValue": "LINKS"
+            }
+        ]
+    },
+    "Lightbox.previewIsNotAvailable": {
+        "defaultValue": "Preview Is Not Available",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:590",
+                "defaultValue": "Preview Is Not Available"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:590",
+                "defaultValue": "Preview Is Not Available"
+            }
+        ]
+    },
+    "LoaderButton.button.label.${label}": {
+        "defaultValue": "LoaderButton.button.label.${label}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/loaderButton/LoaderButton.module.jsx:108",
+                "defaultValue": "LoaderButton.button.label.${label}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/loaderButton/LoaderButton.module.jsx:127",
+                "defaultValue": "LoaderButton.button.label.${label}"
+            }
+        ]
+    },
+    "Login.password": {
+        "defaultValue": "Password",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/views/Login.jsx:354",
+                "defaultValue": "Password"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/views/Login.jsx:355",
+                "defaultValue": "Password"
+            }
+        ]
+    },
+    "Login.username": {
+        "defaultValue": "user name",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/views/Login.jsx:342",
+                "defaultValue": "user name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/views/Login.jsx:343",
+                "defaultValue": "user name"
+            }
+        ]
+    },
+    "MapAutocomplete.select.area": {
+        "defaultValue": "Select area",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/MapAutocomplete.jsx:558",
+                "defaultValue": "Select area"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/MapAutocomplete.jsx:562",
+                "defaultValue": "SELECT AREA"
+            }
+        ]
+    },
+    "MapWidget.Search": {
+        "defaultValue": "Search",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/MapWidget/MapWidget.module.jsx:1304",
+                "defaultValue": "Search"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/MapWidget.jsx:519",
+                "defaultValue": "Search"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/mapWidget/MapWidget.jsx:645",
+                "defaultValue": "Search"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/mapWidget/MapWidget.jsx:665",
+                "defaultValue": "Search"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/MapAutocomplete.jsx:498",
+                "defaultValue": "Search"
+            }
+        ]
+    },
+    "MapWidget.error.occurred": {
+        "defaultValue": "Error occurred. Please try again later.",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/MapWidget.jsx:283",
+                "defaultValue": "Error occurred. Please try again later."
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/mapWidget/MapWidget.jsx:368",
+                "defaultValue": "Error occurred. Please try again later."
+            }
+        ]
+    },
+    "MapWidget.search": {
+        "defaultValue": "Search",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/mapWidget/MapWidget.jsx:638",
+                "defaultValue": "Search"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/MapAutocomplete.jsx:491",
+                "defaultValue": "Search"
+            }
+        ]
+    },
+    "MapWidget.showHeatMap": {
+        "defaultValue": "Show Heat Map",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/MapWidget/MapWidget.module.jsx:1420",
+                "defaultValue": "Show Heat Map"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/MapWidget.jsx:593",
+                "defaultValue": "Show Heat Map"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/mapWidget/MapWidget.jsx:791",
+                "defaultValue": "Show Heat Map"
+            }
+        ]
+    },
+    "Media and Docs": {
+        "defaultValue": "Media and Docs",
+        "value": null,
+        "occurrences": [
+            {
+                "defaultValue": "Media and Docs",
+                "source": "config",
+                "path": "client.analyze.widgets"
+            },
+            {
+                "defaultValue": "Media and Docs",
+                "source": "config",
+                "path": "client.dashboard.widgets"
+            }
+        ]
+    },
+    "MessageEditor.to": {
+        "defaultValue": "To",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/MessageEditor.module.jsx:133",
+                "defaultValue": "To"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/MessageEditor.module.jsx:144",
+                "defaultValue": "To"
+            }
+        ]
+    },
+    "Modal.cancel": {
+        "defaultValue": "cancel",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/modal/Modal.module.jsx:20",
+                "defaultValue": "cancel"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/modal/Modal.module.jsx:63",
+                "defaultValue": "cancel"
+            }
+        ]
+    },
+    "Original document": {
+        "defaultValue": "Original document",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/ViewToggle.jsx:52",
+                "defaultValue": "Original document"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/DocumentViewer.jsx:427",
+                "defaultValue": "Original document"
+            }
+        ]
+    },
+    "PermissionAndGroupsForm.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/PermissionAndGroupsForm.jsx:53",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/PermissionAndGroupsForm.jsx:108",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "PolygonsGrid.polygonsGrid.buttons.run": {
+        "defaultValue": "Run",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/Ontologies/InvestigationOntologiesGrid.module.jsx:150",
+                "defaultValue": "Run"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/Polygons/InvestigationPolygonsGrid.module.jsx:132",
+                "defaultValue": "Run"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/PrivateDataGrids/OntologiesGrid.module.jsx:128",
+                "defaultValue": "Run"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/PrivateDataGrids/PolygonsGrid.module.jsx:116",
+                "defaultValue": "Run"
+            }
+        ]
+    },
+    "Popup.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/insights/components/Popup.jsx:110",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/insights/components/Popup.jsx:115",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/insights/components/Popup.jsx:215",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/insights/components/Popup.jsx:226",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "QueryItem.By": {
+        "defaultValue": "By",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/QueryItem.jsx:45",
+                "defaultValue": "By"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/QueryItem.jsx:45",
+                "defaultValue": "By"
+            }
+        ]
+    },
+    "RecentlyViewedItem.createdBy": {
+        "defaultValue": "By",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentlyViewed/RecentlyViewedItem.jsx:152",
+                "defaultValue": "By"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentlyViewed/RecentlyViewedItem.jsx:155",
+                "defaultValue": "By"
+            }
+        ]
+    },
+    "RecentlyViewedItem.createdOn": {
+        "defaultValue": "Created on",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentlyViewed/RecentlyViewedItem.jsx:160",
+                "defaultValue": "Created on"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentlyViewed/RecentlyViewedItem.jsx:163",
+                "defaultValue": "Created on"
+            }
+        ]
+    },
+    "RecentlyViewedItem.noResults": {
+        "defaultValue": "No Results",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentlyViewed/RecentlyViewedItem.jsx:293",
+                "defaultValue": "No Results"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentlyViewed/RecentlyViewedItem.jsx:306",
+                "defaultValue": "No Results"
+            }
+        ]
+    },
+    "RelationBox.no.name": {
+        "defaultValue": "No Name",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/RelationBox.jsx:143",
+                "defaultValue": "No Name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/RelationBox.jsx:145",
+                "defaultValue": "No Name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/RelationBox.jsx:161",
+                "defaultValue": "No Name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/RelationBox.jsx:163",
+                "defaultValue": "No Name"
+            }
+        ]
+    },
+    "RelationPopup.no.name": {
+        "defaultValue": "No Name",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/RelationPopup/RelationPopup.jsx:155",
+                "defaultValue": "No Name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/RelationPopup/RelationPopup.jsx:156",
+                "defaultValue": "No Name"
+            }
+        ]
+    },
+    "ResetPassword.confirmPassword": {
+        "defaultValue": "Confirm password",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ResetPassword.jsx:210",
+                "defaultValue": "Confirm password"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ResetPassword.jsx:211",
+                "defaultValue": "Confirm password"
+            }
+        ]
+    },
+    "ResetPassword.newPassword": {
+        "defaultValue": "New password",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ResetPassword.jsx:199",
+                "defaultValue": "New password"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ResetPassword.jsx:200",
+                "defaultValue": "New password"
+            }
+        ]
+    },
+    "ResetPassword.password": {
+        "defaultValue": "Password",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ResetPassword.jsx:189",
+                "defaultValue": "Password"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/login/components/ResetPassword.jsx:190",
+                "defaultValue": "Password"
+            }
+        ]
+    },
+    "SaveVlaPopup.Description": {
+        "defaultValue": "Description",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx:323",
+                "defaultValue": "Description"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup.jsx:218",
+                "defaultValue": "Description"
+            }
+        ]
+    },
+    "SaveVlaPopup.Title": {
+        "defaultValue": "Title",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx:312",
+                "defaultValue": "Title"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup.jsx:207",
+                "defaultValue": "Title"
+            }
+        ]
+    },
+    "SaveVlaPopup.cancel": {
+        "defaultValue": "cancel",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx:272",
+                "defaultValue": "cancel"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup.jsx:172",
+                "defaultValue": "cancel"
+            }
+        ]
+    },
+    "SaveVlaPopup.chip.label.${text}": {
+        "defaultValue": "SaveVlaPopup.chip.label.${text}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx:219",
+                "defaultValue": "SaveVlaPopup.chip.label.${text}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup.jsx:148",
+                "defaultValue": "SaveVlaPopup.chip.label.${text}"
+            }
+        ]
+    },
+    "SaveVlaPopup.create": {
+        "defaultValue": "create",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx:273",
+                "defaultValue": "create"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup.jsx:173",
+                "defaultValue": "create"
+            }
+        ]
+    },
+    "SaveVlaPopup.save.vla": {
+        "defaultValue": "SAVE VLA",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx:270",
+                "defaultValue": "SAVE VLA"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup.jsx:170",
+                "defaultValue": "SAVE VLA"
+            }
+        ]
+    },
+    "SaveVlaPopup.select.entity": {
+        "defaultValue": "Select entity",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx:286",
+                "defaultValue": "Select entity"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/SaveVlaPopup.jsx:183",
+                "defaultValue": "Select entity"
+            }
+        ]
+    },
+    "Search": {
+        "defaultValue": "Search",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/Search.jsx:265",
+                "defaultValue": "Search"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/search/components/Search.jsx:555",
+                "defaultValue": "Search"
+            }
+        ]
+    },
+    "SharePopup.share.message.title": {
+        "defaultValue": "I would like to share this document with you",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/SharePopup/SharePopup.module.jsx:9",
+                "defaultValue": "I would like to share this document with you"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/SharePopup/SharePopup.module.jsx:41",
+                "defaultValue": "I would like to share this {0} with you"
+            }
+        ]
+    },
+    "Show Original": {
+        "defaultValue": "Show Original",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/ViewToggle.jsx:53",
+                "defaultValue": "Show Original"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/DocumentViewer.jsx:428",
+                "defaultValue": "Show Original"
+            }
+        ]
+    },
+    "Stringify.stringify.${item.label}": {
+        "defaultValue": "Stringify.stringify.${item.label}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:420",
+                "defaultValue": "Stringify.stringify.${item.label}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:429",
+                "defaultValue": "Stringify.stringify.${item.label}"
+            }
+        ]
+    },
+    "Stringify.stringify.${value}": {
+        "defaultValue": "Stringify.stringify.${value}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:420",
+                "defaultValue": "Stringify.stringify.${value}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:429",
+                "defaultValue": "Stringify.stringify.${value}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:440",
+                "defaultValue": "Stringify.stringify.${value}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:447",
+                "defaultValue": "Stringify.stringify.${value}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:456",
+                "defaultValue": "Stringify.stringify.${value}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/modules/parse.js:458",
+                "defaultValue": "Stringify.stringify.${value}"
+            }
+        ]
+    },
+    "TextInput.queryBuilder.errors.${error}": {
+        "defaultValue": "TextInput.queryBuilder.errors.${error}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/Text.jsx:57",
+                "defaultValue": "TextInput.queryBuilder.errors.${error}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/TextInput.jsx:57",
+                "defaultValue": "TextInput.queryBuilder.errors.${error}"
+            }
+        ]
+    },
+    "TextInput.queryBuilder.hintTexts.Type...": {
+        "defaultValue": "Type...",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/Text.jsx:49",
+                "defaultValue": "Type..."
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/operators/TextInput.jsx:49",
+                "defaultValue": "Type..."
+            }
+        ]
+    },
+    "ToolsGrid.toolsGrid.buttons.Share": {
+        "defaultValue": "Share",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/Ontologies/InvestigationOntologiesGrid.module.jsx:158",
+                "defaultValue": "Share"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/Polygons/InvestigationPolygonsGrid.module.jsx:140",
+                "defaultValue": "Share"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/SavedQueries/InvestigationSavedQueriesGrid.module.jsx:190",
+                "defaultValue": "Share"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Tools/ToolsGrid/ToolsGrid.module.jsx:162",
+                "defaultValue": "Share"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/PrivateDataGrids/OntologiesGrid.module.jsx:140",
+                "defaultValue": "Share"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/PrivateDataGrids/PolygonsGrid.module.jsx:128",
+                "defaultValue": "Share"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/PrivateDataGrids/SavedQueriesGrid.module.jsx:171",
+                "defaultValue": "Share"
+            }
+        ]
+    },
+    "TopBar.Create": {
+        "defaultValue": "Create",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopBar/TopBar.module.jsx:233",
+                "defaultValue": "Create"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopBar/TopBar.module.jsx:299",
+                "defaultValue": "Create"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/TopBar.jsx:119",
+                "defaultValue": "Create"
+            }
+        ]
+    },
+    "TopBar.close": {
+        "defaultValue": "Close",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopBar/TopBar.module.jsx:366",
+                "defaultValue": "Close"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/PrivateDataTopBar.module.jsx:89",
+                "defaultValue": "Close"
+            }
+        ]
+    },
+    "TopBar.open.in.vla": {
+        "defaultValue": "Open in VLA",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopBar/TopBar.module.jsx:74",
+                "defaultValue": "Open in VLA"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopBar/TopBar.module.jsx:109",
+                "defaultValue": "Open in VLA"
+            }
+        ]
+    },
+    "TopMenuInsights.insight.delete.error": {
+        "defaultValue": "Insight could not be deleted",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuInsights.jsx:195",
+                "defaultValue": "Insight could not be deleted"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuInsights.jsx:207",
+                "defaultValue": "Insight could not be deleted"
+            }
+        ]
+    },
+    "TopMenuLinks.Error.creating.link": {
+        "defaultValue": "Error creating link",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuLinks.jsx:167",
+                "defaultValue": "Error creating link"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuLinks.jsx:181",
+                "defaultValue": "Error creating link"
+            }
+        ]
+    },
+    "UserIsBlocked": {
+        "defaultValue": "Blocked",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:139",
+                "defaultValue": "Blocked"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:140",
+                "defaultValue": "Blocked"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/UserStatusCell.jsx:17",
+                "defaultValue": "Blocked"
+            }
+        ]
+    },
+    "UserIsNotBlocked": {
+        "defaultValue": "Active",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:139",
+                "defaultValue": "Active"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:140",
+                "defaultValue": "Active"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/UserStatusCell.jsx:17",
+                "defaultValue": "Active"
+            }
+        ]
+    },
+    "UserPopup.Only.letters.and.numbers.allowed": {
+        "defaultValue": "You cannot use \".\", \"_\" or \"@\" in the user name",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/GeneralInfoForm.jsx:76",
+                "defaultValue": "You cannot use \".\", \"_\" or \"@\" in the user name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/UserPopup.jsx:384",
+                "defaultValue": "You cannot use \".\", \"_\" or \"@\" in the user name"
+            }
+        ]
+    },
+    "UserPopup.this.field.is.required": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/UserPopup.jsx:322",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/UserPopup.jsx:386",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "UsersGrid.UserIsBlocked": {
+        "defaultValue": "Blocked",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:146",
+                "defaultValue": "Blocked"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:157",
+                "defaultValue": "Blocked"
+            }
+        ]
+    },
+    "UsersGrid.UserIsNotBlocked": {
+        "defaultValue": "Active",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:146",
+                "defaultValue": "Active"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/usersAndGroups/components/Grids/UsersGrid.jsx:157",
+                "defaultValue": "Active"
+            }
+        ]
+    },
+    "VLAExtended.are.you.sure?": {
+        "defaultValue": "Are you sure?",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:699",
+                "defaultValue": "Are you sure?"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:770",
+                "defaultValue": "Are you sure?"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:782",
+                "defaultValue": "Are you sure?"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:792",
+                "defaultValue": "Are you sure?"
+            }
+        ]
+    },
+    "VLAExtended.clear.all": {
+        "defaultValue": "Clear all",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:699",
+                "defaultValue": "Clear all"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:770",
+                "defaultValue": "Clear all"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:782",
+                "defaultValue": "Clear all"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:792",
+                "defaultValue": "Clear all"
+            }
+        ]
+    },
+    "VLAExtended.combine.all": {
+        "defaultValue": "Combine all",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:696",
+                "defaultValue": "Combine all"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:779",
+                "defaultValue": "Combine all"
+            }
+        ]
+    },
+    "VLAExtended.deselect": {
+        "defaultValue": "Deselect",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:715",
+                "defaultValue": "Deselect"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:725",
+                "defaultValue": "Deselect"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:744",
+                "defaultValue": "Deselect"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:756",
+                "defaultValue": "Deselect"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:789",
+                "defaultValue": "Deselect"
+            }
+        ]
+    },
+    "VLAExtended.expandNodes": {
+        "defaultValue": "Expand Nodes",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:778",
+                "defaultValue": "Expand Nodes"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:788",
+                "defaultValue": "Expand Nodes"
+            }
+        ]
+    },
+    "VLAExtended.remove.link": {
+        "defaultValue": "Remove link",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:748",
+                "defaultValue": "Remove link"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:761",
+                "defaultValue": "Remove link"
+            }
+        ]
+    },
+    "VLAExtended.remove.node": {
+        "defaultValue": "Remove node",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:718",
+                "defaultValue": "Remove node"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:731",
+                "defaultValue": "Remove node"
+            }
+        ]
+    },
+    "VLAExtended.select.all": {
+        "defaultValue": "Select all",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:695",
+                "defaultValue": "Select all"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:777",
+                "defaultValue": "Select all"
+            }
+        ]
+    },
+    "VLAExtended.select.ends": {
+        "defaultValue": "Select ends",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:745",
+                "defaultValue": "Select ends"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:757",
+                "defaultValue": "Select ends"
+            }
+        ]
+    },
+    "VLAExtended.unable.to.get.entity": {
+        "defaultValue": "Unable to get entity",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/RightPanelPane/RightPanelPane.jsx:87",
+                "defaultValue": "Unable to get entity"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:361",
+                "defaultValue": "Unable to get entity"
+            }
+        ]
+    },
+    "VLAExtended.uncombine.all": {
+        "defaultValue": "Uncombine all",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:697",
+                "defaultValue": "Uncombine all"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:780",
+                "defaultValue": "Uncombine all"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VLAExtended/VLAExtended.jsx:790",
+                "defaultValue": "Uncombine all"
+            }
+        ]
+    },
+    "VLATableOld.type": {
+        "defaultValue": "TYPE",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VlaTable/VLATableOld.jsx:704",
+                "defaultValue": "TYPE"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VlaTable/VLATableOld.jsx:707",
+                "defaultValue": "TYPE"
+            }
+        ]
+    },
+    "VlaAgGrid.type": {
+        "defaultValue": "Type",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VlaTable/VlaAgGrid.jsx:89",
+                "defaultValue": "Type"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/VlaTable/VlaAgGrid.jsx:147",
+                "defaultValue": "Type"
+            }
+        ]
+    },
+    "attachment.create.createAttachmentError": {
+        "defaultValue": "Error creating attachment",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Attachments/Actions/attachment.create.module.js:14",
+                "defaultValue": "Error creating attachment"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Attachments/Actions/attachment.create.module.js:20",
+                "defaultValue": "Unable to create the attachment"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Attachments/Actions/attachment.create.module.js:46",
+                "defaultValue": "Unable to create the attachment"
+            }
+        ]
+    },
+    "audit": {
+        "defaultValue": "Activity Log",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/views/Audit.module.jsx:33",
+                "defaultValue": "Activity Log"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/views/Audit.module.jsx:40",
+                "defaultValue": "Activity Log"
+            }
+        ]
+    },
+    "audit.export.audit.getExportError": {
+        "defaultValue": "Unable to export the audit list",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Audit/Actions/audit.export.module.js:45",
+                "defaultValue": "Unable to export the audit list"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Audit/Actions/audit.export.module.js:52",
+                "defaultValue": "Unable to export the audit list"
+            }
+        ]
+    },
+    "audit.labels.actionType.sent": {
+        "defaultValue": "sent",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Audit/Modules/audit.actionType.translation.module.js:19",
+                "defaultValue": "sent"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Audit/Modules/audit.actionType.translation.module.js:23",
+                "defaultValue": "sent a message"
+            }
+        ]
+    },
+    "cancel": {
+        "defaultValue": "Cancel",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/ReportEdit/EditReportPopup.module.jsx:135",
+                "defaultValue": "Cancel"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/EditProfilePopup.module.jsx:112",
+                "defaultValue": "cancel"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/modal/Modal.jsx:31",
+                "defaultValue": "cancel"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/modal/customModal.module.jsx:62",
+                "defaultValue": "cancel"
+            }
+        ]
+    },
+    "createAuditRecord.error": {
+        "defaultValue": "Unable to create audit record",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/actions/aduit/createAuditRecord.module.js:36",
+                "defaultValue": "Unable to create audit record"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/actions/aduit/createAuditRecord.module.js:43",
+                "defaultValue": "Unable to create audit record"
+            }
+        ]
+    },
+    "createOntology.You.can't.modify.closed.investigation ": {
+        "defaultValue": "You can't modify a closed investigation",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Ontologies/actions/createOntology.module.js:13",
+                "defaultValue": "You can't modify a closed investigation"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Ontologies/actions/removeOntology.module.js:15",
+                "defaultValue": "You can't modify a closed investigation"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Ontologies/actions/updateOntology.module.js:13",
+                "defaultValue": "You can't modify a closed investigation"
+            }
+        ]
+    },
+    "delete": {
+        "defaultValue": "Delete",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/TopHeader.MessagesMenu.module.jsx:337",
+                "defaultValue": "Delete"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuInsights.jsx:241",
+                "defaultValue": "Delete"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentAlerts/AlertListItem.jsx:75",
+                "defaultValue": "Delete"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigation/components/InvestigationFavorites/FavoritesGrid.jsx:151",
+                "defaultValue": "Delete"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/messages/components/MessageListItem.module.jsx:73",
+                "defaultValue": "Delete"
+            }
+        ]
+    },
+    "deleteLink.You.can't.modify.closed.investigation ": {
+        "defaultValue": "You can't modify a closed investigation ",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Links/Actions/deleteLink.module.js:15",
+                "defaultValue": "You can't modify a closed investigation "
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Links/Actions/editLink.module.js:47",
+                "defaultValue": "You can't modify a closed investigation "
+            }
+        ]
+    },
+    "edit": {
+        "defaultValue": "Edit",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuInsights.jsx:240",
+                "defaultValue": "Edit"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigation/components/InvestigationFavorites/FavoritesGrid.jsx:139",
+                "defaultValue": "Edit"
+            }
+        ]
+    },
+    "exif.BrightnessValue": {
+        "defaultValue": "Brightness",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:61",
+                "defaultValue": "Brightness"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:61",
+                "defaultValue": "Brightness"
+            }
+        ]
+    },
+    "exif.DateTime": {
+        "defaultValue": "Date taken",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:65",
+                "defaultValue": "Date taken"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:65",
+                "defaultValue": "Date taken"
+            }
+        ]
+    },
+    "exif.ExposureProgram": {
+        "defaultValue": "Exposure program",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:77",
+                "defaultValue": "Exposure program"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:77",
+                "defaultValue": "Exposure program"
+            }
+        ]
+    },
+    "exif.ExposureTime": {
+        "defaultValue": "Exposure time",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:81",
+                "defaultValue": "Exposure time"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:81",
+                "defaultValue": "Exposure time"
+            }
+        ]
+    },
+    "exif.Flash": {
+        "defaultValue": "Flash",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:85",
+                "defaultValue": "Flash"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:85",
+                "defaultValue": "Flash"
+            }
+        ]
+    },
+    "exif.FocalLength": {
+        "defaultValue": "Focal length",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:89",
+                "defaultValue": "Focal length"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:89",
+                "defaultValue": "Focal length"
+            }
+        ]
+    },
+    "exif.ISOSpeedRatings": {
+        "defaultValue": "ISO",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:93",
+                "defaultValue": "ISO"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:93",
+                "defaultValue": "ISO"
+            }
+        ]
+    },
+    "exif.Make": {
+        "defaultValue": "Camera maker",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:97",
+                "defaultValue": "Camera maker"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:97",
+                "defaultValue": "Camera maker"
+            }
+        ]
+    },
+    "exif.MeteringMode": {
+        "defaultValue": "Metering mode",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:105",
+                "defaultValue": "Metering mode"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:105",
+                "defaultValue": "Metering mode"
+            }
+        ]
+    },
+    "exif.Model": {
+        "defaultValue": "Camera model",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:101",
+                "defaultValue": "Camera model"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:101",
+                "defaultValue": "Camera model"
+            }
+        ]
+    },
+    "exif.PixelXDimension": {
+        "defaultValue": "Pixel X Dimension",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:69",
+                "defaultValue": "Pixel X Dimension"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:69",
+                "defaultValue": "Pixel X Dimension"
+            }
+        ]
+    },
+    "exif.PixelYDimension": {
+        "defaultValue": "Pixel Y Dimension",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:73",
+                "defaultValue": "Pixel Y Dimension"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:73",
+                "defaultValue": "Pixel Y Dimension"
+            }
+        ]
+    },
+    "exif.ShutterSpeedValue": {
+        "defaultValue": "Shutter speed",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:109",
+                "defaultValue": "Shutter speed"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:109",
+                "defaultValue": "Shutter speed"
+            }
+        ]
+    },
+    "exif.Software": {
+        "defaultValue": "Software version",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:113",
+                "defaultValue": "Software version"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:113",
+                "defaultValue": "Software version"
+            }
+        ]
+    },
+    "exif.WhiteBalance": {
+        "defaultValue": "White balance",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:117",
+                "defaultValue": "White balance"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:117",
+                "defaultValue": "White balance"
+            }
+        ]
+    },
+    "exif.dimensions": {
+        "defaultValue": "Dimensions",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:243",
+                "defaultValue": "Dimensions"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:243",
+                "defaultValue": "Dimensions"
+            }
+        ]
+    },
+    "exif.metaData": {
+        "defaultValue": "META DATA",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBox/views/Lightbox.jsx:254",
+                "defaultValue": "META DATA"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/lightBoxFullscreen/views/Lightbox.jsx:254",
+                "defaultValue": "META DATA"
+            }
+        ]
+    },
+    "exportPopup.exportError": {
+        "defaultValue": "There was a problem with the export process",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/exportPopup.jsx:67",
+                "defaultValue": "There was a problem with the export process"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/components/exportPopup.jsx:74",
+                "defaultValue": "There was a problem with the export process"
+            }
+        ]
+    },
+    "facets.item.delete": {
+        "defaultValue": "Delete",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/generic.Location.module.jsx:169",
+                "defaultValue": "Delete"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/generic.Location.module.jsx:174",
+                "defaultValue": "Delete"
+            }
+        ]
+    },
+    "form.frequencyPluralHour": {
+        "defaultValue": "minutes",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/alerts/Components/form.jsx:38",
+                "defaultValue": "minutes"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/alerts/Components/form.jsx:47",
+                "defaultValue": "hours"
+            }
+        ]
+    },
+    "form.frequencySingleHour": {
+        "defaultValue": "minute",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/alerts/Components/form.jsx:39",
+                "defaultValue": "minute"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/alerts/Components/form.jsx:48",
+                "defaultValue": "hour"
+            }
+        ]
+    },
+    "generic.progressBar.apply": {
+        "defaultValue": "Apply",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/facets/generic.ProgressBar.module.jsx:108",
+                "defaultValue": "Apply"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/facets/components/Checkbox/Checkbox.jsx:149",
+                "defaultValue": "Apply"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/facets/components/Progress/Progress.jsx:170",
+                "defaultValue": "Apply"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/LinksClustersFacet/LinksClustersFacet.jsx:329",
+                "defaultValue": "Apply"
+            }
+        ]
+    },
+    "getEntity.errorLoadingEntity": {
+        "defaultValue": "Error in loading entity",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/actions/getEntity.js:28",
+                "defaultValue": "Error in loading entity"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/actions/getEntity.js:29",
+                "defaultValue": "Error in loading entity"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/actions/getEntity.js:27",
+                "defaultValue": "Error in loading entity"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/actions/getEntity.js:275",
+                "defaultValue": "Error in loading entity"
+            }
+        ]
+    },
+    "getFeed.feed.createRelation": {
+        "defaultValue": "{0} \"{1}\" ${WAS_CREATED_FOR} {2} {3} ({4}) ${BY} {5}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/actions/getFeed.js:81",
+                "defaultValue": "{0} \"{1}\" ${WAS_CREATED_FOR} {2} {3} ({4}) ${BY} {5}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/actions/getFeed.js:83",
+                "defaultValue": "{0} \"{1}\" ${WAS_CREATED_BY} {5}"
+            }
+        ]
+    },
+    "getFeed.feed.deleteRelation": {
+        "defaultValue": "{0} \"{1}\" ${WAS_DELETED_FROM} {2} {3} ({4}) ${BY} {5}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/actions/getFeed.js:109",
+                "defaultValue": "{0} \"{1}\" ${WAS_DELETED_FROM} {2} {3} ({4}) ${BY} {5}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/actions/getFeed.js:111",
+                "defaultValue": "{0} \"{1}\" ${WAS_DELETED_BY} {5}"
+            }
+        ]
+    },
+    "getFeed.feed.modifyRelation": {
+        "defaultValue": "{0} \"{1}\" ${WAS_MODIFIED_IN} {2} {3} ({4}) ${BY} {5}",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/actions/getFeed.js:95",
+                "defaultValue": "{0} \"{1}\" ${WAS_MODIFIED_IN} {2} {3} ({4}) ${BY} {5}"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/actions/getFeed.js:97",
+                "defaultValue": "{0} \"{1}\" ${WAS_MODIFIED_BY} {5}"
+            }
+        ]
+    },
+    "getRelatedTarget.webTargetRelations.getAllError": {
+        "defaultValue": "Unable to load the artifacts list",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/webTarget/actions/getRelatedTarget.js:111",
+                "defaultValue": "Unable to load the artifacts list"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/webTarget/actions/getRelatedTarget.js:114",
+                "defaultValue": "Unable to load the entities list"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/webTarget/actions/getRelatedTarget.js:117",
+                "defaultValue": "Unable to load the activities list"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/webTarget/actions/getRelatedTarget.js:120",
+                "defaultValue": "Unable to load the relations list"
+            }
+        ]
+    },
+    "getSideMenuContent.author": {
+        "defaultValue": "Author",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:74",
+                "defaultValue": "Author"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:74",
+                "defaultValue": "Author"
+            }
+        ]
+    },
+    "getSideMenuContent.company": {
+        "defaultValue": "Company",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:102",
+                "defaultValue": "Company"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:102",
+                "defaultValue": "Company"
+            }
+        ]
+    },
+    "getSideMenuContent.createOn": {
+        "defaultValue": "created On",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:19",
+                "defaultValue": "created On"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:19",
+                "defaultValue": "created On"
+            }
+        ]
+    },
+    "getSideMenuContent.documentCategories": {
+        "defaultValue": "Document Categories",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:98",
+                "defaultValue": "Document Categories"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:98",
+                "defaultValue": "Document Categories"
+            }
+        ]
+    },
+    "getSideMenuContent.documentComments": {
+        "defaultValue": "Document Comments",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:110",
+                "defaultValue": "Document Comments"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:110",
+                "defaultValue": "Document Comments"
+            }
+        ]
+    },
+    "getSideMenuContent.documentName": {
+        "defaultValue": "Document Name",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:11",
+                "defaultValue": "Document Name"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:11",
+                "defaultValue": "Document Name"
+            }
+        ]
+    },
+    "getSideMenuContent.documentSubject": {
+        "defaultValue": "Document Subject",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:94",
+                "defaultValue": "Document Subject"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:94",
+                "defaultValue": "Document Subject"
+            }
+        ]
+    },
+    "getSideMenuContent.documentTags": {
+        "defaultValue": "Document Tags",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:90",
+                "defaultValue": "Document Tags"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:90",
+                "defaultValue": "Document Tags"
+            }
+        ]
+    },
+    "getSideMenuContent.keyPhrases": {
+        "defaultValue": "Key Phrases",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:47",
+                "defaultValue": "Key Phrases"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:47",
+                "defaultValue": "Key Phrases"
+            }
+        ]
+    },
+    "getSideMenuContent.language": {
+        "defaultValue": "Language",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:35",
+                "defaultValue": "Language"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:35",
+                "defaultValue": "Language"
+            }
+        ]
+    },
+    "getSideMenuContent.lastModifiedBy": {
+        "defaultValue": "Last Modified By",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:82",
+                "defaultValue": "Last Modified By"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:82",
+                "defaultValue": "Last Modified By"
+            }
+        ]
+    },
+    "getSideMenuContent.lastPrinted": {
+        "defaultValue": "Last Printed",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:106",
+                "defaultValue": "Last Printed"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:106",
+                "defaultValue": "Last Printed"
+            }
+        ]
+    },
+    "getSideMenuContent.links": {
+        "defaultValue": "LINKS",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:118",
+                "defaultValue": "LINKS"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:118",
+                "defaultValue": "LINKS"
+            }
+        ]
+    },
+    "getSideMenuContent.location": {
+        "defaultValue": "Location",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:86",
+                "defaultValue": "Location"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:86",
+                "defaultValue": "Location"
+            }
+        ]
+    },
+    "getSideMenuContent.locations": {
+        "defaultValue": "Locations",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:59",
+                "defaultValue": "Locations"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:59",
+                "defaultValue": "Locations"
+            }
+        ]
+    },
+    "getSideMenuContent.manager": {
+        "defaultValue": "Manager",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:78",
+                "defaultValue": "Manager"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:78",
+                "defaultValue": "Manager"
+            }
+        ]
+    },
+    "getSideMenuContent.metaData": {
+        "defaultValue": "METADATA",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:70",
+                "defaultValue": "METADATA"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:70",
+                "defaultValue": "METADATA"
+            }
+        ]
+    },
+    "getSideMenuContent.modifiedBy": {
+        "defaultValue": "Modified By",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:31",
+                "defaultValue": "Modified By"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:31",
+                "defaultValue": "Modified By"
+            }
+        ]
+    },
+    "getSideMenuContent.modifiedOn": {
+        "defaultValue": "Modified On",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:27",
+                "defaultValue": "Modified On"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:27",
+                "defaultValue": "Modified On"
+            }
+        ]
+    },
+    "getSideMenuContent.organizations": {
+        "defaultValue": "Organizations",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:55",
+                "defaultValue": "Organizations"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:55",
+                "defaultValue": "Organizations"
+            }
+        ]
+    },
+    "getSideMenuContent.people": {
+        "defaultValue": "People",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:51",
+                "defaultValue": "People"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:51",
+                "defaultValue": "People"
+            }
+        ]
+    },
+    "getSideMenuContent.phones": {
+        "defaultValue": "Phones",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:63",
+                "defaultValue": "Phones"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:63",
+                "defaultValue": "Phones"
+            }
+        ]
+    },
+    "getSideMenuContent.sentiment": {
+        "defaultValue": "Sentiment",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:39",
+                "defaultValue": "Sentiment"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:39",
+                "defaultValue": "Sentiment"
+            }
+        ]
+    },
+    "getSideMenuContent.topic": {
+        "defaultValue": "Topic",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:43",
+                "defaultValue": "Topic"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:43",
+                "defaultValue": "Topic"
+            }
+        ]
+    },
+    "getSideMenuContent.type": {
+        "defaultValue": "type",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:15",
+                "defaultValue": "type"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:15",
+                "defaultValue": "type"
+            }
+        ]
+    },
+    "getSideMenuContent.uploadedBy": {
+        "defaultValue": "Uploaded By",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/asset/getSideMenuContent.js:23",
+                "defaultValue": "Uploaded By"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/DataEntity/constructors/webEntity/getSideMenuContent.js:23",
+                "defaultValue": "Uploaded By"
+            }
+        ]
+    },
+    "grid.manager.widget.menu.fullscreen": {
+        "defaultValue": "Fullscreen",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/GridManagerAndDrawer/grid.manager.module.jsx:449",
+                "defaultValue": "Fullscreen"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/MiniDocumentViewerWidget.jsx:349",
+                "defaultValue": "Fullscreen"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/infoDocumentViewer.jsx:101",
+                "defaultValue": "Fullscreen"
+            }
+        ]
+    },
+    "grid.manager.widget.menu.refresh": {
+        "defaultValue": "Refresh",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/GridManagerAndDrawer/grid.manager.module.jsx:481",
+                "defaultValue": "Refresh"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/MiniDocumentViewerWidget.jsx:357",
+                "defaultValue": "Refresh"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/infoDocumentViewer.jsx:107",
+                "defaultValue": "Refresh"
+            }
+        ]
+    },
+    "home.time.marker.days": {
+        "defaultValue": "{a} day",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/modules/timeDisplayMap.js:10",
+                "defaultValue": "{a} day"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/modules/timeDisplayMap.js:11",
+                "defaultValue": "{a} days"
+            }
+        ]
+    },
+    "home.time.marker.months": {
+        "defaultValue": "{a} month",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/modules/timeDisplayMap.js:12",
+                "defaultValue": "{a} month"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/modules/timeDisplayMap.js:13",
+                "defaultValue": "{a} months"
+            }
+        ]
+    },
+    "info": {
+        "defaultValue": "Info",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/Summary/EntityMainRelationsWidget.jsx:107",
+                "defaultValue": "Info"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigation/components/InvestigationFavorites/FavoritesGrid.jsx:133",
+                "defaultValue": "Info"
+            }
+        ]
+    },
+    "insight.create.insights.createInsightError": {
+        "defaultValue": "Unable to create the insight",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Insights/Actions/insight.create.module.jsx:18",
+                "defaultValue": "Unable to create the insight"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Insights/Actions/insight.create.module.jsx:44",
+                "defaultValue": "Unable to create the insight"
+            }
+        ]
+    },
+    "markAsRead": {
+        "defaultValue": "Mark as Read",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/TopHeader.MessagesMenu.module.jsx:335",
+                "defaultValue": "Mark as Read"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentAlerts/AlertListItem.jsx:74",
+                "defaultValue": "Mark as Read"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/messages/components/MessageListItem.module.jsx:72",
+                "defaultValue": "Mark as Read"
+            }
+        ]
+    },
+    "markAsUnread": {
+        "defaultValue": "Mark as Unread",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/TopHeader.MessagesMenu.module.jsx:335",
+                "defaultValue": "Mark as Unread"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentAlerts/AlertListItem.jsx:74",
+                "defaultValue": "Mark as Unread"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/messages/components/MessageListItem.module.jsx:72",
+                "defaultValue": "Mark as Unread"
+            }
+        ]
+    },
+    "multi.links.created.successfully": {
+        "defaultValue": "Links created",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/create.mixin/create.mixin.module.jsx:250",
+                "defaultValue": "Links created"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/create.mixin/create.mixin.module.jsx:270",
+                "defaultValue": "Links created"
+            }
+        ]
+    },
+    "multi.links.creation.success": {
+        "defaultValue": "Failed to create links",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/create.mixin/create.mixin.module.jsx:250",
+                "defaultValue": "Failed to create links"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/create.mixin/create.mixin.module.jsx:270",
+                "defaultValue": "Failed to create links"
+            }
+        ]
+    },
+    "multi.links.partial.success": {
+        "defaultValue": "${_this.multiLinksSuccess}/${multiLinksLength} Links created",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/create.mixin/create.mixin.module.jsx:250",
+                "defaultValue": "${_this.multiLinksSuccess}/${multiLinksLength} Links created"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/modules/create.mixin/create.mixin.module.jsx:270",
+                "defaultValue": "${_this.multiLinksSuccess}/${multiLinksLength} Links created"
+            }
+        ]
+    },
+    "no.summary": {
+        "defaultValue": "No summary",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/infoDocumentViewer.jsx:190",
+                "defaultValue": "No summary"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/SummaryBlock.jsx:57",
+                "defaultValue": "No summary"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/info/components/SummaryBlock.jsx:75",
+                "defaultValue": "No summary"
+            }
+        ]
+    },
+    "openEntityPage": {
+        "defaultValue": "Open entity page",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuLinks.jsx:217",
+                "defaultValue": "Open entity page"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/Summary/EntityMainRelationsWidget.jsx:115",
+                "defaultValue": "Open Entity Page"
+            }
+        ]
+    },
+    "openInMap": {
+        "defaultValue": "Open in map",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Analyze.jsx:908",
+                "defaultValue": "Open in map"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/Summary/EntityMainRelationsWidget.jsx:144",
+                "defaultValue": "Open in map"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigation/components/InvestigationFavorites/FavoritesGrid.jsx:148",
+                "defaultValue": "Open in map"
+            }
+        ]
+    },
+    "openInVla": {
+        "defaultValue": "Open in VLA",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/analyze/views/Analyze.jsx:893",
+                "defaultValue": "Open in VLA"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/Summary/EntityMainRelationsWidget.jsx:135",
+                "defaultValue": "Open in VLA"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigation/components/InvestigationFavorites/FavoritesGrid.jsx:147",
+                "defaultValue": "Open in VLA"
+            }
+        ]
+    },
+    "preview": {
+        "defaultValue": "Preview",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/Summary/EntityMainRelationsWidget.jsx:99",
+                "defaultValue": "Preview"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigation/components/InvestigationFavorites/FavoritesGrid.jsx:132",
+                "defaultValue": "Preview"
+            }
+        ]
+    },
+    "privateData": {
+        "defaultValue": "Private data",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/DummyComponentsForRouting/LeftDrawerMenu.module.jsx:30",
+                "defaultValue": "Private data"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/PrivateDataPopup.module.jsx:187",
+                "defaultValue": "private data"
+            }
+        ]
+    },
+    "query.builder.invalid.query": {
+        "defaultValue": "Query is not valid",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/SavedQueryItem.jsx:48",
+                "defaultValue": "Query is not valid"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/components/SavedQueryItem.jsx:61",
+                "defaultValue": "Query is not valid"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/views/Drawer/Drawer.jsx:112",
+                "defaultValue": "Query is not valid"
+            }
+        ]
+    },
+    "queryBuilder.betweenOperatorError": {
+        "defaultValue": "'To' and'From' values should be set",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/queryBuilder.js:864",
+                "defaultValue": "'To' and'From' values should be set"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/queryBuilder.js:871",
+                "defaultValue": "'To' value should be bigger than 'From'"
+            }
+        ]
+    },
+    "queryBuilder.required.field": {
+        "defaultValue": "This field is required",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/queryBuilder.js:856",
+                "defaultValue": "This field is required"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/queryBuilder/queryBuilder.js:891",
+                "defaultValue": "This field is required"
+            }
+        ]
+    },
+    "reply": {
+        "defaultValue": "reply",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/MessageViewer.module.jsx:101",
+                "defaultValue": "reply"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/TopHeader.MessagesMenu.module.jsx:333",
+                "defaultValue": "Reply"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/messages/components/MessageListItem.module.jsx:70",
+                "defaultValue": "Reply"
+            }
+        ]
+    },
+    "report.create.reports.createError": {
+        "defaultValue": "Failed to create the report",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/Actions/report.create.module.js:15",
+                "defaultValue": "Failed to create the report"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/Actions/report.create.module.js:39",
+                "defaultValue": "Failed to create the report"
+            }
+        ]
+    },
+    "report.update.You.can't.modify.closed.investigation ": {
+        "defaultValue": "You can't modify a closed investigation ",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/Actions/report.update.module.js:29",
+                "defaultValue": "You can't modify a closed investigation "
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/Actions/reports.delete.module..js:16",
+                "defaultValue": "You can't modify a closed investigation "
+            }
+        ]
+    },
+    "submit": {
+        "defaultValue": "submit",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/modal/Modal.jsx:32",
+                "defaultValue": "submit"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/mui/modal/customModal.module.jsx:63",
+                "defaultValue": "submit"
+            }
+        ]
+    },
+    "translateToLanguage": {
+        "defaultValue": "Translate to ${ lang }",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/ViewToggle.jsx:60",
+                "defaultValue": "Translate to ${ lang }"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/DocumentViewer.jsx:435",
+                "defaultValue": "Translate to ${ lang }"
+            }
+        ]
+    },
+    "translatedToLanguage": {
+        "defaultValue": "Translated to ${ lang }",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/ViewToggle.jsx:61",
+                "defaultValue": "Translated to ${ lang }"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/views/DocumentViewer.jsx:436",
+                "defaultValue": "Translated to ${ lang }"
+            }
+        ]
+    },
+    "unknownLocation": {
+        "defaultValue": "Unknown location",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/MapWidget/MapWidget.module.jsx:985",
+                "defaultValue": "Unknown location"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/clusters/components/ClusterDrawer.module.js:247",
+                "defaultValue": "Unknown location"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/clusters/components/ClusterDrawerGroup.module.js:162",
+                "defaultValue": "Unknown location"
+            }
+        ]
+    },
+    "update": {
+        "defaultValue": "Update",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Reports/ReportEdit/EditReportPopup.module.jsx:136",
+                "defaultValue": "Update"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuUser/EditProfilePopup.module.jsx:113",
+                "defaultValue": "update"
+            }
+        ]
+    },
+    "view": {
+        "defaultValue": "View",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/TopHeader/MenuMessages/TopHeader.MessagesMenu.module.jsx:334",
+                "defaultValue": "View"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/documentViewer/components/TopMenuInsights.jsx:239",
+                "defaultValue": "View"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/home/components/recentAlerts/AlertListItem.jsx:73",
+                "defaultValue": "View"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/messages/components/MessageListItem.module.jsx:71",
+                "defaultValue": "View"
+            }
+        ]
+    },
+    "vla.RightPanelPane.dateFormat": {
+        "defaultValue": "DD.MM.YY hh:mm",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/RightPanelPane/RightPanelPane.jsx:126",
+                "defaultValue": "DD.MM.YY hh:mm"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/vla/components/RightPanelPane/RightPanelPane.jsx:128",
+                "defaultValue": "DD.MM.YY hh:mm"
+            }
+        ]
+    },
+    "webTargetRelatedDataGrid.columns.linkType": {
+        "defaultValue": "Link type",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/components/Investigation/OverviewResults.module.jsx:110",
+                "defaultValue": "Link type"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/webTarget/components/RelatedData/WebTargetRelatedDataGrid.jsx:124",
+                "defaultValue": "Link type"
+            }
+        ]
+    },
+    "writeInsight": {
+        "defaultValue": "Write Insight",
+        "value": null,
+        "occurrences": [
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/entity/components/Summary/EntityMainRelationsWidget.jsx:127",
+                "defaultValue": "Write Insight"
+            },
+            {
+                "source": "code",
+                "path": "/Users/ido/Documents/svns/FED-Fusion/clients/fusion/source/plugins/investigation/components/InvestigationFavorites/FavoritesGrid.jsx:146",
+                "defaultValue": "Write insight"
+            }
+        ]
+    }
+}

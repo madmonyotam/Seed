@@ -1,0 +1,14 @@
+node_modules/
+output/build/main.bundle.js
+package-lock.json
+
+simple_switch_combined.log
+/config/*.json
+!/config/*default*.json
+
+source/plugins/settings/config/theme/jo\.json
+
+source/plugins/settings/config/theme/modified\.json
+source/plugins/settings/config/icons/modified\.json
+
+source/plugins/settings/config/dimensions/modified\.json

@@ -1,0 +1,582 @@
+[
+    {
+        "path": "/components/AddInsightPopup/AddInsightPopup.module.jsx",
+        "line": 401,
+        "key": "c.name"
+    },
+    {
+        "path": "/components/Artifacts/ArtifactsGrid/InvestigationArtifacts.module.jsx",
+        "line": 52,
+        "key": "label"
+    },
+    {
+        "path": "/components/Attachments/EditAttachmentPopup/EditAttachmentPopup.module.jsx",
+        "line": 273,
+        "key": "c.name"
+    },
+    {
+        "path": "/components/DataGrid/Filters/DateFilter.module.jsx",
+        "line": 302,
+        "key": "period.label"
+    },
+    {
+        "path": "/components/DataGrid/Filters/DateFilter.module.jsx",
+        "line": 321,
+        "key": "period.label"
+    },
+    {
+        "path": "/components/DataGrid/Filters/SearchStringFilter.module.jsx",
+        "line": 235,
+        "key": "label"
+    },
+    {
+        "path": "/components/FullInfo/Cards/FullInfo.AttachmentsCard.module.jsx",
+        "line": 57,
+        "key": "key"
+    },
+    {
+        "path": "/components/FullInfo/Cards/FullInfo.GenericCard.module.jsx",
+        "line": 36,
+        "key": "label"
+    },
+    {
+        "path": "/components/FullInfo/Cards/FullInfo.InsightsCard.module.jsx",
+        "line": 49,
+        "key": "key"
+    },
+    {
+        "path": "/components/FullInfo/Cards/FullInfo.ReportsCard.module.jsx",
+        "line": 66,
+        "key": "key"
+    },
+    {
+        "path": "/components/FullInfo/Cards/FullInfo.VlasCard.module.jsx",
+        "line": 51,
+        "key": "key"
+    },
+    {
+        "path": "/components/HomeSearch/HomeSearch.module.jsx",
+        "line": 217,
+        "key": "entityConfig.labelkey"
+    },
+    {
+        "path": "/components/HomeSearch/HomeSearch.module.jsx",
+        "line": 217,
+        "key": "entity.Display.DisplayLabel"
+    },
+    {
+        "path": "/components/HomeSearch/HomeSearch.module.jsx",
+        "line": 294,
+        "key": "fieldDefinition ? fieldDefinition.DefaultDisplayLabel : 'fieldLabel'"
+    },
+    {
+        "path": "/components/HomeSearch/HomeSearch.module.jsx",
+        "line": 308,
+        "key": "fieldDefinition ? fieldDefinition.DefaultDisplayLabel : 'fieldLabel'"
+    },
+    {
+        "path": "/components/Links/LinksGrid/InvestigationLinks.module.jsx",
+        "line": 52,
+        "key": "label"
+    },
+    {
+        "path": "/components/MapWidget/MapWidget.module.jsx",
+        "line": 1429,
+        "key": "name"
+    },
+    {
+        "path": "/components/Reports/CreateReport/AddReportPopup.module.jsx",
+        "line": 185,
+        "key": "c.name"
+    },
+    {
+        "path": "/components/Reports/CreateReport/ReportTemplate.module.jsx",
+        "line": 59,
+        "key": ""
+    },
+    {
+        "path": "/components/Reports/ReportEdit/EditReportPopup.module.jsx",
+        "line": 120,
+        "key": "c.name"
+    },
+    {
+        "path": "/components/SideMenu/SideMenuContent.module.jsx",
+        "line": 116,
+        "key": "label"
+    },
+    {
+        "path": "/components/SideMenu/SideMenuContent.module.jsx",
+        "line": 117,
+        "key": "value"
+    },
+    {
+        "path": "/components/SideMenu/SideMenuEntity.module.jsx",
+        "line": 91,
+        "key": "e.label"
+    },
+    {
+        "path": "/components/SideMenu/SideMenuEntity.module.jsx",
+        "line": 92,
+        "key": "e.value"
+    },
+    {
+        "path": "/components/SideMenu/SideMenuEntity.module.jsx",
+        "line": 251,
+        "key": "m"
+    },
+    {
+        "path": "/components/Tools/Alerts/InvestigationAlerts.module.jsx",
+        "line": 55,
+        "key": "label"
+    },
+    {
+        "path": "/components/Tools/Ontologies/InvestigationOntologies.module.jsx",
+        "line": 55,
+        "key": "label"
+    },
+    {
+        "path": "/components/Tools/SavedQueries/InvestigationSavedQueries.module.jsx",
+        "line": 55,
+        "key": "label"
+    },
+    {
+        "path": "/components/Tools/ToolsGrid/InvestigationTools.module.jsx",
+        "line": 51,
+        "key": "label"
+    },
+    {
+        "path": "/components/VLAs/EditVlaPopup/EditVlaPopup.module.jsx",
+        "line": 103,
+        "key": "c.name"
+    },
+    {
+        "path": "/components/facets/generic.Drawer.module.jsx",
+        "line": 448,
+        "key": ""
+    },
+    {
+        "path": "/components/facets/generic.Drawer.module.jsx",
+        "line": 457,
+        "key": "item.title"
+    },
+    {
+        "path": "/components/infobars/generic-infobar.module.js",
+        "line": 139,
+        "key": "data.label"
+    },
+    {
+        "path": "/modules/DDMEngine/ddm.module.js",
+        "line": 728,
+        "key": "entityConf[\"labelkey\"] || this.type"
+    },
+    {
+        "path": "/modules/fusion.mixin/fusion.mixin.module.jsx",
+        "line": 21,
+        "key": "key"
+    },
+    {
+        "path": "/plugins/analyze/actions/facets/loadFacets.js",
+        "line": 28,
+        "key": "key"
+    },
+    {
+        "path": "/plugins/analyze/actions/facets/loadFacets.js",
+        "line": 134,
+        "key": "key"
+    },
+    {
+        "path": "/plugins/analyze/components/AppliedFiltersBar.jsx",
+        "line": 92,
+        "key": "ddmField.key"
+    },
+    {
+        "path": "/plugins/analyze/components/MapWidget.jsx",
+        "line": 601,
+        "key": "title"
+    },
+    {
+        "path": "/plugins/analyze/components/MediaWidget/MediaWidget.jsx",
+        "line": 301,
+        "key": "name"
+    },
+    {
+        "path": "/plugins/analyze/components/SortBy.jsx",
+        "line": 59,
+        "key": "s.label"
+    },
+    {
+        "path": "/plugins/analyze/components/mapWidget/MapWidget.jsx",
+        "line": 799,
+        "key": "name"
+    },
+    {
+        "path": "/plugins/analyze/views/Analyze.jsx",
+        "line": 1321,
+        "key": "button.btnTitle"
+    },
+    {
+        "path": "/plugins/analyze/views/Facets.jsx",
+        "line": 293,
+        "key": "item.labelKey"
+    },
+    {
+        "path": "/plugins/analyze/views/Facets.jsx",
+        "line": 293,
+        "key": "item.labelKey"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 98,
+        "key": "fieldObj.field.labelkey"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 151,
+        "key": "labelKey"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 171,
+        "key": "labelKey"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 177,
+        "key": "labelKey"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 226,
+        "key": "relationLabelKey"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 265,
+        "key": ""
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 266,
+        "key": "relation[\"DDM.labelkey.opposite\"]"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 266,
+        "key": "relation[\"DDM.Description\"]"
+    },
+    {
+        "path": "/plugins/ddm-plugin/actions/fetch.js",
+        "line": 278,
+        "key": "t.labelkey"
+    },
+    {
+        "path": "/plugins/ddm-plugin/ddm.js",
+        "line": 105,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/documentViewer/components/WidgetDrawer.jsx",
+        "line": 97,
+        "key": "item.title"
+    },
+    {
+        "path": "/plugins/documentViewer/components/Widgets.jsx",
+        "line": 416,
+        "key": "item.labelKey"
+    },
+    {
+        "path": "/plugins/documentViewer/views/DocumentViewer.jsx",
+        "line": 343,
+        "key": "err"
+    },
+    {
+        "path": "/plugins/documentViewer/views/MiniDocumentViewerWidget.jsx",
+        "line": 214,
+        "key": "err"
+    },
+    {
+        "path": "/plugins/entity/components/LeftColumn/EntityTreeMenu.jsx",
+        "line": 127,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/entity/components/RelatedData/EntityActivities.jsx",
+        "line": 53,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/entity/components/RelatedData/EntityArtifacts.jsx",
+        "line": 55,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/entity/components/RelatedData/EntityLinks.jsx",
+        "line": 53,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/facets/components/FacetsList/FacetsList.jsx",
+        "line": 212,
+        "key": "item.labelKey || item.title"
+    },
+    {
+        "path": "/plugins/facets/components/SelectViewButton/SelectViewButton.jsx",
+        "line": 52,
+        "key": "selectedView.labelKey"
+    },
+    {
+        "path": "/plugins/facets/components/SelectViewButton/SelectViewButton.jsx",
+        "line": 89,
+        "key": "view.labelKey"
+    },
+    {
+        "path": "/plugins/fusionAgent/normalizeSearch.js",
+        "line": 58,
+        "key": "key"
+    },
+    {
+        "path": "/plugins/home/actions/getFeed.js",
+        "line": 57,
+        "key": "translateKey"
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 132,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 133,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 139,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 140,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 165,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 166,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 172,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 173,
+        "key": "it.toLowerCase("
+    },
+    {
+        "path": "/plugins/imageDrawer/components/ImageUploader.jsx",
+        "line": 291,
+        "key": "item.name"
+    },
+    {
+        "path": "/plugins/info/components/EntityLocations.jsx",
+        "line": 114,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/info/components/Info.jsx",
+        "line": 87,
+        "key": "data.label"
+    },
+    {
+        "path": "/plugins/investigation/components/InvestigationLeftColumn/InvestigationLeftColumn.jsx",
+        "line": 255,
+        "key": ""
+    },
+    {
+        "path": "/plugins/investigation/components/InvestigationLeftColumn/InvestigationTreeMenu.jsx",
+        "line": 125,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/investigationWizard/components/CreateEditUserGroupPopup.jsx",
+        "line": 257,
+        "key": ""
+    },
+    {
+        "path": "/plugins/investigationWizard/components/InvestigationWizard.jsx",
+        "line": 492,
+        "key": "item.label"
+    },
+    {
+        "path": "/plugins/investigationWizard/components/PermissionsCell.jsx",
+        "line": 30,
+        "key": ""
+    },
+    {
+        "path": "/plugins/lightBox/views/Lightbox.jsx",
+        "line": 552,
+        "key": "btn.tooltip"
+    },
+    {
+        "path": "/plugins/lightBoxFullscreen/views/Lightbox.jsx",
+        "line": 552,
+        "key": "btn.tooltip"
+    },
+    {
+        "path": "/plugins/login/views/Login.jsx",
+        "line": 281,
+        "key": "error.identifier"
+    },
+    {
+        "path": "/plugins/queryBuilder/actions/getClosedList.js",
+        "line": 31,
+        "key": "item"
+    },
+    {
+        "path": "/plugins/queryBuilder/actions/getMap.js",
+        "line": 36,
+        "key": "fieldObj.field.DefaultDisplayLabel"
+    },
+    {
+        "path": "/plugins/queryBuilder/actions/getMap.js",
+        "line": 61,
+        "key": "relation[\"DDM.Description\"]"
+    },
+    {
+        "path": "/plugins/queryBuilder/components/operators/ClosedList.jsx",
+        "line": 46,
+        "key": ""
+    },
+    {
+        "path": "/plugins/queryBuilder/modules/parse.js",
+        "line": 437,
+        "key": ""
+    },
+    {
+        "path": "/plugins/search/components/Search.jsx",
+        "line": 505,
+        "key": "entity.labelkey"
+    },
+    {
+        "path": "/plugins/sideMenuRenderers/Links.jsx",
+        "line": 23,
+        "key": "title"
+    },
+    {
+        "path": "/plugins/timeLine/views/WidgetTimeline.jsx",
+        "line": 707,
+        "key": "name || title"
+    },
+    {
+        "path": "/plugins/translate/index.js",
+        "line": 65,
+        "key": ""
+    },
+    {
+        "path": "/plugins/usersAndGroups/components/GeneralInfoForm.jsx",
+        "line": 145,
+        "key": "u.label"
+    },
+    {
+        "path": "/plugins/usersAndGroups/components/GeneralInfoForm.jsx",
+        "line": 171,
+        "key": "r.label"
+    },
+    {
+        "path": "/plugins/usersAndGroups/components/PermissionAndGroupsForm.jsx",
+        "line": 88,
+        "key": "c.name"
+    },
+    {
+        "path": "/plugins/vla/components/FusionVLA/FusionVLA.jsx",
+        "line": 294,
+        "key": "field.key"
+    },
+    {
+        "path": "/plugins/vla/components/FusionVLA/FusionVLA.jsx",
+        "line": 1378,
+        "key": "type.labelKey"
+    },
+    {
+        "path": "/plugins/vla/components/LinksClustersFacet/LinksClustersFacet.jsx",
+        "line": 83,
+        "key": "c.key"
+    },
+    {
+        "path": "/plugins/vla/components/SaveVlaPopup/SaveVlaPopup.jsx",
+        "line": 258,
+        "key": "c.name"
+    },
+    {
+        "path": "/plugins/vla/components/VlaTable/VLATable.jsx",
+        "line": 87,
+        "key": "type.labelKey || nodeA.d.type"
+    },
+    {
+        "path": "/plugins/vla/components/VlaTable/VLATable.jsx",
+        "line": 92,
+        "key": "type.labelKey || nodeB.d.type"
+    },
+    {
+        "path": "/plugins/vla/modules/converter/converter.js",
+        "line": 317,
+        "key": "ddmType.labelKey || type"
+    },
+    {
+        "path": "/plugins/vla/modules/converter/converter.js",
+        "line": 384,
+        "key": "field.key"
+    },
+    {
+        "path": "/plugins/webTarget/components/LeftColumn/WebTargetTreeMenu.jsx",
+        "line": 128,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/webTarget/components/RelatedData/WebTargetActivities.jsx",
+        "line": 52,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/webTarget/components/RelatedData/WebTargetArtifacts.jsx",
+        "line": 54,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/webTarget/components/RelatedData/WebTargetLinks.jsx",
+        "line": 52,
+        "key": "label"
+    },
+    {
+        "path": "/plugins/widgetDrawer/actions/loadWidgetDrawerTab.js",
+        "line": 52,
+        "key": "item.title.toLowerCase("
+    },
+    {
+        "path": "/plugins/widgetDrawer/components/DrawerTabs.jsx",
+        "line": 97,
+        "key": "tab.key"
+    },
+    {
+        "path": "/plugins/widgetDrawer/components/Steps/custom/CustomSlect.jsx",
+        "line": 162,
+        "key": "widget.title"
+    },
+    {
+        "path": "/plugins/widgetDrawer/components/Steps/documents/DocumentSelect.jsx",
+        "line": 198,
+        "key": "widget.title"
+    },
+    {
+        "path": "/plugins/widgetDrawer/components/Steps/facets/FacetSelect.jsx",
+        "line": 126,
+        "key": "facet.title"
+    }
+]

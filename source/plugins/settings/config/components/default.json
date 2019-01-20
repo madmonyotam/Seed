@@ -1,0 +1,8 @@
+{
+  "SimpleLoader": {
+    "test": {
+      "color": "colors.primary",
+      "size": 50
+    }
+  }
+}

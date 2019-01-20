@@ -1,0 +1,190 @@
+{
+    "${label} saved": {
+        "defaultValue": "${label} saved",
+        "value": null
+    },
+    "About this image": {
+        "defaultValue": "About this image",
+        "value": null
+    },
+    "Back": {
+        "defaultValue": "Back",
+        "value": null
+    },
+    "Cancel": {
+        "defaultValue": "Cancel",
+        "value": null
+    },
+    "Change color": {
+        "defaultValue": "Change color",
+        "value": null
+    },
+    "Clear": {
+        "defaultValue": "Clear",
+        "value": null
+    },
+    "Close Lightbox": {
+        "defaultValue": "Close Lightbox",
+        "value": null
+    },
+    "Close search": {
+        "defaultValue": "Close search",
+        "value": null
+    },
+    "Copied to clipboard successfully!": {
+        "defaultValue": "Copied to clipboard successfully!",
+        "value": null
+    },
+    "Copy color to clipboard": {
+        "defaultValue": "Copy color to clipboard",
+        "value": null
+    },
+    "Download Fail": {
+        "defaultValue": "Download Fail",
+        "value": null
+    },
+    "Download this image": {
+        "defaultValue": "Download this image",
+        "value": null
+    },
+    "Folders": {
+        "defaultValue": "Folders",
+        "value": null
+    },
+    "Gallery": {
+        "defaultValue": "Gallery",
+        "value": null
+    },
+    "Home": {
+        "defaultValue": "Home",
+        "value": null
+    },
+    "Info Panel": {
+        "defaultValue": "Info Panel",
+        "value": null
+    },
+    "Lightbox Default Title": {
+        "defaultValue": "Lightbox Default Title",
+        "value": null
+    },
+    "Load": {
+        "defaultValue": "Load",
+        "value": null
+    },
+    "Next picture": {
+        "defaultValue": "Next picture",
+        "value": null
+    },
+    "No Results": {
+        "defaultValue": "No Results",
+        "value": null
+    },
+    "Popup test": {
+        "defaultValue": "Popup test",
+        "value": null
+    },
+    "Previous picture": {
+        "defaultValue": "Previous picture",
+        "value": null
+    },
+    "Save": {
+        "defaultValue": "Save",
+        "value": null
+    },
+    "Save as": {
+        "defaultValue": "Save as",
+        "value": null
+    },
+    "Search a country": {
+        "defaultValue": "Search a country",
+        "value": null
+    },
+    "Settings": {
+        "defaultValue": "Settings",
+        "value": null
+    },
+    "Sign in": {
+        "defaultValue": "Sign in",
+        "value": null
+    },
+    "SimpleSwitch": {
+        "defaultValue": "Simple Switch",
+        "value": null
+    },
+    "Unable to download the current image": {
+        "defaultValue": "Unable to download the current image",
+        "value": null
+    },
+    "action": {
+        "defaultValue": "action",
+        "value": null
+    },
+    "appbar.SimpleSwitch": {
+        "defaultValue": "Simple Switch",
+        "value": null
+    },
+    "are you sure?": {
+        "defaultValue": "are you sure?",
+        "value": null
+    },
+    "cancel": {
+        "defaultValue": "cancel",
+        "value": null
+    },
+    "close": {
+        "defaultValue": "close",
+        "value": null
+    },
+    "confirm": {
+        "defaultValue": "confirm",
+        "value": null
+    },
+    "email": {
+        "defaultValue": "Email",
+        "value": null
+    },
+    "en.json is missing": {
+        "defaultValue": "en.json is missing",
+        "value": null
+    },
+    "forgotPassword": {
+        "defaultValue": "Forgot Password",
+        "value": null
+    },
+    "forgotYourPassword": {
+        "defaultValue": "Forgot your password?",
+        "value": null
+    },
+    "missing language file": {
+        "defaultValue": "missing language file",
+        "value": null
+    },
+    "noContent": {
+        "defaultValue": "No Content",
+        "value": null
+    },
+    "noTitle": {
+        "defaultValue": "No Title",
+        "value": null
+    },
+    "ok": {
+        "defaultValue": "Ok",
+        "value": null
+    },
+    "password": {
+        "defaultValue": "Password",
+        "value": null
+    },
+    "pick": {
+        "defaultValue": "pick",
+        "value": null
+    },
+    "send": {
+        "defaultValue": "Send",
+        "value": null
+    },
+    "usernameOrPasswordAreIncorrect": {
+        "defaultValue": "Username or Password are incorrect",
+        "value": null
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "width": 60,
+    "maxWidth": 170,
+    "iconSize": 20,
+    "fontSize": 14,
+    "zIndex": 1101
+  },
+  "appBar": {
+    "height": 48,
+    "zIndex": 1102
+  },
+  "expandingMenu": {
+    "width": 260
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "translate",
+  "version": "1.0.0",
+  "description": "Translates the client application using three sources:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ido",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "lodash": "^4.17.4",
+    "q": "^1.4.1",
+    "request": "^2.81.0"
+  }
+}
