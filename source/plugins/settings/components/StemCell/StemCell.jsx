@@ -53,8 +53,8 @@ module.exports = {
                 let { componentName } = this.props;
                 let { componentProps } = this.state;
 
-                let Component = core.components[`SimpleComponents.${componentName}`];
-                Component = Component ? Component : core.components[`SimpleComponents.Component`];
+                let Component = core.require([`SimpleComponents.${componentName}`]);
+                Component = Component ? Component : core.require([`SimpleComponents.Component`]);
 
                 return <Component {...componentProps} />
             } 

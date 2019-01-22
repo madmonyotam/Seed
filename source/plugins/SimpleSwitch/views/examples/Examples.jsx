@@ -23,7 +23,6 @@ module.exports = {
         'SimpleSwitch.TitleBarExample',
         'SimpleSwitch.CreateAndUpdateMonitoringPlan',
         'SimpleSwitch.MonitoringPlanPopUpExample',
-        'SimpleSwitch.SnackEx',
     ],
 
     get(
@@ -44,7 +43,6 @@ module.exports = {
         TitleBarExample,
         CreateAndUpdateMonitoringPlan,
         MonitoringPlanPopUpExample,
-        SnackExample
     ) {
 
         var core = this;
@@ -211,7 +209,6 @@ module.exports = {
                             {listItem: 'Title Bar',display: <TitleBarExample/>},
                             {listItem: 'Monitoring Plan',display: <CreateAndUpdateMonitoringPlan/>},
                             {listItem: 'MP PopUp Example',display: <MonitoringPlanPopUpExample/>},
-                            {listItem: 'Snackbar Example',display: <SnackExample/>},
                         ]
                     }
             ];

@@ -92,7 +92,8 @@ module.exports = {
                 this.route = router.route = route;
                 
                 if (this.props.onNavigation) this.props.onNavigation(route, Route);
-                core.fire('router.navigation', route);
+                this.toRoute(route,false)
+             //   core.fire('router.navigation', route);
                 core.emit('router.navigation', route);
                 this.setState({
                     route: route
@@ -123,7 +124,8 @@ module.exports = {
 
             renderRoute(route, id) {
                 if (!route.name) return null;
-                var component = pure.lookup(this.props.components, route.component);
+                
+                var component = core.require([route.component]);
                 if (!component) return null;
                 var children = route.children || [];
                 var props = {

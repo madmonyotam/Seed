@@ -4,8 +4,6 @@ import { CircularProgress } from '@material-ui/core/';
 module.exports = {
     name: "Loader",
     description: '',
-    propTypes: {
-    },
     dependencies: [],
     get() {
 

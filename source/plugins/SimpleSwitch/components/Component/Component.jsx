@@ -14,7 +14,6 @@ module.exports = {
             componentWillUnmount() {
             },
 
-
             propsTypes: {
                 text: PropTypes.string,
             },
@@ -22,6 +21,7 @@ module.exports = {
             getDefaultProps(){
                 return {
                     text: core.translate('my first core component'),
+                    text: 'my first core component',
                 };
             },
             

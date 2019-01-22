@@ -3,8 +3,8 @@ import {Button} from '@material-ui/core';
 module.exports = {
     name: "MonitoringPlanPopUpExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','popovers.PopupHandler','SimpleSwitch.CreateAndUpdateMonitoringPlan','componentsCollection.Loader','mui.LoaderButton'],    
-    get(Mixin,PopupHandler,CreateAndUpdateMonitoringPlan,Loader,LoaderButton) {
+    dependencies: ['SimpleSwitch.Mixin','popovers.PopupHandler','SimpleSwitch.CreateAndUpdateMonitoringPlan'],    
+    get(Mixin,PopupHandler,CreateAndUpdateMonitoringPlan) {
         
         var core = this;
 

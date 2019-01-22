@@ -4,7 +4,6 @@ module.exports = {
 
     get() {
 
-
         return {
             lookup(object, name, caseSensitive) {
                 if (!object || !name) return null;

@@ -30,6 +30,7 @@ module.exports = {
     ],
 
     init(definition, done) {
+      var core = definition;
 
         var _options = {
 

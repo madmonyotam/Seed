@@ -30,20 +30,21 @@ module.exports = {
             },
 
             render() {
-                return core.bind(['plugins', 'Settings', 'config', 'general', 'appTitle'], (appTitle)=>{
-                    var title;
-                    if (appTitle && (appTitle !== null && typeof appTitle === 'string')) title = appTitle;
+                var appTitle = core.plugins.Settings.get(['config','general','appTitle']);
 
-                    return (
-                        <TitleBar
-                            title={ title }
-                            logo={ <img src='/resources/images/simpleSwitch.png' style={ this.styles('imgLogo') } /> }
-                            bgColor={ core.theme('backgrounds.nav') }
-                            height={ core.dim("appBar.height") }
-                            zIndex={ core.dim("appBar.zIndex") }
-                        />
-                    );
-                });
+                var title;
+                if (appTitle && (appTitle !== null && typeof appTitle === 'string')) title = appTitle;
+
+                return (
+                    <TitleBar
+                        title={ title }
+                        logo={ <img src='/resources/images/simpleSwitch.png' style={ this.styles('imgLogo') } /> }
+                        bgColor={ core.theme('backgrounds.nav') }
+                        height={ core.dim("appBar.height") }
+                        zIndex={ core.dim("appBar.zIndex") }
+                    />
+                );
+
             }
         };
     }

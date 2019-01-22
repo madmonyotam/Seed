@@ -12,7 +12,9 @@ module.exports = {
 
     extend: {
         translate(key, defaultValue, args){
-            return core.plugins.translate.modules.Translate.translate(key, defaultValue, args)
+            var core = this;
+            var Translate = core.require(["translate.Translate"]);
+            return Translate.translate(key, defaultValue, args);
         }
     },
 

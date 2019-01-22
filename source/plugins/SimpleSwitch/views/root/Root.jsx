@@ -167,9 +167,8 @@ module.exports = {
                         <TopBar/>
                         <Nav handleViews={this.handleNav} activeView={activeView} />
                         <Notify />
-                        <Popup />
+                        {/* <Popup /> */}
                         <Caution />
-                        <Snackbar />
 
                         <div style={ this.styles('content') }>
                            <Router routes={routes} defaultRoute={'/home'}  onNavigation={this.onNavigation}/>

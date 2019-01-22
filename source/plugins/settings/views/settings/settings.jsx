@@ -480,7 +480,8 @@ module.exports = {
               let { activeTab, viewType } = this.state;
               if (!activeTab) return null;
               let { data, ui } = activeTab;
-              var Ui = core.views[ui];
+              console.log(ui);
+              var Ui = core.require([ui]);
               if (viewType == 'ui') {
                 if (Ui) return ( <Ui data={ data } onChange={ this.handleConfigChange }/> );
                 else return <div><NoResults size={7} text={core.translate('Missing UI')}/></div>
