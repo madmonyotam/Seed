@@ -15,6 +15,7 @@ module.exports = {
         require('./modules/dataModels/DataModelsEntry'),
         require('./modules/dataModels/constructors/Basic'),
         require('./modules/dataModels/constructors/ExtandBasic'),
+
     ],
     components: [
         require('./components/Nav'),

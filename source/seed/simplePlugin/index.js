@@ -2,17 +2,21 @@ class SimplePlugin {
     constructor(definition, seed) {
 
         var plugin = this;
+        plugin.seed = seed;
 
         plugin.name = definition.name;
         plugin.tree = definition.tree;
 
         plugin.modules = {};
+        plugin.views = {};
+        plugin.components = {};
+        plugin.actions = {};
 
-        plugin.setModules(definition); 
+        plugin.setModules(definition.modules,'modules'); 
+        plugin.setModules(definition.actions,'actions'); 
+        plugin.setModules(definition.views,'views'); 
+        plugin.setModules(definition.components,'components'); 
 
-        plugin.views = definition.views || [];
-        plugin.components = definition.components || [];
-        plugin.actions = definition.actions || [];
 
         plugin.pluginInit(seed,definition);
     }
@@ -70,35 +74,41 @@ class SimplePlugin {
 
     }
 
-    setModules(definition){
+    setModules(array,key){
         var plugin = this;
-        var modules = definition.modules || [];
+        var modules = array || [];
 
         modules.map((module)=>{
-            if(!module.name) return  new Error(`missing name for module`);
-            if(plugin.modules[module.name]) return new Error(`duplicate declaration of plugin ${module.name}`);
+            var name = module.name;
+
+            if(!module.name) return  console.error(`missing name for ${key}`);
+            if( plugin.modules[name] || plugin.components[name] ||
+                plugin.views[name] || plugin.actions[name] ){
+
+                    return console.error(`duplicate declaration in plugin: ${name}`);
+            }
 
 
             var name = module.name;
-            plugin.modules[name] = module;
+            plugin[key][name] = module;
         });
     }
+    
+    run(actionName, data = {}){
+        var plugin = this;
+        var action = plugin.actions[actionName];
+        var finalAction;
 
-    // getModules(seed,modulesArray){
-    //     var plugin = this;
-    //     let found = [];
+        plugin.seed.require(action.dependencies,function(){
+            finalAction = action.get.apply(plugin.seed,arguments);
+        });
 
-    //     let correntModules = modulesArray.map((moduleName)=>{
-    //         var correntModule = plugin.modules[moduleName];
-    //         if(correntModule){
-
-
-    //             var dependencies = correntModule.dependencies;
-    //             dependencies = seed.require(dependencies);
-    //             return correntModule.get(dependencies);
-    //         } 
-    //     })
-    // }
+        var promiseForAction = new Promise((resolve,reject)=>{
+            finalAction.call(plugin.seed,data,{resolve,reject});
+        })
+        
+        return promiseForAction;
+    }
 
 
 }

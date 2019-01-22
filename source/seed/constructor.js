@@ -67,16 +67,13 @@ class Seed {
             if(seed.isArray(foundDependencies) && foundDependencies.length){
                
                 seed.require(foundDependencies,function() {
-
                     depArray.push( found.get.apply(seed,arguments) );
-
                 });
 
             } else {
-                depArray.push( found.get() );
+                depArray.push( found.get.apply(seed) );
             }
             
-
         })
 
         if (cb) cb.apply(seed,depArray);

@@ -7,6 +7,9 @@ module.exports = {
 
         return (data, promise) => {
             var { BaseApi } = core.plugins.SimpleSwitch;
+            promise.resolve({BaseApi});  // results replace by res for example
+
+
             core.request.post(BaseApi+'/getDataEx', { "pram": data.id })
             .then( ({results,error}) => {
 

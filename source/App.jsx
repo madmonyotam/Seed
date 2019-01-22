@@ -4,7 +4,8 @@ var core = require('core.web');
 var seed = require('seed');
 
 seed.CreatePlugings([
-    require('./plugins/SimpleSwitch')
+    require('./plugins/SimpleSwitch'),
+    require('./plugins/request'),
 ]);
 
 // console.log(seed);
@@ -13,12 +14,16 @@ seed.CreatePlugings([
 
 seed.require(['SimpleSwitch.Helper','SimpleSwitch.ExtandBasic','SimpleSwitch.DataModelsEntry'],(Helper, ExtandBasic, DataModelsEntry) => {
 
-    console.log('Helper: ',Helper);
-    console.log('ExtandBasic: ',ExtandBasic);
-    console.log('DataModelsEntry: ',DataModelsEntry);
-
-    var a = DataModelsEntry.findConstructor({type:'ExtandBasic'})
-    console.log(a);
+    // console.log('Helper: ',Helper);
+    // console.log('ExtandBasic: ',ExtandBasic);
+    // console.log('DataModelsEntry: ',DataModelsEntry);
+    // DataModelsEntry.findConstructor({type:'ExtandBasic'})
+  
+    // seed.plugins.SimpleSwitch.run('getDataEx',{s:'111',a:'112'}).then((m)=>{
+    //     console.log('asa: ',m);
+    // }).catch((err)=>{
+    //     console.log('mmm',err);
+    // })
 })
 
 // automatically require all files that contain a '.module.' pattern.
@@ -46,5 +51,6 @@ core.plugin([
 
 core.require(['SimpleSwitch.Root'], (Root) => {
     core.tree.commit();  // to prevent duplicate first render when Baobab updates
+
     ReactDom.render(<Root />, document.getElementById('app'))
 });
