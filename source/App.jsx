@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-var core = require('core.web');
 var seed = require('seed');
 
 seed.CreatePlugings([

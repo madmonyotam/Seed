@@ -6,6 +6,7 @@ module.exports = {
     dependencies: [],
 
     get() {
+        var core = this;
 
         var { React } = core.imports;
 
