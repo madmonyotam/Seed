@@ -125,7 +125,7 @@ module.exports = {
             renderRoute(route, id) {
                 if (!route.name) return null;
                 
-                var component = core.require([route.component]);
+                var component = core.require(route.component);
                 if (!component) return null;
                 var children = route.children || [];
                 var props = {

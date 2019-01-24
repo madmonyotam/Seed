@@ -14,10 +14,23 @@ module.exports = {
 
             componentDidMount() {
                 this.isUnmounted = false;
+
+                this.cursor = {};
+                this.setCursors();
             },
               
             componentWillUnmount(){
                 this.isUnmounted = true;
+            },
+
+            setCursors(){
+                if(!this.cursors) return;
+
+                for (const key in this.cursors) {
+                    var path = this.cursors[key];
+                    var name = path[path.length-1];
+                    this.cursor[name] = core.select(path);
+                }
             },
 
             safeState(state, callback){

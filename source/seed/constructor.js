@@ -81,6 +81,8 @@ class Seed {
 
         var seed = this;
         var depArray = [];
+
+        dependencies = seed.isString( dependencies ) ? [dependencies] : dependencies;
         
         dependencies.map((name)=>{
             var isComponent = false;

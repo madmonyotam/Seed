@@ -1,23 +1,27 @@
 
 import { Typography, Icon, IconButton } from '@material-ui/core';
-
+import { branch } from 'baobab-react/mixins';
 
 module.exports = {
     name: "IconEditor",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Helper', 'componentsCollection.NoResults', 'componentsCollection.Loader', 'componentsCollection.ExpandingPanel', 'SimpleSwitch.NestedMenu'],
-    bindings: {
-      config: ['config'],
-    },
+    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'componentsCollection.NoResults', 'componentsCollection.ExpandingPanel', 'SimpleSwitch.NestedMenu'],
 
-    get(Helper, NoResults, Loader, ExpandingPanel, NestedMenu) {
+    get(Mixin, Helper, NoResults, ExpandingPanel, NestedMenu) {
 
         var core = this;
 
         var { React, PropTypes } = core.imports;
 
         return {
+
+            mixins: [ Mixin, branch ],
+
+            cursors: {
+              config: ['plugins','Settings','config'],
+            },
+
             propsTypes: {
                 data: PropTypes.object,
                 path: PropTypes.array,
@@ -87,7 +91,7 @@ module.exports = {
             },
             
             getClonedIcons(){
-              var icons = core.plugins.Settings.get(['config', 'icons']);
+              core.plugins.Settings.get(['config', 'icons']);
               let clonedIcons = JSON.parse(JSON.stringify(icons));
               return clonedIcons;
             },

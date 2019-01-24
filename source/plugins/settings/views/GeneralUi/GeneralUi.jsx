@@ -1,24 +1,26 @@
-import {  Typography, Switch, IconButton,
-  Paper, Icon, Menu, Input, InputAdornment,
-  MenuItem, Popper
-} from '@material-ui/core';
+import {  Typography, Switch, Paper, Icon, Input, InputAdornment } from '@material-ui/core';
+import { branch } from 'baobab-react/mixins';
 
 module.exports = {
     name: "GeneralUi",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Helper', 'componentsCollection.NoResults', 'componentsCollection.Loader'],
-    bindings: {
-      config: ['config'],
-    },
+    dependencies: ['SimpleSwitch.Mixin'],
 
-    get(Helper, NoResults, Loader) {
+    get( Mixin ) {
 
         var core = this;
 
         var { React, PropTypes } = core.imports;
 
         return {
+
+            mixins: [ Mixin, branch ],
+
+            cursors: {
+              config: ['plugins','Settings','config'],
+            },
+
             propsTypes: {
               data: PropTypes.object,
               parentKey: PropTypes.string

@@ -1,4 +1,5 @@
 var routes = require('./routes');
+import { root } from 'baobab-react/mixins';
 
 module.exports = {
     name: 'Root',
@@ -27,7 +28,7 @@ module.exports = {
         var { React, PropTypes } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ Mixin, root ],
 
             propsTypes: {
                 path: PropTypes.array,

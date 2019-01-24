@@ -40,7 +40,7 @@ seed.require(['SimpleSwitch.Helper','SimpleSwitch.ExtandBasic','SimpleSwitch.Dat
     // }).catch((err)=>{
     //     console.log('mmm',err);
     // })
-    ReactDom.render(<Root />, document.getElementById('app'))
+    ReactDom.render(<Root tree={seed.tree} />, document.getElementById('app'))
 
 })
 

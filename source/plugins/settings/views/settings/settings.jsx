@@ -1,26 +1,29 @@
-
 import { AppBar, Tabs, Tab,  Button } from '@material-ui/core';
+import { branch } from 'baobab-react/mixins';
 
 module.exports = {
     name: "Settings",
     description: '',
-    propTypes: {},
-    bindings: {
-      config: ['config'],
-      fileMenu: ['fileMenu'],
-    },
-    dependencies: ['SimpleSwitch.Helper', 'SimpleSwitch.NestedMenu', 'Settings.SavePopup', 'Settings.CategoryPopup', 'Settings.CodeEditor', 'componentsCollection.NoResults',],
 
-    get(Helper, NestedMenu, SavePopup, CategoryPopup, CodeEditor, NoResults) {
+    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'SimpleSwitch.NestedMenu', 'Settings.SavePopup', 'Settings.CategoryPopup', 'Settings.CodeEditor', 'componentsCollection.NoResults',],
 
-        var core = this;
+    get(Mixin, Helper, NestedMenu, SavePopup, CategoryPopup, CodeEditor, NoResults) {
+      
+      var core = this;
+      
+      var { React, PropTypes } = core.imports;
+      
+      return {
+            mixins: [ Mixin, branch ],
 
-        var { React, PropTypes } = core.imports;
-
-        return {
             propsTypes: {
                 config: PropTypes.object,
                 fileMenu: PropTypes.object,
+            },
+
+            cursors: {
+              config: ['plugins','Settings','config'],
+              fileMenu: ['plugins','Settings','fileMenu'],
             },
 
             getInitialState() {
@@ -105,13 +108,15 @@ module.exports = {
 
                 document.addEventListener('keydown', this.handleKeyDown);
 
-                if (this.props.config) this.setTabs(this.props.config, tabs => {
+                console.log(this.state.config);
+
+                if (this.state.config) this.setTabs(this.state.config, tabs => {
                   // this.setActiveTab(this.state.tabValue, tabs);
-                  if (this.props.fileMenu) this.setMenu(this.props.fileMenu, this.state.tabValue);
+                  if (this.state.fileMenu) this.setMenu(this.state.fileMenu, this.state.tabValue);
 
                 });
-                // if (this.props.config) this.setActiveTab(this.state.activeTab, this.props.config)
-                // if (this.props.fileMenu) this.setMenu(this.props.fileMenu, this.state.tabValue);
+                // if (this.state.config) this.setActiveTab(this.state.activeTab, this.state.config)
+                // if (this.state.fileMenu) this.setMenu(this.state.fileMenu, this.state.tabValue);
 
             },
 
@@ -126,9 +131,9 @@ module.exports = {
             },
 
             componentWillReceiveProps(nextProps) {
-                if (nextProps.config && (!_.isEqual(nextProps.config, this.props.config))) {
+                if (nextProps.config && (!_.isEqual(nextProps.config, this.state.config))) {
                   this.setTabs(nextProps.config, tabs => {
-                    if (nextProps.fileMenu && (!_.isEqual(nextProps.fileMenu, this.props.fileMenu))) {
+                    if (nextProps.fileMenu && (!_.isEqual(nextProps.fileMenu, this.state.fileMenu))) {
                       this.setMenu(nextProps.fileMenu, this.state.tabValue)
                     }
                   });
@@ -156,7 +161,7 @@ module.exports = {
                   return 'Settings.PropsEditor'; 
 
                 default:
-                  return null;
+                  return 'Settings.GeneralUi';
 
               }
             },
@@ -339,7 +344,7 @@ module.exports = {
             handleChange(event, tabValue) {
                 this.setState({ tabValue });
                 this.setActiveTab(tabValue, this.state.tabs);
-                this.setMenu(this.props.fileMenu, tabValue)
+                this.setMenu(this.state.fileMenu, tabValue)
             },
 
             handleSave(tab){
@@ -480,8 +485,8 @@ module.exports = {
               let { activeTab, viewType } = this.state;
               if (!activeTab) return null;
               let { data, ui } = activeTab;
-              console.log(ui);
-              var Ui = core.require([ui]);
+
+              var Ui = core.require(ui);
               if (viewType == 'ui') {
                 if (Ui) return ( <Ui data={ data } onChange={ this.handleConfigChange }/> );
                 else return <div><NoResults size={7} text={core.translate('Missing UI')}/></div>

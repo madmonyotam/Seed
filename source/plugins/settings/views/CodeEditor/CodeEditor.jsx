@@ -1,5 +1,4 @@
 
-import brace from 'brace';
 import AceEditor from 'react-ace';
 import 'brace/theme/idle_fingers';
 import 'brace/theme/xcode';
@@ -7,22 +6,30 @@ import 'brace/mode/javascript';
 import 'brace/mode/json';
 import 'brace/ext/searchbox';
 
+import { branch } from 'baobab-react/mixins';
+
 module.exports = {
     name: "CodeEditor",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Helper', 'componentsCollection.NoResults', 'componentsCollection.Loader'],
+    dependencies: ['SimpleSwitch.Mixin', 'SimpleSwitch.Helper'],
     bindings: {
       config: ['config'],
     },
 
-    get(Helper, NoResults, Loader) {
+    get(Mixin, Helper) {
 
         var core = this;
 
         var { React, PropTypes } = core.imports;
 
         return {
+
+            mixins: [ Mixin, branch ],
+
+            cursors: {
+              config: ['plugins','Settings', 'config'],
+            },
             propsTypes: {
               data: PropTypes.object,
               parentKey: PropTypes.string
