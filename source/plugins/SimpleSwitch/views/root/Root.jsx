@@ -1,4 +1,3 @@
-var routes = require('./routes');
 import { root } from 'baobab-react/mixins';
 
 module.exports = {
@@ -18,11 +17,9 @@ module.exports = {
         'popovers.Lightbox',
         'SimpleSwitch.Login',
         'componentsCollection.Loader',
-        'Settings.Settings',
-        'router.Router',
-        'snackbar.Snackbar',
+        'SimpleSwitch.MainRouter'
     ],
-    get(Mixin, TopBar, Nav, Notify, Popup, Caution, Lightbox, Login, Loader, Settings, Router, Snackbar) {
+    get(Mixin, TopBar, Nav, Notify, Popup, Caution, Lightbox, Login, Loader, MainRouter) {
 
         var core = this;
         var { React, PropTypes } = core.imports;
@@ -31,7 +28,7 @@ module.exports = {
             mixins: [ Mixin, root ],
 
             propsTypes: {
-                path: PropTypes.array,
+                location: PropTypes.string,
             },
 
             getInitialState() {
@@ -60,6 +57,9 @@ module.exports = {
             },
 
             start() {
+                let { location } = this.props;
+                this.setState({activeView: location})
+
                 core.plugins.Settings.getInitialFiles(()=>{
                     this.getLanguage();
                     this.initialUnits();
@@ -72,16 +72,10 @@ module.exports = {
                 this.colors = {
                 };
 
-                this.backgrounds = {
-                    content: core.theme('backgrounds.content'),
-                };
-
                 this.icons = {
                 };
 
                 this.units = {
-                    appBarHeight: core.dim("appBar.height"),
-                    navWidth: core.dim("nav.width"),
                 };
 
             },
@@ -100,17 +94,7 @@ module.exports = {
             },
 
             handleNav(route){
-              core.plugins.router.to('/'+route);
               this.setState({ activeView: route })
-            },
-
-            handleLoggedIn(){
-              core.plugins.router.to('/home');
-              this.setState({ activeView: 'home' })
-            },
-
-            onNavigation(route){
-                this.setState({activeView:route.name});
             },
 
             addNotification({text, alertKind}){
@@ -126,17 +110,8 @@ module.exports = {
                         height:'100%',
                         overflow: 'hidden',
                         position: 'relative',
-                    },
-
-                    content: {
-                        position: 'absolute',
-                        top:  this.units.appBarHeight,
-                        left: this.units.navWidth,
-                        bottom: 0,
-                        right: 0,
-                        overflow: 'hidden',
-                        backgroundColor: this.backgrounds.content,
-                    },
+                    }
+                    
                 }
                 return(styles[s]);
             },
@@ -151,7 +126,7 @@ module.exports = {
 
                 if (!start) { return <Loader show={true} /> }
 
-                // if(activeView == 'login' || !isLoggedIn) {
+                // if(activeView == '/login' || !isLoggedIn) {
                 //     return(
                 //         <div style={ this.styles('root') }>
                 //             <Login onLoggedIn={ this.handleLoggedIn }/>
@@ -170,10 +145,9 @@ module.exports = {
                         <Notify />
                         {/* <Popup /> */}
                         <Caution />
-
-                        <div style={ this.styles('content') }>
-                           <Router routes={routes} defaultRoute={'/home'}  onNavigation={this.onNavigation}/>
-                        </div>
+                  
+                        <MainRouter/>
+    
                     </div>
                 )
             }

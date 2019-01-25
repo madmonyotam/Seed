@@ -1,4 +1,5 @@
 import { List, Icon, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { Link } from "react-router-dom";
 
 module.exports = {
     name: 'Nav',
@@ -138,12 +139,12 @@ module.exports = {
                             {
                                 label: core.translate('Home'),
                                 icon: this.icons.home,
-                                view: 'home'
+                                view: '/home'
                             },
                             {
                                 label: core.translate('Examples'),
                                 icon: this.icons.examples,
-                                view: 'examples'
+                                view: '/examples'
                             },
                         ];
 
@@ -153,7 +154,7 @@ module.exports = {
                                 label: core.translate('Settings'),
                                 icon: this.icons.settings,
                                 renderTopBorder: true,
-                                view: 'settings'
+                                view: '/settings'
                             },
                         ];
                     default:
@@ -234,23 +235,26 @@ module.exports = {
                 }
 
                 return (
-                    <ListItem
-                        key={key}
-                        id={`Nav.row.${position}.wrap.item_${key}`}
-                        title={item.label}
-                        button={true}
-                        onClick={this.setActiveItem.bind(this,view)}
-                        disabled={item.disabled}
-                        style={ itemStyle }
-                    >
-                        <div id={`Nav.row.${position}.inner.item_${key}`} style={ innerStyle }>
-                            { this.renderItemIcon(item.icon, isActive) }
-                            <ListItemText 
-                                id={`Nav.row.${position}.item_${key}.Text`}
-                                primary={ this.renderItemText(item, isActive) }
-                            />
-                        </div>
-                    </ListItem>
+                    <Link key={key} to={`${view}`} style={{textDecoration: 'unset' }} >
+                        <ListItem
+                            id={`Nav.row.${position}.wrap.item_${key}`}
+                            title={item.label}
+                            button={true}
+                            onClick={this.setActiveItem.bind(this,view)}
+                            disabled={item.disabled}
+                            style={ itemStyle } >
+
+                            <div id={`Nav.row.${position}.inner.item_${key}`} style={ innerStyle }>
+                                { this.renderItemIcon(item.icon, isActive) }
+                                <ListItemText 
+                                    id={`Nav.row.${position}.item_${key}.Text`}
+                                    primary={ this.renderItemText(item, isActive) }
+                                />
+                            </div>
+
+                        </ListItem>
+                    </Link>
+
                 );
             },
 

@@ -1,12 +1,14 @@
 var React = require('react');
 var ReactDom = require('react-dom');
 var seed = require('seed');
+import { HashRouter , Route } from "react-router-dom";
+
 
 seed.CreatePlugings([
     
     require('./plugins/translate'),
     require('./plugins/request'),
-    require('./plugins/router'),
+ //   require('./plugins/router'),
 
     require('./plugins/access'),
     require('./plugins/settings'),
@@ -39,36 +41,20 @@ seed.require(['SimpleSwitch.Helper','SimpleSwitch.ExtandBasic','SimpleSwitch.Dat
     //     console.log('asa: ',m);
     // }).catch((err)=>{
     //     console.log('mmm',err);
+
+    
     // })
-    ReactDom.render(<Root tree={seed.tree} />, document.getElementById('app'))
+    let root = getRootWithRouter(Root);
+    ReactDom.render( root, document.getElementById('app') );
 
 })
 
-// automatically require all files that contain a '.module.' pattern.
-// core.injector.loadContext('SimpleSwitch', require.context('./', true, /.*\.module\./));
+function getRootWithRouter(Root) {
+    let root = (props)=>{ return <Root tree={seed.tree} location={props.location.pathname} /> }
 
-// core.plugin([
-    
-//     require('./plugins/translate'),
-//     require('./plugins/request'),
-//     require('./plugins/router'),
-
-//     require('./plugins/access'),
-//     require('./plugins/settings'),
-//     require('./plugins/SimpleComponents'),
-    
-//     require('./plugins/componentsCollection'),
-//     require('./plugins/popovers'),
-//     require('./plugins/gallery'),
-//     require('./plugins/widgetManager'),
-//     require('./plugins/snackbar'),
-//     require('./plugins/Examples'),
-    
-//     require('./plugins/SimpleSwitch'),
-// ])
-
-// core.require(['SimpleSwitch.Root'], (Root) => {
-//     core.tree.commit();  // to prevent duplicate first render when Baobab updates
-
-//     ReactDom.render(<Root />, document.getElementById('app'))
-// });
+    return (
+        <HashRouter>
+            <Route path="/" render={root} />   
+        </HashRouter>
+    )
+}

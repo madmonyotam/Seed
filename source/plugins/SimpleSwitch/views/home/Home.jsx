@@ -6,9 +6,9 @@ module.exports = {
         initLoading: ['initLoading']
     },
 
-    dependencies: ['SimpleSwitch.Component','Settings.StemCell'],
+    dependencies: ['SimpleSwitch.Component'],
 
-    get(Component, StemCell) {
+    get(Component) {
 
         var core = this;
 
@@ -56,7 +56,6 @@ module.exports = {
                 return (
 
                     <div id={'Home.root'} style={ this.styles('root')}>
-                        <StemCell/>
                         <Component text={core.translate("my second core component")}/>
                     </div>
                 )
