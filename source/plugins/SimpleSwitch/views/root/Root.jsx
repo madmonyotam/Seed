@@ -118,24 +118,23 @@ module.exports = {
 
             render() {
                 let { activeView, start } = this.state;
-
-                // let { isLoggedIn } = this.props;
+                let { isLoggedIn } = this.props;
 
                 // let authToken = localStorage.getItem('authToken');
                 // let currentUser = (localStorage.currentUser) ? JSON.parse(localStorage.getItem('currentUser')) : {};
 
                 if (!start) { return <Loader show={true} /> }
 
-                // if(activeView == '/login' || !isLoggedIn) {
+                // if(!isLoggedIn) {
                 //     return(
                 //         <div style={ this.styles('root') }>
                 //             <Login onLoggedIn={ this.handleLoggedIn }/>
                 //             <Notify />
-                //             <Popup />
+                //             <Popup /> 
                 //         </div>
                 //     );
                 // }
-                // else return(
+                // else 
 
                 return (
                     <div style={ this.styles('root') }>

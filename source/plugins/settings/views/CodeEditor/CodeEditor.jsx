@@ -30,6 +30,7 @@ module.exports = {
             cursors: {
               config: ['plugins','Settings', 'config'],
             },
+            
             propsTypes: {
               data: PropTypes.object,
               parentKey: PropTypes.string

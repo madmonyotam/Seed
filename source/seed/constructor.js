@@ -1,12 +1,14 @@
 var SimplePlugin = require('./simplePlugin');
 var createReactClass = require('create-react-class');
 
+import { branch } from 'baobab-react/mixins';
 import PropTypes from 'prop-types'
 import React from 'react'
 
 var imports = {
     React: React,
-    PropTypes: PropTypes
+    PropTypes: PropTypes,
+    Branch: branch
 }
 
 class Seed {

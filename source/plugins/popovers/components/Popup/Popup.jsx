@@ -1,23 +1,27 @@
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { CircularProgress } from '@material-ui/core';
 
 module.exports = {
     name: 'Popup',
     description: '',
     propTypes: {},
-    dependencies: ['componentsCollection.TitleBar', 'popovers.PopupHandler'],
+    dependencies: ['SimpleSwitch.Mixin','componentsCollection.TitleBar', 'popovers.PopupHandler'],
 
-    get(TitleBar, popupHandler) {
+    get(Mixin, TitleBar, popupHandler) {
 
         var core = this;
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, Branch } = core.imports;
 
         return {
+
+            mixins: [Mixin,Branch],
+
+            cursors: {
+                popup: ['plugins', 'popovers', 'popup'],
+            },
 
             getInitialState() {
                 return {
@@ -117,8 +121,8 @@ module.exports = {
                 return(styles[s]);
             },
 
-            renderButtons(popup){
-                let { btnTitle, isLoading, showButtons, buttons } = this.state;
+            renderButtons(){
+                let { btnTitle, isLoading, buttons, popup } = this.state;
                 return (
                     <div style={this.styles('buttonsCont')} >
                         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -139,65 +143,61 @@ module.exports = {
             },
 
             render() {
-                let {title, body , buttons, modalStyle} = this.state;
-                return core.bind(['plugins', 'popovers', 'popup'], (popup)=>{
+                let {title, body, modalStyle} = this.state;
 
-                    const closeButton = ()=>{
-                        return [
-                            <Icon 
-                                style={{ color: core.theme('colors.white'), cursor: 'pointer' }} 
-                                onClick={this.handleClose} title={core.translate('close')}>
-                                { core.icons('navigate.close') }
-                            </Icon>
-                        ];
-                    };
+                const closeButton = ()=>{
+                    return [
+                        <Icon 
+                            style={{ color: core.theme('colors.white'), cursor: 'pointer' }} 
+                            onClick={this.handleClose} title={core.translate('close')}>
+                            { core.icons('navigate.close') }
+                        </Icon>
+                    ];
+                };
 
-                    const dialogtitle = ()=>{
-                        return (
-                            <Typography 
-                                style={
-                                    { fontWeight: 500, 
-                                      fontSize: 13, 
-                                      color: core.theme('colors.white'), 
-                                      textTransform: 'uppercase', 
-                                      margin: 0, 
-                                      fontWeight: 600 
-                                    }
-                                }
-                            >
-                                { title }
-                            </Typography>
-                        );
-                    };
-
+                const dialogtitle = ()=>{
                     return (
-                        <Dialog
-                            open={this.state.open || false}
-                            onClose={this.handleClose}
-                            maxWidth={false}
-                            PaperProps={{ square: true, style: { borderRadius: 2, height: 360, overflowY: 'visible', ...modalStyle } }}
-                            aria-labelledby="alert-dialog-title"
-                            aria-describedby="alert-dialog-description">
-
-                            <TitleBar
-                                style={ this.styles('popHeader') }
-                                title={ dialogtitle() }
-                                buttons={ closeButton() }
-                                bgColor={ core.theme("backgrounds.nav") }
-                                fgColor={ core.theme('colors.white') }
-                                height={ 40 }
-                            />
-                            <div style={ this.styles('root') }>
-                                { body }
-                            </div>
-
-                                { this.renderButtons(popup) }
-
-                        </Dialog>
+                        <Typography 
+                            style={
+                                { fontWeight: 500, 
+                                    fontSize: 13, 
+                                    color: core.theme('colors.white'), 
+                                    textTransform: 'uppercase', 
+                                    margin: 0, 
+                                    fontWeight: 600 
+                                }
+                            }
+                        >
+                            { title }
+                        </Typography>
                     );
+                };
 
-                });
+                return (
+                    <Dialog
+                        open={this.state.open || false}
+                        onClose={this.handleClose}
+                        maxWidth={false}
+                        PaperProps={{ square: true, style: { borderRadius: 2, height: 360, overflowY: 'visible', ...modalStyle } }}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description">
 
+                        <TitleBar
+                            style={ this.styles('popHeader') }
+                            title={ dialogtitle() }
+                            buttons={ closeButton() }
+                            bgColor={ core.theme("backgrounds.nav") }
+                            fgColor={ core.theme('colors.white') }
+                            height={ 40 }
+                        />
+                        <div style={ this.styles('root') }>
+                            { body }
+                        </div>
+
+                            { this.renderButtons() }
+
+                    </Dialog>
+                );
 
             }
         };

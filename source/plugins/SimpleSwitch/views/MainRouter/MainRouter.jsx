@@ -79,7 +79,6 @@ module.exports = {
                 return (
                     <div style={ this.styles('content') }>
                         <Switch>
-                            <Route path="/login" component={Login} />
                             <Route path="/home" component={Home} />
                             <Route path="/settings" component={Settings} />
                             <Route path="/examples" component={Examples} />
