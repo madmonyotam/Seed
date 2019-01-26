@@ -142,7 +142,7 @@ module.exports = {
                         <TopBar/>
                         <Nav handleViews={this.handleNav} activeView={activeView} />
                         <Notify />
-                        {/* <Popup /> */}
+                        <Popup />
                         <Caution />
                   
                         <MainRouter/>

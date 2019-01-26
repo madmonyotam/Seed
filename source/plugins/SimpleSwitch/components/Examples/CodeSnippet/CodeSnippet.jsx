@@ -63,15 +63,17 @@ module.exports = {
                         alignItems:'center',
                     },
                     pre:{
+                        maxHeight: '50vh',
                         textAlign: 'left',
                         backgroundColor: 'white', 
                         padding: '10px', 
                         borderRadius: '5px', 
                         margin: '15px',
                         width:'100%',
+                        overflowY: 'auto' 
                     },
                     code:{
-                        textAlign: 'left'
+                        textAlign: 'left',
                     },
                 
                 }

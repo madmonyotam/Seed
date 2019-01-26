@@ -19,7 +19,7 @@ module.exports = {
     },
 
     init(definition, done) {
-        var core = this;
+        var core = definition;
 
         var notifications = {
 

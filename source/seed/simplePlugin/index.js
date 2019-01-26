@@ -48,8 +48,6 @@ class SimplePlugin {
         }
 
         function set(name, path, value) {
-            if(!value) return console.error('no value to set');
-
             if(!path) { path = []; }
             if (!seed.isArray(path)) {
                 path = [path];
