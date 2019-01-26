@@ -4,6 +4,7 @@ var yourSeed = new seed({
     plugins: [
         require('./seedPlugins/Tree'),
         require('./seedPlugins/SimpleEmit'),
+        require('./seedPlugins/access'),
     ],
     extend: {
         extendSelf: 'simple',

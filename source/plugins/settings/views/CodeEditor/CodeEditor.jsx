@@ -6,8 +6,6 @@ import 'brace/mode/javascript';
 import 'brace/mode/json';
 import 'brace/ext/searchbox';
 
-import { branch } from 'baobab-react/mixins';
-
 module.exports = {
     name: "CodeEditor",
     description: '',
@@ -21,11 +19,11 @@ module.exports = {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, Branch } = core.imports;
 
         return {
 
-            mixins: [ Mixin, branch ],
+            mixins: [ Mixin, Branch ],
 
             cursors: {
               config: ['plugins','Settings', 'config'],

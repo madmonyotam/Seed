@@ -16,8 +16,7 @@ module.exports = {
         require('./components/ColorBox'),
         require('./components/ColorPicker'),
         require('./components/SavePopup'),
-        require('./components/CategoryPopup'),
-        require('./components/StemCell'),
+        require('./components/CategoryPopup')
     ],
 
     views: [
@@ -25,16 +24,13 @@ module.exports = {
         require('./views/ThemeEditor'),
         require('./views/IconEditor'),
         require('./views/CodeEditor'),
-        require('./views/GeneralUi'),
-        require('./views/PropsEditor'),
+        require('./views/GeneralUi')
     ],
 
     init(definition, done) {
       var core = definition;
 
         var _options = {
-
-          BaseApi: 'http://some.ip.for/api',
 
           getInitialFiles: (callback) => {
             core.plugins.Settings.run('loadSettings').then(( data )=>{

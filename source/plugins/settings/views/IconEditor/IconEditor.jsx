@@ -1,6 +1,5 @@
 
 import { Typography, Icon, IconButton } from '@material-ui/core';
-import { branch } from 'baobab-react/mixins';
 
 module.exports = {
     name: "IconEditor",
@@ -12,11 +11,11 @@ module.exports = {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, Branch } = core.imports;
 
         return {
 
-            mixins: [ Mixin, branch ],
+            mixins: [ Mixin, Branch ],
 
             cursors: {
               config: ['plugins','Settings','config'],

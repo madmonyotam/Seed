@@ -37,11 +37,9 @@ module.exports = {
         require('./components/Examples/GridManagerExample'),  
         require('./components/Examples/LoaderEx'),  
         require('./components/Examples/SnackEx'),  
-        require('./components/Examples/TitleBarExample'),  
-        require('./components/CreateAndUpdateMonitoringPlan'),  
+        require('./components/Examples/TitleBarExample'), 
         require('./components/DownshiftMultiple'),  
-        require('./components/ReactSelect'),  
-        require('./components/MonitoringPlanPopUpExample'),  
+        require('./components/ReactSelect'), 
     ],
     views: [
         require('./views/login'),

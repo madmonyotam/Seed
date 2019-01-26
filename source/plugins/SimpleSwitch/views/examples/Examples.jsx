@@ -20,9 +20,7 @@ module.exports = {
         'SimpleSwitch.OneItemGalleryExample',
         'SimpleSwitch.GridManagerExample',
         'SimpleSwitch.LoaderEx',
-        'SimpleSwitch.TitleBarExample',
-        'SimpleSwitch.CreateAndUpdateMonitoringPlan',
-        'SimpleSwitch.MonitoringPlanPopUpExample',
+        'SimpleSwitch.TitleBarExample'
     ],
 
     get(
@@ -40,9 +38,7 @@ module.exports = {
         OneItemGalleryExample,
         GridManagerExample,
         LoaderEx,
-        TitleBarExample,
-        CreateAndUpdateMonitoringPlan,
-        MonitoringPlanPopUpExample,
+        TitleBarExample
     ) {
 
         var core = this;
@@ -206,9 +202,7 @@ module.exports = {
                         name: 'General',
                         innerList:[
                             {listItem: 'Loader',display: <LoaderEx/>},
-                            {listItem: 'Title Bar',display: <TitleBarExample/>},
-                            {listItem: 'Monitoring Plan',display: <CreateAndUpdateMonitoringPlan/>},
-                            {listItem: 'MP PopUp Example',display: <MonitoringPlanPopUpExample/>},
+                            {listItem: 'Title Bar',display: <TitleBarExample/>}
                         ]
                     }
             ];

@@ -8,9 +8,7 @@ seed.CreatePlugings([
     
     require('./plugins/translate'),
     require('./plugins/request'),
- //   require('./plugins/router'),
 
-    require('./plugins/access'),
     require('./plugins/settings'),
     require('./plugins/SimpleComponents'),
     
@@ -25,25 +23,10 @@ seed.CreatePlugings([
 
 ]);
 
-// console.log(seed);
-// seed.simple('hi','you');
-// console.log('s.hi.you() :', seed.hi.you());
+seed.require(['SimpleSwitch.Root'],
+            (Root) => {
 
-seed.require(['SimpleSwitch.Helper','SimpleSwitch.ExtandBasic','SimpleSwitch.DataModelsEntry','SimpleSwitch.Root'],
-            (Helper, ExtandBasic, DataModelsEntry,Root) => {
-
-    // console.log('Helper: ',Helper);
-    // console.log('ExtandBasic: ',ExtandBasic);
-    // console.log('DataModelsEntry: ',DataModelsEntry);
-    // DataModelsEntry.findConstructor({type:'ExtandBasic'})
-  
-    // seed.plugins.SimpleSwitch.run('getDataEx',{s:'111',a:'112'}).then((m)=>{
-    //     console.log('asa: ',m);
-    // }).catch((err)=>{
-    //     console.log('mmm',err);
-
-    
-    // })
+   
     let root = getRootWithRouter(Root);
     ReactDom.render( root, document.getElementById('app') );
 

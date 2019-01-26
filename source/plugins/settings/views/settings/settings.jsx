@@ -1,5 +1,4 @@
 import { AppBar, Tabs, Tab,  Button } from '@material-ui/core';
-import { branch } from 'baobab-react/mixins';
 
 module.exports = {
     name: "Settings",
@@ -11,10 +10,10 @@ module.exports = {
       
       var core = this;
       
-      var { React, PropTypes } = core.imports;
+      var { React, PropTypes, Branch } = core.imports;
       
       return {
-            mixins: [ Mixin, branch ],
+            mixins: [ Mixin, Branch ],
 
             propsTypes: {
                 config: PropTypes.object,
@@ -107,8 +106,6 @@ module.exports = {
                 core.on('settings:changeView', this.handleChangeView);
 
                 document.addEventListener('keydown', this.handleKeyDown);
-
-                console.log(this.state.config);
 
                 if (this.state.config) this.setTabs(this.state.config, tabs => {
                   // this.setActiveTab(this.state.tabValue, tabs);
