@@ -10,7 +10,8 @@ module.exports = {
     components: [
         require('./components/ExampleWrapper'),
         require('./components/ControlWrapper'),
-        require('./components/ComponentWrapper')
+        require('./components/ComponentWrapper'),
+        require('./components/CodeSnippet'),
     ],
 
     extend: {

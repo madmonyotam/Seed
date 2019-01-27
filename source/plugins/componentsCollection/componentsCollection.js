@@ -15,6 +15,11 @@ module.exports = {
         require('./components/CountrySelect'),
     ],
 
+    examples: [
+        require('./examples/LoaderEx'),
+        require('./examples/TitleBarExample'),
+    ],
+
     extend: {
     },
 

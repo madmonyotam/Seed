@@ -9,6 +9,12 @@ module.exports = {
         require('./components/GalleryDots'),
         require('./components/Thumbnails'),
     ],
+    examples: [     
+        require('./examples/OpenLightboxExample'),  
+        require('./examples/OpenLightboxGalleryExample'),  
+        require('./examples/LocalGalleryExample'),  
+        require('./examples/OneItemGalleryExample'),
+    ],
     views: [],
 
     init(definition, done) {

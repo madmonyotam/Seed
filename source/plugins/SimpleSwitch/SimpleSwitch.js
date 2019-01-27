@@ -20,24 +20,9 @@ module.exports = {
     components: [
         require('./components/Nav'),
         require('./components/NestedMenu'),
-        require('./components/Examples/css_units/FullscreenSectionsExample'),
-        require('./components/Examples/css_units/PerfectlyFittingText'),
-        require('./components/Examples/css_units/EasilyCenterYourElements'),
         require('./components/Component'),
-        require('./components/Examples/css_units/ScrollbarsAndVw'),
-        require('./components/Examples/css_units/EasyFullscreenPageScrollWithBackgroundReveal'),
-        require('./components/Examples/css_units/FluidHeader'),
-        require('./components/Examples/CodeSnippet'),  
-        require('./components/Examples/ButtonEx'),  
-        require('./components/Examples/gallery_ex/OpenPopupExample'),  
-        require('./components/Examples/gallery_ex/OpenLightboxExample'),  
-        require('./components/Examples/gallery_ex/OpenLightboxGalleryExample'),  
-        require('./components/Examples/gallery_ex/LocalGalleryExample'),  
-        require('./components/Examples/gallery_ex/OneItemGalleryExample'),  
-        require('./components/Examples/GridManagerExample'),    
-        require('./components/Examples/SnackEx'),   
-        require('./components/DownshiftMultiple'),  
-        require('./components/ReactSelect'), 
+        require('./components/ReactSelect'),
+        require('./components/ButtonEx'), 
     ],
     views: [
         require('./views/login'),
@@ -45,11 +30,6 @@ module.exports = {
         require('./views/home'),
         require('./views/examples'),
         require('./views/MainRouter')
-    ],
-
-    examples: [
-        require('./components/Examples/LoaderEx'),
-        require('./components/Examples/TitleBarExample'),
     ],
 
     extend: {

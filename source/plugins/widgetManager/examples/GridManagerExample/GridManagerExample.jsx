@@ -1,7 +1,7 @@
 module.exports = {
     name: "GridManagerExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.CodeSnippet','widgetManager.GridManager','widgetManager.Widget'],    
+    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','widgetManager.GridManager','widgetManager.Widget'],    
     get(Mixin,CodeSnippet,GridManager,Widget) {
         
         var core = this;

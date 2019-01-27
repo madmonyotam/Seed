@@ -1,7 +1,7 @@
 module.exports = {
     name: "OpenLightboxGalleryExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.CodeSnippet','SimpleSwitch.ButtonEx', 'gallery.Gallery',],    
+    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','SimpleSwitch.ButtonEx', 'gallery.Gallery',],    
     get(Mixin,CodeSnippet,ButtonEx,Gallery) {
         
         var core = this;

@@ -1,8 +1,8 @@
 module.exports = {
-    name: "LocalGalleryExample",
+    name: "OpenLightboxExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.CodeSnippet','gallery.Gallery'],    
-    get(Mixin,CodeSnippet,Gallery) {
+    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','SimpleSwitch.ButtonEx'],    
+    get(Mixin,CodeSnippet,ButtonEx) {
         
         var core = this;
 
@@ -48,7 +48,6 @@ module.exports = {
             },
 
             initUnits(){
-
             },
 
             styles(s){
@@ -62,52 +61,21 @@ module.exports = {
                 return(styles[s]);
             },
 
-            renderGallery() {
-                return (
-                    <div>
-                        <div  style={{
-                            backgroundColor: core.theme('backgrounds.lightbox'),
-                            width: "100%",
-                            height: '600px',
-                            padding: '15px',
-                            position: "relative",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "flex-start",
-                            alignItems: "flex-start",
-                            overflow: 'hidden',
-                            color: core.theme('backgrounds.white'),
-                        }} >
-                            <Gallery />
-                        </div>
-                    </div>
-                );
-            },
-
             getCode(){
                 return `
-<div  style={{
-    backgroundColor: core.theme('backgrounds.lightbox'),
-    width: "100%",
-    height: '600px',
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    overflow: 'hidden',
-    color: core.theme('colors.white'),
-}} >
-    <Gallery />
-</div>
+core.plugins.popovers.openLightbox();
                 `
+            },
+
+            renderLightbox(){
+                core.plugins.popovers.openLightbox();
             },
             
             render() {
                 return (
                     <div style={this.styles('root')}>
                         <CodeSnippet code={this.getCode()}/>
-                        {this.renderGallery()}
+                        <ButtonEx func={this.renderLightbox} text={'Open Lightbox'}/>
                     </div>
                 )
             } 

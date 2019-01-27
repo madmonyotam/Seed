@@ -1,7 +1,7 @@
 module.exports = {
     name: "OpenPopupExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.CodeSnippet','SimpleSwitch.ButtonEx','popovers.PopupHandler'],    
+    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','SimpleSwitch.ButtonEx','popovers.PopupHandler'],    
     get(Mixin,CodeSnippet,ButtonEx,PopupHandler) {
         
         var core = this;

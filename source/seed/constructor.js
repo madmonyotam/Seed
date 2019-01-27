@@ -108,7 +108,6 @@ class Seed {
                 var found = this.getComponent(plugin,module);
                 isComponent = true;
             }
-            
             if(seed.isArray(found.dependencies) && found.dependencies.length){
                 seed.require(found.dependencies,function() {
                     seed.addToFinalDependencies(isComponent,found,depArray,arguments)

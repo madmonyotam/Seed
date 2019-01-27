@@ -1,8 +1,11 @@
+import { Button  } from '@material-ui/core/';
+
+
 module.exports = {
-    name: "OpenLightboxExample",
+    name: "CodeSnippet",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.CodeSnippet','SimpleSwitch.ButtonEx'],    
-    get(Mixin,CodeSnippet,ButtonEx) {
+    dependencies: ['SimpleSwitch.Mixin'],    
+    get(Mixin) {
         
         var core = this;
 
@@ -16,11 +19,12 @@ module.exports = {
 
 
             propsTypes: {
-                text: PropTypes.string,
+                code: PropTypes.string,
             },
 
             getDefaultProps(){
                 return {
+                    code: 'let x = "code should be here!"'
                 };
             },
             
@@ -44,16 +48,32 @@ module.exports = {
             },
 
             componentWillUnmount () {
-                
             },
 
             initUnits(){
+                this.textColor =  core.theme('colors.dark');
             },
 
             styles(s){
 
                 const styles = {
                     root: {
+                        display: 'flex',
+                        justifyContent:'center',
+                        alignItems:'center',
+                    },
+                    pre:{
+                        maxHeight: '50vh',
+                        textAlign: 'left',
+                        backgroundColor: 'white', 
+                        padding: '10px', 
+                        borderRadius: '5px', 
+                        margin: '15px',
+                        width:'100%',
+                        overflowY: 'auto' 
+                    },
+                    code:{
+                        textAlign: 'left',
                     },
                 
                 }
@@ -61,21 +81,16 @@ module.exports = {
                 return(styles[s]);
             },
 
-            getCode(){
-                return `
-core.plugins.popovers.openLightbox();
-                `
-            },
-
-            renderLightbox(){
-                core.plugins.popovers.openLightbox();
-            },
-            
             render() {
+                let {code} = this.props;
+
                 return (
                     <div style={this.styles('root')}>
-                        <CodeSnippet code={this.getCode()}/>
-                        <ButtonEx func={this.renderLightbox} text={'Open Lightbox'}/>
+                        <pre style={this.styles('pre')}>
+                            <code style={this.styles('code')}>
+                                {code}
+                            </code>
+                        </pre>
                     </div>
                 )
             } 

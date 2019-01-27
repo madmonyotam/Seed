@@ -7,38 +7,12 @@ module.exports = {
 
     dependencies: [
         'SimpleSwitch.Helper',
-        'SimpleSwitch.FullscreenSectionsExample',
-        'SimpleSwitch.PerfectlyFittingText',
         'componentsCollection.ExpandingPanel',
-        'SimpleSwitch.EasilyCenterYourElements',
-        'SimpleSwitch.ScrollbarsAndVw',
-        'SimpleSwitch.EasyFullscreenPageScrollWithBackgroundReveal',
-        'SimpleSwitch.FluidHeader',
-        'SimpleSwitch.OpenPopupExample',
-        'SimpleSwitch.OpenLightboxExample',
-        'SimpleSwitch.OpenLightboxGalleryExample',
-        'SimpleSwitch.LocalGalleryExample',
-        'SimpleSwitch.OneItemGalleryExample',
-        'SimpleSwitch.GridManagerExample',
-        'SimpleSwitch.LoaderEx',
-        'SimpleSwitch.TitleBarExample'
     ],
 
     get(
         Helper,
-        FullscreenSectionsExample,
-        PerfectlyFittingText,
-        ExpandingPanel,
-        EasilyCenterYourElements,
-        ScrollbarsAndVw,
-        EasyFullscreenPageScrollWithBackgroundReveal,
-        FluidHeader,
-        OpenPopupExample,
-        OpenLightboxExample,
-        OpenLightboxGalleryExample,
-        LocalGalleryExample,
-        OneItemGalleryExample,
-        GridManagerExample
+        ExpandingPanel
     ) {
 
         var core = this;
@@ -179,50 +153,21 @@ module.exports = {
             },
 
             renderMenuBar(){
-            //     let menuList =  [
-            //         {
-            //             name: 'CSS Units',
-            //             innerList:[
-            //                 {listItem: 'Fullscreen Sections',display: <FullscreenSectionsExample/>},
-            //                 {listItem: 'Perfectly Fitting text',display: <PerfectlyFittingText/>},
-            //                 {listItem: 'Easily Center Your Elements',display: <EasilyCenterYourElements/>},
-            //                 {listItem: 'Scrollbars and vw',display: <ScrollbarsAndVw/>},
-            //                 {listItem: 'Easy Fullscreen Page Scroll With Background Reveal',display: <EasyFullscreenPageScrollWithBackgroundReveal/>},
-            //                 {listItem: 'Fluid Header',display: <FluidHeader/>},
-            //             ]
-            //         },
-            //         {
-            //             name: 'Gallery',
-            //             innerList:[
-            //                 {listItem: 'OpenPopupExample',display: <OpenPopupExample/>},
-            //                 {listItem: 'Lightbox',display: <OpenLightboxExample/>},
-            //                 {listItem: 'Lightbox Gallery',display: <OpenLightboxGalleryExample/>},
-            //                 {listItem: 'Local Gallery',display: <LocalGalleryExample/>},
-            //             ]
-            //         },
-            //         {
-            //             name: 'Grid',
-            //             innerList:[
-            //                 {listItem: 'Grid Manager',display: <GridManagerExample/>},
-            //             ]
-            //         }
-            // ];
+                let menuList = [];
+                let plugins = core.getExamples();
 
-            let menuList = [];
-            let plugins = core.getExamples();
+                for (const key in plugins) {   
+                    let examples = plugins[key];
+                    menuList.push({ name: key, innerList: examples });
+                }
 
-            for (const key in plugins) {   
-                let examples = plugins[key];
-                menuList.push({ name: key, innerList: examples });
-            }
-
-            return(
-                <div style={this.styles('menuBar')}>
-                    {
-                        _.map(menuList, this.renderPanel)
-                    }
-                </div>
-            )
+                return(
+                    <div style={this.styles('menuBar')}>
+                        {
+                            _.map(menuList, this.renderPanel)
+                        }
+                    </div>
+                )
             },
 
 
