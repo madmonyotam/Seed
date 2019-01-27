@@ -4,9 +4,9 @@ import {Paper, FormControl, TextField , InputLabel, Select, MenuItem } from "@ma
 module.exports = {
     name: "LoaderEx",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.CodeSnippet','componentsCollection.Loader',
+    dependencies: ['SimpleSwitch.Mixin','componentsCollection.Loader',
     'SimpleSwitch.ButtonEx', 'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper', 'Settings.ColorPicker'],
-    get(Mixin, CodeSnippet, Loader, ButtonEx, ExampleWrapper, ControlWrapper, ComponentWrapper, ColorPicker) {
+    get(Mixin, Loader, ButtonEx, ExampleWrapper, ControlWrapper, ComponentWrapper, ColorPicker) {
 
         var core = this;
 
@@ -30,7 +30,7 @@ module.exports = {
 
             getInitialState() {
                 return {
-                    show: false,
+                    show: true,
                     size: 30,
                     loaderColor: '#333'
                 };
@@ -123,9 +123,7 @@ module.exports = {
                         </ControlWrapper>
 
                         <ComponentWrapper>
-                          <Paper style={{ width: '200px', height: '200px', position: 'relative' }} >
                             <Loader show={ this.state.show } color={ loaderColor } size={ this.state.size } />
-                          </Paper>
                         </ComponentWrapper>
 
                         <ColorPicker

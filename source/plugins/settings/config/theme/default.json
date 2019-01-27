@@ -16,7 +16,8 @@
         "primary": "#004175",
         "light_gray": "#ededed",
         "menu": "#efefef",
-        "blue": "#007AFF"
+        "blue": "#007AFF",
+        "white": "#ffffff"
     },
     "transparent": {
         "black_12": "#0000001F",

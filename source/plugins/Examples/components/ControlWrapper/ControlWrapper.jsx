@@ -47,6 +47,7 @@ module.exports = {
 
             initUnits(){
                 this.borderColor =  core.theme('colors.borderDark');
+                this.background = core.theme('backgrounds.white');
             },
 
             styles(s){
@@ -58,8 +59,12 @@ module.exports = {
                         flexDirection: 'column',
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
-                        padding: '0 15px 0 0',
-                        // borderRight: `1px solid ${this.borderColor}`
+                        background: this.background,
+                        borderRadius: 4,
+                        margin: 10,
+                        padding: 15,
+                        boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+
                     },
 
                 }

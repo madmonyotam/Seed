@@ -50,6 +50,8 @@ module.exports = {
             initUnits(){
                 this.textColor =  core.theme('colors.dark');
                 this.borderColor =  core.theme('colors.gray');
+                this.codeColor = core.theme('colors.white');
+                this.codeBackground = core.theme('colors.dark')
             },
 
             styles(s){
@@ -57,10 +59,8 @@ module.exports = {
                 const styles = {
                     root: {
                         display: 'flex',
-                        // border: `1px solid ${this.borderColor}`,
-                        padding: 15,
                         flexDirection: 'column',
-                        height: 'auto',
+                        height: '100%',
                         width: '100%',
                     },
                     content: {
@@ -70,20 +70,23 @@ module.exports = {
                       width: '100%',
                     },
                     codePaper: {
-                      marginBottom: '15px',
-                      padding: '15px',
+                      margin: 10,
+                      padding: 15,
                       whiteSpace: 'pre-wrap',
-                      fontSize: '90%'
+                      fontSize: '90%',
+                      height: '40vh',
+                      overflow: 'hidden',
+                      overflowY: 'auto',
+                      color: this.codeColor,
+                      background: this.codeBackground
                     },
-                    title: {
-                      color: this.textColor,
-                      marginBottom: '15px',
-                      paddingBottom: '15px',
-                      fontSize: 16,
-                      borderBottom: `1px solid ${this.borderColor}`
-                    }
-
-
+                    // title: {
+                    //   color: this.textColor,
+                    //   marginBottom: 10,
+                    //   paddingBottom: 5,
+                    //   fontSize: 16,
+                    //   borderBottom: `1px solid ${this.borderColor}`
+                    // }
                 }
 
                 return(styles[s]);
@@ -103,15 +106,16 @@ module.exports = {
                 return (
                     <div style={this.styles('root')}>
 
-                      <Typography style={ this.styles('title') }>
+                      {/* <Typography style={ this.styles('title') }>
                         { this.props.componentName }
-                      </Typography>
+                      </Typography> */}
 
-                      { this.renderCodeSnippet() }
 
                       <div style={ this.styles('content') }>
                         { this.props.children }
                       </div>
+
+                      { this.renderCodeSnippet() }
                     </div>
                 )
             }

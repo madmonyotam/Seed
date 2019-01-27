@@ -92,8 +92,9 @@ class Seed {
             var module = name.split('.')[1];
 
             if(!seed.plugins[plugin]){
-                debugger
+                console.error(`no such plugin ${plugin}`)
             }
+            
             var found = seed.plugins[plugin].modules[module];
             
             if(seed.isUndefined(found)){
@@ -107,15 +108,14 @@ class Seed {
 
                 seed.require(foundDependencies,function() {
                     if(!isComponent) return depArray.push( found.get.apply(seed,arguments));
-
-                    var component = createReactClass( found.get.apply(seed,arguments) );
+                    var component = createReactClass({displayName: found.name, ...found.get.apply(seed,arguments)});
                     depArray.push( component );
                 });
 
             } else {
                 if(!isComponent) return depArray.push( found.get.apply(seed) );
              
-                var component = createReactClass( found.get.apply(seed) );
+                var component = createReactClass({displayName: found.name, ...found.get.apply(seed)});
                 depArray.push( component );
             }
             
