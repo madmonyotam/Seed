@@ -6,6 +6,7 @@ module.exports = {
     description: '',
 
     dependencies: [
+        'SimpleSwitch.Helper',
         'SimpleSwitch.FullscreenSectionsExample',
         'SimpleSwitch.PerfectlyFittingText',
         'componentsCollection.ExpandingPanel',
@@ -24,6 +25,7 @@ module.exports = {
     ],
 
     get(
+        Helper,
         FullscreenSectionsExample,
         PerfectlyFittingText,
         ExpandingPanel,
@@ -36,9 +38,7 @@ module.exports = {
         OpenLightboxGalleryExample,
         LocalGalleryExample,
         OneItemGalleryExample,
-        GridManagerExample,
-        LoaderEx,
-        TitleBarExample
+        GridManagerExample
     ) {
 
         var core = this;
@@ -132,24 +132,29 @@ module.exports = {
             },
 
             handleClick(item){
+
+              var Component = item[1];
+
               this.setState({
-                selectedMenuItem: item.listItem,
-                currentDisplay: item.display
+                selectedMenuItem: item[0],
+                currentDisplay: <Component/>
               });
             },
 
             renderInnerList(list){
+                var innerList = Object.entries(list.innerList);
+
                 return (
                     <div style={this.styles('innerListCont')}>
                         {
-                            list.innerList.map((item,i)=>{
+                            innerList.map((item,i)=>{
                                 let {selectedMenuItem} = this.state;
                                 let selected = false;
-                                if(selectedMenuItem===item.listItem){
+                                if(selectedMenuItem===item[0] ){
                                     selected = true
                                 }
                                 return (
-                                    <MenuItem key={i} title={item.listItem} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{item.listItem}</MenuItem>
+                                    <MenuItem key={i} title={item[0]} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{item[0]}</MenuItem>
                                 );
                             })
                         }
@@ -158,11 +163,14 @@ module.exports = {
             },
 
             renderPanel(menuItem,idx){
+
+                var name = Helper.openCamelCase(menuItem.name);
+
                 return (
                     <ExpandingPanel
                             children={menuItem.innerList}
                             key={idx}
-                            name={`${menuItem.name} examples`}
+                            name={name}
                             id={idx}
                             childRender={  this.renderInnerList.bind(this, menuItem)  }
                             style={this.styles('menuItem')}>
@@ -171,49 +179,50 @@ module.exports = {
             },
 
             renderMenuBar(){
-                let menuList =  [
-                    {
-                        name: 'CSS Units',
-                        innerList:[
-                            {listItem: 'Fullscreen Sections',display: <FullscreenSectionsExample/>},
-                            {listItem: 'Perfectly Fitting text',display: <PerfectlyFittingText/>},
-                            {listItem: 'Easily Center Your Elements',display: <EasilyCenterYourElements/>},
-                            {listItem: 'Scrollbars and vw',display: <ScrollbarsAndVw/>},
-                            {listItem: 'Easy Fullscreen Page Scroll With Background Reveal',display: <EasyFullscreenPageScrollWithBackgroundReveal/>},
-                            {listItem: 'Fluid Header',display: <FluidHeader/>},
-                        ]
-                    },
-                    {
-                        name: 'Gallery',
-                        innerList:[
-                            {listItem: 'OpenPopupExample',display: <OpenPopupExample/>},
-                            {listItem: 'Lightbox',display: <OpenLightboxExample/>},
-                            {listItem: 'Lightbox Gallery',display: <OpenLightboxGalleryExample/>},
-                            {listItem: 'Local Gallery',display: <LocalGalleryExample/>},
-                        ]
-                    },
-                    {
-                        name: 'Grid',
-                        innerList:[
-                            {listItem: 'Grid Manager',display: <GridManagerExample/>},
-                        ]
-                    },
-                    {
-                        name: 'General',
-                        innerList:[
-                            {listItem: 'Loader',display: <LoaderEx/>},
-                            {listItem: 'Title Bar',display: <TitleBarExample/>}
-                        ]
-                    }
-            ];
+            //     let menuList =  [
+            //         {
+            //             name: 'CSS Units',
+            //             innerList:[
+            //                 {listItem: 'Fullscreen Sections',display: <FullscreenSectionsExample/>},
+            //                 {listItem: 'Perfectly Fitting text',display: <PerfectlyFittingText/>},
+            //                 {listItem: 'Easily Center Your Elements',display: <EasilyCenterYourElements/>},
+            //                 {listItem: 'Scrollbars and vw',display: <ScrollbarsAndVw/>},
+            //                 {listItem: 'Easy Fullscreen Page Scroll With Background Reveal',display: <EasyFullscreenPageScrollWithBackgroundReveal/>},
+            //                 {listItem: 'Fluid Header',display: <FluidHeader/>},
+            //             ]
+            //         },
+            //         {
+            //             name: 'Gallery',
+            //             innerList:[
+            //                 {listItem: 'OpenPopupExample',display: <OpenPopupExample/>},
+            //                 {listItem: 'Lightbox',display: <OpenLightboxExample/>},
+            //                 {listItem: 'Lightbox Gallery',display: <OpenLightboxGalleryExample/>},
+            //                 {listItem: 'Local Gallery',display: <LocalGalleryExample/>},
+            //             ]
+            //         },
+            //         {
+            //             name: 'Grid',
+            //             innerList:[
+            //                 {listItem: 'Grid Manager',display: <GridManagerExample/>},
+            //             ]
+            //         }
+            // ];
 
-                return(
-                    <div style={this.styles('menuBar')}>
-                        {
-                            _.map(menuList, this.renderPanel)
-                        }
-                    </div>
-                )
+            let menuList = [];
+            let plugins = core.getExamples();
+
+            for (const key in plugins) {   
+                let examples = plugins[key];
+                menuList.push({ name: key, innerList: examples });
+            }
+
+            return(
+                <div style={this.styles('menuBar')}>
+                    {
+                        _.map(menuList, this.renderPanel)
+                    }
+                </div>
+            )
             },
 
 

@@ -11,11 +11,13 @@ class SimplePlugin {
         plugin.views = {};
         plugin.components = {};
         plugin.actions = {};
+        plugin.examples = {};
 
         plugin.setModules(definition.modules,'modules'); 
         plugin.setModules(definition.actions,'actions'); 
         plugin.setModules(definition.views,'views'); 
         plugin.setModules(definition.components,'components'); 
+        plugin.setModules(definition.examples,'examples'); 
 
 
         plugin.pluginInit(seed,definition);
@@ -81,7 +83,7 @@ class SimplePlugin {
 
             if(!module.name) return  console.error(`missing name for ${key}`);
             if( plugin.modules[name] || plugin.components[name] ||
-                plugin.views[name] || plugin.actions[name] ){
+                plugin.views[name] || plugin.actions[name] || plugin.examples[name] ){
 
                     return console.error(`duplicate declaration in plugin: ${name}`);
             }

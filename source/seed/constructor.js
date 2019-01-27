@@ -66,18 +66,25 @@ class Seed {
         seed.plugins[plugin.name] = new SimplePlugin(plugin,seed);
     };
 
-    getComponent(name){
+    getComponent(plugin,component){
         var seed = this;
 
-        var plugin = name.split('.')[0];
-        var component = name.split('.')[1];
-
         var correntPlugin = seed.plugins[plugin];
-
         var found = correntPlugin.components[component];
+
         found = !seed.isUndefined(found) ? found : correntPlugin.views[component];
+        found = !seed.isUndefined(found) ? found : correntPlugin.examples[component];
         return(found);
-    }
+    };
+
+    addToFinalDependencies(isComponent,found,depArray,dependencies){
+        let seed = this;
+
+        if(!isComponent) return depArray.push( found.get.apply(seed,dependencies));
+        var component = createReactClass({displayName: found.name, ...found.get.apply(seed,dependencies)});
+        depArray.push( component );
+
+    };
 
     require(dependencies, cb){
 
@@ -98,25 +105,16 @@ class Seed {
             var found = seed.plugins[plugin].modules[module];
             
             if(seed.isUndefined(found)){
-                var found = this.getComponent(name);
+                var found = this.getComponent(plugin,module);
                 isComponent = true;
-            } 
-
-            var foundDependencies = found.dependencies;
+            }
             
-            if(seed.isArray(foundDependencies) && foundDependencies.length){
-
-                seed.require(foundDependencies,function() {
-                    if(!isComponent) return depArray.push( found.get.apply(seed,arguments));
-                    var component = createReactClass({displayName: found.name, ...found.get.apply(seed,arguments)});
-                    depArray.push( component );
+            if(seed.isArray(found.dependencies) && found.dependencies.length){
+                seed.require(found.dependencies,function() {
+                    seed.addToFinalDependencies(isComponent,found,depArray,arguments)
                 });
-
             } else {
-                if(!isComponent) return depArray.push( found.get.apply(seed) );
-             
-                var component = createReactClass({displayName: found.name, ...found.get.apply(seed)});
-                depArray.push( component );
+                seed.addToFinalDependencies(isComponent,found,depArray)
             }
             
         })

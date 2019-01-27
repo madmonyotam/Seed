@@ -34,10 +34,8 @@ module.exports = {
         require('./components/Examples/gallery_ex/OpenLightboxGalleryExample'),  
         require('./components/Examples/gallery_ex/LocalGalleryExample'),  
         require('./components/Examples/gallery_ex/OneItemGalleryExample'),  
-        require('./components/Examples/GridManagerExample'),  
-        require('./components/Examples/LoaderEx'),  
-        require('./components/Examples/SnackEx'),  
-        require('./components/Examples/TitleBarExample'), 
+        require('./components/Examples/GridManagerExample'),    
+        require('./components/Examples/SnackEx'),   
         require('./components/DownshiftMultiple'),  
         require('./components/ReactSelect'), 
     ],
@@ -47,6 +45,11 @@ module.exports = {
         require('./views/home'),
         require('./views/examples'),
         require('./views/MainRouter')
+    ],
+
+    examples: [
+        require('./components/Examples/LoaderEx'),
+        require('./components/Examples/TitleBarExample'),
     ],
 
     extend: {
