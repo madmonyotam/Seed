@@ -14,6 +14,10 @@ module.exports = {
         require('./components/CodeSnippet'),
     ],
 
+    views: [
+        require('./views/examples'),
+    ],
+
     extend: {
 
         getExamples(){

@@ -9,9 +9,9 @@ module.exports = {
         initLoading: ['initLoading']
     },
 
-    dependencies: ['SimpleSwitch.Login','SimpleSwitch.Home','Settings.Settings','SimpleSwitch.Examples'],
+    dependencies: ['SimpleSwitch.Home','Settings.Settings','Examples.Examples'],
 
-    get(Login, Home, Settings, Examples) {
+    get(Home, Settings, Examples) {
 
         var core = this;
 

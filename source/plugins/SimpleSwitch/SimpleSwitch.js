@@ -28,7 +28,6 @@ module.exports = {
         require('./views/login'),
         require('./views/root'),
         require('./views/home'),
-        require('./views/examples'),
         require('./views/MainRouter')
     ],
 
