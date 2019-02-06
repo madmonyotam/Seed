@@ -1,8 +1,8 @@
 module.exports = {
     name: "ControlWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['SimpleSwitch.Mixin'],
-    get(Mixin) {
+    dependencies: ['SimpleSwitch.Mixin','Examples.SimpleToggle'],
+    get(Mixin,SimpleToggle) {
 
         var core = this;
 
@@ -16,12 +16,12 @@ module.exports = {
 
 
             propsTypes: {
-
+                scheme: PropTypes.object,
             },
 
             getDefaultProps(){
                 return {
-
+                    scheme: {}
                 };
             },
 
@@ -59,6 +59,7 @@ module.exports = {
                         flexDirection: 'column',
                         justifyContent: 'flex-start',
                         alignItems: 'flex-start',
+                        overflow: 'auto',
                         background: this.background,
                         borderRadius: 4,
                         margin: 10,
@@ -72,11 +73,46 @@ module.exports = {
                 return(styles[s]);
             },
 
+            handleOnChange(context,stateName,value){
+               context.setState({[stateName]:value});
+            },
+
+            renderComponentByType(key, type, name, context){
+                switch (type) {
+                    case 'simpleToggle': 
+                        let checked = context.state[name];
+                        return  <SimpleToggle key={key} checked={checked} onChange={ this.handleOnChange.bind(this,context,name) }  />
+
+                    case 'simpleNumber': 
+                        return  <h2 key={key}>2</h2>
+                
+                    default:
+                        return <p key={key}>3</p>
+                }
+            },
+
+            renderByScheme(){
+                let { scheme } = this.props; 
+                let itemInScheme = Object.entries(scheme);
+                
+                return itemInScheme.map((item,key)=>{
+                    let context = item[1].context
+                    let type = item[1].type;
+                    let name = item[0];
+
+                    return (
+                        <div style={} >
+                            { this.renderComponentByType(key, type, name, context) }
+                        </div>
+                    )
+                });
+            },
+
             render() {
 
                 return (
                     <div style={this.styles('root')}>
-                       { this.props.children }
+                        { this.renderByScheme() }
                     </div>
                 )
             }

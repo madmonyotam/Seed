@@ -12,6 +12,7 @@ module.exports = {
         require('./components/ControlWrapper'),
         require('./components/ComponentWrapper'),
         require('./components/CodeSnippet'),
+        require('./components/SimpleToggle'),
     ],
 
     views: [

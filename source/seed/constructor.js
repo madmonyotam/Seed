@@ -21,7 +21,7 @@ class Seed {
         seed.events = {};
 
         seed.plugins = {};
-        seed.CreatePlugings(options.plugins);
+        seed.CreatePlugins(options.plugins);
 
         seed.imports = imports;
         
@@ -52,7 +52,7 @@ class Seed {
         }
     }; 
 
-    CreatePlugings(plugins){
+    CreatePlugins(plugins){
         var seed = this;
         plugins ? plugins.map(plugin => seed.plugin(plugin)) : [];
     };

@@ -173,6 +173,7 @@ module.exports = {
 
             render() {
                 let {currentDisplay} = this.state;
+
                 return (
                     <div style={ this.styles('root') }>
                         { this.renderMenuBar() }

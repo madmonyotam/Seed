@@ -4,13 +4,12 @@ var seed = require('seed');
 import { HashRouter , Route } from "react-router-dom";
 
 
-seed.CreatePlugings([
+seed.CreatePlugins([
     
     require('./plugins/translate'),
     require('./plugins/request'),
 
     require('./plugins/settings'),
-    require('./plugins/SimpleComponents'),
     
     require('./plugins/componentsCollection'),
     require('./plugins/popovers'),

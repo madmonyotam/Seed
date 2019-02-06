@@ -30,9 +30,9 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    show: { type: 'simpleToggle', context: this },
-                    size: { type: 'simpleNumber', context: this },
-                    loaderColor: { type: 'colorPicker', context: this }
+                    show: {
+                        type: 'buttonToggle',params:{ title1: '1',title2: '2' }, cb: (v)=>{ this.setState({show:v}) }
+                    }
                 }
             },
 
