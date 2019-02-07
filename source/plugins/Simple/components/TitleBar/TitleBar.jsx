@@ -8,7 +8,7 @@ module.exports = {
     name: "TitleBar",
     description: '',
     propTypes: {},
-    dependencies: ['componentsCollection.Badge'],
+    dependencies: ['Simple.Badge'],
 
     get(Badge) {
 

@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'componentsCollection',
+    name: 'Simple',
     dependencies: ['core.plugin.tree'],
     actions: [],
     modules: [],
@@ -13,6 +13,8 @@ module.exports = {
         require('./components/Loader'),
         require('./components/IconPopover'),
         require('./components/CountrySelect'),
+        require('./components/label'),
+        require('./components/LayoutRow'),
     ],
 
     examples: [

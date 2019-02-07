@@ -8,7 +8,7 @@ module.exports = {
     name: 'Popup',
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin','componentsCollection.TitleBar', 'popovers.PopupHandler'],
+    dependencies: ['SimpleSwitch.Mixin','Simple.TitleBar', 'popovers.PopupHandler'],
 
     get(Mixin, TitleBar, popupHandler) {
 

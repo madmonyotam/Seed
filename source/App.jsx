@@ -11,7 +11,7 @@ seed.CreatePlugins([
 
     require('./plugins/settings'),
     
-    require('./plugins/componentsCollection'),
+    require('./plugins/Simple'),
     require('./plugins/popovers'),
     require('./plugins/gallery'),
     require('./plugins/widgetManager'),

@@ -1,6 +1,6 @@
 module.exports = {
     name: 'TopBar',
-    dependencies: ['componentsCollection.TitleBar'],
+    dependencies: ['Simple.TitleBar'],
     get(TitleBar) {
 
         var core = this;

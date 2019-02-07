@@ -4,7 +4,7 @@ require('react-resizable/css/styles.css');
 
 module.exports = {
     name: 'Widget',
-    dependencies: ['componentsCollection.TitleBar'],
+    dependencies: ['Simple.TitleBar'],
 
     get(TitleBar) {
         var core = this;

@@ -5,7 +5,7 @@ module.exports = {
     name: "IconEditor",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'componentsCollection.NoResults', 'componentsCollection.ExpandingPanel', 'SimpleSwitch.NestedMenu'],
+    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'Simple.NoResults', 'Simple.ExpandingPanel', 'SimpleSwitch.NestedMenu'],
 
     get(Mixin, Helper, NoResults, ExpandingPanel, NestedMenu) {
 

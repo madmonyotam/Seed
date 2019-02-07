@@ -4,7 +4,7 @@ module.exports = {
     name: "Settings",
     description: '',
 
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'SimpleSwitch.NestedMenu', 'Settings.SavePopup', 'Settings.CategoryPopup', 'Settings.CodeEditor', 'componentsCollection.NoResults',],
+    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'SimpleSwitch.NestedMenu', 'Settings.SavePopup', 'Settings.CategoryPopup', 'Settings.CodeEditor', 'Simple.NoResults',],
 
     get(Mixin, Helper, NestedMenu, SavePopup, CategoryPopup, CodeEditor, NoResults) {
       

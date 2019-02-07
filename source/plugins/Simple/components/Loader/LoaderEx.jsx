@@ -4,7 +4,7 @@ import {Paper, FormControl, TextField , InputLabel, Select, MenuItem } from "@ma
 module.exports = {
     name: "LoaderEx",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','componentsCollection.Loader',
+    dependencies: ['SimpleSwitch.Mixin','Simple.Loader',
     'SimpleSwitch.ButtonEx', 'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper', 'Settings.ColorPicker'],
     get(Mixin, Loader, ButtonEx, ExampleWrapper, ControlWrapper, ComponentWrapper, ColorPicker) {
 
@@ -30,9 +30,9 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    show: { type: 'simpleToggle', context: this },
-                    size: { type: 'simpleNumber', context: this },
-                    loaderColor: { type: 'colorPicker', context: this }
+                    show: {
+                        type: 'buttonToggle',params:{ title1: '1',title2: '2' }, cb: (v)=>{ this.setState({show:v}) }
+                    }
                 }
             },
 

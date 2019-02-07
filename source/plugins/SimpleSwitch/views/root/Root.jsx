@@ -9,14 +9,14 @@ module.exports = {
     },
     dependencies: [
         'SimpleSwitch.Mixin',
-        'componentsCollection.TopBar',
+        'Simple.TopBar',
         'SimpleSwitch.Nav',
         'popovers.Notify',
         'popovers.Popup',
         'popovers.Caution',
         'popovers.Lightbox',
         'SimpleSwitch.Login',
-        'componentsCollection.Loader',
+        'Simple.Loader',
         'SimpleSwitch.MainRouter'
     ],
     get(Mixin, TopBar, Nav, Notify, Popup, Caution, Lightbox, Login, Loader, MainRouter) {

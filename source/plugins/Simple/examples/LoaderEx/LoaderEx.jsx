@@ -1,10 +1,10 @@
-import {Paper, FormControl, TextField , InputLabel, Select, MenuItem } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
 
 module.exports = {
     name: "LoaderEx",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','componentsCollection.Loader',
+    dependencies: ['SimpleSwitch.Mixin','Simple.Loader',
     'SimpleSwitch.ButtonEx', 'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper', 'Settings.ColorPicker'],
     get(Mixin, Loader, ButtonEx, ExampleWrapper, ControlWrapper, ComponentWrapper, ColorPicker) {
 
@@ -30,9 +30,9 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    show: {
-                        type: 'buttonToggle',params:{ title1: '1',title2: '2' }, cb: (v)=>{ this.setState({show:v}) }
-                    }
+                    show: { type: 'simpleToggle', context: this },
+                    size: { type: 'simpleNumber', context: this },
+                    loaderColor: { type: 'colorPicker', context: this }
                 }
             },
 
@@ -112,26 +112,17 @@ module.exports = {
             },
 
             render() {
-                let { colorPickerAnchorEl, loaderColor } = this.state;
+                let { colorPickerAnchorEl, loaderColor, show, size } = this.state;
+                console.log({show,size});
                 return (
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
 
                         <ControlWrapper  scheme={ this.propScheme() } >
-                          <ButtonEx func={this.renderLoader} text={ this.getButtonText() } style={{ marginBottom: 15 }}/>
                           <ButtonEx func={this.handleOpenColorPicker} text={ core.translate('change color') } />
-
-                          <TextField
-                            id="size"
-                            type={ 'number' }
-                            label={ core.translate('Loader size') }
-                            value={ this.state.size }
-                            onChange={ this.handleChange }
-                            margin="normal"
-                          />
                         </ControlWrapper>
 
                         <ComponentWrapper>
-                            <Loader show={ this.state.show } color={ loaderColor } size={ this.state.size } />
+                            <Loader show={ show } color={ loaderColor } size={ size } />
                         </ComponentWrapper>
 
                         <ColorPicker

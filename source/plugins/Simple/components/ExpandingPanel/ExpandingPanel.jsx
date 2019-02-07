@@ -17,7 +17,7 @@ module.exports = {
   propTypes: {
       // name: 'string',
   },
-  dependencies: ['componentsCollection.Loader','componentsCollection.Badge'],
+  dependencies: ['Simple.Loader','Simple.Badge'],
   get(Loader, Badge) {
 
       var core = this;

@@ -4,7 +4,7 @@ module.exports = {
     name: "ThemeEditor",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Helper', 'componentsCollection.NoResults', 'componentsCollection.Loader', 'componentsCollection.ExpandingPanel', 'Settings.ColorPicker', 'Settings.ColorBox', 'SimpleSwitch.NestedMenu'],
+    dependencies: ['SimpleSwitch.Helper', 'Simple.NoResults', 'Simple.Loader', 'Simple.ExpandingPanel', 'Settings.ColorPicker', 'Settings.ColorBox', 'SimpleSwitch.NestedMenu'],
     bindings: {
       config: ['config'],
     },

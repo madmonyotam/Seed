@@ -12,7 +12,7 @@ module.exports = {
 
         return {
             propsTypes: {
-                size: PropTypes.number,
+                size: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 show: PropTypes.bool,
                 color: PropTypes.string,
                 style: PropTypes.object,
@@ -20,7 +20,7 @@ module.exports = {
 
             getDefaultProps(){
                 return {
-                  size: 'small',
+                  size: 30,
                   color: 'primary',
                   show: true
                 }
@@ -43,6 +43,7 @@ module.exports = {
             render() {
                 let {show, style, size, color, loaderStyle} = this.props;
                 let thickness = this.getThickness();
+                size = core.isString(size) ? Number(size) : size;
 
                 if (!show){
                   return null;

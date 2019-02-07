@@ -17,7 +17,8 @@
         "light_gray": "#ededed",
         "menu": "#efefef",
         "blue": "#007AFF",
-        "white": "#ffffff"
+        "white": "#ffffff",
+        "boxShadow": "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px -1px rgba(0, 0, 0, 0.12)"
     },
     "transparent": {
         "black_12": "#0000001F",

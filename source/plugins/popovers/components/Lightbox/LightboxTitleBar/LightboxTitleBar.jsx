@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Icon, IconButton } from '@material-ui/core/';
 module.exports = {
     name: "LightboxTitleBar",
     description: '',
-    dependencies: ['componentsCollection.TitleBar'],
+    dependencies: ['Simple.TitleBar'],
 
     get(TitleBar) {
         var core = this;

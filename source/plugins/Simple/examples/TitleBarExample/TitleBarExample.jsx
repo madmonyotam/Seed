@@ -5,7 +5,7 @@ module.exports = {
     description: '',
     dependencies: [
         'SimpleSwitch.Mixin',
-        'componentsCollection.TitleBar',
+        'Simple.TitleBar',
         'Examples.ExampleWrapper', 
         'Examples.ControlWrapper', 
         'Examples.ComponentWrapper'

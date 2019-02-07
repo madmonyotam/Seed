@@ -7,7 +7,7 @@ module.exports = {
 
     dependencies: [
         'SimpleSwitch.Helper',
-        'componentsCollection.ExpandingPanel',
+        'Simple.ExpandingPanel',
     ],
 
     get(
