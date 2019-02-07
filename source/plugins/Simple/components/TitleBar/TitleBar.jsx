@@ -41,6 +41,7 @@ module.exports = {
                 height:        PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
                 width:         PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
                 shaddow:       PropTypes.bool,
+                zIndex:        PropTypes.number,
             },
 
             getDefaultProps(){
@@ -57,9 +58,10 @@ module.exports = {
                     fgColor: core.theme('colors.white'),
                     padding: 5,
                     middle: undefined,
-                    height: 30,
+                    height: 15,
                     width: '100%',
                     shaddow: true,
+                    zIndex: 10
                 };
             },
 
@@ -82,27 +84,18 @@ module.exports = {
             },
 
             initialUnits() {
-                let {bgColor, fgColor, icon, padding, height, width, zIndex} = this.props;
+                let { icon } = this.props;
 
                 this.colors = {
-                    propsFgColor: fgColor || core.theme('colors.white'),
                     white: core.theme('colors.white'),
                     b12: core.theme('transparent.black_12'),
                     b14: core.theme('transparent.black_14'),
                     b20: core.theme('transparent.black_20'),
                 };
 
-                this.backgrounds = {
-                    propsBgColor: bgColor || core.theme('backgrounds.primary'),
-                };
-
                 const iconSize = icon && icon.size ? icon.size : core.dim("nav.iconSize");
 
                 this.units = {
-                    propsHeight: height || 15,
-                    propsWidth: width ? width : '100%',
-                    propsPadding: padding || 5,
-                    propsIndex: zIndex ? zIndex : 10,
                     navWidth: core.dim("nav.width"),
                     icon: {
                         height: iconSize * 1.5,
@@ -114,17 +107,19 @@ module.exports = {
 
             styles(s) {
                 let {shaddow, style} = this.props;
+                let {bgColor, fgColor, padding, height, width, zIndex} = this.props;
+
                 let styles = {
                     root: {
-                        backgroundColor: this.backgrounds.propsBgColor, 
-                        color: this.colors.propsFgColor,
-                        padding: this.units.propsPadding,
-                        minHeight: this.units.propsHeight,
-                        maxHeight: this.units.propsHeight,
-                        width: this.units.propsWidth,
+                        backgroundColor: bgColor, 
+                        color: fgColor,
+                        padding: padding,
+                        minHeight: height,
+                        maxHeight: height,
+                        width: width,
                         display: 'flex',
                         justifyContent: 'space-between',
-                        zIndex: this.units.propsIndex,
+                        zIndex: zIndex,
                         position: 'relative',
                         boxShadow: (shaddow) ? `0px 2px 4px -1px ${this.colors.b12}, \
                                                 0px 4px 5px  0px ${this.colors.b14}, \

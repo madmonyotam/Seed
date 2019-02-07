@@ -31,6 +31,15 @@ module.exports = {
                 };
             },
 
+            propScheme(){ // TODO:  
+                return {
+                    title: { type: 'simple', context: this },
+                    bgColor: { type: 'colorPicker', context: this },
+                    fgColor: { type: 'colorPicker', context: this },
+                    height: { type: 'simpleNumber', context: this }
+                }
+            },
+
             getInitialState() {
                 return {
                     title: 'My Title',
@@ -113,28 +122,11 @@ zIndex={ 1 }
 
             render() {
                 let {title,bgColor,fgColor,height} = this.state;
-
+                
                 return (
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Title Bar') }>
 
-                        <ControlWrapper>
-                           <TextField
-                            id="title"
-                            type={ 'text' }
-                            label={ core.translate('Title Name') }
-                            // value={ title }
-                            onChange={ this.handleTitleChange }
-                            margin="normal"
-                          />
-                           <TextField
-                            id="height"
-                            type={ 'number' }
-                            label={ core.translate('Height Size') }
-                            // value={ title }
-                            onChange={ this.handleHeightChange }
-                            margin="normal"
-                          />
-                        </ControlWrapper>
+                        <ControlWrapper scheme={ this.propScheme() }/>
 
                         <ComponentWrapper>
                             <TitleBar 

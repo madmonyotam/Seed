@@ -39,7 +39,7 @@ module.exports = {
                     <TitleBar
                         title={ title }
                         logo={ <img src='/resources/images/simpleSwitch.png' style={ this.styles('imgLogo') } /> }
-                        bgColor={ core.theme('backgrounds.nav') }
+                        bgColor={ core.theme('backgrounds.primary') }
                         height={ core.dim("appBar.height") }
                         zIndex={ core.dim("appBar.zIndex") }
                     />
