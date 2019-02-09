@@ -57,8 +57,9 @@ module.exports = {
                 const styles = {
                     row: {
                         width: width,
+                        maxWidth: '100%',
                         height: height,
-                        minHeight: height,
+                        maxHeight: '100%',
                         display: 'flex',
                         flexDirection: 'row',
                         overflow: 'hidden',
