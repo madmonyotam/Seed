@@ -3,8 +3,8 @@ import { Typography, Paper } from "@material-ui/core";
 module.exports = {
     name: "ExampleWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['SimpleSwitch.Mixin'],
-    get(Mixin) {
+    dependencies: ['SimpleSwitch.Mixin','Layouts.Row','Layouts.Column'],
+    get(Mixin, Row, Column) {
 
         var core = this;
 
@@ -57,36 +57,19 @@ module.exports = {
             styles(s){
 
                 const styles = {
-                    root: {
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: '100%',
-                        width: '100%',
-                    },
-                    content: {
-                      flexDirection: 'row',
-                      display: 'flex',
-                      height: '100%',
-                      width: '100%',
+                    cont: {
+                        padding: 0
                     },
                     codePaper: {
-                      margin: 10,
-                      padding: 15,
                       whiteSpace: 'pre-wrap',
-                      fontSize: '90%',
-                      height: '40vh',
-                      overflow: 'hidden',
+                      borderRadius: 4,
                       overflowY: 'auto',
                       color: this.codeColor,
-                      background: this.codeBackground
-                    },
-                    // title: {
-                    //   color: this.textColor,
-                    //   marginBottom: 10,
-                    //   paddingBottom: 5,
-                    //   fontSize: 16,
-                    //   borderBottom: `1px solid ${this.borderColor}`
-                    // }
+                      background: this.codeBackground,
+                      height:'40vh',
+                      padding: 15,
+                      margin: 10
+                    }
                 }
 
                 return(styles[s]);
@@ -94,29 +77,24 @@ module.exports = {
 
             renderCodeSnippet(){
               return (
-                <Paper style={ this.styles('codePaper') }>
+                <div style={ this.styles('codePaper') }>
                   <code>
-                  { this.props.CodeSnippet }
+                      { this.props.CodeSnippet }
                   </code>
-                </Paper>
+                </div>
               )
             },
 
             render() {
                 return (
-                    <div style={this.styles('root')}>
+                    <Column width={'100%'}>
 
-                      {/* <Typography style={ this.styles('title') }>
-                        { this.props.componentName }
-                      </Typography> */}
-
-
-                      <div style={ this.styles('content') }>
+                      <Row height={'100%'} style={this.styles('cont')}>
                         { this.props.children }
-                      </div>
+                      </Row>
 
                       { this.renderCodeSnippet() }
-                    </div>
+                    </Column>
                 )
             }
 

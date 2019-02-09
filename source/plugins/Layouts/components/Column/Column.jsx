@@ -1,6 +1,6 @@
 
 module.exports = {
-    name: 'Row',
+    name: 'Column',
     description: 'This is an example of a component',
     dependencies: ['SimpleSwitch.Mixin'],
     get(Mixin) {
@@ -20,8 +20,8 @@ module.exports = {
 
             getDefaultProps(){
                 return {
-                    width: '100%',
-                    height: 50,
+                    width: 200,
+                    height: '100%',
                     boxShadow: false
                 };
             },
@@ -46,7 +46,7 @@ module.exports = {
             },
 
             initUnits(){
-                this.boxShadow = core.theme('boxShadows.row');
+                this.boxShadow = core.theme('boxShadows.column');
             },
 
             styles(s){
@@ -54,20 +54,16 @@ module.exports = {
                 let margin = style && style.margin || 0;
 
                 const styles = {
-
                     row: {
                         width: width,
                         maxWidth: `calc(100% - ${margin}px)`,
-                        minHeight: 50,
                         height: height,
                         maxHeight: `calc(100% - ${margin}px)`,
                         display: 'flex',
-                        flexDirection: 'row',
-                        overflow: 'hidden',
-                        alignItems: 'center',
+                        flexDirection: 'column',
+                        overflow: 'auto',
+                        justifyContent: 'flex-start',
                         boxShadow: boxShadow ? this.boxShadow : 'unset',
-                        padding: 10,
-                        position: 'relative',
                         ...style
                     },
                 }

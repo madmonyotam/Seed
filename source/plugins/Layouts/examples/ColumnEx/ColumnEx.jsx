@@ -1,10 +1,10 @@
 
 module.exports = {
-    name: "RowEx",
+    name: "ColumnEx",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','Layouts.Row',
+    dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row',
      'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Badge','Simple.Label'],
-    get(Mixin, Row, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label) {
+    get(Mixin, Column, Row, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label) {
 
         var core = this;
 
@@ -12,19 +12,6 @@ module.exports = {
 
         return {
             mixins: [ Mixin ],
-
-            componentWillUnmount() {
-            },
-
-
-            propsTypes: {
-                text: PropTypes.string,
-            },
-
-            getDefaultProps(){
-                return {
-                };
-            },
 
             propScheme(){ // TODO:  
                 return {
@@ -37,23 +24,13 @@ module.exports = {
             getInitialState() {
                 return {
                     boxShadow: true,
-                    width: '100%',
-                    height: 50
+                    width: 200,
+                    height: '100%'
                 };
             },
 
             componentWillMount () {
                 this.initUnits();
-            },
-
-            componentDidMount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            },
-
-            componentWillUnmount () {
-
             },
 
             initUnits(){
@@ -63,7 +40,7 @@ module.exports = {
             styles(s){
 
                 const styles = {
-                    row:{
+                    column:{
                         background: this.background
                     }
                 }
@@ -81,10 +58,16 @@ module.exports = {
                 let { boxShadow, width, height } = this.state;
 
                 return (`
-<Row boxShadow={${boxShadow}} width={${width}} height={${height}} />
-    <Label width={'100%'} label={"I'm A Row layout"}/>
-    <Badge count={10}/>
-</Row>
+<Column boxShadow={${boxShadow}} width={${width}} height={${height}} style={this.styles('column')}>
+    <Row>
+        <Label label={"I'm A Row in a column"}/>
+        <Badge count={1}/>
+    </Row>
+    <Row>
+        <Label label={"I'm A second Row in a column"}/>
+        <Badge count={2}/>
+    </Row>
+</Column>
                 `)
             },
 
@@ -97,10 +80,16 @@ module.exports = {
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
                         <ControlWrapper  scheme={ this.propScheme() } />
                         <ComponentWrapper>
-                            <Row boxShadow={boxShadow} width={width} height={height} style={this.styles('row')}>
-                                <Label width={'100%'} label={"I'm A Row layout"}/>
-                                <Badge count={10}/>
-                            </Row>
+                            <Column boxShadow={boxShadow} width={width} height={height} style={this.styles('column')}>
+                                <Row boxShadow={true} >
+                                    <Label label={"I'm A Row in a column"}/>
+                                    <Badge count={1}/>
+                                </Row>
+                                <Row boxShadow={true} >
+                                    <Label label={"I'm A second Row in a column"}/>
+                                    <Badge count={2}/>
+                                </Row>
+                            </Column>
                         </ComponentWrapper>
                     </ExampleWrapper>
 

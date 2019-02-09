@@ -1,8 +1,8 @@
 module.exports = {
     name: "ComponentWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['SimpleSwitch.Mixin'],
-    get(Mixin) {
+    dependencies: ['SimpleSwitch.Mixin','Layouts.Row'],
+    get(Mixin,Row) {
 
         var core = this;
 
@@ -55,19 +55,9 @@ module.exports = {
 
                 const styles = {
                     root: {
-                        flex: 0.80,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'relative',
                         background: this.background,
                         margin: 10,
-                        padding: 15,
                         borderRadius: 4,
-                        overflow: 'auto',
-                        boxShadow: this.boxShadow
-
                     },
 
                 }
@@ -78,9 +68,9 @@ module.exports = {
             render() {
                 let { style } = this.props;
                 return (
-                    <div style={{ ...this.styles('root'), ...style }}>
+                    <Row boxShadow={true} width={'80%'} height={'100%'} style={{ ...this.styles('root'), ...style }} >
                       { this.props.children }
-                    </div>
+                    </Row>
                 )
             }
 

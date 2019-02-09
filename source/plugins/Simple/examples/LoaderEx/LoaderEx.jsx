@@ -98,7 +98,7 @@ module.exports = {
 
             render() {
                 let { colorPickerAnchorEl, loaderColor, show, size } = this.state;
-                console.log({show,size});
+
                 return (
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
 
