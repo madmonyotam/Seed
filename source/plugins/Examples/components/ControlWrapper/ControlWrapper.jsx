@@ -3,8 +3,8 @@ import { TextField } from "@material-ui/core";
 module.exports = {
     name: "ControlWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['SimpleSwitch.Mixin','Examples.SimpleToggle','Simple.Label','Simple.LayoutRow'],
-    get(Mixin,SimpleToggle, Label, LayoutRow) {
+    dependencies: ['SimpleSwitch.Mixin','Examples.SimpleToggle','Simple.Label','Layouts.Row'],
+    get(Mixin,SimpleToggle, Label, Row) {
 
         var core = this;
 
@@ -138,9 +138,9 @@ module.exports = {
                     let name = item[0];
 
                     return (
-                        <LayoutRow height={60} boxShadow={true} key={key} >
+                        <Row height={60} boxShadow={true} key={key} >
                             { this.renderComponentByType(type, name, context) }
-                        </LayoutRow>
+                        </Row>
                     )
                 });
             },

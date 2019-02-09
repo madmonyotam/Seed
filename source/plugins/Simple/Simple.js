@@ -14,7 +14,6 @@ module.exports = {
         require('./components/IconPopover'),
         require('./components/CountrySelect'),
         require('./components/label'),
-        require('./components/LayoutRow'),
     ],
 
     examples: [

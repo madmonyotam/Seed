@@ -84,22 +84,7 @@ module.exports = {
 </div>
                 `)
             },
-
-            getButtonText(){
-              if (this.state.show) {
-                return core.translate('Hide Loader')
-              }
-              return core.translate('Show Loader')
-            },
-
-            renderLoader(){
-                let {show} = this.state;
-
-                this.setState({
-                    show : !show,
-                })
-            },
-
+            
             handleOpenColorPicker(e){
               this.setState({ colorPickerAnchorEl: e.currentTarget, colorKey: null })
             },

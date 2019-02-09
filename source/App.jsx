@@ -11,6 +11,7 @@ seed.CreatePlugins([
 
     require('./plugins/settings'),
     
+    require('./plugins/Layouts'),
     require('./plugins/Simple'),
     require('./plugins/popovers'),
     require('./plugins/gallery'),

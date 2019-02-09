@@ -1,6 +1,6 @@
 
 module.exports = {
-    name: 'LayoutRow',
+    name: 'Row',
     description: 'This is an example of a component',
     dependencies: ['SimpleSwitch.Mixin'],
     get(Mixin) {
@@ -22,7 +22,7 @@ module.exports = {
                 return {
                     width: '100%',
                     height: 70,
-                    boxShadow: true
+                    boxShadow: false
                 };
             },
             
@@ -46,11 +46,13 @@ module.exports = {
             },
 
             initUnits(){
-                this.boxShadow = core.theme('backgrounds.boxShadow');
+                this.boxShadow = core.theme('boxShadows.row');
             },
 
             styles(s){
                 let { width, height, style, boxShadow } = this.props;
+                if(core.isString(width) && !width.includes('%')) width = Number(width);
+                if(core.isString(height) && !height.includes('%')) height = Number(height);
 
                 const styles = {
                     row: {
@@ -66,6 +68,8 @@ module.exports = {
                         ...style
                     },
                 }
+
+                console.log(styles);
 
                 return(styles[s]);
             },
