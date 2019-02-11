@@ -16,12 +16,14 @@ module.exports = {
             propsTypes: {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 label: PropTypes.string,
+                color: PropTypes.string,
             },
 
             getDefaultProps(){
                 return {
                     width: '100%',
-                    label: 'label'
+                    label: 'label',
+                    color: core.theme('colors.text')
                 };
             },
             
@@ -48,13 +50,14 @@ module.exports = {
             },
 
             styles(s){
-                let { width, style } = this.props;
+                let { width, style, color } = this.props;
 
                 const styles = {
                     label: {
                         margin: 0,
                         fontWeight: 500,
                         fontSize:13,
+                        color: color,
                         width: width,
                         overflow: "hidden",
                         whiteSpace: "nowrap",

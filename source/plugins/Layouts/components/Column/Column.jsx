@@ -16,13 +16,15 @@ module.exports = {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 boxShadow: PropTypes.bool,
+                color: PropTypes.string,
             },
 
             getDefaultProps(){
                 return {
                     width: 200,
                     height: '100%',
-                    boxShadow: false
+                    boxShadow: false,
+                    color: 'unset'
                 };
             },
             
@@ -50,7 +52,7 @@ module.exports = {
             },
 
             styles(s){
-                let { width, height, style, boxShadow } = this.props;
+                let { width, height, style, boxShadow, color } = this.props;
                 let margin = style && style.margin || 0;
 
                 const styles = {
@@ -59,11 +61,10 @@ module.exports = {
                         maxWidth: `calc(100% - ${margin}px)`,
                         height: height,
                         maxHeight: `calc(100% - ${margin}px)`,
-                        display: 'flex',
-                        flexDirection: 'column',
                         overflow: 'auto',
-                        justifyContent: 'flex-start',
+                        position: 'relative',
                         boxShadow: boxShadow ? this.boxShadow : 'unset',
+                        background: color,
                         ...style
                     },
                 }
@@ -72,10 +73,10 @@ module.exports = {
             },
 
             render() {
-                let { children } = this.props;
+                let { children, width, height, style, boxShadow, color, ...props } = this.props;
 
                 return (
-                    <div style={ this.styles('row') } >
+                    <div style={ this.styles('row') } { ...props } >
                         { children }
                     </div>
                 )

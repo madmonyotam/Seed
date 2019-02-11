@@ -52,23 +52,21 @@ module.exports = {
                 this.borderColor =  core.theme('colors.gray');
                 this.codeColor = core.theme('colors.white');
                 this.codeBackground = core.theme('colors.dark')
+                this.margin = 10;
             },
 
             styles(s){
 
                 const styles = {
-                    cont: {
-                        padding: 0
-                    },
                     codePaper: {
                       whiteSpace: 'pre-wrap',
                       borderRadius: 4,
                       overflowY: 'auto',
                       color: this.codeColor,
                       background: this.codeBackground,
-                      height:'40vh',
+                      height:'30%',
                       padding: 15,
-                      margin: 10
+                      margin: this.margin
                     }
                 }
 
@@ -86,10 +84,12 @@ module.exports = {
             },
 
             render() {
-                return (
-                    <Column width={'100%'}>
+                let controllerAndCopmonentMargin = 10;
 
-                      <Row height={'100%'} style={this.styles('cont')}>
+                return (
+                    <Column width={'100%'} height={'100%'}>
+
+                      <Row height={`calc(70% - ${this.margin+controllerAndCopmonentMargin}px)`} padding={0}>
                         { this.props.children }
                       </Row>
 

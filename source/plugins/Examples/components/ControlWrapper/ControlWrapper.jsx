@@ -106,10 +106,10 @@ module.exports = {
 
             renderComponentByType(type, stateName, context){
                 switch (type) {
-                    case 'simpleToggle': 
+                    case 'boolean': 
                         return  this.renderToggle( stateName, context );
 
-                    case 'simpleNumber': 
+                    case 'number': 
                         return this.renderTextField( stateName, context, 'number' );
                     
                     case 'colorPicker':

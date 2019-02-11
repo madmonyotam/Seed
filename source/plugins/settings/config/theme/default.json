@@ -2,6 +2,7 @@
     "colors": {
         "black": "#333333",
         "dark": "#333333",
+        "text": "#333333",
         "gray": "#999999",
         "secondary": "#2979ff",
         "primary": "#01579b",
@@ -14,6 +15,7 @@
         "default": "#ffffff",
         "nav": "#333333",
         "primary": "#004175",
+        "secondary": "#98d1ff",
         "light_gray": "#ededed",
         "menu": "#efefef",
         "blue": "#007AFF",

@@ -16,13 +16,17 @@ module.exports = {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 boxShadow: PropTypes.bool,
+                padding: PropTypes.number,
+                color: PropTypes.string,
             },
 
             getDefaultProps(){
                 return {
                     width: '100%',
                     height: 50,
-                    boxShadow: false
+                    boxShadow: false,
+                    padding: 10,
+                    color: 'unset'
                 };
             },
             
@@ -47,10 +51,13 @@ module.exports = {
 
             initUnits(){
                 this.boxShadow = core.theme('boxShadows.row');
+                this.dim = {
+                    minWidth: core.dim('layouts.minRowWidth')
+                }
             },
 
             styles(s){
-                let { width, height, style, boxShadow } = this.props;
+                let { padding, width, height, style, boxShadow, color } = this.props;
                 let margin = style && style.margin || 0;
 
                 const styles = {
@@ -58,7 +65,7 @@ module.exports = {
                     row: {
                         width: width,
                         maxWidth: `calc(100% - ${margin}px)`,
-                        minHeight: 50,
+                        minHeight: this.dim.minWidth,
                         height: height,
                         maxHeight: `calc(100% - ${margin}px)`,
                         display: 'flex',
@@ -66,8 +73,9 @@ module.exports = {
                         overflow: 'hidden',
                         alignItems: 'center',
                         boxShadow: boxShadow ? this.boxShadow : 'unset',
-                        padding: 10,
+                        padding: padding,
                         position: 'relative',
+                        background: color,
                         ...style
                     },
                 }
@@ -76,10 +84,10 @@ module.exports = {
             },
 
             render() {
-                let { children } = this.props;
+                let { children ,width, height, padding, style, boxShadow, color, ...props } = this.props;
 
                 return (
-                    <div style={ this.styles('row') } >
+                    <div style={ this.styles('row') } {...props} >
                         { children }
                     </div>
                 )

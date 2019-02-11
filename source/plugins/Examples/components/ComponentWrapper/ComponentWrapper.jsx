@@ -58,6 +58,7 @@ module.exports = {
                         background: this.background,
                         margin: 10,
                         borderRadius: 4,
+                        justifyContent: 'center'
                     },
 
                 }

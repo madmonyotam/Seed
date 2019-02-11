@@ -30,8 +30,8 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    show: { type: 'simpleToggle', context: this },
-                    size: { type: 'simpleNumber', context: this },
+                    show: { type: 'boolean', context: this },
+                    size: { type: 'number', context: this },
                     loaderColor: { type: 'colorPicker', context: this }
                 }
             },

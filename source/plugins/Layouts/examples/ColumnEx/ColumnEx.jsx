@@ -15,50 +15,27 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    boxShadow: { type: 'simpleToggle', context: this },
+                    boxShadow: { type: 'boolean', context: this },
                     width: { type: 'default', context: this },
-                    height: { type: 'default', context: this }
+                    height: { type: 'default', context: this },
+                    color: { type: 'default', context: this },
                 }
             },
 
             getInitialState() {
                 return {
                     boxShadow: true,
-                    width: 200,
-                    height: '100%'
+                    width: 400,
+                    height: '100%',
+                    color: core.theme('backgrounds.light_gray')
                 };
             },
 
-            componentWillMount () {
-                this.initUnits();
-            },
-
-            initUnits(){
-                this.background = core.theme('backgrounds.light_gray');
-            },
-
-            styles(s){
-
-                const styles = {
-                    column:{
-                        background: this.background
-                    }
-                }
-
-                return(styles[s]);
-            },
-
-            handleChange(event){
-               this.setState({
-                   size: Number(event.target.value)
-               })
-            },
-
             getCode(){
-                let { boxShadow, width, height } = this.state;
+                let { boxShadow, width, height, color } = this.state;
 
                 return (`
-<Column boxShadow={${boxShadow}} width={${width}} height={${height}} style={this.styles('column')}>
+<Column boxShadow={${boxShadow}} width={${width}} height={${height}} color={${color}} >
     <Row>
         <Label label={"I'm A Row in a column"}/>
         <Badge count={1}/>
@@ -72,7 +49,7 @@ module.exports = {
             },
 
             render() {
-                let { boxShadow, width, height } = this.state;
+                let { boxShadow, width, height, color } = this.state;
                 if(core.isString(width) && !width.includes('%')) width = Number(width);
                 if(core.isString(height) && !height.includes('%')) height = Number(height);
 
@@ -80,7 +57,7 @@ module.exports = {
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
                         <ControlWrapper  scheme={ this.propScheme() } />
                         <ComponentWrapper>
-                            <Column boxShadow={boxShadow} width={width} height={height} style={this.styles('column')}>
+                            <Column boxShadow={boxShadow} width={width} height={height} color={color} >
                                 <Row boxShadow={true} >
                                     <Label label={"I'm A Row in a column"}/>
                                     <Badge count={1}/>

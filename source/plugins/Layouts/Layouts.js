@@ -4,11 +4,13 @@ module.exports = {
 
     components: [
         require('./components/Row'),
-        require('./components/Column')
+        require('./components/Column'),
+        require('./components/SimpleExpandingPanel')
     ],
     examples: [
         require('./examples/RowEx'),
-        require('./examples/ColumnEx')
+        require('./examples/ColumnEx'),
+        require('./examples/ExpandingPanelEx')
     ],
 
     init(def, done){
