@@ -20,18 +20,13 @@ module.exports = {
 
 
             propsTypes: {
-                code: PropTypes.string,
-            },
-
-            getDefaultProps(){
-                return {
-                    code: 'let x = "code should be here!"'
-                };
-            },
-            
+                Element: PropTypes.element,
+                ElementProps: PropTypes.object,
+            }, 
             getInitialState() {
                 return {
-                    
+                    Element: this.props.Element,
+                    ElementProps: this.props.ElementProps, 
                 };
             },
 
@@ -43,6 +38,9 @@ module.exports = {
             },
 
             componentWillReceiveProps (nextProps) {
+                if (nextProps !== this.props) {
+                    this.setState(nextProps)
+                }
             },
 
             componentWillUpdate(nextProps, nextState) {
@@ -77,7 +75,7 @@ module.exports = {
             },
 
             renderComponentAsCode(){
-                let { ElementProps, Element } = this.props;
+                let { ElementProps, Element } = this.state;
                 // console.dir(Element)
 
                 let jsString = jsxToString(<Element { ...ElementProps } />, {
@@ -91,11 +89,11 @@ module.exports = {
             },
 
             render() {
-
+                if (!this.state.ELement) return null;
                 return (
                     <div style={this.styles('root')}>
                         <code>
-;                            { this.renderComponentAsCode() }
+                        { this.renderComponentAsCode() }
                         </code>
                     </div>
                 )
