@@ -3,8 +3,8 @@ import { Typography, Paper } from "@material-ui/core";
 module.exports = {
     name: "ExampleWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['SimpleSwitch.Mixin','Layouts.Row','Layouts.Column'],
-    get(Mixin, Row, Column) {
+    dependencies: ['SimpleSwitch.Mixin', 'Layouts.Row', 'Layouts.Column', 'Examples.CodeSnippet'],
+    get(Mixin, Row, Column, CodeSnippet) {
 
         var core = this;
 
@@ -85,6 +85,7 @@ module.exports = {
 
             render() {
                 let controllerAndCopmonentMargin = 10;
+                let { snippet } = this.props;
 
                 return (
                     <Column width={'100%'} height={'100%'}>
@@ -93,7 +94,8 @@ module.exports = {
                         { this.props.children }
                       </Row>
 
-                      { this.renderCodeSnippet() }
+                      {/* { this.renderCodeSnippet() } */}
+                      <CodeSnippet Element={ snippet.element } ElementProps={ snippet.props }  />
                     </Column>
                 )
             }

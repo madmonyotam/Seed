@@ -78,11 +78,8 @@ module.exports = {
             },
 
             getCode(){
-                return (`
-<div style={{ width: '200px', height: '200px', position: 'relative' }} >
-  <Loader show={ ${this.state.show} } size={ ${this.state.size} } color={ '${this.state.loaderColor}' }/>
-</div>
-                `)
+                let { loaderColor, show, size } = this.state; 
+                return { loaderColor, show, size }
             },
             
             handleOpenColorPicker(e){
@@ -100,7 +97,7 @@ module.exports = {
                 let { colorPickerAnchorEl, loaderColor, show, size } = this.state;
 
                 return (
-                    <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
+                    <ExampleWrapper snippet={{ element: Loader, props: this.getCode() }} componentName={ core.translate('Loader') }>
 
                         <ControlWrapper  scheme={ this.propScheme() } >
                           <ButtonEx func={this.handleOpenColorPicker} text={ core.translate('change color') } />

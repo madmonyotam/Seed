@@ -1,4 +1,5 @@
 import { Button  } from '@material-ui/core/';
+import jsxToString from 'jsx-to-string';
 
 
 module.exports = {
@@ -51,46 +52,51 @@ module.exports = {
             },
 
             initUnits(){
-                this.textColor =  core.theme('colors.dark');
+                this.codeColor = core.theme('colors.white');
+                this.codeBackground = core.theme('colors.dark')
+                this.margin = 10;
             },
 
             styles(s){
 
                 const styles = {
                     root: {
-                        display: 'flex',
-                        justifyContent:'center',
-                        alignItems:'center',
-                    },
-                    pre:{
-                        maxHeight: '50vh',
-                        textAlign: 'left',
-                        backgroundColor: 'white', 
-                        padding: '10px', 
-                        borderRadius: '5px', 
-                        margin: '15px',
-                        width:'100%',
-                        overflowY: 'auto' 
-                    },
-                    code:{
-                        textAlign: 'left',
-                    },
+                        whiteSpace: 'pre-wrap',
+                        borderRadius: 4,
+                        overflowY: 'auto',
+                        color: this.codeColor,
+                        background: this.codeBackground,
+                        height: '30%',
+                        padding: 15,
+                        margin: this.margin
+                    }
                 
                 }
                 
                 return(styles[s]);
             },
 
+            renderComponentAsCode(){
+                let { ElementProps, Element } = this.props;
+                // console.dir(Element)
+
+                let jsString = jsxToString(<Element { ...ElementProps } />, {
+                    shortBooleanSyntax: false,
+                    functionNameOnly: false,
+                    useFunctionCode: false
+                });
+
+                return jsString;
+
+            },
+
             render() {
-                let {code} = this.props;
 
                 return (
                     <div style={this.styles('root')}>
-                        <pre style={this.styles('pre')}>
-                            <code style={this.styles('code')}>
-                                {code}
-                            </code>
-                        </pre>
+                        <code>
+;                            { this.renderComponentAsCode() }
+                        </code>
                     </div>
                 )
             } 
