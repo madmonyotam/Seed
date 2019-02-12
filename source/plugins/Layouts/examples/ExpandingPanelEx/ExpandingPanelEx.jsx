@@ -32,7 +32,7 @@ module.exports = {
                     uniqOpen: true,
                     showMargin: true,
                     transition: 0.50,
-                    autoHeight: false,
+                    autoHeight: true,
                 };
             },
 

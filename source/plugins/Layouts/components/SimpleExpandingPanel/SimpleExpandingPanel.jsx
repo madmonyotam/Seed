@@ -70,13 +70,20 @@ module.exports = {
 
             componentDidMount() {
                 this.eventHandle( 'on' );
+                this.height = this.getMaxHeight();
+            },
+
+            componentWillReceiveProps (nextProps) {
+                // for example
+                if(nextProps !== this.props){
+                    setTimeout(() => {
+                      this.height = this.getMaxHeight();
+                    }, 0);  
+                }
             },
 
             componentWillUnmount() {
                 this.eventHandle( 'off' );
-            },
-
-            componentWillReceiveProps (nextProps) {
             },
 
             eventHandle( action ) {
@@ -93,11 +100,13 @@ module.exports = {
                 this.dim = {
                     minWidth: core.dim('layouts.minRowWidth')
                 }
+
             },
 
             getMaxHeight(){
                 let { anchorHeight, panelHeight, autoHeight } = this.props;
-                if(autoHeight) return(`calc(30vh + ${anchorHeight}px)`);
+                let panel = document.getElementById('panel');
+                if(autoHeight) return(`calc(${panel.clientHeight}px + ${anchorHeight}px)`);
 
                 return(`calc(${panelHeight}px + ${anchorHeight}px)`)
             },
@@ -108,7 +117,7 @@ module.exports = {
                 let { isDrawerOpen } = this.state;
 
                 let rootMargin = showMargin && isDrawerOpen ? 15 : 0;
-                let height = this.getMaxHeight();
+                let height = this.height
 
                 let panelHeightToogle = isDrawerOpen ? height : anchorHeight;
                 anchorHeight = anchorHeight < this.dim.minWidth ? this.dim.minWidth : anchorHeight;
@@ -184,7 +193,7 @@ module.exports = {
                 let height = autoHeight ?  'auto' : panelHeight;
 
                 return (
-                    <Column height={height} style={ this.styles('panel') } >
+                    <Column id={'panel'} height={height} style={ this.styles('panel') } >
                         { panel }
                     </Column>
                 )
