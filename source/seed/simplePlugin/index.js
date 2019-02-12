@@ -88,7 +88,12 @@ class SimplePlugin {
                     return console.error(`duplicate declaration in plugin: ${name}`);
             }
 
-            plugin[key][name] = module.component ? module.component : module;
+            plugin[key][name] = module;
+            if(module.component){
+                module.component.name = module.name;
+                plugin[key][name] = module.component;
+            }
+
 
             if(module.example){ this.getExampleFromComponent(module.example,name) } 
         });
@@ -108,6 +113,7 @@ class SimplePlugin {
             return console.error(`component is missing for example in: ${ComponentName}`);
         }
 
+        example.component.name = example.name;
         plugin.examples[exName] = example.component;
     }
     
