@@ -75,11 +75,11 @@ class SimplePlugin {
     }
 
     setModules(array,key){
-        var plugin = this;
-        var modules = array || [];
+        let plugin = this;
+        let modules = array || [];
 
         modules.map((module)=>{
-            var name = module.name;
+            let name = module.name;
 
             if(!module.name) return  console.error(`missing name for ${key}`);
             if( plugin.modules[name] || plugin.components[name] ||
@@ -88,10 +88,27 @@ class SimplePlugin {
                     return console.error(`duplicate declaration in plugin: ${name}`);
             }
 
+            plugin[key][name] = module.component ? module.component : module;
 
-            var name = module.name;
-            plugin[key][name] = module;
+            if(module.example){ this.getExampleFromComponent(module.example,name) } 
         });
+    }
+
+    getExampleFromComponent(example,ComponentName){
+        let plugin = this;
+
+        let exName = example.name;
+        let exComponent = example.component;
+
+        if (!plugin.seed.isString(exName)){
+            return console.error(`name is missing for example in: ${ComponentName}`);
+        }
+
+        if(plugin.seed.isUndefined(exComponent)){
+            return console.error(`component is missing for example in: ${ComponentName}`);
+        }
+
+        plugin.examples[exName] = example.component;
     }
     
     run(actionName, data = {}){

@@ -1,7 +1,5 @@
 
 module.exports = {
-    name: 'Column',
-    description: 'This is an example of a component',
     dependencies: ['SimpleSwitch.Mixin'],
     get(Mixin) {
         

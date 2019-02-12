@@ -1,7 +1,5 @@
 
 module.exports = {
-    name: "ExpandingPanelEx",
-    description: '',
     dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row','Layouts.SimpleExpandingPanel',
      'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Label'],
     get(Mixin, Column, Row, SimpleExpandingPanel, ExampleWrapper, ControlWrapper, ComponentWrapper, Label) {

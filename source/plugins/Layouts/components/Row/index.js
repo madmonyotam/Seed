@@ -1,1 +1,6 @@
-module.exports = require('./Row.jsx');
+module.exports = {
+    name: 'Row',
+    description: 'This is a Row',
+    component: require('./Row.jsx'),
+    example: require('./example')
+}

@@ -1,5 +1,4 @@
 module.exports = {
-    name: 'SimpleExpandingPanel',
     dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row'],
     get(Mixin, Column, Row) {
         
