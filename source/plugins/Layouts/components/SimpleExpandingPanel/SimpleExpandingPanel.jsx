@@ -16,12 +16,13 @@ module.exports = {
                 uniqGroup: PropTypes.string,
                 
                 anchor: PropTypes.object,
-                anchorHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+                anchorHeight: PropTypes.number,
                 anchorClickCB: PropTypes.func,
                 anchorStyle: PropTypes.object,
 
                 panel: PropTypes.object,
-                panelHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+                panelHeight: PropTypes.number,
+                autoHeight: PropTypes.bool,
                 panelStyle: PropTypes.object,
                 
                 startOpen: PropTypes.bool,
@@ -43,12 +44,13 @@ module.exports = {
                     anchorStyle: {},
 
                     panel: <Column> default panel </Column>,
-                    panelHeight: 400,
+                    panelHeight: 200,
+                    autoHeight: true,
                     panelStyle: {},
 
                     showMargin: true,
                     startOpen: false,
-                    transition: 0.25,
+                    transition: 0.50,
                     style: {},
 
                 };
@@ -93,23 +95,31 @@ module.exports = {
                 }
             },
 
+            getMaxHeight(){
+                let { anchorHeight, panelHeight, autoHeight } = this.props;
+                if(autoHeight) return(`calc(30vh + ${anchorHeight}px)`);
+
+                return(`calc(${panelHeight}px + ${anchorHeight}px)`)
+            },
+
             styles(s){
 
-                let { transition, style, anchorStyle, panelStyle, showMargin, anchorHeight, panelHeight } = this.props;
+                let { transition, style, anchorStyle, panelStyle, showMargin, anchorHeight } = this.props;
                 let { isDrawerOpen } = this.state;
 
-                let rootBottomMargin = showMargin && isDrawerOpen ? 15 : 0;
-                let panelHeightToogle = isDrawerOpen ? panelHeight : 0;
+                let rootMargin = showMargin && isDrawerOpen ? 15 : 0;
+                let height = this.getMaxHeight();
+
+                let panelHeightToogle = isDrawerOpen ? height : anchorHeight;
                 anchorHeight = anchorHeight < this.dim.minWidth ? this.dim.minWidth : anchorHeight;
-                let height = panelHeightToogle === 0 ? anchorHeight : anchorHeight+panelHeight;
 
                 const styles = {
                     root: {
-                        height: height,
-                        maxHeight: anchorHeight+panelHeight,
+                        maxHeight: panelHeightToogle,
                         minHeight: anchorHeight,
-                        marginBottom: rootBottomMargin,
-                        transition: `height ${transition}s linear`,
+                        
+                        transition: `max-height ${transition}s linear`,
+                        overflow: 'hidden',
                         ...style
                     },
                     anchor: {
@@ -119,9 +129,14 @@ module.exports = {
                     },
                     panel: {
                         width: "100%",
-                        transition: `height ${transition}s linear`,
+                        overflow: 'auto',
                         ...panelStyle
                     },
+                    margin:{
+                        marginBottom: rootMargin,
+                        marginTop: rootMargin,
+                        transition: `margin 0.15s linear`,
+                    }
                 }
 
                 return(styles[s]);
@@ -132,7 +147,6 @@ module.exports = {
 
                 let sameGroup = uniqGroup === paramGroup;
                 let otherId = id !== paramId;
-                console.log(id,paramId);
 
                 if ( sameGroup && otherId ) this.handleClose();
             },
@@ -166,17 +180,14 @@ module.exports = {
             },
 
             renderPanel() {
-                let { isDrawerOpen } = this.state;
-                let { panel, panelHeight } = this.props;
-                let height = panelHeight === 0 ? '100%' : panelHeight;
-                let panelHeightToogle = isDrawerOpen ? height : 0;
-
+                let { panel, panelHeight, autoHeight } = this.props;
+                let height = autoHeight ?  'auto' : panelHeight;
 
                 return (
-                    <Column height={panelHeightToogle} style={ this.styles('panel') } >
+                    <Column height={height} style={ this.styles('panel') } >
                         { panel }
                     </Column>
-                );
+                )
             },
 
             renderAnchor() {
@@ -196,10 +207,12 @@ module.exports = {
 
             render() {
                 return (
-                    <Column width={'100%'} boxShadow={true} style={this.styles('root')}>
-                        { this.renderAnchor() }
-                        { this.renderPanel() }
-                    </Column>
+                    <div style={this.styles('margin')}>
+                        <Column width={'100%'} height={'auto'} boxShadow={true} style={this.styles('root')}>
+                            { this.renderAnchor() }
+                            { this.renderPanel() }
+                        </Column>
+                    </div>
                 )
             } 
 

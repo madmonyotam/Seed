@@ -15,11 +15,12 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    anchorHeight: { type: 'number', context: this },
-                    panelHeight:  { type: 'number', context: this },
                     uniqOpen:  { type: 'boolean', context: this },
                     showMargin: { type: 'boolean', context: this },
-                    transition: { type: 'number', context: this }
+                    autoHeight: { type: 'boolean', context: this },
+                    anchorHeight: { type: 'number', context: this },
+                    panelHeight:  { type: 'number', context: this },
+                    transition: { type: 'number', context: this },
                 }
             },
 
@@ -30,7 +31,8 @@ module.exports = {
                     panelHeight: 200,
                     uniqOpen: true,
                     showMargin: true,
-                    transition: 0.35
+                    transition: 0.50,
+                    autoHeight: false,
                 };
             },
 
@@ -64,14 +66,7 @@ module.exports = {
 
             renderPanel(){
                 let data = ['first','second','last']
-                let rows = data.map(this.renderRow);
-
-                return(
-                    <Column width={'100%'} style={{overflow:'hidden'}}>
-                        { rows }
-                    </Column>
-                )
-
+                return data.map(this.renderRow);
             },
 
             renderRow(item,key){
@@ -81,25 +76,25 @@ module.exports = {
             },
 
             getCode(){
-                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen } = this.state;                
+                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen, autoHeight } = this.state;                
 
                 return (`
 <Column boxShadow={true} width={'40%'} style={this.styles('column')}>
-    <SimpleExpandingPanel anchor={ this.renderAnchor() } panel={ this.renderPanel() } anchorHeight={${anchorHeight}}
+    <SimpleExpandingPanel anchor={ this.renderAnchor() } panel={ this.renderPanel() } anchorHeight={${anchorHeight}} autoHeight={${autoHeight}}
                           panelHeight={${panelHeight}} uniqOpen={${uniqOpen}} showMargin={${showMargin}} transition={${transition}}   />
 </Column>
                 `)
             },
 
             renderExPanel(id,key){
-                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen } = this.state;
+                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen, autoHeight } = this.state;
                 panelHeight = Number(panelHeight);
                 anchorHeight = Number(anchorHeight);
 
                 return(
                     <SimpleExpandingPanel id={id} key={key} anchor={ this.renderAnchor() } panel={ this.renderPanel() }
                     anchorHeight={anchorHeight} panelHeight={panelHeight} uniqGroup={'exampleGroup'} uniqOpen={uniqOpen}
-                    showMargin={showMargin} transition={transition}   />
+                    showMargin={showMargin} transition={transition} autoHeight={autoHeight}   />
                 )
             },
 
