@@ -86,6 +86,8 @@ module.exports = {
             render() {
                 let controllerAndCopmonentMargin = 10;
                 let { snippet } = this.props;
+                let element = snippet ? snippet.element : null;
+                let props = snippet ? snippet.props : null;
 
                 return (
                     <Column width={'100%'} height={'100%'}>
@@ -95,7 +97,7 @@ module.exports = {
                       </Row>
 
                       {/* { this.renderCodeSnippet() } */}
-                      <CodeSnippet Element={ snippet.element } ElementProps={ snippet.props }  />
+                      <CodeSnippet Element={ element } ElementProps={ props }  />
                     </Column>
                 )
             }

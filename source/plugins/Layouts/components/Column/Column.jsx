@@ -56,7 +56,7 @@ module.exports = {
                 let margin = style && style.margin || 0;
 
                 const styles = {
-                    row: {
+                    column: {
                         width: width,
                         maxWidth: `calc(100% - ${margin}px)`,
                         height: height,
@@ -76,7 +76,7 @@ module.exports = {
                 let { children, width, height, style, boxShadow, color, ...props } = this.props;
 
                 return (
-                    <div style={ this.styles('row') } { ...props } >
+                    <div style={ this.styles('column') } { ...props } >
                         { children }
                     </div>
                 )
