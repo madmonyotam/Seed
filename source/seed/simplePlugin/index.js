@@ -89,30 +89,32 @@ class SimplePlugin {
             }
 
             plugin[key][name] = module;
-            if(module.component){
-                module.component.name = module.name;
-                plugin[key][name] = module.component;
+            let component = module.component;
+            if(component){
+                component.name = module.name;
+                plugin[key][name] = component;
             }
 
-
-            if(module.example){ this.getExampleFromComponent(module.example,name) } 
+            if(module.example){ this.getExampleFromComponent(module.example,name,module.description) } 
         });
     }
 
-    getExampleFromComponent(example,ComponentName){
+    getExampleFromComponent(example,componentName, description){
         let plugin = this;
 
         let exName = example.name;
         let exComponent = example.component;
 
         if (!plugin.seed.isString(exName)){
-            return console.error(`name is missing for example in: ${ComponentName}`);
+            return console.error(`name is missing for example in: ${componentName}`);
         }
 
         if(plugin.seed.isUndefined(exComponent)){
-            return console.error(`component is missing for example in: ${ComponentName}`);
+            return console.error(`component is missing for example in: ${componentName}`);
         }
 
+        example.component.description = description;
+        example.component.componentName = componentName;
         example.component.name = example.name;
         plugin.examples[exName] = example.component;
     }
