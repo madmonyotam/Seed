@@ -79,7 +79,6 @@ class Seed {
 
     addToFinalDependencies(isComponent,found,depArray,dependencies){
         let seed = this;
-        console.log(found);
 
         if(!isComponent) return depArray.push( found.get.apply(seed,dependencies));
         var component = createReactClass({displayName: found.name, ...found.get.apply(seed,dependencies)});

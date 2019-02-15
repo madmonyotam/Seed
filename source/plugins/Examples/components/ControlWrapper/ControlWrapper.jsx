@@ -18,6 +18,7 @@ module.exports = {
 
 
             propsTypes: {
+                context: PropTypes.object.isRequired,
                 scheme: PropTypes.object,
             },
 
@@ -66,23 +67,29 @@ module.exports = {
                 return(styles[s]);
             },
 
-            handleOnChange(context,stateName,value){
-               let val = value.target ? value.target.value : value;
-               context.setState({[stateName]:val});
+            handleOnChange(stateName,value){
+                let { context } = this.props;
+
+                let val = value.target ? value.target.value : value;
+                context.setState({[stateName]:val});
             },
 
-            renderToggle(stateName, context){
+            renderToggle(stateName){
+                let { context } = this.props;
+
                 let checked = context.state[stateName];
 
                 return(
                     <React.Fragment>
                         <Label width={'100%'} label={stateName}/>
-                        <SimpleToggle checked={checked} onChange={ this.handleOnChange.bind(this,context,stateName) }  />
+                        <SimpleToggle checked={checked} onChange={ this.handleOnChange.bind(this,stateName) }  />
                     </React.Fragment>   
                 )
             },
 
-            renderSimple(stateName, context){
+            renderSimple(stateName){
+                let { context } = this.props;
+
                 return(
                     <React.Fragment>
                         <Label width={'100%'} label={stateName}/>
@@ -91,7 +98,9 @@ module.exports = {
                 )
             },
 
-            renderTextField(stateName, context, type){
+            renderTextField(stateName, type){
+                let { context } = this.props;
+
                 return(
                     <React.Fragment>
                         <Label width={'100%'} label={stateName}/>
@@ -99,24 +108,26 @@ module.exports = {
                             id={stateName}
                             type={ type }
                             value={ context.state[stateName] }
-                            onChange={ this.handleOnChange.bind(this,context,stateName) } />
+                            onChange={ this.handleOnChange.bind(this,stateName) } />
                     </React.Fragment> 
                 )
             },
 
-            renderComponentByType(type, stateName, context){
+            renderComponentByType(type, stateName){
+                let { context } = this.props;
+
                 switch (type) {
                     case 'boolean': 
-                        return  this.renderToggle( stateName, context );
+                        return  this.renderToggle( stateName );
 
                     case 'number': 
-                        return this.renderTextField( stateName, context, 'number' );
+                        return this.renderTextField( stateName, 'number' );
                     
                     case 'colorPicker':
               //          return this.renderSimple( stateName, context );  
                 
                     default:
-                    return this.renderTextField( stateName, context, 'text' );
+                    return this.renderTextField( stateName, 'text' );
                 }
             },
 
@@ -125,13 +136,12 @@ module.exports = {
                 let itemInScheme = Object.entries(scheme);
                 
                 return itemInScheme.map((item,key)=>{
-                    let context = item[1].context
                     let type = item[1].type;
                     let name = item[0];
 
                     return (
                         <Row height={60} boxShadow={true} key={key} >
-                            { this.renderComponentByType(type, name, context) }
+                            { this.renderComponentByType(type, name) }
                         </Row>
                     )
                 });

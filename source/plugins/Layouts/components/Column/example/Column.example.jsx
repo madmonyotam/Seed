@@ -1,8 +1,9 @@
 
 module.exports = {
     dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row',
-     'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Badge','Simple.Label'],
-    get(Mixin, Column, Row, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label) {
+        'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Badge','Simple.Label',
+        'Examples.ExampleHelper'],
+    get(Mixin, Column, Row, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label, ExampleHelper) {
 
         var core = this;
 
@@ -13,10 +14,10 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    boxShadow: { type: 'boolean', context: this },
-                    width: { type: 'default', context: this },
-                    height: { type: 'default', context: this },
-                    color: { type: 'default', context: this },
+                    boxShadow: { type: 'boolean' },
+                    width: { type: 'default' },
+                    height: { type: 'default' },
+                    color: { type: 'default' },
                 }
             },
 
@@ -48,12 +49,12 @@ module.exports = {
 
             render() {
                 let { boxShadow, width, height, color } = this.state;
-                if(core.isString(width) && !width.includes('%')) width = Number(width);
-                if(core.isString(height) && !height.includes('%')) height = Number(height);
+                width = ExampleHelper.ifNumber_Convert(width);
+                height = ExampleHelper.ifNumber_Convert(height);
 
                 return (
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
-                        <ControlWrapper  scheme={ this.propScheme() } />
+                        <ControlWrapper  scheme={ this.propScheme() } context={this} />
                         <ComponentWrapper>
                             <Column boxShadow={boxShadow} width={width} height={height} color={color} >
                                 <Row boxShadow={true} >

@@ -33,10 +33,10 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    title: { type: 'simple', context: this },
-                    bgColor: { type: 'colorPicker', context: this },
-                    fgColor: { type: 'colorPicker', context: this },
-                    height: { type: 'simpleNumber', context: this }
+                    title: { type: 'simple' },
+                    bgColor: { type: 'colorPicker' },
+                    fgColor: { type: 'colorPicker' },
+                    height: { type: 'simpleNumber' }
                 }
             },
 
@@ -126,7 +126,7 @@ zIndex={ 1 }
                 return (
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Title Bar') }>
 
-                        <ControlWrapper scheme={ this.propScheme() }/>
+                        <ControlWrapper scheme={ this.propScheme() } context={this} />
 
                         <ComponentWrapper>
                             <TitleBar 

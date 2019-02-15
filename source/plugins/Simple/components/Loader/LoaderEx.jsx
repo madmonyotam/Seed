@@ -116,7 +116,7 @@ module.exports = {
                 return (
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
 
-                        <ControlWrapper  scheme={ this.propScheme() } >
+                        <ControlWrapper  scheme={ this.propScheme() } context={this} >
                           <ButtonEx func={this.renderLoader} text={ this.getButtonText() } style={{ marginBottom: 15 }}/>
                           <ButtonEx func={this.handleOpenColorPicker} text={ core.translate('change color') } />
 

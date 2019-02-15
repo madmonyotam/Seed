@@ -13,8 +13,8 @@ module.exports = {
             propsTypes: {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+                padding: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 boxShadow: PropTypes.bool,
-                padding: PropTypes.number,
                 color: PropTypes.string,
             },
 

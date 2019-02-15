@@ -13,12 +13,12 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    uniqOpen:  { type: 'boolean', context: this },
-                    showMargin: { type: 'boolean', context: this },
-                    autoHeight: { type: 'boolean', context: this },
-                    anchorHeight: { type: 'number', context: this },
-                    panelHeight:  { type: 'number', context: this },
-                    transition: { type: 'number', context: this },
+                    uniqOpen:  { type: 'boolean' },
+                    showMargin: { type: 'boolean' },
+                    autoHeight: { type: 'boolean' },
+                    anchorHeight: { type: 'number' },
+                    panelHeight:  { type: 'number' },
+                    transition: { type: 'number' },
                 }
             },
 
@@ -101,7 +101,7 @@ module.exports = {
 
                 return (
                     <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
-                        <ControlWrapper  scheme={ this.propScheme() } />
+                        <ControlWrapper  scheme={ this.propScheme() } context={this} />
                         <ComponentWrapper>
                             <Column boxShadow={true} width={'40%'} color={this.gray} >
                                 { mockArray.map(this.renderExPanel) }

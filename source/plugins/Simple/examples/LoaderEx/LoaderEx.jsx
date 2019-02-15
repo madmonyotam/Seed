@@ -30,9 +30,9 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    show: { type: 'boolean', context: this },
-                    size: { type: 'number', context: this },
-                    loaderColor: { type: 'colorPicker', context: this }
+                    show: { type: 'boolean' },
+                    size: { type: 'number' },
+                    loaderColor: { type: 'colorPicker' }
                 }
             },
 
@@ -99,7 +99,7 @@ module.exports = {
                 return (
                     <ExampleWrapper snippet={{ element: Loader, props: this.getCode() }} componentName={ core.translate('Loader') }>
 
-                        <ControlWrapper  scheme={ this.propScheme() } >
+                        <ControlWrapper  scheme={ this.propScheme() } context={this} >
                           <ButtonEx func={this.handleOpenColorPicker} text={ core.translate('change color') } />
                         </ControlWrapper>
 

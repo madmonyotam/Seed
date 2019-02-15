@@ -6,7 +6,9 @@ module.exports = {
     name: 'Examples',
     dependencies: ['core.plugin.tree'],
     actions: [],
-    modules: [],
+    modules: [
+        require('./modules/ExampleHelper'),   
+    ],
     components: [
         require('./components/ExampleWrapper'),
         require('./components/ControlWrapper'),
@@ -22,6 +24,7 @@ module.exports = {
     extend: {
 
         getExamples(){
+
             let seed = this;
             let examples = {};
 
