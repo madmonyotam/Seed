@@ -8,11 +8,15 @@ module.exports = {
     dependencies: [
         'SimpleSwitch.Helper',
         'Simple.ExpandingPanel',
+        'Layouts.Column',
+        'Layouts.Row'
     ],
 
     get(
         Helper,
-        ExpandingPanel
+        ExpandingPanel,
+        Column,
+        Row
     ) {
 
         var core = this;
@@ -50,31 +54,26 @@ module.exports = {
                 this.backgrounds = {
                     menu: core.theme('backgrounds.menu'),
                     default: core.theme('backgrounds.default'),
-                    boxShadow: core.theme('backgrounds.boxShadow'),
                     light_gray: core.theme('backgrounds.light_gray'),
                 }
                 this.colors = {
                     gray: core.theme('colors.gray'),
                     dark: core.theme('colors.dark')
                 }
-                this.icons = {}
-                this.units = {
-                    gridWidth: (document.getElementById('GridManager.root')) ? document.getElementById('GridManager.root').offsetWidth : 1500,
-                }
             },
 
             styles(s) {
                 let styles = {
                     root: {
-                        width: '100%',
-                        height: 'calc( 100vh - 48px )',
-                        display: 'flex',
-                        flexDirection: 'row',
+                       width: '100%',
+                       height: 'calc( 100vh - 48px )',
+                       display: 'flex',
+                       flexDirection: 'row',
                     },
                     menuBar:{
-                        width: '256px',
-                        minWidth: '256px',
-                        borderRight: `solid 1px ${this.backgrounds.light_gray}`,
+                        // width: '256px',
+                        // minWidth: '256px',
+                        // borderRight: `solid 1px ${this.backgrounds.light_gray}`,
                     },
                     menuItem:{
                         margin: 0,
@@ -95,10 +94,7 @@ module.exports = {
                         overflow: "hidden",
                     },
                     exampleView:{
-                        width: '100%',
-                        overflowY: "auto",
-                        padding: 15,
-                        backgroundColor: this.backgrounds.light_gray,
+                        padding: 15
                     },
                 }
 
@@ -107,28 +103,30 @@ module.exports = {
 
             handleClick(item){
 
-              var Component = item[1];
+              var Component = item.component;
 
               this.setState({
-                selectedMenuItem: item[0],
+                selectedMenuItem: item.info.name,
                 currentDisplay: <Component/>
               });
             },
 
             renderInnerList(list){
-                var innerList = Object.entries(list.innerList);
+                var innerList = Object.values(list.innerList);
 
                 return (
                     <div style={this.styles('innerListCont')}>
                         {
                             innerList.map((item,i)=>{
+                                let name = Helper.openCamelCase(item.info.name);
+
                                 let {selectedMenuItem} = this.state;
                                 let selected = false;
-                                if(selectedMenuItem===item[0] ){
+                                if(selectedMenuItem===item.info.name ){
                                     selected = true
                                 }
                                 return (
-                                    <MenuItem key={i} title={item[0]} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{item[0]}</MenuItem>
+                                    <MenuItem key={i} title={item.info.name} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{name}</MenuItem>
                                 );
                             })
                         }
@@ -137,7 +135,6 @@ module.exports = {
             },
 
             renderPanel(menuItem,idx){
-
                 var name = Helper.openCamelCase(menuItem.name);
 
                 return (
@@ -162,11 +159,11 @@ module.exports = {
                 }
 
                 return(
-                    <div style={this.styles('menuBar')}>
+                    <Column width={260} boxShadow={true} style={this.styles('menuBar')}>
                         {
                             _.map(menuList, this.renderPanel)
                         }
-                    </div>
+                    </Column>
                 )
             },
 
@@ -175,12 +172,12 @@ module.exports = {
                 let {currentDisplay} = this.state;
 
                 return (
-                    <div style={ this.styles('root') }>
+                    <div style={this.styles('root')} >
                         { this.renderMenuBar() }
 
-                        <div style={this.styles('exampleView')}>
+                        <Column width={'100%'} color={this.backgrounds.light_gray} style={this.styles('exampleView')}>
                             {currentDisplay}
-                        </div>
+                        </Column>
 
                     </div>
                 )

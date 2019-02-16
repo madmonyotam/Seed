@@ -95,28 +95,34 @@ class SimplePlugin {
                 plugin[key][name] = component;
             }
 
-            if(module.example){ this.getExampleFromComponent(module.example,name,module.description) } 
+            if(module.example){ this.getExampleFromComponent(module) } 
         });
     }
 
-    getExampleFromComponent(example,componentName, description){
+    getExampleFromComponent(module){
+        let { example, description, name, component } = module;
+        let dependencies = component.dependencies;
         let plugin = this;
 
         let exName = example.name;
-        let exComponent = example.component;
+        let exComp = example.component;
 
         if (!plugin.seed.isString(exName)){
-            return console.error(`name is missing for example in: ${componentName}`);
+            return console.error(`name is missing for example in: ${name}`);
         }
 
-        if(plugin.seed.isUndefined(exComponent)){
-            return console.error(`component is missing for example in: ${componentName}`);
+        if(plugin.seed.isUndefined(exComp)){
+            return console.error(`component is missing for example in: ${name}`);
         }
 
-        example.component.description = description;
-        example.component.componentName = componentName;
-        example.component.name = example.name;
-        plugin.examples[exName] = example.component;
+        exComp.name = example.name;
+
+        exComp.info={};
+        exComp.info.description = description;
+        exComp.info.dependencies = dependencies;
+        exComp.info.name = name;
+        
+        plugin.examples[exName] = exComp;
     }
     
     run(actionName, data = {}){

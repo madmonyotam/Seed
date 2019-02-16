@@ -14,9 +14,9 @@ module.exports = {
         require('./components/Popup'),
     ],
 
-    examples: [     
-        require('./examples/OpenPopupExample'),
-    ],
+    // examples: [     
+    //     require('./examples/OpenPopupExample'),
+    // ],
 
     extend:{
         

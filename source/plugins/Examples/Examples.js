@@ -33,9 +33,11 @@ module.exports = {
                 if( _isEmpty(plugin.examples) ) continue;
 
                 examples[pluginKey] = {};
-
+                
                 for (const exampleKey in plugin.examples) {
-                    examples[pluginKey][exampleKey] = seed.require(`${pluginKey}.${exampleKey}`); 
+                    examples[pluginKey][exampleKey] = {};
+                    examples[pluginKey][exampleKey].info = plugin.examples[exampleKey].info;
+                    examples[pluginKey][exampleKey].component = seed.require(`${pluginKey}.${exampleKey}`); 
                 }
             }
             

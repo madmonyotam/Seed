@@ -96,8 +96,8 @@ module.exports = {
                         { this.props.children }
                       </Row>
 
-                      {/* { this.renderCodeSnippet() } */}
-                      <CodeSnippet Element={ element } ElementProps={ props }  />
+                       { this.renderCodeSnippet() } 
+                      {/* <CodeSnippet Element={ element } ElementProps={ props }  /> */}
                     </Column>
                 )
             }

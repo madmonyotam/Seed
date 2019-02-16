@@ -16,10 +16,10 @@ module.exports = {
         require('./components/label'),
     ],
 
-    examples: [
-        require('./examples/LoaderEx'),
-        require('./examples/TitleBarExample'),
-    ],
+    // examples: [
+    //     require('./examples/LoaderEx'),
+    //     require('./examples/TitleBarExample'),
+    // ],
 
     extend: {
     },
