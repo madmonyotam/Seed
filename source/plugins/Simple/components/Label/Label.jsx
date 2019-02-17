@@ -1,8 +1,6 @@
 import { Typography } from '@material-ui/core';
 
 module.exports = {
-    name: 'Label',
-    description: 'This is an example of a component',
     dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper'],
     get(Mixin, Helper) {
         

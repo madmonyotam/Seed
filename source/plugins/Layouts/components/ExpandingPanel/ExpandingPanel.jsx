@@ -103,8 +103,8 @@ module.exports = {
             },
 
             getMaxHeight(){
-                let { anchorHeight, panelHeight, autoHeight } = this.props;
-                let panel = document.getElementById('panel');
+                let { anchorHeight, panelHeight, autoHeight, uniqGroup, id } = this.props;
+                let panel = document.getElementById(`panel-${uniqGroup}-${id}`);
                 if(autoHeight) return(`calc(${panel.clientHeight}px + ${anchorHeight}px)`);
 
                 return(`calc(${panelHeight}px + ${anchorHeight}px)`)
@@ -188,11 +188,11 @@ module.exports = {
             },
 
             renderPanel() {
-                let { panel, panelHeight, autoHeight } = this.props;
+                let { panel, panelHeight, autoHeight, id, uniqGroup} = this.props;
                 let height = autoHeight ?  'auto' : panelHeight;
 
                 return (
-                    <Column id={'panel'} height={height} style={ this.styles('panel') } >
+                    <Column id={ `panel-${uniqGroup}-${id}` } height={height} style={ this.styles('panel') } >
                         { panel }
                     </Column>
                 )
