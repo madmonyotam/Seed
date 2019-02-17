@@ -7,16 +7,18 @@ module.exports = {
 
     dependencies: [
         'SimpleSwitch.Helper',
-        'Simple.ExpandingPanel',
+        'Simple.Label',
         'Layouts.Column',
-        'Layouts.Row'
+        'Layouts.Row',
+        'Layouts.ExpandingPanel',
     ],
 
     get(
         Helper,
-        ExpandingPanel,
+        Label,
         Column,
-        Row
+        Row,
+        ExpandingPanel
     ) {
 
         var core = this;
@@ -70,19 +72,8 @@ module.exports = {
                        display: 'flex',
                        flexDirection: 'row',
                     },
-                    menuBar:{
-                        // width: '256px',
-                        // minWidth: '256px',
-                        // borderRight: `solid 1px ${this.backgrounds.light_gray}`,
-                    },
                     menuItem:{
                         margin: 0,
-                    },
-                    innerListCont:{
-                        borderTop: `1px solid ${this.backgrounds.light_gray}`,
-                        borderBottom: `1px solid ${this.backgrounds.light_gray}`,
-                        maxHeight: 'calc( ( 100vh - 48px ) / 3 - 40px )',
-                        overflow: 'auto',
                     },
                     innerListItem:{
                         padding: "5px 15px",
@@ -115,8 +106,6 @@ module.exports = {
                 var innerList = Object.values(list.innerList);
 
                 return (
-                    <div style={this.styles('innerListCont')}>
-                        {
                             innerList.map((item,i)=>{
                                 let name = Helper.openCamelCase(item.info.name);
 
@@ -129,23 +118,32 @@ module.exports = {
                                     <MenuItem key={i} title={item.info.name} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{name}</MenuItem>
                                 );
                             })
-                        }
-                    </div>
+                
+                )
+            },
+
+            renderAnchor(name){
+                return(
+                    <Row>
+                        <Label label={name} size={15} weight={500} />
+                    </Row>
                 )
             },
 
             renderPanel(menuItem,idx){
                 var name = Helper.openCamelCase(menuItem.name);
 
-                return (
-                    <ExpandingPanel
-                            children={menuItem.innerList}
-                            key={idx}
-                            name={name}
-                            id={idx}
-                            childRender={  this.renderInnerList.bind(this, menuItem)  }
-                            style={this.styles('menuItem')}>
-                    </ExpandingPanel>
+                return(
+
+                    <ExpandingPanel id={idx} key={idx}
+                        anchor={ this.renderAnchor(name) } 
+                        panel={ this.renderInnerList(menuItem) }
+                        anchorHeight={40} 
+                        autoHeight={true} 
+                        uniqOpen={true} 
+                        uniqGroup={'menu'}
+                        showMargin={false} 
+                        transition={0.3}   />
                 )
             },
 
@@ -159,7 +157,7 @@ module.exports = {
                 }
 
                 return(
-                    <Column width={260} boxShadow={true} style={this.styles('menuBar')}>
+                    <Column width={260} boxShadow={true}>
                         {
                             _.map(menuList, this.renderPanel)
                         }
