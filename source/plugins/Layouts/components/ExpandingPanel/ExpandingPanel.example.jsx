@@ -1,8 +1,8 @@
 
 module.exports = {
-    dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row','Layouts.SimpleExpandingPanel',
+    dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row','Layouts.ExpandingPanel',
      'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Label'],
-    get(Mixin, Column, Row, SimpleExpandingPanel, ExampleWrapper, ControlWrapper, ComponentWrapper, Label) {
+    get(Mixin, Column, Row, ExpandingPanel, ExampleWrapper, ControlWrapper, ComponentWrapper, Label) {
 
         var core = this;
 
@@ -78,7 +78,7 @@ module.exports = {
 
                 return (`
 <Column boxShadow={true} width={'40%'} style={this.styles('column')}>
-    <SimpleExpandingPanel anchor={ this.renderAnchor() } panel={ this.renderPanel() } anchorHeight={${anchorHeight}} autoHeight={${autoHeight}}
+    <ExpandingPanel anchor={ this.renderAnchor() } panel={ this.renderPanel() } anchorHeight={${anchorHeight}} autoHeight={${autoHeight}}
                           panelHeight={${panelHeight}} uniqOpen={${uniqOpen}} showMargin={${showMargin}} transition={${transition}}   />
 </Column>
                 `)
@@ -90,7 +90,7 @@ module.exports = {
                 anchorHeight = Number(anchorHeight);
 
                 return(
-                    <SimpleExpandingPanel id={id} key={key} anchor={ this.renderAnchor() } panel={ this.renderPanel() }
+                    <ExpandingPanel id={id} key={key} anchor={ this.renderAnchor() } panel={ this.renderPanel() }
                     anchorHeight={anchorHeight} panelHeight={panelHeight} uniqGroup={'exampleGroup'} uniqOpen={uniqOpen}
                     showMargin={showMargin} transition={transition} autoHeight={autoHeight}   />
                 )

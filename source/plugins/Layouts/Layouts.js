@@ -5,7 +5,7 @@ module.exports = {
     components: [
         require('./components/Row'),
         require('./components/Column'),
-        require('./components/SimpleExpandingPanel')
+        require('./components/ExpandingPanel')
     ],
 
     init(def, done){

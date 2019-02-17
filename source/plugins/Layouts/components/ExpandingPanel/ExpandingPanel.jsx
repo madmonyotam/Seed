@@ -34,7 +34,7 @@ module.exports = {
                 return {
                     id: 0,
                     uniqOpen: false,
-                    uniqGroup: 'SimpleExpandingPanel',
+                    uniqGroup: 'ExpandingPanel',
 
                     anchor: <Row> default anchor </Row>,
                     anchorClickCB: ()=>{},
@@ -86,7 +86,7 @@ module.exports = {
             },
 
             eventHandle( action ) {
-                core[action]('SimpleExpandingPanel:uniqOpen', this.handleUniq);
+                core[action]('ExpandingPanel:uniqOpen', this.handleUniq);
             },
 
             initUnits(){
@@ -164,7 +164,7 @@ module.exports = {
 
                 this.setState({isDrawerOpen: true});
 
-                if (uniqOpen) core.emit('SimpleExpandingPanel:uniqOpen', { paramId: id, paramGroup: uniqGroup } )
+                if (uniqOpen) core.emit('ExpandingPanel:uniqOpen', { paramId: id, paramGroup: uniqGroup } )
             },
 
             handleClose() {
