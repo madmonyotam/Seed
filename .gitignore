@@ -12,3 +12,4 @@ source/plugins/settings/config/theme/modified\.json
 source/plugins/settings/config/icons/modified\.json
 
 source/plugins/settings/config/dimensions/modified\.json
+npm-debug.log*
