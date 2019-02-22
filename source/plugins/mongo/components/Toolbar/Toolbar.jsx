@@ -200,9 +200,12 @@ module.exports = {
                 .then( res => {
                   if (res && res.length) {
                     this.setState({  collections: res, isLoading: false  })
+                  } else {
+                    this.setState({ isLoading: false })
                   }
                 })
                 .catch((err)=>{
+                  this.setState({ isLoading: false })
                   console.error('err : ', err);
                 })
             },
@@ -294,16 +297,16 @@ module.exports = {
               let { isLoading } = this.state;
               return (
                 <div style={{ position: 'relative', display: 'flex', alignItems:'center', justifyContent: 'center', width: 30, height: '100%' }}>
-                  { isLoading ? 
+                  {/* { isLoading ? 
                     <Loader size={ 15 } show={ true } /> :
-                    // <IconWithTooltipAndBadge key={ 2 }
+                                        // <IconWithTooltipAndBadge key={ 2 }
                     //   onClick={ this.handleCheckConnection }
                     //   tooltipTheme={ 'google' }
                     //   icon={ 'general.refresh' }
                     //   tooltip={ this.renderMessage('Check connection') } 
                     // />
-                    <Icon style={{fontSize: 14, margin: '0 10px', cursor: 'pointer'}} key={ 2 } onClick={ this.handleCheckConnection }>{core.icons('connection.refresh')}</Icon>
-                  }
+                     */}
+<Icon style={{fontSize: 14, margin: '0 10px', cursor: 'pointer'}} key={ 2 } onClick={ this.handleCheckConnection }>{core.icons('connection.refresh')}</Icon>
                 </div>
 
               )
