@@ -4,6 +4,8 @@ module.exports = {
 
     get() {
 
+        var core = this;
+
 
         return {
 
