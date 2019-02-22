@@ -1,11 +1,11 @@
-import { AppBar, Typography } from '@material-ui/core';
-import { isEmpty } from 'lodash';
+import { AppBar, Typography, Icon } from '@material-ui/core';
+import { isEmpty, uniqueId } from 'lodash';
 module.exports = {
     name: "Toolbar",
 
-    dependencies: ['Mongo.Mixin', 'Mongo.Handler', 'Simple.Loader', 'Simple.IconWithTooltipAndBadge'],
+    dependencies: ['SimpleSwitch.Mixin', 'Mongo.Handler', 'Simple.Loader'],
 
-    get( Mixin, Handler, Loader, IconWithTooltipAndBadge) {
+    get( Mixin, Handler, Loader) {
 
         var core = this;
 
@@ -55,9 +55,17 @@ module.exports = {
                   return currentUser;
                 }
               } catch (error) {
-                console.error('error -> ',error);
-                return null
+                // console.error('error -> ',error);
+                let defaultUser = {
+                  id: uniqueId('_default_'),
+                  email: 'test@email.com'
+                }
+                localStorage['currentUser'] = JSON.stringify(defaultUser);
+                return defaultUser;
               }
+              // return {
+              //   id: core.uuid()
+              // }
             },
 
             initUnits(){
@@ -118,6 +126,7 @@ module.exports = {
               this.setState({ isLoading: true })
                 Handler.isConnected()
                   .then( isconnected => {
+                      console.log(isconnected)
                       this.setState({ isConnected: isconnected });
                       if (isconnected) this.handleGetCollections();
                       else this.setState({ isLoading: false })
@@ -154,7 +163,7 @@ module.exports = {
 
             handleSaveToMongo(){
               let { saveKey } = this.props;
-              let collectionName = this.currentUser.tenantId;
+              let collectionName = this.currentUser.id;
               this.setState({ mongoSaving: true })
  
               let saveItem = {
@@ -172,7 +181,7 @@ module.exports = {
             
             handleLoadFromMongo(e){
               this.setState({ mongoLoading: true })
-              let collectionName = this.currentUser.tenantId//'createdFromUi';
+              let collectionName = this.currentUser.id//'createdFromUi';
               let { saveKey } = this.props; 
 
               Handler.findInCollection(collectionName, { '_uid': saveKey })
@@ -187,9 +196,8 @@ module.exports = {
             },
 
             handleGetCollections(){
-              Handler.getCollections()
+              Handler.getCollections(this.currentUser.id)
                 .then( res => {
-                  console.debug('[handleGetCollections] => ', res);
                   if (res && res.length) {
                     this.setState({  collections: res, isLoading: false  })
                   }
@@ -224,7 +232,7 @@ module.exports = {
               if (isLoading) return null;
               return (
                 <div style={ this.styles('btnWrap') }>
-                  <IconWithTooltipAndBadge key={ 1.1 } 
+                  {/* <IconWithTooltipAndBadge key={ 1.1 } 
                     onClick={ this.handleSaveToMongo }
                     tooltipTheme={ 'google' }
                     icon={ 'general.save' }
@@ -232,15 +240,17 @@ module.exports = {
                     tooltip={ this.renderMessage('save') }
                     disabled={ !isConnected }
 
-                  />
-                  <IconWithTooltipAndBadge key={ 1.2 } 
+                  /> */}
+                  <Icon style={{fontSize: 14, margin: '0 10px', cursor: 'pointer' }} key={ 1.1 }  onClick={ this.handleSaveToMongo }>{core.icons('general.save')}</Icon>
+                  <Icon style={{fontSize: 14, margin: '0 10px', cursor: 'pointer'}} key={ 1.2 }  onClick={ this.handleLoadFromMongo }>{core.icons('general.upload')}</Icon>
+                  {/* <IconWithTooltipAndBadge key={ 1.2 } 
                     onClick={ this.handleLoadFromMongo }
                     isLoading={ mongoLoading }
                     tooltipTheme={ 'google' }
                     icon={ 'files.upload' }
                     tooltip={ this.renderMessage('load') }
                     disabled={ !isConnected }
-                  />
+                  /> */}
                 </div>
               )
             }, 
@@ -251,7 +261,10 @@ module.exports = {
               let msg = !isConnected ? 'Connect' : 'Disonnect';
               return (
                 <div style={ this.styles('flexRowCenter') }>
-                  <IconWithTooltipAndBadge key={ 1 } 
+                  <Icon style={{fontSize: 14, margin: '0 10px', cursor: 'pointer'}} key={1.1} onClick={this.handleToggleConnection}>{core.icons(isConnected ? 'connection.power' : 'connection.power_off')}</Icon>
+                  <Icon style={{fontSize: 14, margin: '0 10px', cursor: 'pointer'}} key={1.2} onClick={this.handleGetCollections}>{core.icons('connection.db')}</Icon>
+                  
+                  {/* <IconWithTooltipAndBadge key={ 1 } 
                         onClick={ this.handleToggleConnection }
                         active={ isConnected }
                         activeColor={ this.colors.active }
@@ -272,7 +285,7 @@ module.exports = {
                         badge={ collections && collections.length }
                         badgeStyle={{ height: 13, width: 13, fontSize: 9 ,top: -4, right: -4, border: `1px solid ${this.colors.white}` }}
                         icon={ 'connection.db' } 
-                  />
+                  /> */}
                 </div>
               );
             },
@@ -283,12 +296,13 @@ module.exports = {
                 <div style={{ position: 'relative', display: 'flex', alignItems:'center', justifyContent: 'center', width: 30, height: '100%' }}>
                   { isLoading ? 
                     <Loader size={ 15 } show={ true } /> :
-                    <IconWithTooltipAndBadge key={ 2 }
-                      onClick={ this.handleCheckConnection }
-                      tooltipTheme={ 'google' }
-                      icon={ 'general.refresh' }
-                      tooltip={ this.renderMessage('Check connection') } 
-                    />
+                    // <IconWithTooltipAndBadge key={ 2 }
+                    //   onClick={ this.handleCheckConnection }
+                    //   tooltipTheme={ 'google' }
+                    //   icon={ 'general.refresh' }
+                    //   tooltip={ this.renderMessage('Check connection') } 
+                    // />
+                    <Icon style={{fontSize: 14, margin: '0 10px', cursor: 'pointer'}} key={ 2 } onClick={ this.handleCheckConnection }>{core.icons('connection.refresh')}</Icon>
                   }
                 </div>
 

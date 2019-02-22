@@ -1,8 +1,8 @@
 
 module.exports = {
     name: "Mongodb.get.collections",
-    dependencies: ['CTI.Helpers','CTI.DataModelsEntry'],
-    get(Helper, DataModelsEntry) {
+    dependencies: [],
+    get() {
 
         var core = this;
 

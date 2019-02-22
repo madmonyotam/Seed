@@ -7,6 +7,7 @@
     "addFolder": "create_new_folder",
     "folderShared": "folder_shared",
     "download": "file_download",
+    "upload": "publish",
     "arrow_right": "arrow_right"
   },
   "notify":{
@@ -38,5 +39,11 @@
   "panel":{
     "expandMore": "expand_more",
     "expandLess": "expand_less"
+  },
+  "connection":{
+    "db": "layers",
+    "power":"power",
+    "power_off":"power_off",
+    "refresh": "sync" 
   }
 }

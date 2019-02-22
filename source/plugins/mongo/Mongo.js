@@ -16,7 +16,7 @@ module.exports = {
     ],
 
     modules: [
-        require('./modules/Mixin'),
+        // require('./modules/Mixin'),
         require('./modules/Handler'),
     ],
 

@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash';
 module.exports = {
     name: "MongoUI",
 
-    dependencies: ['Mock.Mixin', 'Simple.Loader'],
+    dependencies: ['SimpleSwitch.Mixin', 'Simple.Loader'],
 
     get( Mixin, Loader ) {
 

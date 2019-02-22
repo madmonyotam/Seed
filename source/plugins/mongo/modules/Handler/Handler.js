@@ -2,9 +2,11 @@
 
 module.exports = {
     name: "Handler",
-    dependencies: ['CTI.Mixin'],
+    dependencies: ['SimpleSwitch.Mixin'],
 
     get(Mixin) {
+        var core = this;
+
         return {
           mixins: [ Mixin ],
           

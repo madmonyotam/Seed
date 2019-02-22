@@ -18,15 +18,13 @@ seed.CreatePlugins([
     require('./plugins/widgetManager'),
     require('./plugins/snackbar'),
     require('./plugins/Examples'),
-    
+    require('./plugins/mongo'),
     require('./plugins/SimpleSwitch'),
 
 ]);
 
 seed.require(['SimpleSwitch.Root'],
             (Root) => {
-
-   
     let root = getRootWithRouter(Root);
     ReactDom.render( root, document.getElementById('app') );
 
