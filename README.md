@@ -22,10 +22,10 @@
 
 * To run mongodb - 
   
-    1. On Windows - run  ```mongod``` service.
+    + On Windows - run  ```mongod``` service.
         
         > ```<DRIVE>:\Program Files\MongoDB\Server\<MONGO_VERSION>\bin\mongod.exe```
 
         > will run mongod service for local machine.
     
-    2. Restart node server with  ``` -m```  or  ``` --mongo``` 
+    + Restart node server with  ``` -m```  or  ``` --mongo``` 
