@@ -10,29 +10,29 @@ module.exports = {
             promise.resolve({BaseApi});  // results replace by res for example
 
 
-            core.request.post(BaseApi+'/getDataEx', { "pram": data.id })
-            .then( ({results,error}) => {
+            // core.request.post(BaseApi+'/getDataEx', { "pram": data.id })
+            // .then( ({results,error}) => {
 
-                if(error){
-                  Helper.handleActionError(error,promise);
-                  return;
-                }   
+                // if(error){
+                //   Helper.handleActionError(error,promise);
+                //   return;
+                // }   
                     
                 
-                let exampleResults = [{
-                    id: 'ex1',
-                    name: 'ex1',
-                    type: 'person'
-                },{
-                    id: 'ex2',
-                    name: 'ex2',
-                    type: 'ExtandBasic'
-                }];
+                // let exampleResults = [{
+                //     id: 'ex1',
+                //     name: 'ex1',
+                //     type: 'person'
+                // },{
+                //     id: 'ex2',
+                //     name: 'ex2',
+                //     type: 'ExtandBasic'
+                // }];
 
-                res = DataModelsEntry.navigateDataToConstructor(exampleResults);
+                // res = DataModelsEntry.navigateDataToConstructor(exampleResults);
 
-                promise.resolve(res);  // results replace by res for example
-            });
+                // promise.resolve(res);  // results replace by res for example
+            // });
         };
     }
 }
