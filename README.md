@@ -16,7 +16,7 @@
 
 * In another command line or terminal run ```node server```
 
-* The app will run on  [localhost](http://localhost:4000/#/ "localhost")
+    > The app will run on  [localhost](http://localhost:4000/#/ "localhost:4000")
 
 #### Mongodb Usage
 
@@ -28,4 +28,4 @@
 
         > will run mongod service for local machine.
     
-    2. Run ```node server -m``` or ```node server --mongo``` 
+    2. Restart node server with  ``` -m```  or  ``` --mongo``` 
