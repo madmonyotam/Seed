@@ -110,10 +110,10 @@ module.exports = {
                                 let name = Helper.openCamelCase(item.info.name);
 
                                 let {selectedMenuItem} = this.state;
-                                let selected = false;
-                                if(selectedMenuItem===item.info.name ){
-                                    selected = true
-                                }
+                                let selected = selectedMenuItem === item.info.name;
+                                // if(selectedMenuItem===item.info.name ){
+                                //     selected = true
+                                // }
                                 return (
                                     <MenuItem key={i} title={item.info.name} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{name}</MenuItem>
                                 );

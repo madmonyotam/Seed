@@ -69,11 +69,11 @@ class Seed {
     getComponent(plugin,component){
         var seed = this;
 
-        var correntPlugin = seed.plugins[plugin];
-        var found = correntPlugin.components[component];
+        var currentPlugin = seed.plugins[plugin];
+        var found = currentPlugin.components[component];
 
-        found = !seed.isUndefined(found) ? found : correntPlugin.views[component];
-        found = !seed.isUndefined(found) ? found : correntPlugin.examples[component];
+        found = !seed.isUndefined(found) ? found : currentPlugin.views[component];
+        found = !seed.isUndefined(found) ? found : currentPlugin.examples[component];
         return(found);
     };
 
