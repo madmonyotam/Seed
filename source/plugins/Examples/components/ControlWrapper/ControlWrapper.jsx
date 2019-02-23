@@ -28,24 +28,8 @@ module.exports = {
                 };
             },
 
-            getInitialState() {
-                return {
-
-                };
-            },
-
             componentWillMount () {
                 this.initUnits();
-            },
-
-            componentDidMount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            },
-
-            componentWillUnmount () {
-
             },
 
             initUnits(){
