@@ -12,7 +12,6 @@
 
 * In command line or terminal run ```npm start```
 
-    > will run webpack services
 
 * In another command line or terminal run ```node server```
 
