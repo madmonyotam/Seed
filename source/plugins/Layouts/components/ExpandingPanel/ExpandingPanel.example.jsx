@@ -1,8 +1,8 @@
 
 module.exports = {
     dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row','Layouts.ExpandingPanel',
-     'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Label'],
-    get(Mixin, Column, Row, ExpandingPanel, ExampleWrapper, ControlWrapper, ComponentWrapper, Label) {
+     'Examples.SimpleExample','Simple.Label','Examples.ExampleHelper'],
+    get(Mixin, Column, Row, ExpandingPanel,SimpleExample, Label, ExampleHelper) {
 
         var core = this;
 
@@ -100,15 +100,13 @@ module.exports = {
                 let mockArray = [1,2,3,4];
 
                 return (
-                    <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
-                        <ControlWrapper  scheme={ this.propScheme() } context={this} />
-                        <ComponentWrapper>
+                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
+
                             <Column boxShadow={true} width={'40%'} color={this.gray} >
                                 { mockArray.map(this.renderExPanel) }
                             </Column>
-                        </ComponentWrapper>
-                    </ExampleWrapper>
-
+            
+                    </SimpleExample>
                 )
             }
 
