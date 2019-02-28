@@ -28,24 +28,8 @@ module.exports = {
                 };
             },
 
-            getInitialState() {
-                return {
-
-                };
-            },
-
             componentWillMount () {
                 this.initUnits();
-            },
-
-            componentDidMount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            },
-
-            componentWillUnmount () {
-
             },
 
             initUnits(){
@@ -68,7 +52,11 @@ module.exports = {
             },
 
             handleOnChange(stateName,value){
-                let { context } = this.props;
+                let { context, scheme } = this.props;
+
+                if(scheme[stateName].group === 'initial'){
+                    core.emit('initialComponent');
+                }
 
                 let val = value.target ? value.target.value : value;
                 context.setState({[stateName]:val});

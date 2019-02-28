@@ -1,9 +1,7 @@
 
 module.exports = {
-    dependencies: ['SimpleSwitch.Mixin','Layouts.Row',
-        'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Label',
-        'Examples.ExampleHelper'],
-    get(Mixin, Row, ExampleWrapper, ControlWrapper, ComponentWrapper, Label, ExampleHelper) {
+    dependencies: ['SimpleSwitch.Mixin','Layouts.Row','Simple.Label', 'Examples.ExampleHelper','Examples.SimpleExample'],
+    get(Mixin, Row, Label, ExampleHelper, SimpleExample) {
 
         var core = this;
 
@@ -49,15 +47,13 @@ module.exports = {
                 size = ExampleHelper.ifNumber_Convert(size);
 
                 return (
-                    <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
-                        <ControlWrapper  scheme={ this.propScheme() } context={this} />
-                        <ComponentWrapper>
-                                <Row boxShadow={true} color={core.theme('backgrounds.light_gray')} >
-                                    <Label size={size} weight={weight} width={width} label={label} color={color}/>
-                                </Row>
-                        </ComponentWrapper>
-                    </ExampleWrapper>
+                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
 
+                        <Row boxShadow={true} color={core.theme('backgrounds.light_gray')} >
+                            <Label size={size} weight={weight} width={width} label={label} color={color}/>
+                        </Row>
+            
+                    </SimpleExample>
                 )
             }
 

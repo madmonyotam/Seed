@@ -40,6 +40,7 @@ module.exports = {
                         title={ title }
                         logo={ <img src='/resources/images/simpleSwitch.png' style={ this.styles('imgLogo') } /> }
                         bgColor={ core.theme('backgrounds.primary') }
+                        fgColor={ core.theme('colors.white') }
                         height={ core.dim("appBar.height") }
                         zIndex={ core.dim("appBar.zIndex") }
                     />

@@ -27,7 +27,7 @@ module.exports = {
 
             getInitialState() {
                 return {
-
+                    show: true
                 };
             },
 
@@ -36,13 +36,14 @@ module.exports = {
             },
 
             componentDidMount() {
+                core.on('initialComponent',this.refreshComponent)
             },
 
             componentWillReceiveProps (nextProps) {
             },
 
             componentWillUnmount () {
-
+                core.off('initialComponent',this.refreshComponent)
             },
 
             initUnits(){
@@ -66,11 +67,19 @@ module.exports = {
                 return(styles[s]);
             },
 
+            refreshComponent(){
+                this.setState({show: false},()=>{
+                    this.setState({show:true})
+                })
+            },
+
             render() {
                 let { style } = this.props;
+                let { show } = this.state;
+
                 return (
                     <Row boxShadow={true} width={'80%'} height={'100%'} style={{ ...this.styles('root'), ...style }} >
-                      { this.props.children }
+                      { show ? this.props.children : null }
                     </Row>
                 )
             }

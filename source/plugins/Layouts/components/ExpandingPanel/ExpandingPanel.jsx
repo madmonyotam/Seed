@@ -59,7 +59,8 @@ module.exports = {
                 let { startOpen } = this.props;
 
                 return {
-                    isDrawerOpen: startOpen
+                    isDrawerOpen: startOpen,
+                    height: 'fitContent'
                 };
             },
 
@@ -69,16 +70,9 @@ module.exports = {
 
             componentDidMount() {
                 this.eventHandle( 'on' );
-                this.height = this.getMaxHeight();
-            },
-
-            componentWillReceiveProps (nextProps) {
-                // for example
-                if(nextProps !== this.props){
-                    setTimeout(() => {
-                      this.height = this.getMaxHeight();
-                    }, 0);  
-                }
+                setTimeout(() => {
+                    this.setState({height:this.getMaxHeight()})
+                }, 0);
             },
 
             componentWillUnmount() {
@@ -113,10 +107,9 @@ module.exports = {
             styles(s){
 
                 let { transition, style, anchorStyle, panelStyle, showMargin, anchorHeight } = this.props;
-                let { isDrawerOpen } = this.state;
+                let { isDrawerOpen, height } = this.state;
 
                 let rootMargin = showMargin && isDrawerOpen ? 15 : 0;
-                let height = this.height
 
                 let panelHeightToogle = isDrawerOpen ? height : anchorHeight;
                 anchorHeight = anchorHeight < this.dim.minWidth ? this.dim.minWidth : anchorHeight;
@@ -124,8 +117,7 @@ module.exports = {
                 const styles = {
                     root: {
                         maxHeight: panelHeightToogle,
-                        minHeight: anchorHeight,
-                        
+                        minHeight: anchorHeight,    
                         transition: `max-height ${transition}s linear`,
                         overflow: 'hidden',
                         ...style

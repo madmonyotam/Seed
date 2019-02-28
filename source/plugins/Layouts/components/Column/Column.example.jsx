@@ -1,9 +1,9 @@
 
 module.exports = {
-    dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row',
+    dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row', 'Examples.SimpleExample',
         'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Badge','Simple.Label',
         'Examples.ExampleHelper'],
-    get(Mixin, Column, Row, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label, ExampleHelper) {
+    get(Mixin, Column, Row, SimpleExample, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label, ExampleHelper) {
 
         var core = this;
 
@@ -53,10 +53,9 @@ module.exports = {
                 height = ExampleHelper.ifNumber_Convert(height);
 
                 return (
-                    <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
-                        <ControlWrapper  scheme={ this.propScheme() } context={this} />
-                        <ComponentWrapper>
-                            <Column boxShadow={boxShadow} width={width} height={height} color={color} >
+                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
+
+                           <Column boxShadow={boxShadow} width={width} height={height} color={color} >
                                 <Row boxShadow={true} >
                                     <Label label={"I'm A Row in a column"}/>
                                     <Badge count={1}/>
@@ -65,10 +64,9 @@ module.exports = {
                                     <Label label={"I'm A second Row in a column"}/>
                                     <Badge count={2}/>
                                 </Row>
-                            </Column>
-                        </ComponentWrapper>
-                    </ExampleWrapper>
-
+                            </Column> 
+                        
+                    </SimpleExample>
                 )
             }
 

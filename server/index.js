@@ -59,12 +59,14 @@ app.post('/loadFile', (req, res) => {
   fsTools.loadFile(req, res, configPath);
 });
 
-app.listen(4000, ()=> {
+let port = 5000;
+
+app.listen(port, ()=> {
   if (!configPath) configPath = 'source/plugins/settings/config/';
 
   help()
 
   if (mongoArgs) log('info', '--', 'Mongodb activated')
-  log('success', 'running port 4000') 
+  log('success', `running port ${port}`) 
 
 })

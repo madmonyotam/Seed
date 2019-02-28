@@ -13,6 +13,7 @@ module.exports = {
         require('./components/ExampleWrapper'),
         require('./components/ControlWrapper'),
         require('./components/ComponentWrapper'),
+        require('./components/SimpleExample'),
         require('./components/CodeSnippet'),
         require('./components/SimpleToggle'),
     ],

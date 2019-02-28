@@ -1,9 +1,9 @@
 
 module.exports = {
     dependencies: ['SimpleSwitch.Mixin','Layouts.Row',
-     'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Badge','Simple.Label',
+      'Examples.SimpleExample','Simple.Badge','Simple.Label',
       'Examples.ExampleHelper'],
-    get(Mixin, Row, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label, ExampleHelper) {
+    get(Mixin, Row, SimpleExample, Badge, Label, ExampleHelper) {
 
         var core = this;
 
@@ -63,16 +63,14 @@ module.exports = {
                 padding = ExampleHelper.ifNumber_Convert(padding);
 
                 return (
-                    <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
-                        <ControlWrapper  scheme={ this.propScheme() } context={this} />
-                        <ComponentWrapper>
+                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
+
                             <Row boxShadow={boxShadow} width={width} height={height} color={color} padding={padding}>
                                 <Label width={'100%'} label={"I'm A Row layout"}/>
                                 <Badge count={10}/>
                             </Row>
-                        </ComponentWrapper>
-                    </ExampleWrapper>
-
+                    
+                    </SimpleExample>
                 )
             }
 

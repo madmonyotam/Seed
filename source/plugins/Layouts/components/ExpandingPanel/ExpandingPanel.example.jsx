@@ -1,8 +1,8 @@
 
 module.exports = {
     dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row','Layouts.ExpandingPanel',
-     'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Label'],
-    get(Mixin, Column, Row, ExpandingPanel, ExampleWrapper, ControlWrapper, ComponentWrapper, Label) {
+     'Examples.SimpleExample','Simple.Label','Examples.ExampleHelper'],
+    get(Mixin, Column, Row, ExpandingPanel,SimpleExample, Label, ExampleHelper) {
 
         var core = this;
 
@@ -15,7 +15,8 @@ module.exports = {
                 return {
                     uniqOpen:  { type: 'boolean' },
                     showMargin: { type: 'boolean' },
-                    autoHeight: { type: 'boolean' },
+                    autoHeight: { type: 'boolean', group: 'initial' },
+                    startOpen:  { type: 'boolean', group: 'initial' },
                     anchorHeight: { type: 'number' },
                     panelHeight:  { type: 'number' },
                     transition: { type: 'number' },
@@ -31,6 +32,7 @@ module.exports = {
                     showMargin: true,
                     transition: 0.50,
                     autoHeight: true,
+                    startOpen: false
                 };
             },
 
@@ -74,25 +76,26 @@ module.exports = {
             },
 
             getCode(){
-                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen, autoHeight } = this.state;                
+                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen, autoHeight, startOpen } = this.state;                
 
                 return (`
 <Column boxShadow={true} width={'40%'} style={this.styles('column')}>
-    <ExpandingPanel anchor={ this.renderAnchor() } panel={ this.renderPanel() } anchorHeight={${anchorHeight}} autoHeight={${autoHeight}}
-                          panelHeight={${panelHeight}} uniqOpen={${uniqOpen}} showMargin={${showMargin}} transition={${transition}}   />
+    <ExpandingPanel anchor={ this.renderAnchor() } panel={ this.renderPanel() } anchorHeight={${anchorHeight}}
+     autoHeight={${autoHeight}} startOpen={${startOpen}} panelHeight={${panelHeight}} uniqOpen={${uniqOpen}}
+     showMargin={${showMargin}} transition={${transition}}   />
 </Column>
                 `)
             },
 
             renderExPanel(id,key){
-                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen, autoHeight } = this.state;
+                let { anchorHeight, panelHeight, showMargin, transition, uniqOpen, autoHeight, startOpen } = this.state;
                 panelHeight = Number(panelHeight);
                 anchorHeight = Number(anchorHeight);
 
                 return(
                     <ExpandingPanel id={id} key={key} anchor={ this.renderAnchor() } panel={ this.renderPanel() }
                     anchorHeight={anchorHeight} panelHeight={panelHeight} uniqGroup={'exampleGroup'} uniqOpen={uniqOpen}
-                    showMargin={showMargin} transition={transition} autoHeight={autoHeight}   />
+                    showMargin={showMargin} transition={transition} autoHeight={autoHeight} startOpen={startOpen}  />
                 )
             },
 
@@ -100,15 +103,13 @@ module.exports = {
                 let mockArray = [1,2,3,4];
 
                 return (
-                    <ExampleWrapper CodeSnippet={ this.getCode() } componentName={ core.translate('Loader') }>
-                        <ControlWrapper  scheme={ this.propScheme() } context={this} />
-                        <ComponentWrapper>
+                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
+
                             <Column boxShadow={true} width={'40%'} color={this.gray} >
                                 { mockArray.map(this.renderExPanel) }
                             </Column>
-                        </ComponentWrapper>
-                    </ExampleWrapper>
-
+            
+                    </SimpleExample>
                 )
             }
 
