@@ -4,16 +4,17 @@
       [
         "@babel/plugin-proposal-decorators",
         { "decoratorsBeforeExport": false }
-      ]
-      ,"@babel/plugin-proposal-object-rest-spread"
-      ,"@babel/plugin-proposal-function-bind"
-      ,[ 
+      ],
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-function-bind",
+      [ 
         "@babel/plugin-proposal-pipeline-operator",
         { "proposal": "smart" }
-      ]
-      ,"@babel/plugin-proposal-do-expressions"
-      ,"@babel/plugin-proposal-function-sent"
-      ,"@babel/plugin-proposal-class-properties"
-      ,"@babel/plugin-transform-modules-commonjs"
+      ],
+      "@babel/plugin-proposal-do-expressions",
+      "@babel/plugin-proposal-function-sent",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-modules-commonjs",
+      "dynamic-import-node"
     ]
   }

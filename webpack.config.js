@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
-const Jarvis = require("webpack-jarvis");
+// const Jarvis = require("webpack-jarvis");
 const sourceFolder = path.join(__dirname, 'source');
 const entry = path.resolve(__dirname, 'source/App.jsx');
 const VERSION = 1;
@@ -128,7 +128,10 @@ module.exports = function (env) {
             new webpack.DllReferencePlugin({
                 context: __dirname,
                 manifest: require('./output/build/library.json')
-            })
+            }),
+            // new Jarvis({
+            //     port: 1337 // optional: set a port
+            // })
         ]
     }
 
