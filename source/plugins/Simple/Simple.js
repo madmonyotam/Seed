@@ -14,12 +14,8 @@ module.exports = {
         require('./components/IconPopover'),
         require('./components/CountrySelect'),
         require('./components/label'),
+        require('./components/Icon'),
     ],
-
-    // examples: [
-    //     require('./examples/LoaderEx'),
-    //     require('./examples/TitleBarExample'),
-    // ],
 
     extend: {
     },

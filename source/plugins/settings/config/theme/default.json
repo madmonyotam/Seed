@@ -37,7 +37,8 @@
         "white_85": "#ffffffd9"
     },
     "components":{
-        "noResults": "#808080"
+        "noResults": "#808080",
+        "icon": "#999999"
     },
     "notify": {
         "success": "#56b631",

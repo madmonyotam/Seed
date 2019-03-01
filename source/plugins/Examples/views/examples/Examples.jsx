@@ -1,5 +1,3 @@
-import { MenuItem,Button  } from '@material-ui/core/';
-
 
 module.exports = {
     name: "Examples",
@@ -12,6 +10,7 @@ module.exports = {
         'Layouts.Column',
         'Layouts.Row',
         'Layouts.ExpandingPanel',
+        'Examples.ExampleMenuItem'
     ],
 
     get(
@@ -20,7 +19,8 @@ module.exports = {
         Label,
         Column,
         Row,
-        ExpandingPanel
+        ExpandingPanel,
+        ExampleMenuItem
     ) {
 
         var core = this;
@@ -83,18 +83,6 @@ module.exports = {
                        display: 'flex',
                        flexDirection: 'row',
                     },
-                    menuItem:{
-                        margin: 0,
-                    },
-                    innerListItem:{
-                        padding: "5px 15px",
-                        margin: 0,
-                        fontSize: 13,
-                        whiteSpace: "nowrap",
-                        textOverflow: "ellipsis",
-                        display: "block",
-                        overflow: "hidden",
-                    },
                     exampleView:{
                         padding: 15
                     },
@@ -118,16 +106,15 @@ module.exports = {
                 var innerList = Object.values(list.innerList);
 
                 return (
-                            innerList.map((item,i)=>{
-                                let name = Helper.openCamelCase(item.info.name);
+                    innerList.map((item,i)=>{
+                        
+                        let {selectedMenuItem} = this.state;
+                        let selected = selectedMenuItem === item.info.name;
 
-                                let {selectedMenuItem} = this.state;
-                                let selected = selectedMenuItem === item.info.name;
-
-                                return (
-                                    <MenuItem key={i} title={item.info.name} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{name}</MenuItem>
-                                );
-                            })
+                        return (
+                            <ExampleMenuItem key={i} selected={selected} item={item} handleClick={this.handleClick}/>
+                        );
+                    })
                 
                 )
             },
@@ -174,7 +161,6 @@ module.exports = {
                     </Column>
                 )
             },
-
 
             render() {
                 let {currentDisplay} = this.state;

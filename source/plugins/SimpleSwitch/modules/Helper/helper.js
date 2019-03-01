@@ -121,6 +121,13 @@ module.exports = {
                 return str;
             },
 
+            underscoreToCamelCase(str){
+                if (!str) return '';
+                let newStr = str.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
+
+                return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+            },
+
             scrollTopAnimation(element, speed=5) {
 
                 let currentScrollTop = element.scrollTop;

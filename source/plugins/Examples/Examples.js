@@ -17,6 +17,7 @@ module.exports = {
         require('./components/SimpleExample'),
         require('./components/CodeSnippet'),
         require('./components/SimpleToggle'),
+        require('./components/ExampleMenuItem'),
     ],
 
     views: [
