@@ -4,6 +4,7 @@ import {
 
 module.exports = {
     name: 'Examples',
+    tree: {},
     dependencies: ['core.plugin.tree'],
     actions: [],
     modules: [

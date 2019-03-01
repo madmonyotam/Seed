@@ -9,9 +9,9 @@ module.exports = {
         initLoading: ['initLoading']
     },
 
-    dependencies: ['SimpleSwitch.Home','Settings.Settings','Examples.Examples'],
+    dependencies: ['SimpleSwitch.Home','Settings.Settings','Examples.Examples','Layouts.Absolute'],
 
-    get(Home, Settings, Examples) {
+    get(Home, Settings, Examples, Absolute) {
 
         var core = this;
 
@@ -48,10 +48,6 @@ module.exports = {
                 this.colors = {
                 };
 
-                this.backgrounds = {
-                    content: core.theme('backgrounds.content'),
-                };
-
                 this.units = {
                     appBarHeight: core.dim("appBar.height"),
                     navWidth: core.dim("nav.width"),
@@ -62,13 +58,8 @@ module.exports = {
             styles(s) {
                 let styles = {
                     content: {
-                        position: 'absolute',
-                        top:  this.units.appBarHeight,
                         left: this.units.navWidth,
-                        bottom: 0,
-                        right: 0,
-                        overflow: 'hidden',
-                        backgroundColor: this.backgrounds.content,
+                        top: this.units.appBarHeight
                     },
                 }
                 
@@ -77,13 +68,13 @@ module.exports = {
 
             render() {   
                 return (
-                    <div style={ this.styles('content') }>
+                    <Absolute style={this.styles('content')}>
                         <Switch>
                             <Route path="/home" component={Home} />
                             <Route path="/settings" component={Settings} />
                             <Route path="/examples" component={Examples} />
                         </Switch>
-                    </div>
+                    </Absolute>
                 )
             }
         }

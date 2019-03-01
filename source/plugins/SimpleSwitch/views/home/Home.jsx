@@ -56,7 +56,7 @@ module.exports = {
                 return (
 
                     <div id={'Home.root'} style={ this.styles('root')}>
-                        <Component text={core.translate("my second core component")}/>
+                        <Component text={core.translate("my first core component")}/>
                     </div>
                 )
 

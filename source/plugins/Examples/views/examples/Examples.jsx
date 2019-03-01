@@ -6,6 +6,7 @@ module.exports = {
     description: '',
 
     dependencies: [
+        'SimpleSwitch.Mixin',
         'SimpleSwitch.Helper',
         'Simple.Label',
         'Layouts.Column',
@@ -14,6 +15,7 @@ module.exports = {
     ],
 
     get(
+        Mixin,
         Helper,
         Label,
         Column,
@@ -23,9 +25,15 @@ module.exports = {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, Branch } = core.imports;
 
         return {
+            mixins: [ Mixin, Branch ],
+
+            cursors: {
+                currentExample: ['plugins','Examples','currentExample'],
+            },
+
             propsTypes: {
 
             },
@@ -50,14 +58,17 @@ module.exports = {
             },
 
             componentWillUnmount() {
+              this.cursor.currentExample.set(null);
             },
 
             initialUnits() {
                 this.backgrounds = {
                     menu: core.theme('backgrounds.menu'),
                     default: core.theme('backgrounds.default'),
-                    light_gray: core.theme('backgrounds.light_gray'),
+                    light_gray: core.theme('backgrounds.light_gray')
                 }
+
+
                 this.colors = {
                     gray: core.theme('colors.gray'),
                     dark: core.theme('colors.dark')
@@ -95,6 +106,7 @@ module.exports = {
             handleClick(item){
 
               var Component = item.component;
+              this.cursor.currentExample.set(item.info);
 
               this.setState({
                 selectedMenuItem: item.info.name,
@@ -111,9 +123,7 @@ module.exports = {
 
                                 let {selectedMenuItem} = this.state;
                                 let selected = selectedMenuItem === item.info.name;
-                                // if(selectedMenuItem===item.info.name ){
-                                //     selected = true
-                                // }
+
                                 return (
                                     <MenuItem key={i} title={item.info.name} id={i} selected={selected} style={this.styles('innerListItem')} onClick={(e)=>{this.handleClick(item)}}>{name}</MenuItem>
                                 );
