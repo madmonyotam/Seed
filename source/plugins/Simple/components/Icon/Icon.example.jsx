@@ -20,11 +20,8 @@ module.exports = {
             },
 
             getInitialState() {
-                return {
-                    size: 24,
-                    color: core.theme('components.icon'),
-                    icon: core.icons('general.info')
-                };
+                let defaultProps = Icon.getDefaultProps();
+                return defaultProps;
             },
 
             getCode(){

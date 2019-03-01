@@ -36,13 +36,11 @@ module.exports = {
             },
 
             getInitialState() {
-                return {
-                    boxShadow: true,
-                    width: '100%',
-                    height: 50,
-                    color: core.theme('backgrounds.light_gray'),
-                    padding: 10
-                };
+                let defaultProps = Row.getDefaultProps();
+                defaultProps.boxShadow = true;
+                defaultProps.color = core.theme('backgrounds.light_gray');
+
+                return defaultProps;
             },
 
             getCode(){

@@ -16,30 +16,28 @@ module.exports = {
 
             },
 
-            getDefaultProps(){
-                return {
-                };
-            },
-
             propScheme(){ // TODO:  
                 return {
                     color: { type: 'default' },
-                    padding: { type: 'number'}
+                    padding: { type: 'number'},
+                    top: { type: 'number'},
+                    bottom: { type: 'number'},
+                    right: { type: 'number'},
+                    left: { type: 'number'},
                 }
             },
 
             getInitialState() {
-                return {
-                    color: core.theme('backgrounds.light_gray'),
-                    padding: 10
-                };
+                let defaultProps = Absolute.getDefaultProps();
+                defaultProps.color = 'grey';
+                return defaultProps;
             },
 
             getCode(){
-                let { color, padding } = this.state;
+                let { color, padding, top, bottom, left, right  } = this.state;
 
                 return (`
-<Absolute color={${color}} padding={${padding}}>
+<Absolute color={${color}} padding={${padding}} top={${top}} bottom={${bottom}} left={${left}} right={${right}}>
     <Row>
         <Label label={"View - Absolute"}/>
     </Row>
@@ -48,12 +46,16 @@ module.exports = {
             },
 
             render() {
-                let { color, padding } = this.state;
+                let { color, padding, top, bottom, left, right  } = this.state;
                 padding = ExampleHelper.ifNumber_Convert(padding);
+                top = ExampleHelper.ifNumber_Convert(top);
+                bottom = ExampleHelper.ifNumber_Convert(bottom);
+                left = ExampleHelper.ifNumber_Convert(left);
+                right = ExampleHelper.ifNumber_Convert(right);
 
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
-                        <Absolute color={color} padding={padding}>
+                        <Absolute color={color} padding={padding} top={top} bottom={bottom} left={left} right={right}>
                             <Row>
                                 <Label label={"View - absolute"}/>
                             </Row>

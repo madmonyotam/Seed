@@ -1,9 +1,8 @@
 
 module.exports = {
     dependencies: ['SimpleSwitch.Mixin','Layouts.Column','Layouts.Row', 'Examples.SimpleExample',
-        'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper','Simple.Badge','Simple.Label',
-        'Examples.ExampleHelper'],
-    get(Mixin, Column, Row, SimpleExample, ExampleWrapper, ControlWrapper, ComponentWrapper, Badge, Label, ExampleHelper) {
+        'Simple.Badge','Simple.Label','Examples.ExampleHelper'],
+    get(Mixin, Column, Row, SimpleExample, Badge, Label, ExampleHelper) {
 
         var core = this;
 
@@ -22,12 +21,11 @@ module.exports = {
             },
 
             getInitialState() {
-                return {
-                    boxShadow: true,
-                    width: 400,
-                    height: '100%',
-                    color: core.theme('backgrounds.light_gray')
-                };
+                let defaultProps = Column.getDefaultProps();
+                defaultProps.boxShadow = true;
+                defaultProps.color = core.theme('backgrounds.light_gray');
+
+                return defaultProps;
             },
 
             getCode(){

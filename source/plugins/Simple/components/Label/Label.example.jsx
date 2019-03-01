@@ -21,13 +21,8 @@ module.exports = {
             },
 
             getInitialState() {
-                return {
-                    size: 13,
-                    weight: 500,
-                    width: '100%',
-                    label: 'label',
-                    color: core.theme('colors.text')
-                };
+                let defaultProps = Label.getDefaultProps();
+                return defaultProps;
             },
 
             getCode(){
@@ -43,7 +38,6 @@ module.exports = {
             render() {
                 let { size, weight, width, label, color } = this.state;
                 width = ExampleHelper.ifNumber_Convert(width);
-                weight = ExampleHelper.ifNumber_Convert(weight);
                 size = ExampleHelper.ifNumber_Convert(size);
 
                 return (
