@@ -63,7 +63,7 @@ module.exports = {
                     row: {
                         width: width,
                         maxWidth: `calc(100% - ${margin}px)`,
-                        minHeight: this.dim.minWidth,
+                        minWidth: this.dim.minWidth,
                         height: height,
                         maxHeight: `calc(100% - ${margin}px)`,
                         display: 'flex',

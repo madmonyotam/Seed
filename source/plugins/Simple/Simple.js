@@ -15,6 +15,7 @@ module.exports = {
         require('./components/CountrySelect'),
         require('./components/label'),
         require('./components/Icon'),
+        require('./components/Drawer'),
     ],
 
     extend: {

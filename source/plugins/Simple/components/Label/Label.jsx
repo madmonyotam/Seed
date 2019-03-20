@@ -1,5 +1,3 @@
-import { Typography } from '@material-ui/core';
-
 module.exports = {
     dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper'],
     get(Mixin, Helper) {
@@ -71,13 +69,13 @@ module.exports = {
             },
 
             render() {
-                let { label } = this.props;
+                let { label, style, ...otherProps } = this.props;
                 label = Helper.openCamelCase(label);
 
                 return (
-                    <Typography style={ this.styles('label') } title={label} >
+                    <span style={ this.styles('label') } title={label} {...otherProps} >
                         { label }
-                    </Typography>
+                    </span>
                 )
             } 
 
