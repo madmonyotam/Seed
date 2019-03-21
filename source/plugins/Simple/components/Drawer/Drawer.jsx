@@ -79,13 +79,7 @@ module.exports = {
                 let {isDrawerOpen} = this.state;
 
                 switch (openFrom) {
-                    case 'top':
-                        return {
-                            height: isDrawerOpen? size : initialSize,
-                            top: offset,
-                            width: '100%',
-                             transition: `height ${transition}s linear`,
-                        }
+
                     case 'bottom':
                         return {
                             height: isDrawerOpen? size : initialSize,
@@ -106,6 +100,14 @@ module.exports = {
                             left: offset,
                             height: '100%',
                             transition: `width ${transition}s linear`,
+                        }
+                    case 'top':
+                    default:
+                        return {
+                            height: isDrawerOpen? size : initialSize,
+                            top: offset,
+                            width: '100%',
+                             transition: `height ${transition}s linear`,
                         }
                 }
 
