@@ -60,10 +60,10 @@ module.exports = {
                 let { location } = this.props;
                 this.setState({activeView: location})
 
-                core.plugins.Settings.getInitialFiles(()=>{
-                    this.getLanguage();
-                    this.initialUnits();
-                });
+
+                this.getLanguage();
+                this.initialUnits();
+
                 this.getDataExample();
             },
 
@@ -87,9 +87,9 @@ module.exports = {
 
             getDataExample(){
                 core.plugins.SimpleSwitch.run('getDataEx').then((modifyData)=>{
-                    // console.log('modifyData--> ',modifyData);
+              //       console.log('modifyData--> ',modifyData);
                   }).catch( ()=>{
-                    // console.log('2--> ',2);
+              //       console.log('2--> ',2);
                 });
             },
 

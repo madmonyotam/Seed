@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-
 function request(method, url , data){
     var authToken = localStorage.getItem('authToken');
 

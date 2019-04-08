@@ -30,26 +30,37 @@ module.exports = {
     init(definition, done) {
       var core = definition;
 
+    //    var _options = {
+
+          // getInitialFiles: (callback) => {
+          //   core.plugins.Settings.run('loadSettings').then(( data )=>{
+          //     let { config, menu } = data;
+
+          //     if (menu) {
+          //       core.plugins.Settings.set(['fileMenu'], menu)
+          //     }
+
+          //     if (config) {
+          //       core.plugins.Settings.set(['config'], config);
+          //       for (let x in config) {
+          //         core.plugins.access.set([x], config[x])
+          //       }
+          //       if (callback) callback()
+          //     } else if (callback) callback()
+          //   })
+          // },
+
+   //     };
+
         var _options = {
 
-          getInitialFiles: (callback) => {
-            core.plugins.Settings.run('loadSettings').then(( data )=>{
-              let { config, menu } = data;
+          setAccessToSettings: () => {
+            let config = core.tree.get(['plugins', 'access', 'config']); 
+            let fileMenu = core.tree.get(['plugins', 'access', 'fileMenu']); 
 
-              if (menu) {
-                core.plugins.Settings.set(['fileMenu'], menu)
-              }
-
-              if (config) {
-                core.plugins.Settings.set(['config'], config);
-                for (let x in config) {
-                  core.plugins.access.set([x], config[x])
-                }
-                if (callback) callback()
-              } else if (callback) callback()
-            })
-          },
-
+            core.plugins.Settings.set(['config'], config);
+            core.plugins.Settings.set(['fileMenu'], fileMenu);
+          } 
         };
 
         done(_options);

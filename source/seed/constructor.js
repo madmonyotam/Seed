@@ -97,7 +97,7 @@ class Seed {
             var isComponent = false;
             var plugin = name.split('.')[0];
             var module = name.split('.')[1];
-
+            
             if(!seed.plugins[plugin]){
                 console.error(`no such plugin ${plugin}`)
             }

@@ -2,6 +2,7 @@ var seed = require('./constructor.js');
 
 var yourSeed = new seed({
     plugins: [
+        require('./seedPlugins/request'),
         require('./seedPlugins/Tree'),
         require('./seedPlugins/SimpleEmit'),
         require('./seedPlugins/access'),
