@@ -19,6 +19,8 @@ class Seed {
         window.seed = seed;
         seed.name = options.name || 'seed';
         seed.events = {};
+        seed.components = {};
+        seed.modules = {};
 
         seed.plugins = {};
         seed.CreatePlugins(options.plugins);
@@ -80,10 +82,23 @@ class Seed {
     addToFinalDependencies(isComponent,found,depArray,dependencies){
         let seed = this;
 
-        if(!isComponent) return depArray.push( found.get.apply(seed,dependencies));
-        var component = createReactClass({displayName: found.name, ...found.get.apply(seed,dependencies)});
-        depArray.push( component );
+        if(!isComponent){
+            if(seed.modules[found.name]){
+                return depArray.push(seed.modules[found.name]);            
+            } else {
+                var module = found.get.apply(seed,dependencies);
+                seed.modules[found.name] = module;
+                return depArray.push( found.get.apply(seed,dependencies));
+            }
+        } 
 
+        if(seed.components[found.name]){
+            depArray.push( seed.components[found.name] );
+        } else {
+            var component = createReactClass({displayName: found.name, ...found.get.apply(seed,dependencies)});
+            seed.components[found.name] = component;
+            depArray.push( component );
+        }
     };
 
     require(dependencies, cb){
@@ -97,7 +112,7 @@ class Seed {
             var isComponent = false;
             var plugin = name.split('.')[0];
             var module = name.split('.')[1];
-            
+
             if(!seed.plugins[plugin]){
                 console.error(`no such plugin ${plugin}`)
             }

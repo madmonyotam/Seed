@@ -52,7 +52,7 @@ module.exports = {
             },
 
             render() {
-                
+
                 return (
 
                     <div id={'Home.root'} style={ this.styles('root')}>
