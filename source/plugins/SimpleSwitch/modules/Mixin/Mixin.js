@@ -28,8 +28,7 @@ module.exports = {
 
                 for (const key in this.cursors) {
                     var path = this.cursors[key];
-                    var name = path[path.length-1];
-                    this.cursor[name] = core.select(path);
+                    this.cursor[key] = core.select(path);
                 }
             },
 

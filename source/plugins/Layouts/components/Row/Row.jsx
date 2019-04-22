@@ -2,8 +2,15 @@
 module.exports = {
     dependencies: ['SimpleSwitch.Mixin'],
     get(Mixin) {
-        
+
         var core = this;
+
+        const units = {
+            dim: {
+                minWidth: core.dim('layouts.minRowWidth')
+            },
+            boxShadow: core.theme('boxShadows.row')
+        }
 
         var { React, PropTypes } = core.imports;
 
@@ -27,32 +34,6 @@ module.exports = {
                     color: 'unset'
                 };
             },
-            
-            getInitialState() {
-                return {
-
-                };
-            },
-
-            componentWillMount () {
-                this.initUnits();
-            },
-
-            componentDidMount() {
-            },
-
-            componentWillUnmount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            },
-
-            initUnits(){
-                this.boxShadow = core.theme('boxShadows.row');
-                this.dim = {
-                    minWidth: core.dim('layouts.minRowWidth')
-                }
-            },
 
             styles(s){
                 let { padding, width, height, style, boxShadow, color } = this.props;
@@ -63,14 +44,14 @@ module.exports = {
                     row: {
                         width: width,
                         maxWidth: `calc(100% - ${margin}px)`,
-                        minWidth: this.dim.minWidth,
+                        minWidth: units.dim.minWidth,
                         height: height,
                         maxHeight: `calc(100% - ${margin}px)`,
                         display: 'flex',
                         flexDirection: 'row',
                         overflow: 'hidden',
                         alignItems: 'center',
-                        boxShadow: boxShadow ? this.boxShadow : 'unset',
+                        boxShadow: boxShadow ? units.boxShadow : 'unset',
                         padding: padding,
                         position: 'relative',
                         background: color,
