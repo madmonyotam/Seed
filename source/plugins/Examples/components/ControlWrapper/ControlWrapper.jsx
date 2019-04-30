@@ -3,15 +3,15 @@ import { TextField } from "@material-ui/core";
 module.exports = {
     name: "ControlWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['SimpleSwitch.Mixin','Examples.SimpleToggle','Simple.Label','Layouts.Row','Layouts.Column'],
-    get(Mixin,SimpleToggle, Label, Row, Column) {
+    dependencies: ['Examples.SimpleToggle','Simple.Label','Layouts.Row','Layouts.Column'],
+    get(SimpleToggle, Label, Row, Column) {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

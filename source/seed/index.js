@@ -1,4 +1,5 @@
 var seed = require('./constructor.js');
+var componentMixin = require('./componentMixin')
 
 var yourSeed = new seed({
     plugins: [
@@ -15,4 +16,5 @@ var yourSeed = new seed({
     }
 });
 
+yourSeed.imports.ComponentMixin = componentMixin(yourSeed);
 module.exports = yourSeed;

@@ -3,15 +3,15 @@ import { Typography, Paper } from "@material-ui/core";
 module.exports = {
     name: "ExampleWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['SimpleSwitch.Mixin', 'Layouts.Row', 'Layouts.Column', 'Examples.CodeSnippet'],
-    get(Mixin, Row, Column, CodeSnippet) {
+    dependencies: ['Layouts.Row', 'Layouts.Column'],
+    get(Row, Column) {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

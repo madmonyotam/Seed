@@ -1,15 +1,15 @@
 
 module.exports = {
-  dependencies: ['SimpleSwitch.Mixin', 'Examples.ExampleWrapper', 'Examples.ControlWrapper',
+  dependencies: ['Examples.ExampleWrapper', 'Examples.ControlWrapper',
                  'Examples.ComponentWrapper'],
-  get(Mixin, ExampleWrapper, ControlWrapper, ComponentWrapper) {
+  get(ExampleWrapper, ControlWrapper, ComponentWrapper) {
 
       var core = this;
 
-      var { React, PropTypes } = core.imports;
+      var { React, PropTypes, ComponentMixin } = core.imports;
 
       return {
-          mixins: [ Mixin ],
+          mixins: [ ComponentMixin ],
 
           propsTypes: {
             scheme: PropTypes.object.isRequired,

@@ -4,15 +4,15 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 module.exports = {
     name: 'SimpleToggle',
     description: 'This is an example of a component',
-    dependencies: ['SimpleSwitch.Mixin'],
-    get(Mixin) {
+    dependencies: [],
+    get() {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
                 onChange: PropTypes.object.isRequired,

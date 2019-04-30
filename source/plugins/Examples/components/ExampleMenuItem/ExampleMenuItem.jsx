@@ -1,15 +1,15 @@
 import { MenuItem } from '@material-ui/core/';
 
 module.exports = {
-  dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper','Simple.Label','Simple.Icon'],
-  get(Mixin, Helper, Label, Icon) {
+  dependencies: ['SimpleSwitch.Helper','Simple.Label','Simple.Icon'],
+  get(Helper, Label, Icon) {
     
     var core = this;
 
-    var { React, PropTypes } = core.imports;
+    var { React, PropTypes, ComponentMixin } = core.imports;
 
     return {
-      mixins: [ Mixin ],
+      mixins: [ ComponentMixin ],
 
       propsTypes: {
         handleClick: PropTypes.func.isRequired,
