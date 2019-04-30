@@ -33,6 +33,7 @@ function loadUiPlugins() {
         require('./plugins/snackbar'),
         require('./plugins/Examples'),
         require('./plugins/mongo'),
+        require('./plugins/Inputs'),
         require('./plugins/SimpleSwitch'),
     
     ]);
