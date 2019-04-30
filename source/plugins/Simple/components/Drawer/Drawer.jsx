@@ -1,13 +1,13 @@
 module.exports = {
-    dependencies: ['SimpleSwitch.Mixin'],    
-    get(Mixin) {
+    dependencies: [],    
+    get() {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

@@ -5,12 +5,13 @@ module.exports = {
     name: 'Input',
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin'/*,'Simple.SimpleScroller'*/],
-    get(Mixin, /*Scroller*/) {
+    dependencies: [/*,'Simple.SimpleScroller'*/],
+    get(/*Scroller*/) {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
+
         const units = {
           colors : {
             white: core.theme('colors.white'),
@@ -23,8 +24,9 @@ module.exports = {
             highlight: core.theme('colors.blue060'),
           }
         }
+
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
               onChange: PropTypes.func,

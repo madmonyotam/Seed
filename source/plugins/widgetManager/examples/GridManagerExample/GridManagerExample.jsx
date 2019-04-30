@@ -1,15 +1,15 @@
 module.exports = {
     name: "GridManagerExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','widgetManager.GridManager','widgetManager.Widget'],    
-    get(Mixin,CodeSnippet,GridManager,Widget) {
+    dependencies: ['Examples.CodeSnippet','widgetManager.GridManager','widgetManager.Widget'],    
+    get(CodeSnippet,GridManager,Widget) {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

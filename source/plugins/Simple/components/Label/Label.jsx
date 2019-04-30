@@ -1,13 +1,13 @@
 module.exports = {
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper'],
-    get(Mixin, Helper) {
+    dependencies: ['SimpleSwitch.Helper'],
+    get(Helper) {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),

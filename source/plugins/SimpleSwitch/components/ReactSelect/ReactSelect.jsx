@@ -6,15 +6,15 @@ import CancelIcon from '@material-ui/icons/Cancel';
 module.exports = {
     name: "ReactSelect",
     description: 'ReactSelect',
-    dependencies: ['SimpleSwitch.Mixin'],    
-    get(Mixin) {
+    dependencies: [],    
+    get() {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

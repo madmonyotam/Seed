@@ -1,15 +1,15 @@
 module.exports = {
     name: "LocalGalleryExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','gallery.Gallery'],    
-    get(Mixin,CodeSnippet,Gallery) {
+    dependencies: ['Examples.CodeSnippet','gallery.Gallery'],   
+    get(CodeSnippet,Gallery) {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

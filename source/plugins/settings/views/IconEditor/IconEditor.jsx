@@ -5,17 +5,17 @@ module.exports = {
     name: "IconEditor",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'Simple.NoResults', 'Simple.ExpandingPanel', 'SimpleSwitch.NestedMenu'],
+    dependencies: ['SimpleSwitch.Helper', 'Simple.NoResults', 'Simple.ExpandingPanel', 'SimpleSwitch.NestedMenu'],
 
-    get(Mixin, Helper, NoResults, ExpandingPanel, NestedMenu) {
+    get(Helper, NoResults, ExpandingPanel, NestedMenu) {
 
         var core = this;
 
-        var { React, PropTypes, Branch } = core.imports;
+        var { React, PropTypes, Branch, ComponentMixin } = core.imports;
 
         return {
 
-            mixins: [ Mixin, Branch ],
+            mixins: [ Mixin, Branch, ComponentMixin ],
 
             cursors: {
               config: ['plugins','Settings','config'],

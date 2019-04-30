@@ -3,16 +3,16 @@ import { isEmpty, uniqueId } from 'lodash';
 module.exports = {
     name: "Toolbar",
 
-    dependencies: ['SimpleSwitch.Mixin', 'Mongo.Handler', 'Simple.Loader'],
+    dependencies: ['Mongo.Handler', 'Simple.Loader'],
 
-    get( Mixin, Handler, Loader) {
+    get( Handler, Loader) {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
             },

@@ -4,17 +4,17 @@ module.exports = {
     name: "Settings",
     description: '',
 
-    dependencies: ['SimpleSwitch.Mixin','SimpleSwitch.Helper', 'SimpleSwitch.NestedMenu', 'Settings.SavePopup', 
+    dependencies: ['SimpleSwitch.Helper', 'SimpleSwitch.NestedMenu', 'Settings.SavePopup', 
       'Settings.CategoryPopup', 'Settings.CodeEditor', 'Simple.NoResults','Mongo.Toolbar'],
 
-    get(Mixin, Helper, NestedMenu, SavePopup, CategoryPopup, CodeEditor, NoResults, MongoToolbar) {
+    get(Helper, NestedMenu, SavePopup, CategoryPopup, CodeEditor, NoResults, MongoToolbar) {
       
       var core = this;
       
-      var { React, PropTypes, Branch } = core.imports;
+      var { React, PropTypes, Branch, ComponentMixin } = core.imports;
       
       return {
-            mixins: [ Mixin, Branch ],
+            mixins: [ ComponentMixin, Branch ],
 
             propsTypes: {
                 config: PropTypes.object,

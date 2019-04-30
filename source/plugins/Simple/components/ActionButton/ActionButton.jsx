@@ -10,16 +10,16 @@ module.exports = {
     name: "ActionButton",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin'],
+    dependencies: [],
 
-    get(Mixin) {
+    get() {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
                 size: PropTypes.number,

@@ -1,15 +1,15 @@
 module.exports = {
     name: "OpenPopupExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','SimpleSwitch.ButtonEx','popovers.PopupHandler'],    
-    get(Mixin,CodeSnippet,ButtonEx,PopupHandler) {
+    dependencies: ['Examples.CodeSnippet','SimpleSwitch.ButtonEx','popovers.PopupHandler'],    
+    get(CodeSnippet,ButtonEx,PopupHandler) {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
                 text: PropTypes.string,

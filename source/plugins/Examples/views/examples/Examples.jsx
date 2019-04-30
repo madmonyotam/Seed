@@ -4,7 +4,6 @@ module.exports = {
     description: '',
 
     dependencies: [
-        'SimpleSwitch.Mixin',
         'SimpleSwitch.Helper',
         'Simple.Label',
         'Layouts.Column',
@@ -14,7 +13,6 @@ module.exports = {
     ],
 
     get(
-        Mixin,
         Helper,
         Label,
         Column,
@@ -25,10 +23,10 @@ module.exports = {
 
         var core = this;
 
-        var { React, PropTypes, Branch } = core.imports;
+        var { React, PropTypes, Branch, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin, Branch ],
+            mixins: [ ComponentMixin, Branch ],
 
             cursors: {
                 currentExample: ['plugins','Examples','currentExample'],

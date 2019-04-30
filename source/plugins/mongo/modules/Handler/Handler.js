@@ -2,13 +2,13 @@
 
 module.exports = {
     name: "Handler",
-    dependencies: ['SimpleSwitch.Mixin'],
-
-    get(Mixin) {
+    dependencies: [],
+    get() {
         var core = this;
+        var { ComponentMixin } = core.imports;
 
         return {
-          mixins: [ Mixin ],
+          mixins: [ ComponentMixin ],
           
           error(err){
             //console.error('MongoError -> ', err.data ? err.data.msg : err.msg);

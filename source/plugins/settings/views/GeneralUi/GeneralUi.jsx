@@ -4,17 +4,16 @@ module.exports = {
     name: "GeneralUi",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin'],
-
-    get( Mixin ) {
+    dependencies: [],
+    get() {
 
         var core = this;
 
-        var { React, PropTypes, Branch } = core.imports;
+        var { React, PropTypes, Branch, ComponentMixin } = core.imports;
 
         return {
 
-            mixins: [ Mixin, Branch ],
+            mixins: [ ComponentMixin, Branch ],
 
             cursors: {
               config: ['plugins','Settings','config'],

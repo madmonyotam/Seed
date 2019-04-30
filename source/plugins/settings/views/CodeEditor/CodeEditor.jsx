@@ -10,20 +10,20 @@ module.exports = {
     name: "CodeEditor",
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin', 'SimpleSwitch.Helper'],
+    dependencies: ['SimpleSwitch.Helper'],
     bindings: {
       config: ['config'],
     },
 
-    get(Mixin, Helper) {
+    get(Helper) {
 
         var core = this;
 
-        var { React, PropTypes, Branch } = core.imports;
+        var { React, PropTypes, Branch, ComponentMixin } = core.imports;
 
         return {
 
-            mixins: [ Mixin, Branch ],
+            mixins: [ ComponentMixin, Branch ],
 
             cursors: {
               config: ['plugins','Settings', 'config'],

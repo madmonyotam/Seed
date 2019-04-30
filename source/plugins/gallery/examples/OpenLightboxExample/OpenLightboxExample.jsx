@@ -1,15 +1,15 @@
 module.exports = {
     name: "OpenLightboxExample",
     description: '',
-    dependencies: ['SimpleSwitch.Mixin','Examples.CodeSnippet','SimpleSwitch.ButtonEx'],    
-    get(Mixin,CodeSnippet,ButtonEx) {
+    dependencies: ['Examples.CodeSnippet','SimpleSwitch.ButtonEx'],    
+    get(CodeSnippet,ButtonEx) {
         
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

@@ -1,9 +1,10 @@
 
 module.exports = {
-    dependencies: ['SimpleSwitch.Mixin'],
-    get(Mixin) {
+    dependencies: [],
+    get() {
 
         var core = this;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         const units = {
             dim: {
@@ -12,10 +13,8 @@ module.exports = {
             boxShadow: core.theme('boxShadows.row')
         }
 
-        var { React, PropTypes } = core.imports;
-
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),

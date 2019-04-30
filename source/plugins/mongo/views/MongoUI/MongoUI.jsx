@@ -3,16 +3,16 @@ import { isEmpty } from 'lodash';
 module.exports = {
     name: "MongoUI",
 
-    dependencies: ['SimpleSwitch.Mixin', 'Simple.Loader'],
+    dependencies: ['Simple.Loader'],
 
-    get( Mixin, Loader ) {
+    get( Loader ) {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             propsTypes: {
             },

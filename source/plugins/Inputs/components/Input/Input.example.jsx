@@ -1,14 +1,14 @@
 
 module.exports = {
-    dependencies: ['SimpleSwitch.Mixin','Inputs.Input', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
-    get(Mixin, Input, SimpleExample, ExampleHelper) {
+    dependencies: ['Inputs.Input', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
+    get(Input, SimpleExample, ExampleHelper) {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ], 
+            mixins: [ ComponentMixin ], 
 
             propScheme(){ // TODO:  
                 return {

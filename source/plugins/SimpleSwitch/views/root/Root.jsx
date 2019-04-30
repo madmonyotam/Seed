@@ -8,7 +8,6 @@ module.exports = {
         currentUser :['currentUser']
     },
     dependencies: [
-        'SimpleSwitch.Mixin',
         'Simple.TopBar',
         'SimpleSwitch.Nav',
         'popovers.Notify',
@@ -19,13 +18,13 @@ module.exports = {
         'Simple.Loader',
         'SimpleSwitch.MainRouter'
     ],
-    get(Mixin, TopBar, Nav, Notify, Popup, Caution, Lightbox, Login, Loader, MainRouter) {
+    get(TopBar, Nav, Notify, Popup, Caution, Lightbox, Login, Loader, MainRouter) {
 
         var core = this;
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin, root ],
+            mixins: [ ComponentMixin, root ],
 
             propsTypes: {
                 location: PropTypes.string,

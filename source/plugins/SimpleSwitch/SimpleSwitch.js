@@ -7,8 +7,6 @@ module.exports = {
         require('./actions/getDataEx'),
     ],
     modules: [
-        require('./modules/Mixin'),
-
         require('./modules/Helper'),
         require('./modules/rules'),
 

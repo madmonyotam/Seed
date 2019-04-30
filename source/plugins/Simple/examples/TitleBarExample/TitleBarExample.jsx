@@ -4,20 +4,19 @@ module.exports = {
     name: "TitleBarExample",
     description: '',
     dependencies: [
-        'SimpleSwitch.Mixin',
         'Simple.TitleBar',
         'Examples.ExampleWrapper', 
         'Examples.ControlWrapper', 
         'Examples.ComponentWrapper'
     ],
-    get(Mixin,TitleBar,ExampleWrapper,ControlWrapper,ComponentWrapper) {
+    get(TitleBar,ExampleWrapper,ControlWrapper,ComponentWrapper) {
 
         var core = this;
 
-        var { React, PropTypes } = core.imports;
+        var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
-            mixins: [ Mixin ],
+            mixins: [ ComponentMixin ],
 
             componentWillUnmount() {
             },

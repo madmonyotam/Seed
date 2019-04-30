@@ -8,16 +8,16 @@ module.exports = {
     name: 'Popup',
     description: '',
     propTypes: {},
-    dependencies: ['SimpleSwitch.Mixin','Simple.TitleBar', 'popovers.PopupHandler'],
+    dependencies: ['Simple.TitleBar', 'popovers.PopupHandler'],
 
-    get(Mixin, TitleBar, popupHandler) {
+    get(TitleBar, popupHandler) {
 
         var core = this;
-        var { React, PropTypes, Branch } = core.imports;
+        var { React, PropTypes, Branch, ComponentMixin } = core.imports;
 
         return {
 
-            mixins: [Mixin,Branch],
+            mixins: [ComponentMixin,Branch],
 
             cursors: {
                 popup: ['plugins', 'popovers', 'popup'],
