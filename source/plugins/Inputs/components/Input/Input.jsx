@@ -37,6 +37,7 @@ module.exports = {
               options: PropTypes.array,
               placeholder: PropTypes.string,
               type: PropTypes.string,
+              openOnFocus: PropTypes.bool,
               theme: PropTypes.oneOf([ 'default', 'outlined', 'filled' ]),
             },
 
@@ -51,6 +52,7 @@ module.exports = {
                 type: 'text',
                 value: '',
                 label: 'label',
+                openOnFocus: false,
                 placeholder: 'placeholder'
               };
             },
@@ -345,6 +347,7 @@ module.exports = {
             },
 
             renderInput(type, downshiftProps){
+              let { openOnFocus } = this.props;
               let getInputProps = undefined; 
               let clearSelection = undefined; 
               let isAuotocomplete = type === 'autocomplete';
@@ -382,7 +385,7 @@ module.exports = {
 
                         { ...setprops() }
 
-                        onFocus={ e => { this.setState({ focused: this.state.uniqueName, isDownShiftOpen:  isAuotocomplete ? true : false }) } }
+                        onFocus={ e => { this.setState({ focused: this.state.uniqueName, isDownShiftOpen: openOnFocus && isAuotocomplete ? true : false }) } }
                         onBlur={ e => { this.setState({ focused: null, isDownShiftOpen: false }) } } />
               );
             },

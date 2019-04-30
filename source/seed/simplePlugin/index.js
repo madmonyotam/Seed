@@ -95,7 +95,7 @@ class SimplePlugin {
                 plugin[key][name] = component;
             }
 
-            if(module.example){ this.getExampleFromComponent(module) } 
+            if(module.example) this.getExampleFromComponent(module) 
         });
     }
 
@@ -104,14 +104,20 @@ class SimplePlugin {
         let dependencies = component.dependencies;
         let plugin = this;
 
-        example.name = `${name}Example`;
+        const initExample = (ex) => {
+          ex.info={};
+          ex.info.description = description;
+          ex.info.dependencies = dependencies;
+          ex.info.name = ex.name || name;
+          ex.name = ex.name || `${name}Example`;
+          
+          plugin.examples[ex.name] = ex;
+        }
 
-        example.info={};
-        example.info.description = description;
-        example.info.dependencies = dependencies;
-        example.info.name = name;
-        
-        plugin.examples[example.name] = example;
+        if (Array.isArray(example)) {
+          let examples = example;
+          examples.map( initExample ) 
+        } else initExample(example)
     }
     
     run(actionName, data = {}){
