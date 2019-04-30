@@ -49,8 +49,7 @@ module.exports = {
                 };
 
                 this.units = {
-                    appBarHeight: core.dim("appBar.height"),
-                    navWidth: core.dim("nav.width"),
+                    navWidth: core.dim("nav.width")
                 };
 
             },
@@ -58,8 +57,7 @@ module.exports = {
             styles(s) {
                 let styles = {
                     content: {
-                        left: this.units.navWidth,
-                        top: this.units.appBarHeight
+                        left: this.units.navWidth
                     },
                 }
                 

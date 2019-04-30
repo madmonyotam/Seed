@@ -8,17 +8,14 @@ module.exports = {
         currentUser :['currentUser']
     },
     dependencies: [
-        'Simple.TopBar',
         'SimpleSwitch.Nav',
         'popovers.Notify',
         'popovers.Popup',
         'popovers.Caution',
-        'popovers.Lightbox',
-        'SimpleSwitch.Login',
         'Simple.Loader',
         'SimpleSwitch.MainRouter'
     ],
-    get(TopBar, Nav, Notify, Popup, Caution, Lightbox, Login, Loader, MainRouter) {
+    get(Nav, Notify, Popup, Caution, Loader, MainRouter) {
 
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -32,8 +29,6 @@ module.exports = {
 
             getInitialState() {
                 return {
-                    text: 'Root',
-                    navIsOpen: false,
                     activeView: 'home',
                     start: false
                 };
@@ -59,24 +54,8 @@ module.exports = {
                 let { location } = this.props;
                 this.setState({activeView: location})
 
-
                 this.getLanguage();
-                this.initialUnits();
-
                 this.getDataExample();
-            },
-
-            initialUnits() {
-
-                this.colors = {
-                };
-
-                this.icons = {
-                };
-
-                this.units = {
-                };
-
             },
 
             getLanguage() {
@@ -85,11 +64,11 @@ module.exports = {
             },
 
             getDataExample(){
-                core.plugins.SimpleSwitch.run('getDataEx').then((modifyData)=>{
-              //       console.log('modifyData--> ',modifyData);
-                  }).catch( ()=>{
-              //       console.log('2--> ',2);
-                });
+            //     core.plugins.SimpleSwitch.run('getDataEx').then((modifyData)=>{
+            //   //       console.log('modifyData--> ',modifyData);
+            //       }).catch( ()=>{
+            //   //       console.log('2--> ',2);
+            //     });
             },
 
             handleNav(route){
@@ -119,33 +98,16 @@ module.exports = {
                 let { activeView, start } = this.state;
                 let { isLoggedIn } = this.props;
 
-                // let authToken = localStorage.getItem('authToken');
-                // let currentUser = (localStorage.currentUser) ? JSON.parse(localStorage.getItem('currentUser')) : {};
-
                 if (!start) { return <Loader show={true} /> }
-
-                // if(!isLoggedIn) {
-                //     return(
-                //         <div style={ this.styles('root') }>
-                //             <Login onLoggedIn={ this.handleLoggedIn }/>
-                //             <Notify />
-                //             <Popup /> 
-                //         </div>
-                //     );
-                // }
-                // else 
 
                 return (
                     <div style={ this.styles('root') }>
-                        <Lightbox />
-                        <TopBar/>
                         <Nav handleViews={this.handleNav} activeView={activeView} />
                         <Notify />
                         <Popup />
                         <Caution />
-                  
-                        <MainRouter/>
-    
+
+                        <MainRouter/>   
                     </div>
                 )
             }

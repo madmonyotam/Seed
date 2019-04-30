@@ -77,7 +77,7 @@ module.exports = {
                 let styles = {
                     root: {
                        width: '100%',
-                       height: 'calc( 100vh - 48px )',
+                       height: '100vh',
                        display: 'flex',
                        flexDirection: 'row',
                     },

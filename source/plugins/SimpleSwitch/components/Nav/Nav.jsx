@@ -78,7 +78,7 @@ module.exports = {
 
                 let styles = {
                     container: {
-                        height: `calc(100% - ${this.units.topBarHeight}px)`,
+                        height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
