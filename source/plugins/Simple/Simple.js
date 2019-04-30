@@ -12,7 +12,6 @@ module.exports = {
         require('./components/Badge'),
         require('./components/Loader'),
         require('./components/IconPopover'),
-        require('./components/CountrySelect'),
         require('./components/label'),
         require('./components/Icon'),
         require('./components/Drawer'),
