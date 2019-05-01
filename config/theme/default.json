@@ -1,28 +1,35 @@
 {
     "colors": {
-        "dark": "#333333",
+        "white": "#ffffff",
         "gray": "#999999",
+        "dark": "#333333",
         "secondary": "#2979ff",
         "primary": "#01579b",
-        "white": "#ffffff",
         "boxShadow": "#cacaca",
         "grey025": "#607D8B",
         "grey070": "#D8D8D8",
         "grey080": "#EDEDED",
+        "grey090": "#F5F5F5",
         "blue010": "#004175",
         "blue015": "#01579B",
         "blue050": "#54A9DD"
     },
-    "backgrounds": {
-      "default": "colors.white",
-      "primary": "colors.blue010",
-      "secondary": "colors.blue050"
+    "examples": {
+      "mainBackground": "colors.grey090",
+      "codeBackground": "colors.dark",
+      "codeColor": "colors.white"
     },
     "texts": {
       "default":"colors.dark",
       "primary":"colors.blue015",
       "secondary":"colors.grey025",
       "background": "colors.grey080"
+    },
+    "backgrounds": {
+      "default": "colors.white",
+      "primary": "colors.blue010",
+      "secondary": "colors.blue050",
+      "disabled": "colors.grey070"
     },
     "borders": {
       "default":"colors.grey070"
