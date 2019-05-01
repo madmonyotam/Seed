@@ -71,6 +71,7 @@ module.exports = {
                         height: units.dim.height,
                         padding: '0 15px',
                         ...flex,
+                        justifyContent: 'space-between',
                         transition: 'all .25s ease-out',
                         background: units.backgrounds.default
                     },
@@ -120,7 +121,10 @@ module.exports = {
                     <Label size={ 14 } weight={400} width={ '100%' } label={ core.translate('Wrapped React Library') } color={ units.texts.logo }/>
                   </Link> 
               
-                  { navItems.map(this.renderNavButton) }
+                  <div>
+
+                    { navItems.map(this.renderNavButton) }
+                  </div>
 
                 </div>
               );
