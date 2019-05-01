@@ -7,9 +7,6 @@ module.exports = {
     ],
     components: [
         require('./components/Caution'),
-        require('./components/Lightbox'),
-        require('./components/Lightbox/LightboxInfo'),
-        require('./components/Lightbox/LightboxTitleBar'),
         require('./components/Notify'),
         require('./components/Popup'),
     ],
