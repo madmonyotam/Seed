@@ -1,5 +1,5 @@
 module.exports = {
-    name: "Home",
+    name: "NewProject",
     description: '',
 
     bindings: {
@@ -56,7 +56,7 @@ module.exports = {
 
                 return (
 
-                    <div id={'Home'} style={ this.styles('root')}>
+                    <div id={'NewProject'} style={ this.styles('root')}>
                       <Component/>
                     </div>
                 )

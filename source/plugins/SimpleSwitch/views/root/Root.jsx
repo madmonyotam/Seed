@@ -29,7 +29,7 @@ module.exports = {
 
             getInitialState() {
                 return {
-                    activeView: 'home',
+                    activeView: '/newProject',
                     start: false
                 };
             },

@@ -9,7 +9,7 @@ module.exports = {
         initLoading: ['initLoading']
     },
 
-    dependencies: ['SimpleSwitch.Home','Examples.Examples','Layouts.Absolute'],
+    dependencies: ['SimpleSwitch.NewProject','Examples.Examples','Layouts.Absolute'],
 
     get(NewProject, Examples, Absolute) {
 

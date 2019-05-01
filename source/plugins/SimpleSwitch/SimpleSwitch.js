@@ -16,8 +16,8 @@ module.exports = {
         require('./components/Component'),
     ],
     views: [
-        require('./views/root'),
-        require('./views/home')
+        require('./views/Root'),
+        require('./views/NewProject')
     ],
 
     extend: {

@@ -1,62 +1,38 @@
 {
-    "${label} saved": {
-        "defaultValue": "${label} saved",
-        "value": null
-    },
-    "About this image": {
-        "defaultValue": "About this image",
-        "value": null
-    },
-    "Back": {
-        "defaultValue": "Back",
+    "CLOSE": {
+        "defaultValue": "CLOSE",
         "value": null
     },
     "Cancel": {
         "defaultValue": "Cancel",
         "value": null
     },
-    "Change color": {
-        "defaultValue": "Change color",
-        "value": null
-    },
-    "Clear": {
-        "defaultValue": "Clear",
-        "value": null
-    },
     "Close Lightbox": {
         "defaultValue": "Close Lightbox",
-        "value": null
-    },
-    "Close search": {
-        "defaultValue": "Close search",
         "value": null
     },
     "Copied to clipboard successfully!": {
         "defaultValue": "Copied to clipboard successfully!",
         "value": null
     },
-    "Copy color to clipboard": {
-        "defaultValue": "Copy color to clipboard",
+    "Default Title": {
+        "defaultValue": "Default Title",
         "value": null
     },
-    "Download Fail": {
-        "defaultValue": "Download Fail",
-        "value": null
-    },
-    "Download this image": {
-        "defaultValue": "Download this image",
+    "Examples": {
+        "defaultValue": "Examples",
         "value": null
     },
     "Folders": {
         "defaultValue": "Folders",
         "value": null
     },
-    "Gallery": {
-        "defaultValue": "Gallery",
+    "Hide Loader": {
+        "defaultValue": "Hide Loader",
         "value": null
     },
-    "Home": {
-        "defaultValue": "Home",
+    "I am a drawer": {
+        "defaultValue": "I am a drawer",
         "value": null
     },
     "Info Panel": {
@@ -67,60 +43,36 @@
         "defaultValue": "Lightbox Default Title",
         "value": null
     },
-    "Load": {
-        "defaultValue": "Load",
+    "Loader": {
+        "defaultValue": "Loader",
         "value": null
     },
-    "Next picture": {
-        "defaultValue": "Next picture",
+    "Loader size": {
+        "defaultValue": "Loader size",
         "value": null
     },
-    "No Results": {
-        "defaultValue": "No Results",
+    "OPEN": {
+        "defaultValue": "OPEN",
         "value": null
     },
-    "Popup test": {
-        "defaultValue": "Popup test",
+    "Seed": {
+        "defaultValue": "Seed",
         "value": null
     },
-    "Previous picture": {
-        "defaultValue": "Previous picture",
+    "Show Loader": {
+        "defaultValue": "Show Loader",
         "value": null
     },
-    "Save": {
-        "defaultValue": "Save",
+    "Title Bar": {
+        "defaultValue": "Title Bar",
         "value": null
     },
-    "Save as": {
-        "defaultValue": "Save as",
-        "value": null
-    },
-    "Search a country": {
-        "defaultValue": "Search a country",
-        "value": null
-    },
-    "Settings": {
-        "defaultValue": "Settings",
-        "value": null
-    },
-    "Sign in": {
-        "defaultValue": "Sign in",
-        "value": null
-    },
-    "SimpleSwitch": {
-        "defaultValue": "Simple Switch",
-        "value": null
-    },
-    "Unable to download the current image": {
-        "defaultValue": "Unable to download the current image",
+    "Wrapped React Library": {
+        "defaultValue": "Wrapped React Library",
         "value": null
     },
     "action": {
         "defaultValue": "action",
-        "value": null
-    },
-    "appbar.SimpleSwitch": {
-        "defaultValue": "Simple Switch",
         "value": null
     },
     "are you sure?": {
@@ -131,6 +83,10 @@
         "defaultValue": "cancel",
         "value": null
     },
+    "change color": {
+        "defaultValue": "change color",
+        "value": null
+    },
     "close": {
         "defaultValue": "close",
         "value": null
@@ -139,24 +95,24 @@
         "defaultValue": "confirm",
         "value": null
     },
-    "email": {
-        "defaultValue": "Email",
-        "value": null
-    },
     "en.json is missing": {
         "defaultValue": "en.json is missing",
         "value": null
     },
-    "forgotPassword": {
-        "defaultValue": "Forgot Password",
-        "value": null
-    },
-    "forgotYourPassword": {
-        "defaultValue": "Forgot your password?",
+    "find out more": {
+        "defaultValue": "find out more",
         "value": null
     },
     "missing language file": {
         "defaultValue": "missing language file",
+        "value": null
+    },
+    "my first core component": {
+        "defaultValue": "my first core component",
+        "value": null
+    },
+    "new project": {
+        "defaultValue": "new project",
         "value": null
     },
     "noContent": {
@@ -167,24 +123,16 @@
         "defaultValue": "No Title",
         "value": null
     },
+    "now open me from the left": {
+        "defaultValue": "now open me from the left",
+        "value": null
+    },
     "ok": {
         "defaultValue": "Ok",
         "value": null
     },
-    "password": {
-        "defaultValue": "Password",
-        "value": null
-    },
-    "pick": {
-        "defaultValue": "pick",
-        "value": null
-    },
-    "send": {
-        "defaultValue": "Send",
-        "value": null
-    },
-    "usernameOrPasswordAreIncorrect": {
-        "defaultValue": "Username or Password are incorrect",
+    "ok then - change offset": {
+        "defaultValue": "ok then - change offset",
         "value": null
     }
 }
