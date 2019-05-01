@@ -27,7 +27,7 @@ module.exports = {
                 let { size, icon, color } = this.state;
 
                 return (`
-<Row height={'fit-content'} width={'50%'} color={core.theme('backgrounds.light_gray')} >
+<Row height={'fit-content'} width={'50%'} color={core.theme('backgrounds.secondary')} >
     <Label label={'icon -->'}/>
     <Icon icon={${icon}} color={${color}} size={${size}} />
 </Row>
@@ -41,7 +41,7 @@ module.exports = {
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
 
-                        <Row height={'fit-content'} width={'50%'} color={core.theme('backgrounds.light_gray')} >
+                        <Row height={'fit-content'} width={'50%'} color={core.theme('backgrounds.secondary')} >
                             <Label label={'icon -->'}/>
                             <Icon icon={icon} color={color} size={size} />
                         </Row>

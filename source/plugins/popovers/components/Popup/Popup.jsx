@@ -15,6 +15,19 @@ module.exports = {
         var core = this;
         var { React, PropTypes, Branch, ComponentMixin } = core.imports;
 
+        const units = {
+            colors: {
+                okTextDisabled: core.theme('colors.dark'),
+                okText: core.theme('colors.white'),
+                cancel: core.theme('texts.default')
+            },
+            backgrounds: {
+                buttonDisabled: core.theme('colors.disabled'),
+                button: core.theme('backgrounds.default'),
+
+            }
+        }
+
         return {
 
             mixins: [ComponentMixin,Branch],
@@ -75,6 +88,8 @@ module.exports = {
 
             styles(s, isDisabled) {
                 let {bodyStyle, btnTitle} = this.state;
+                let { colors, backgrounds } = units;
+                
                 let styles = {
                     root: {
                         minWidth: 500,
@@ -84,11 +99,11 @@ module.exports = {
                     },
 
                     okButton: {
-                        background: isDisabled ? core.theme('colors.gray2'):core.theme('backgrounds.blue'),
+                        background: isDisabled ? backgrounds.buttonDisabled : backgrounds.button,
                         minHeight: 30,
                         maxHeight: 30,
                         width: 72,
-                        color: isDisabled ? core.theme('colors.dark') : core.theme('colors.white'),
+                        color: isDisabled ? colors.okTextDisabled : colors.okText,
                         pedding: 0,
                         fontSize: 12,
                         borderRadius: 2
@@ -96,10 +111,11 @@ module.exports = {
                     },
 
                     cancelButton: {
+                        background: backgrounds.button,
                         minHeight: 30,
                         maxHeight: 30,
                         width: 72,
-                        color: core.theme('colors.subHeader'),
+                        color: colors.cancel,
                         pedding: 0,
                         fontSize: 12,
                         borderRadius: 2

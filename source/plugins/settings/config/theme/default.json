@@ -50,7 +50,8 @@
   "backgrounds": {
     "default": "colors.white",
     "primary": "colors.blue010",
-    "secondary": "colors.blue050"
+    "secondary": "colors.blue050",
+    "disabled": "colors.grey070"
   },
   "borders": {
     "default":"colors.grey070"
