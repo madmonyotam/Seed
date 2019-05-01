@@ -57,7 +57,7 @@ module.exports = {
                 return (
 
                     <div id={'Home'} style={ this.styles('root')}>
-                      { core.translate('Home') }
+                      <Component/>
                     </div>
                 )
 

@@ -11,7 +11,7 @@ module.exports = {
 
     dependencies: ['SimpleSwitch.Home','Examples.Examples','Layouts.Absolute'],
 
-    get(Home, Examples, Absolute) {
+    get(NewProject, Examples, Absolute) {
 
         var core = this;
 
@@ -74,7 +74,7 @@ module.exports = {
                     <Absolute style={this.styles('content')}>
                         <Switch>
                             <Route path="/" exact component={ this.WelcomeRender } />
-                            <Route path="/home" component={ Home } />
+                            <Route path="/newProject" component={ NewProject } />
                             <Route path="/examples" component={ Examples } />
                         </Switch>
                     </Absolute>

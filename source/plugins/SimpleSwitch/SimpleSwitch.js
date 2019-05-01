@@ -13,10 +13,7 @@ module.exports = {
 
     ],
     components: [
-        require('./components/NestedMenu'),
         require('./components/Component'),
-        require('./components/ReactSelect'),
-        require('./components/ButtonEx'), 
     ],
     views: [
         require('./views/root'),

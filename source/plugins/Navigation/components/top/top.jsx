@@ -37,7 +37,7 @@ module.exports = {
             getDefaultProps() {
                 return {
                     handleViews: ()=>{ console.log('Nav handleViews default')},
-                    activeView: '/home',
+                    activeView: '/newProject',
                 };
             },
 
@@ -45,9 +45,9 @@ module.exports = {
               return {
                 navItems: [
                   {
-                      label: core.translate('Home'),
+                      label: core.translate('new project'),
                       // icon: this.icons.home,
-                      view: '/home'
+                      view: '/newProject'
                   },
                   {
                       label: core.translate('Examples'),
