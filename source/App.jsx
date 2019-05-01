@@ -22,7 +22,6 @@ seed.getInitialFiles( (DefaultFiles) => {
 function loadUiPlugins() {
 
     seed.CreatePlugins([
-    
         require('./plugins/translate'),
         require('./plugins/settings'), 
         require('./plugins/Layouts'),

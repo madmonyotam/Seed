@@ -3,13 +3,10 @@ module.exports = {
     tree: require('./tree.js'),
     actions: [
         require('./actions/getLanguage'),
-        require('./actions/logIn'),
         require('./actions/getDataEx'),
     ],
     modules: [
         require('./modules/Helper'),
-        require('./modules/rules'),
-
         require('./modules/dataModels/DataModelsEntry'),
         require('./modules/dataModels/constructors/Basic'),
         require('./modules/dataModels/constructors/ExtandBasic'),
@@ -22,10 +19,8 @@ module.exports = {
         require('./components/ButtonEx'), 
     ],
     views: [
-        require('./views/login'),
         require('./views/root'),
-        require('./views/home'),
-        // require('./views/MainRouter')
+        require('./views/home')
     ],
 
     extend: {
