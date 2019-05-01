@@ -30,6 +30,7 @@ module.exports = {
 
             propsTypes: {
               onChange: PropTypes.func,
+              handleKeyDown: PropTypes.func,
               style: PropTypes.object,
               inputStyle: PropTypes.object,
               labelStyle: PropTypes.object,
@@ -44,6 +45,7 @@ module.exports = {
             getDefaultProps(){
               return {
                 onChange: (e, newValue) => { /* do something with the event and new value  */ },
+                handleKeyDown: undefined,
                 style: {},
                 inputStyle: {},
                 labelStyle: {},

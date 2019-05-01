@@ -16,7 +16,6 @@ module.exports = {
 
     ],
     components: [
-        require('./components/Nav'),
         require('./components/NestedMenu'),
         require('./components/Component'),
         require('./components/ReactSelect'),
@@ -26,7 +25,7 @@ module.exports = {
         require('./views/login'),
         require('./views/root'),
         require('./views/home'),
-        require('./views/MainRouter')
+        // require('./views/MainRouter')
     ],
 
     extend: {

@@ -4,7 +4,10 @@
     "maxWidth": 170,
     "iconSize": 20,
     "fontSize": 14,
-    "zIndex": 1101
+    "zIndex": 1101,
+    "top": {
+      "height": 60
+    }
   },
   "appBar": {
     "height": 48,

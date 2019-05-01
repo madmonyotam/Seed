@@ -34,6 +34,7 @@ function loadUiPlugins() {
         require('./plugins/Examples'),
         require('./plugins/mongo'),
         require('./plugins/Inputs'),
+        require('./plugins/Navigation'),
         require('./plugins/SimpleSwitch'),
     
     ]);

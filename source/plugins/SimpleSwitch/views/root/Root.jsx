@@ -8,14 +8,14 @@ module.exports = {
         currentUser :['currentUser']
     },
     dependencies: [
-        'SimpleSwitch.Nav',
-        'popovers.Notify',
-        'popovers.Popup',
-        'popovers.Caution',
-        'Simple.Loader',
-        'SimpleSwitch.MainRouter'
+      'Navigation.MainRouter',
+      'Navigation.Top',
+      'popovers.Notify',
+      'popovers.Popup',
+      'popovers.Caution',
+      'Simple.Loader',
     ],
-    get(Nav, Notify, Popup, Caution, Loader, MainRouter) {
+    get(MainRouter, Navigation, Notify, Popup, Caution, Loader) {
 
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -72,6 +72,7 @@ module.exports = {
             },
 
             handleNav(route){
+              console.log(route)
               this.setState({ activeView: route })
             },
 
@@ -102,11 +103,10 @@ module.exports = {
 
                 return (
                     <div style={ this.styles('root') }>
-                        <Nav handleViews={this.handleNav} activeView={activeView} />
+                        <Navigation handleViews={this.handleNav} activeView={activeView} />
                         <Notify />
                         <Popup />
                         <Caution />
-
                         <MainRouter/>   
                     </div>
                 )
