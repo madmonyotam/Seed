@@ -3,7 +3,7 @@ module.exports = {
     description: '',
 
     dependencies: [
-        'SimpleSwitch.Helper',
+        'Simple.Helper',
         'Simple.Label',
         'Layouts.Column',
         'Layouts.Row',

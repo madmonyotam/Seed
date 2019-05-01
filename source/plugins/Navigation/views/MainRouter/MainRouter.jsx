@@ -9,7 +9,7 @@ module.exports = {
         initLoading: ['initLoading']
     },
 
-    dependencies: ['SimpleSwitch.NewProject','Examples.Examples','Layouts.Absolute'],
+    dependencies: ['Project.NewProject','Examples.Examples','Layouts.Absolute'],
 
     get(NewProject, Examples, Absolute) {
 
@@ -65,6 +65,7 @@ module.exports = {
                 
                 return(styles[s]);
             },
+            
             WelcomeRender(){
               return <div style={ this.styles('center') }> { core.translate('Seed') } </div>
             },

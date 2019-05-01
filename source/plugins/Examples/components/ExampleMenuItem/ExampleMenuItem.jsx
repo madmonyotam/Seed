@@ -1,7 +1,7 @@
 import { MenuItem } from '@material-ui/core/';
 
 module.exports = {
-  dependencies: ['SimpleSwitch.Helper','Simple.Label','Simple.Icon'],
+  dependencies: ['Simple.Helper','Simple.Label','Simple.Icon'],
   get(Helper, Label, Icon) {
     
     var core = this;

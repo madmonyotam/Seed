@@ -2,10 +2,11 @@ module.exports = {
     name: 'Simple',
     dependencies: ['core.plugin.tree'],
     actions: [],
-    modules: [],
+    modules: [
+        require('./modules/Helper'),
+    ],
     components: [
         require('./components/ExpandingPanel'),
-        require('./components/TopBar'),
         require('./components/TitleBar'),
         require('./components/NoResults'),
         require('./components/ActionButton'),

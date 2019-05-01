@@ -3,8 +3,8 @@ import { TextField } from "@material-ui/core";
 module.exports = {
     name: "ControlWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['Examples.SimpleToggle','Simple.Label','Layouts.Row','Layouts.Column'],
-    get(SimpleToggle, Label, Row, Column) {
+    dependencies: ['Examples.SimpleToggle','Simple.Label','Layouts.Row','Layouts.Column','Simple.Helper'],
+    get(SimpleToggle, Label, Row, Column, Helper) {
 
         var core = this;
 
@@ -66,10 +66,11 @@ module.exports = {
                 let { context } = this.props;
 
                 let checked = context.state[stateName];
+                let label = Helper.openCamelCase(stateName);
 
                 return(
                     <React.Fragment>
-                        <Label width={'100%'} label={stateName}/>
+                        <Label width={'100%'} label={label}/>
                         <SimpleToggle checked={checked} onChange={ this.handleOnChange.bind(this,stateName) }  />
                     </React.Fragment>   
                 )
@@ -77,10 +78,11 @@ module.exports = {
 
             renderSimple(stateName){
                 let { context } = this.props;
+                let label = Helper.openCamelCase(stateName);
 
                 return(
                     <React.Fragment>
-                        <Label width={'100%'} label={stateName}/>
+                        <Label width={'100%'} label={label}/>
                         <Label width={64} label={context.state[stateName]}/>
                     </React.Fragment>   
                 )
@@ -88,10 +90,11 @@ module.exports = {
 
             renderTextField(stateName, type){
                 let { context } = this.props;
+                let label = Helper.openCamelCase(stateName);
 
                 return(
                     <React.Fragment>
-                        <Label width={'100%'} label={stateName}/>
+                        <Label width={'100%'} label={label}/>
                         <TextField
                             id={stateName}
                             type={ type }

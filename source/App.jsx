@@ -9,7 +9,7 @@ seed.getInitialFiles( (DefaultFiles) => {
         
     loadUiPlugins();
 
-    seed.require(['SimpleSwitch.Root'],
+    seed.require(['Project.Root'],
             (Root) => {
                 let root = getRootWithRouter(Root);
                 ReactDom.render( root, document.getElementById('app') );
@@ -29,7 +29,7 @@ function loadUiPlugins() {
         require('./plugins/mongo'),
         require('./plugins/Inputs'),
         require('./plugins/Navigation'),
-        require('./plugins/SimpleSwitch'),
+        require('./plugins/Project'),
     
     ]);
 }

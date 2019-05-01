@@ -90,7 +90,7 @@ module.exports = {
             runAction(){
                 let { action, cb, params } =  this.props;
 
-                core.plugins.SimpleSwitch.run(action, params).then( (result) => {
+                core.plugins.Project.run(action, params).then( (result) => {
                     this.safeState({ loading: false });
                     cb(true, result);
                 }).catch(()=>{

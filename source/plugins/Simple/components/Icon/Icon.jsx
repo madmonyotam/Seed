@@ -3,8 +3,8 @@ var libPureSVG = require('resources/icons/PureSVG');
 import { Icon } from '@material-ui/core/';
 
 module.exports = {
-    dependencies: ['SimpleSwitch.Helper'],
-    get(Helper) {
+    dependencies: [],
+    get() {
 
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -61,9 +61,16 @@ module.exports = {
                 return(styles[s]);
             },
 
+            underscoreToCamelCase(str){
+                if (!str) return '';
+                let newStr = str.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
+
+                return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+            },
+
             isSvgExists(icon){
 
-                let SVGIconName = Helper.underscoreToCamelCase(icon);
+                let SVGIconName = this.underscoreToCamelCase(icon);
                 let SingleIcon = SvgIcons[SVGIconName];
 
                 if(SingleIcon) return SingleIcon;

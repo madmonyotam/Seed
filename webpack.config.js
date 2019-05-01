@@ -104,7 +104,6 @@ module.exports = function (env) {
                 sourceFolder // treat the 'source' directory like node_modules
             ],
             alias: {
-                "ag-grid-root": __dirname + "/node_modules/ag-grid",
                 "resources": __dirname + "/resources"
             }
         },
@@ -115,7 +114,7 @@ module.exports = function (env) {
 
         plugins: [
             new HtmlWebPackPlugin({
-                title: "SimpleSwitch",
+                title: "Seed",
                 rootUri: "/",
                 version: vars.version,
                 minify: true,

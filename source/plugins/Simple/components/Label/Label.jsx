@@ -1,6 +1,6 @@
 module.exports = {
-    dependencies: ['SimpleSwitch.Helper'],
-    get(Helper) {
+    dependencies: [],
+    get() {
         
         var core = this;
 
@@ -70,7 +70,6 @@ module.exports = {
 
             render() {
                 let { label, style, ...otherProps } = this.props;
-                label = Helper.openCamelCase(label);
 
                 return (
                     <span style={ this.styles('label') } title={label} {...otherProps} >
