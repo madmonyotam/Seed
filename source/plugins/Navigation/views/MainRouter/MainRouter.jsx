@@ -75,7 +75,7 @@ module.exports = {
                     <Absolute style={this.styles('content')}>
                         <Switch>
                             <Route path="/" exact component={ this.WelcomeRender } />
-                            <Route path="/newProject" component={ NewProject } />
+                            <Route path="/new-project" component={ NewProject } />
                             <Route path="/examples" component={ Examples } />
                         </Switch>
                     </Absolute>
