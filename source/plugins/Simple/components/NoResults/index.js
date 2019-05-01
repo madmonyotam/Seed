@@ -1,14 +1,6 @@
-
-module.exports = require('./NoResults.jsx');
-
-if(module.hot) {
-    module.hot.accept('./NoResults.jsx', function() {
-
-        var NoResults = require('./NoResults.jsx');
-        
-        core.injector.revoke(NoResults.name);
-        core.View(NoResults);
-        core.emit('hotUpdate');
-        
-    });
+module.exports = {
+    name: 'NoResults',
+    description: 'NoResults',
+    component: require('./NoResults.jsx'),
+    // example: require('./NoResults.example.jsx')
 }

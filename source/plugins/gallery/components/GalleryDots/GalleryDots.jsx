@@ -63,7 +63,7 @@ module.exports = {
                         height: '100%',
                         position: "absolute",
                         padding: 10,
-                        backgroundColor: core.theme('transparent.black_80'),
+                        backgroundColor: "#000000cc",
                         borderRadius: 2,
                         overflowX: 'hidden',
                         overflowY: 'hidden',

@@ -4,8 +4,11 @@ module.exports = {
     get() {
         
         var core = this;
-
         var { React, PropTypes, ComponentMixin } = core.imports;
+
+        const units = {
+            boxShadow: "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px -1px rgba(0, 0, 0, 0.12)",
+        }
 
         return {
             mixins: [ ComponentMixin ],
@@ -33,7 +36,7 @@ module.exports = {
             },
 
             componentWillMount () {
-                this.initUnits();
+                
             },
 
             componentDidMount() {
@@ -43,10 +46,6 @@ module.exports = {
             },
 
             componentWillReceiveProps (nextProps) {
-            },
-
-            initUnits(){
-                this.boxShadow = core.theme('boxShadows.column');
             },
 
             styles(s){
@@ -61,7 +60,7 @@ module.exports = {
                         maxHeight: `calc(100% - ${margin}px)`,
                         overflow: 'auto',
                         position: 'relative',
-                        boxShadow: boxShadow ? this.boxShadow : 'unset',
+                        boxShadow: boxShadow ? units.boxShadow : 'unset',
                         background: color,
                         ...style
                     },

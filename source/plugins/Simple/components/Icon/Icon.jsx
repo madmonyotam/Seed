@@ -22,7 +22,7 @@ module.exports = {
                 return {
                     style: {},
                     size: 24,
-                    color:  core.theme('components.icon'),
+                    color:  core.theme('texts.default'),
                     icon: core.icons('general.info')
                 }
             },

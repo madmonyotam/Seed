@@ -64,10 +64,6 @@ module.exports = {
                 };
             },
 
-            componentWillMount () {
-                this.initUnits();
-            },
-
             componentDidMount() {
                 this.eventHandle( 'on' );
                 setTimeout(() => {
@@ -81,19 +77,6 @@ module.exports = {
 
             eventHandle( action ) {
                 core[action]('ExpandingPanel:uniqOpen', this.handleUniq);
-            },
-
-            initUnits(){
-
-                this.colors = {
-                    white: core.theme('colors.white'),
-                    border: core.theme('colors.dark')
-                };
-
-                this.dim = {
-                    minWidth: core.dim('layouts.minRowWidth')
-                }
-
             },
 
             getMaxHeight(){
@@ -112,7 +95,7 @@ module.exports = {
                 let rootMargin = showMargin && isDrawerOpen ? 15 : 0;
 
                 let panelHeightToogle = isDrawerOpen ? height : anchorHeight;
-                anchorHeight = anchorHeight < this.dim.minWidth ? this.dim.minWidth : anchorHeight;
+                anchorHeight = anchorHeight < 40 ? 40 : anchorHeight;
 
                 const styles = {
                     root: {

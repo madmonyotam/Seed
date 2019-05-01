@@ -7,10 +7,7 @@ module.exports = {
         var { React, PropTypes, ComponentMixin } = core.imports;
 
         const units = {
-            dim: {
-                minWidth: core.dim('layouts.minRowWidth')
-            },
-            boxShadow: core.theme('boxShadows.row')
+            boxShadow: "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px -1px rgba(0, 0, 0, 0.12)",
         }
 
         return {
@@ -43,7 +40,7 @@ module.exports = {
                     row: {
                         width: width,
                         maxWidth: `calc(100% - ${margin}px)`,
-                        minWidth: units.dim.minWidth,
+                        minWidth: 40,
                         height: height,
                         maxHeight: `calc(100% - ${margin}px)`,
                         display: 'flex',

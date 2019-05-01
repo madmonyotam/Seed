@@ -1,6 +1,3 @@
-import { Button  } from '@material-ui/core/';
-
-
 module.exports = {
     name: "CodeSnippet",
     description: '',
@@ -8,7 +5,6 @@ module.exports = {
     get() {
         
         var core = this;
-
         var { React, PropTypes, ComponentMixin } = core.imports;
 
         return {
@@ -16,7 +12,6 @@ module.exports = {
 
             componentWillUnmount() {
             },
-
 
             propsTypes: {
                 code: PropTypes.string,
@@ -35,7 +30,6 @@ module.exports = {
             },
 
             componentWillMount () {
-                this.initUnits();
             },
 
             componentDidMount() {
@@ -48,10 +42,6 @@ module.exports = {
             },
 
             componentWillUnmount () {
-            },
-
-            initUnits(){
-                this.textColor =  core.theme('colors.dark');
             },
 
             styles(s){

@@ -29,7 +29,6 @@ module.exports = {
             },
 
             componentWillMount () {
-                this.initUnits();
             },
 
             componentDidMount() {
@@ -47,12 +46,6 @@ module.exports = {
             componentWillUnmount () {
             },
 
-            initUnits(){
-                this.codeColor = core.theme('colors.white');
-                this.codeBackground = core.theme('colors.dark')
-                this.margin = 10;
-            },
-
             styles(s){
 
                 const styles = {
@@ -60,11 +53,11 @@ module.exports = {
                         whiteSpace: 'pre-wrap',
                         borderRadius: 4,
                         overflowY: 'auto',
-                        color: this.codeColor,
-                        background: this.codeBackground,
+                        color: 'white',
+                        background: '#333333',
                         height: '30%',
                         padding: 15,
-                        margin: this.margin
+                        margin: 10
                     }
                 
                 }

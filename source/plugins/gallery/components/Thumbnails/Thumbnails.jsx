@@ -44,7 +44,6 @@ module.exports = {
             },
 
             styles(s) {
-
                 let styles = {
                     root: {
                         width: '100%',
@@ -62,7 +61,7 @@ module.exports = {
                         height: '100%',
                         position: "absolute",
                         padding: 10,
-                        backgroundColor: core.theme('transparent.black_80'),
+                        backgroundColor: "#000000cc",
                         borderRadius: 2,
                         overflowX: 'hidden',
                         overflowY: 'hidden',
@@ -77,7 +76,7 @@ module.exports = {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        backgroundColor: core.theme('transparent.white_85'),
+                        backgroundColor: "#ffffffd9",
                     },
                     thumbnailImage: {
                         cursor: 'pointer',

@@ -49,10 +49,8 @@ module.exports = {
             },
 
             initUnits(){
-                this.textColor =  core.theme('colors.dark');
-                this.borderColor =  core.theme('colors.gray');
-                this.codeColor = core.theme('colors.white');
-                this.codeBackground = core.theme('colors.dark')
+                this.codeColor = core.theme('examples.codeColor');
+                this.codeBackground = core.theme('examples.codeBackground')
                 this.margin = 10;
             },
 

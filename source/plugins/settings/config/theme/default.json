@@ -1,80 +1,64 @@
 {
-    "colors": {
-        "black": "#333333",
-        "dark": "#333333",
-        "text": "#333333",
-        "gray": "#999999",
-        "secondary": "#2979ff",
-        "primary": "#01579b",
-        "white": "#ffffff",
-        "boxShadow": "#cacaca",
-        "borderDark": "#4e4e4e",
-        "borderLight": "#eceff1",
-        "grey010": "#23292E",
-        "grey015": "#F1F1F1",
-        "grey020": "#57606C",
-        "grey025": "#607D8B",
-        "grey027": "#90A4AE",
-        "grey030": "#424242",
-        "grey040": "#616161",
-        "grey060": "#AEAEAE",
-        "grey070": "#D8D8D8",
-        "grey080": "#EDEDED",
-        "grey090": "#F5F5F5",
-        "white050": "#FFFFFF80",
-        "blue010": "#004175",
-        "blue015": "#01579B",
-        "blue017": "#0085C2",
-        "blue040": "#007AFF",
-        "blue045": "#0288d1",
-        "blue050": "#54A9DD",
-        "blue057": "#b2e5fb",
-        "blue060": "#DCF1FA",
-        "blue070": "#F3FAFD",
-        "green030": "#43A047",
-        "green040": "#56B631",
-        "yellow030": "#FFBE00",
-        "pink010": "#CF3C3E",
-        "pink040": "#FF817A",
-        "red010": "#FF3120"
-    },
-    "texts": {
-      "default":"colors.grey030",
-      "primary":"colors.blue015",
-      "secondary":"colors.grey025",
-      "background": "colors.grey080"
-    },
-    "backgrounds": {
-      "default": "colors.white",
-      "primary": "colors.blue010",
-      "secondary": "colors.blue050"
-    },
-    "boxShadows":{
-        "row": "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px -1px rgba(0, 0, 0, 0.12)",
-        "column": "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px -1px rgba(0, 0, 0, 0.12)",
-        "wrapper": "0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)"
-    },
-    "borders": {
-      "default":"colors.grey070"
-    },
-    "transparent": {
-        "black_12": "#0000001F",
-        "black_14": "#00000024",
-        "black_20": "#00000033",
-        "black_40": "#00000066",
-        "black_75": "#000000bf", 
-        "black_80": "#000000cc",
-        "white_45": "#ffffff73",
-        "white_85": "#ffffffd9"
-    },
-    "components":{
-        "noResults": "#808080",
-        "icon": "#999999"
-    },
-    "notify": {
-        "success": "#56b631",
-        "error": "#cf3c3e",
-        "warning": "#2a3640",
-        "info": "#0085c2"
-    }
+  "colors": {
+      "white": "#ffffff",
+      "primary": "#01579b",
+      "secondary": "#2979ff",
+      "dark": "#333333",
+      "gray": "#999999",
+      "boxShadow": "#cacaca",
+      "borderDark": "#4e4e4e",
+      "borderLight": "#eceff1",
+      "grey010": "#23292E",
+      "grey015": "#F1F1F1",
+      "grey020": "#57606C",
+      "grey025": "#607D8B",
+      "grey027": "#90A4AE",
+      "grey030": "#424242",
+      "grey040": "#616161",
+      "grey060": "#AEAEAE",
+      "grey070": "#D8D8D8",
+      "grey080": "#EDEDED",
+      "grey090": "#F5F5F5",
+      "white050": "#FFFFFF80",
+      "blue010": "#004175",
+      "blue015": "#01579B",
+      "blue017": "#0085C2",
+      "blue040": "#007AFF",
+      "blue045": "#0288d1",
+      "blue050": "#54A9DD",
+      "blue057": "#b2e5fb",
+      "blue060": "#DCF1FA",
+      "blue070": "#F3FAFD",
+      "green030": "#43A047",
+      "green040": "#56B631",
+      "yellow030": "#FFBE00",
+      "pink010": "#CF3C3E",
+      "pink040": "#FF817A",
+      "red010": "#FF3120"
+  },
+  "examples": {
+    "mainBackground": "colors.grey090",
+    "codeBackground": "colors.dark",
+    "codeColor": "colors.white"
+  },
+  "texts": {
+    "default":"colors.dark",
+    "primary":"colors.blue015",
+    "secondary":"colors.grey025",
+    "background": "colors.grey080"
+  },
+  "backgrounds": {
+    "default": "colors.white",
+    "primary": "colors.blue010",
+    "secondary": "colors.blue050"
+  },
+  "borders": {
+    "default":"colors.grey070"
+  },
+  "notify": {
+      "success": "#56b631",
+      "error": "#cf3c3e",
+      "warning": "#2a3640",
+      "info": "#0085c2"
+  }
 }

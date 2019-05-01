@@ -1,4 +1,3 @@
-
 module.exports = {
     name: "Examples",
     description: '',
@@ -22,23 +21,15 @@ module.exports = {
     ) {
 
         var core = this;
-
         var { React, PropTypes, Branch, ComponentMixin } = core.imports;
+
+        const mainBackground = core.theme('examples.mainBackground');
 
         return {
             mixins: [ ComponentMixin, Branch ],
 
             cursors: {
                 currentExample: ['plugins','Examples','currentExample'],
-            },
-
-            propsTypes: {
-
-            },
-
-            getDefaultProps(){
-                return {
-                };
             },
 
             getInitialState() {
@@ -48,29 +39,8 @@ module.exports = {
                 };
             },
 
-            componentWillMount() {
-                this.initialUnits();
-            },
-
-            componentDidMount() {
-            },
-
             componentWillUnmount() {
               this.cursor.currentExample.set(null);
-            },
-
-            initialUnits() {
-                this.backgrounds = {
-                    menu: core.theme('backgrounds.menu'),
-                    default: core.theme('backgrounds.default'),
-                    light_gray: core.theme('backgrounds.light_gray')
-                }
-
-
-                this.colors = {
-                    gray: core.theme('colors.gray'),
-                    dark: core.theme('colors.dark')
-                }
             },
 
             styles(s) {
@@ -167,7 +137,7 @@ module.exports = {
                     <div style={this.styles('root')} >
                         { this.renderMenuBar() }
 
-                        <Column width={'100%'} color={this.backgrounds.light_gray} style={this.styles('exampleView')}>
+                        <Column width={'100%'} color={mainBackground} style={this.styles('exampleView')}>
                             {currentDisplay}
                         </Column>
 

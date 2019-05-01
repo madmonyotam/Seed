@@ -98,7 +98,7 @@ module.exports = {
                         position: 'absolute',
                         top: 0,
                         right: 0,
-                        backgroundColor: core.theme('transparent.black_40'),
+                        backgroundColor: '#00000066',
                         borderRadius: 3,
                         padding: "3px",
                         display: "flex",

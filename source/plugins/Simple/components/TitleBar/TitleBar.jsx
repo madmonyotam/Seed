@@ -88,11 +88,11 @@ module.exports = {
 
                 this.colors = {
                     white: core.theme('colors.white'),
-                    b12: core.theme('transparent.black_12'),
-                    b14: core.theme('transparent.black_14'),
-                    b20: core.theme('transparent.black_20'),
+                    b12: '#0000001F',
+                    b14: "#00000024",
+                    b20: "#00000033",
                 };
-
+                
                 const iconSize = icon && icon.size ? icon.size : core.dim("nav.iconSize");
 
                 this.units = {

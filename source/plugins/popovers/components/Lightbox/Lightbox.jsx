@@ -75,7 +75,7 @@ module.exports = {
                         zIndex:  1500,
                         width:  '100%', 
                         height: '100%',
-                        background: core.theme('transparent.black_75'),
+                        background: "#000000bf",
                         overflow: 'hidden',
                         ...rootStyle
                     },

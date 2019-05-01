@@ -47,9 +47,7 @@ module.exports = {
             },
 
             initUnits(){
-                this.borderColor =  core.theme('colors.black');
-                this.background = core.theme('backgrounds.white');
-                this.boxShadow = core.theme('boxShadows.wrapper')
+                this.background = core.theme('backgrounds.default');
             },
 
             styles(s){
