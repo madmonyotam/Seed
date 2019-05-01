@@ -1,4 +1,4 @@
-import { List, Button, Icon, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import { Link } from "react-router-dom";
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
             getDefaultProps() {
                 return {
                     handleViews: ()=>{ console.log('Nav handleViews default')},
-                    activeView: '/newProject',
+                    activeView: '/new-project',
                 };
             },
 
@@ -45,13 +45,11 @@ module.exports = {
               return {
                 navItems: [
                   {
-                      label: core.translate('new project'),
-                      // icon: this.icons.home,
-                      view: '/newProject'
+                      label: core.translate('New Project'),
+                      view: '/new-project'
                   },
                   {
                       label: core.translate('Examples'),
-                      // icon: this.icons.examples,
                       view: '/examples'
                   }
                 ]
@@ -94,7 +92,6 @@ module.exports = {
 
             setActiveItem(view){
                this.props.handleViews(view);
-               console.log('view -> ',view);
             },
 
             renderNavButton(but, key){

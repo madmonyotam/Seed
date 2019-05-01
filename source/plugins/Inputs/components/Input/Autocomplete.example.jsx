@@ -42,7 +42,7 @@ module.exports = {
                 return (`
 const options = ${JSON.stringify(options, null, 4)}
 <Input 
-  type={ 'autocomplete }
+  type={ 'autocomplete' }
   options={ options }
   placeholder={ ${placeholder} } 
   openOnFocus={ ${openOnFocus} } 
