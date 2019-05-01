@@ -53,12 +53,7 @@ module.exports = {
                       label: core.translate('Examples'),
                       // icon: this.icons.examples,
                       view: '/examples'
-                  },
-                  {
-                      label: core.translate('Settings'),
-                      // icon: this.icons.settings,
-                      view: '/settings'
-                  },
+                  }
                 ]
               }
             },
@@ -120,10 +115,10 @@ module.exports = {
 
               return (
                 <div style={ this.styles('container') } > 
-                  <div style={ this.styles('logo') }>
+                  <Link key={ 'logo' } to={ '/' } style={ this.styles('logo') }>
                     <Label size={ 20 } weight={500} width={ '100%' } label={ core.translate('Seed') } color={ units.texts.logo }/>
                     <Label size={ 14 } weight={400} width={ '100%' } label={ core.translate('Wrapped React Library') } color={ units.texts.logo }/>
-                  </div> 
+                  </Link> 
               
                   { navItems.map(this.renderNavButton) }
 

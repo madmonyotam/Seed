@@ -4,8 +4,8 @@ import {Paper, FormControl, TextField , InputLabel, Select, MenuItem } from "@ma
 module.exports = {
     name: "LoaderEx",
     description: '',
-    dependencies: ['Simple.Loader', 'SimpleSwitch.ButtonEx', 'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper', 'Settings.ColorPicker'],
-    get(Loader, ButtonEx, ExampleWrapper, ControlWrapper, ComponentWrapper, ColorPicker) {
+    dependencies: ['Simple.Loader', 'SimpleSwitch.ButtonEx', 'Examples.ExampleWrapper', 'Examples.ControlWrapper', 'Examples.ComponentWrapper'],
+    get(Loader, ButtonEx, ExampleWrapper, ControlWrapper, ComponentWrapper) {
 
         var core = this;
 
@@ -132,14 +132,14 @@ module.exports = {
                         <ComponentWrapper>
                             <Loader show={ this.state.show } color={ loaderColor } size={ this.state.size } />
                         </ComponentWrapper>
-
+{/* 
                         <ColorPicker
                           anchorEl={ colorPickerAnchorEl }
 
                           picker={ true }
                           handleClose={ this.handleClosePicker }
                           onColorPick={ this.handleSelectColor }
-                          mode={ 'new' } />
+                          mode={ 'new' } /> */}
                     </ExampleWrapper>
 
                 )

@@ -43,25 +43,25 @@ module.exports = {
         },
         
         getInitialFiles(callback) {
-            this.plugins.access.run('loadSettings')
-                .then(( data ) => {
-                    let { menu } = data;
-                     
-                    if (menu) { this.plugins.access.set(['fileMenu'], menu); };
-  
-                    if (callback) { callback(data); };
-                }).catch(console.error)
-          },
-  
-          setConfiguration(config) {
-              if (config) { 
-                for (let x in config) { 
-                    this.plugins.access.set([x], config[x]); 
-                }; 
-  
-                this.plugins.access.set('config', config); 
-              }
-          },
+          this.plugins.access.run('loadSettings')
+              .then(( data ) => {
+                  // let { menu } = data;
+                    
+                  // if (menu) { this.plugins.access.set(['fileMenu'], menu); };
+
+                  if (callback) { callback(data); };
+              }).catch(console.error)
+        },
+
+        setConfiguration(config) {
+            if (config) { 
+              for (let x in config) { 
+                  this.plugins.access.set([x], config[x]); 
+              }; 
+
+              this.plugins.access.set('config', config); 
+            }
+        },
         
     }
 };

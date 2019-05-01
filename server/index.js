@@ -51,9 +51,9 @@ app.post('/saveSettings', (req, res) => {
   fsTools.save(req, res, configPath);
 });
 
-app.post('/loadSettings', (req, res) => {
-  fsTools.load(res, configPath);
-});
+// app.post('/loadSettings', (req, res) => {
+//   fsTools.load(res, configPath);
+// });
 
 app.post('/loadFile', (req, res) => {
   fsTools.loadFile(req, res, configPath);

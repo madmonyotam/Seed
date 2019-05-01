@@ -41,11 +41,12 @@ module.exports = {
             styles(s) {
                 let styles = {
                     root: {
-                        position: 'relative',
-                        margin: 15,
-                        height: "calc(100% - 48px)",
-                        width: "calc(100% - 15px)",
-                    },
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '100%',
+                      height: '100%'
+                    }
                 }
                 
                 return(styles[s]);
@@ -55,8 +56,8 @@ module.exports = {
 
                 return (
 
-                    <div id={'Home.root'} style={ this.styles('root')}>
-                        <Component text={core.translate("my first core component")}/>
+                    <div id={'Home'} style={ this.styles('root')}>
+                      { core.translate('Home') }
                     </div>
                 )
 

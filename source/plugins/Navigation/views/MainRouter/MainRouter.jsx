@@ -9,15 +9,15 @@ module.exports = {
         initLoading: ['initLoading']
     },
 
-    dependencies: ['SimpleSwitch.Home','Settings.Settings','Examples.Examples','Layouts.Absolute'],
+    dependencies: ['SimpleSwitch.Home','Examples.Examples','Layouts.Absolute'],
 
-    get(Home, Settings, Examples, Absolute) {
+    get(Home, Examples, Absolute) {
 
         var core = this;
 
         var { React, PropTypes } = core.imports;
         const units = {
-          dim: { navHeight: core.dim('nav.top.height'), margin: 15 }
+          dim: { navHeight: core.dim('nav.top.height'), margin: 0 }
         }
         return {
             propsTypes: {  
@@ -46,25 +46,36 @@ module.exports = {
 
             styles(s) {
                 let styles = {
+
                     content: {
                         top: units.dim.navHeight+units.dim.margin,
                         left: units.dim.margin,
                         right: units.dim.margin,
                         bottom: units.dim.margin,
-                        border: '2px groove'
                     },
+
+                    center: {
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '100%',
+                      height: '100%'
+                    }
                 }
                 
                 return(styles[s]);
+            },
+            WelcomeRender(){
+              return <div style={ this.styles('center') }> { core.translate('Seed') } </div>
             },
 
             render() {   
                 return (
                     <Absolute style={this.styles('content')}>
                         <Switch>
-                            <Route path="/home" component={Home} />
-                            <Route path="/settings" component={Settings} />
-                            <Route path="/examples" component={Examples} />
+                            <Route path="/" exact component={ this.WelcomeRender } />
+                            <Route path="/home" component={ Home } />
+                            <Route path="/examples" component={ Examples } />
                         </Switch>
                     </Absolute>
                 )

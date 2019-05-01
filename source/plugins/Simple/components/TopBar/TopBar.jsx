@@ -30,14 +30,9 @@ module.exports = {
             },
 
             render() {
-                var appTitle = core.plugins.Settings.get(['config','general','appTitle']);
-
-                var title;
-                if (appTitle && (appTitle !== null && typeof appTitle === 'string')) title = appTitle;
-
                 return (
                     <TitleBar
-                        title={ title }
+                        title={ 'title' }
                         logo={ <img src='/resources/images/simpleSwitch.png' style={ this.styles('imgLogo') } /> }
                         bgColor={ core.theme('backgrounds.primary') }
                         fgColor={ core.theme('colors.white') }

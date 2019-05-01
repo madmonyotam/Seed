@@ -8,7 +8,6 @@ seed.getInitialFiles( (DefaultFiles) => {
     seed.setConfiguration(DefaultFiles.config);
         
     loadUiPlugins();
-    seed.plugins.Settings.setAccessToSettings();
 
     seed.require(['SimpleSwitch.Root'],
             (Root) => {
@@ -23,7 +22,6 @@ function loadUiPlugins() {
 
     seed.CreatePlugins([
         require('./plugins/translate'),
-        require('./plugins/settings'), 
         require('./plugins/Layouts'),
         require('./plugins/Simple'),
         require('./plugins/popovers'),
