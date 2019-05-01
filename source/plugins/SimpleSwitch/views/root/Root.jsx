@@ -72,7 +72,6 @@ module.exports = {
             },
 
             handleNav(route){
-              console.log(route)
               this.setState({ activeView: route })
             },
 

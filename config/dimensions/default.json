@@ -1,10 +1,5 @@
 {
   "nav": {
-    "width": 60,
-    "maxWidth": 170,
-    "iconSize": 20,
-    "fontSize": 14,
-    "zIndex": 1101,
     "top": {
       "height": 60
     }

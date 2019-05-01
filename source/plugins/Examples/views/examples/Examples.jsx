@@ -47,12 +47,12 @@ module.exports = {
                 let styles = {
                     root: {
                        width: '100%',
-                       height: '100vh',
+                       height: '100%',
                        display: 'flex',
                        flexDirection: 'row',
                     },
                     exampleView:{
-                        padding: 15
+                      padding: 15,
                     },
                 }
 

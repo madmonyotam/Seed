@@ -84,6 +84,7 @@ module.exports = {
                       ...flex,
                       flexDirection: 'column',
                       width: 150,
+                      textDecoration: 'unset'
                     }
                 
                 }
@@ -93,6 +94,7 @@ module.exports = {
 
             setActiveItem(view){
                this.props.handleViews(view);
+               console.log('view -> ',view);
             },
 
             renderNavButton(but, key){
@@ -116,10 +118,12 @@ module.exports = {
 
               return (
                 <div style={ this.styles('container') } > 
-                  <Link key={ 'logo' } to={ '/' } style={ this.styles('logo') }>
+                  <div key={ 'logo' } onClick={ e => { this.setActiveItem('/') } } >
+                    <Link to={'/'} style={ this.styles('logo') }>
                     <Label size={ 20 } weight={500} width={ '100%' } label={ core.translate('Seed') } color={ units.texts.logo }/>
                     <Label size={ 14 } weight={400} width={ '100%' } label={ core.translate('Wrapped React Library') } color={ units.texts.logo }/>
-                  </Link> 
+                    </Link>
+                  </div> 
               
                   <div>
 
