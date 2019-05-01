@@ -8,7 +8,25 @@ module.exports = {
 
         var core = this;
         var { React, PropTypes } = core.imports;
-
+        const units = {
+          colors : {
+            border: core.theme('borders.default'),
+            secondary: core.theme('texts.primary'),
+            gray: core.theme('colors.grey027'),
+            white: core.theme('colors.white'),
+          },
+          backgrounds: {
+            blue: core.theme('backgrounds.primary'),
+            nav: core.theme('colors.primary'),
+          },
+          dim: {
+            zIndex: core.dim('nav.zIndex'),
+            iconSize: core.dim('nav.iconSize'),
+            fontSize: core.dim('nav.fontSize'),
+            topBarHeight: core.dim('appBar.height')
+          }
+          
+        }
         return {
 
             propsTypes: {
@@ -37,14 +55,6 @@ module.exports = {
 
             initialUnits(isStatic) {
 
-                this.colors = {
-                    borderDark: core.theme("colors.borderDark"),
-                    secondary: core.theme("colors.secondary"),
-                    gray: core.theme("colors.gray"),
-                    b12: core.theme('transparent.black_12'),
-                    b14: core.theme('transparent.black_14'),
-                    b20: core.theme('transparent.black_20'),
-                };
 
                 this.backgrounds = {
                     blue: core.theme("colors.blue1"),
@@ -64,7 +74,7 @@ module.exports = {
                     nav: { 
                         minWidth: MIN,
                         maxWidth: isStatic ? MIN : MAX,
-                        zIndex: core.dim('nav.zIndex'),
+                        zIndex: units.dim.zIndex,
                     },
                     iconSize:     core.dim("nav.iconSize"),
                     fontSize:     core.dim("nav.fontSize"),
@@ -85,11 +95,11 @@ module.exports = {
                         transition: 'all .25s ease-out',
                         overflow: 'hidden',
                         position: 'absolute',
-                        background: this.backgrounds.nav,
+                        background: units.backgrounds.nav,
                         width: navWidth || this.units.nav.minWidth,
-                        boxShadow: `0px 2px 4px -1px ${this.colors.b12}, \
-                                    0px 4px 5px  0px ${this.colors.b14}, \
-                                    0px 1px 10px 0px ${this.colors.b20}`,
+                        boxShadow: `0px 2px 4px -1px 0.12, 
+                                    0px 4px 5px  0px 0.14, 
+                                    0px 1px 10px 0px 0.20`,
                     },
                     placeHolderContainer: {
                         transition: 'all .25s ease-out',
@@ -120,7 +130,7 @@ module.exports = {
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         fontSize: this.units.fontSize,
-                        color: this.colors.gray,
+                        color: units.colors.gray,
                     },
                     rowIcon: {
                         marginRight: 6,
@@ -192,7 +202,7 @@ module.exports = {
             renderItemText(item, isActive) {
                 
                 let textStyle = { ...this.styles('rowLabel'), 
-                    color: isActive ? this.colors.secondary : this.colors.gray
+                    color: isActive ? units.colors.secondary : units.colors.gray
                 };
 
                 return (
@@ -205,7 +215,7 @@ module.exports = {
             renderItemIcon(icon, isActive) {
                 
                 let listStyle = { ...this.styles('rowIcon'), 
-                    color: isActive ? this.colors.secondary : this.colors.gray
+                    color: isActive ? units.colors.white : units.colors.gray
                 };
 
                 return (
@@ -227,11 +237,11 @@ module.exports = {
 
                 let itemStyle = {
                     ...this.styles('rowContainer'), 
-                    borderTop: item.renderTopBorder ? `1px solid ${this.colors.borderDark}` : 'none'
+                    borderTop: item.renderTopBorder ? `1px solid ${units.colors.borderDark}` : 'none'
                 }
                 let innerStyle = {
                     ...this.styles('rowInner'), 
-                    background: item.disabled ? 'none' : isActive ? this.backgrounds.blue : 'none'
+                    background: item.disabled ? 'none' : isActive ? units.backgrounds.blue : 'none'
                 }
 
                 return (

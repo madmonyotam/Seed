@@ -55,7 +55,12 @@ const options = ${JSON.stringify(options, null, 4)}
                 let { type, openOnFocus, options, placeholder, label, theme } = this.state;
 
                 return (
-                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
+                    <SimpleExample 
+                        context={this} 
+                        code={ this.getCode() } 
+                        scheme={ this.propScheme() } 
+                        codeHeight={ '50%' }
+                        exampleHeight={ '50%' }>
                        <Input 
                           type={ 'autocomplete' } 
                           placeholder={ placeholder } 

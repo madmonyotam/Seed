@@ -15,12 +15,12 @@ module.exports = {
         const units = {
           colors : {
             white: core.theme('colors.white'),
-            border: core.theme('colors.grey070'),
+            border: core.theme('borders.default'),
             suffix: core.theme('colors.grey060'),
-            background:  core.theme('colors.grey080'),
-            labelOn: core.theme('colors.blue015'),
-            labelOff: core.theme('colors.grey025'),
-            text: core.theme('colors.grey030'),
+            background:  core.theme('texts.background'),
+            labelOn: core.theme('texts.primary'),
+            labelOff: core.theme('texts.secondary'),
+            text: core.theme('texts.default'),
             highlight: core.theme('colors.blue060'),
           }
         }

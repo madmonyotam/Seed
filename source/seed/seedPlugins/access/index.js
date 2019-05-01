@@ -26,7 +26,16 @@ module.exports = {
         },
         
         theme(path) {
-            return get(this,'theme',path);
+            let code = get(this,'theme',path);
+
+            if ( seed.isUndefined(code) || seed.isObject(code) ) { 
+                return code;
+            } 
+            if ( seed.isString(code) && (code.includes(' ') || code.startsWith('#')) ) {
+              return code;
+            } 
+
+            return this.theme(code);
         },
         
         general(path) {

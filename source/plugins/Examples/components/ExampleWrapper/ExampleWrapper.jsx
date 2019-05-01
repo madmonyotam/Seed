@@ -23,7 +23,8 @@ module.exports = {
 
             getDefaultProps(){
                 return {
-
+                  codeHeight: '30%',
+                  exampleHeight: undefined
                 };
             },
 
@@ -64,9 +65,9 @@ module.exports = {
                       overflowY: 'auto',
                       color: this.codeColor,
                       background: this.codeBackground,
-                      height:'30%',
+                      height: this.props.codeHeight,
                       padding: 15,
-                      margin: this.margin
+                      margin: this.margin,
                     }
                 }
 
@@ -85,14 +86,14 @@ module.exports = {
 
             render() {
                 let controllerAndCopmonentMargin = 10;
-                let { snippet } = this.props;
+                let { snippet, exampleHeight } = this.props;
                 let element = snippet ? snippet.element : null;
                 let props = snippet ? snippet.props : null;
 
                 return (
                     <Column width={'100%'} height={'100%'}>
 
-                      <Row height={`calc(70% - ${this.margin+controllerAndCopmonentMargin}px)`} padding={0}>
+                      <Row height={ `calc(${ exampleHeight ? exampleHeight : '70%' } - ${this.margin+controllerAndCopmonentMargin}px)` } padding={0}>
                         { this.props.children }
                       </Row>
 

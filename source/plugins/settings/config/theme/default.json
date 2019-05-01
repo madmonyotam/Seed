@@ -38,20 +38,24 @@
         "pink040": "#FF817A",
         "red010": "#FF3120"
     },
+    "texts": {
+      "default":"colors.grey030",
+      "primary":"colors.blue015",
+      "secondary":"colors.grey025",
+      "background": "colors.grey080"
+    },
     "backgrounds": {
-        "default": "#ffffff",
-        "nav": "#333333",
-        "primary": "#004175",
-        "secondary": "#98d1ff",
-        "light_gray": "#ededed",
-        "menu": "#efefef",
-        "blue": "#007AFF",
-        "white": "#ffffff"
+      "default": "colors.white",
+      "primary": "colors.blue010",
+      "secondary": "colors.blue050"
     },
     "boxShadows":{
         "row": "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px -1px rgba(0, 0, 0, 0.12)",
         "column": "0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px -1px rgba(0, 0, 0, 0.12)",
         "wrapper": "0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)"
+    },
+    "borders": {
+      "default":"colors.grey070"
     },
     "transparent": {
         "black_12": "#0000001F",
