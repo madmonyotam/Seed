@@ -12,7 +12,6 @@ module.exports = {
             propsTypes: {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 label: PropTypes.string,
-                text: PropTypes.string,
                 color: PropTypes.string,
                 size: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 weight: PropTypes.number,
@@ -23,9 +22,8 @@ module.exports = {
                     size: 13,
                     weight: 500,
                     width: '100%',
-                    label: '',
-                    text: '',
-                    color: core.theme('colors.text')
+                    label: 'label',
+                    color: core.theme('texts.default')
                 };
             },
             
@@ -71,11 +69,11 @@ module.exports = {
             },
 
             render() {
-                let { text, label, style, ...otherProps } = this.props;
+                let { label, style, ...otherProps } = this.props;
 
                 return (
                     <span style={ this.styles('label') } title={label} {...otherProps} >
-                        { text ? text : label }
+                        { label }
                     </span>
                 )
             } 
