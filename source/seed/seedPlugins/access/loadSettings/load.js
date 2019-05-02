@@ -1,11 +1,11 @@
 import { groupBy } from 'lodash';
-const config = {
-  dimensions: require('../../../../../config/dimensions/default.json'),
-  theme: require('../../../../../config/theme/default.json'),
-  icons: require('../../../../../config/icons/default.json'),
-  general: require('../../../../../config/general/default.json'),
+// const config = {
+//   dimensions: require('../../../../../config/dimensions/default.json'),
+//   theme: require('../../../../../config/theme/default.json'),
+//   icons: require('../../../../../config/icons/default.json'),
+//   general: require('../../../../../config/general/default.json'),
   
-}
+// }
 module.exports = {
     name: "loadSettings",
     dependencies: [ ],
@@ -17,7 +17,6 @@ module.exports = {
         return (data, promise) => {
           var config = {};
           var menu = {};
-     //     promise.resolve({config})
           core.request.post('/loadSettings').then( ({ response, results, error }) => {
 
             if (error && error.data) {
@@ -34,6 +33,7 @@ module.exports = {
                   else if (menu[i][x].fileName.indexOf('default') > -1) config[i] = menu[i][x].data;
                 }
               }
+              console.debug('config => ', config);
               promise.resolve({ config, menu })
             }
           });

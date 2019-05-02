@@ -13,19 +13,13 @@ module.exports = {
             mixins: [ ComponentMixin, Branch ],
             
             cursors: {
-              currentExample: ['plugins', 'Settings'],
+              menu: ['plugins', 'access', 'config'],
             },
 
-            getInitialState() {
-              let { match } = this.props; // match.path  = parent route path
-              const routes = [
-                { path: `${ match.path }/themes`, label: 'themes', view: undefined },
-                { path: `${ match.path }/icons`, label: 'icons', view: undefined }
-              ]
+            getInitialState() { 
               return {
-                activeRoute: this.getCurrentRoute(routes),
-                routes: routes 
-              }
+                routes: []
+              } 
             },
 
             componentWillMount () {
@@ -34,7 +28,27 @@ module.exports = {
             componentDidMount() { 
               // console.debug('this.cursor.currentExample.get() => ', this.cursor.currentExample.get());
               // console.debug('this.state => ', this.state);
+              let { menu } = this.state;
+              if (menu) {
+                this.buildRoutes(menu)
+              }
 
+            },
+            buildRoutes(menu){
+              let { match } = this.props; // match.path  = parent route path
+
+              let menuKeys = Object.keys(menu)
+              let routes = menuKeys.map((routeKey)=>{
+                return {
+                  path: `${ match.path }/${ routeKey }`,
+                  label: routeKey,
+                  view: undefined
+                }
+              })
+              this.setState({
+                routes: routes,
+                activeRoute: this.getCurrentRoute(routes)
+              })
             },
 
             componentWillUnmount() { 
