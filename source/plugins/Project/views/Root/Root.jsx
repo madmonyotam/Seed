@@ -11,11 +11,10 @@ module.exports = {
       'Navigation.MainRouter',
       'Navigation.Top',
       'popovers.Notify',
-      'popovers.Popup',
       'popovers.Caution',
       'Simple.Loader',
     ],
-    get(MainRouter, Navigation, Notify, Popup, Caution, Loader) {
+    get(MainRouter, Navigation, Notify, Caution, Loader) {
 
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -79,7 +78,7 @@ module.exports = {
                 core.plugins.popovers.addNotify(text, alertKind);
             },
 
-            styles(s,place = {}) {
+            styles(s) {
 
                 let styles = {
 
@@ -96,7 +95,6 @@ module.exports = {
 
             render() {
                 let { activeView, start } = this.state;
-                let { isLoggedIn } = this.props;
 
                 if (!start) { return <Loader show={true} /> }
 
@@ -104,7 +102,6 @@ module.exports = {
                     <div style={ this.styles('root') }>
                         <Navigation handleViews={this.handleNav} activeView={activeView} />
                         <Notify />
-                        <Popup />
                         <Caution />
                         <MainRouter/>   
                     </div>

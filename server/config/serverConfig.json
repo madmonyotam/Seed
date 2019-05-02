@@ -1,0 +1,56 @@
+{
+	"versionNumber": "1.0.0.0",
+	"proxyTimeout": 5000,
+	"language": "en",
+	"port": 5000,
+	"projects": {
+		"default": "seed",
+		"seed": {
+			"root": "C:/repositories/seed/config/",
+			"mongo": ""
+		}
+	},
+	"logger": {
+		"format": [
+			{
+				"field": "url",
+				"display": true,
+				"order": 0
+			},
+			{
+				"field": "delta",
+				"display": true,
+				"order": 1
+			},
+			{
+				"field": "ip",
+				"display": true,
+				"order": 2
+			},
+			{
+				"field": "protocol",
+				"display": true,
+				"order": 3
+			},
+			{
+				"field": "host",
+				"display": true,
+				"order": 4
+			},
+			{
+				"field": "statusCode",
+				"display": true,
+				"order": 5
+			},
+			{
+				"field": "contentLength",
+				"display": true,
+				"order": 6
+			}
+		],
+		"disable": false,
+		"dayToSave": 7,
+		"maxMegaBytesToFile": 20
+	},
+	"mongoActivate": true
+}

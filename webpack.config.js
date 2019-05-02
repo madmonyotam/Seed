@@ -120,7 +120,7 @@ module.exports = function (env) {
                 minify: true,
                 cache: true,
                 showErrors: true,
-                filename: path.resolve(__dirname, './index.html'),
+                filename: path.resolve(__dirname, './output/index.html'),
                 inject: false,
                 template: path.resolve(__dirname, './index.ejs'), // Load a custom template (ejs by default see the FAQ for details)
             }),

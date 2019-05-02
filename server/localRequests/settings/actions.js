@@ -1,35 +1,11 @@
 'use strict';
-var express = require('express');
 var path = require('path');
 var klaw = require('klaw');
+var modules = require('../../modules');
+var filesHelper = modules.Helpers.FilesHelper;
 var fs = require('fs');
-var winston = require('winston');
-
-var bodyParser = require('body-parser');
-var app = express();
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
-
-const logger = winston.createLogger({
-  transports: [
-    // new winston.transports.Console(),
-    new winston.transports.File({ filename: 'simple_switch_combined.log' })
-  ]
-});
-
-/** winston logger usage:
-// logger.log({
-//   level: 'info',
-//   Name: req.body.fileName,
-//   Body: req.body.text,
-//   Directory: req.body.dir
-// });
-
-**/
-
 var encoding = "utf8";
-var walker, walkerOptions;
+var walker;
 
 module.exports = {
   save: (req, res, configPath) => {
@@ -80,23 +56,65 @@ module.exports = {
 
   },
 
-  load: (res, configPath) => {
+  load: (res, configPath, context) => {
     var config = {};
     if (!configPath || typeof configPath == 'undefined' ) {
       res.status(500).send({ success: false, msg: 'missing config path!' })
       return;
     }
+
+    function createDefaultConfigFolder(callback){
+      let autoConfigFolder = path.resolve(process.rootFolder, "autoConfigFolder/");
+      context.path = autoConfigFolder;
+
+      let themeFolderPath = path.resolve(autoConfigFolder, "theme/");
+      let themeFilePath = path.resolve(themeFolderPath, "default.json");
+
+      let iconFolderPath = path.resolve(autoConfigFolder, "icons/");
+      let iconFilePath = path.resolve(iconFolderPath, "default.json");
+
+      if (!fs.existsSync(autoConfigFolder)){
+          fs.mkdirSync(autoConfigFolder);
+      }
+
+      if (!fs.existsSync(themeFolderPath)){
+        fs.mkdirSync(themeFolderPath);
+      }
+
+      if (!fs.existsSync(iconFolderPath)){
+        fs.mkdirSync(iconFolderPath);
+      }
+
+     if (!fs.existsSync(themeFilePath)){
+        filesHelper.saveFile(themeFilePath,'{"colors":"works"}',()=>{
+
+            if (!fs.existsSync(iconFilePath)){
+              filesHelper.saveFile(iconFilePath,'{"icons":"works"}',()=>{
+                start(autoConfigFolder,callback)   
+              })
+            }
+         
+        })
+     }
+    
+    }
+
     function start(_path, callback){
-      var directories = [], newfiles = [], filePath, dirs;
+      var directories = [], newfiles = [], filePath, dirs; 
       walker = klaw(_path);
 
       walker.on('data', item => {
         if (item.stats.isDirectory()) {
-          directories.push( path.basename(item.path) )
+          let basename = path.basename(item.path); 
+          // if(`${basename}/`  !== configPath){
+          if (configPath.indexOf(basename) === -1) {
+            directories.push( path.basename(item.path) )
+          }
         }
       })
       .on('error', (err, item) => {
-        res.status(400).send({ success: false, msg: err.message });
+        createDefaultConfigFolder(callback);
+        // res.status(400).send({ success: false, msg: err.message });
       })
       .on('end', () => {
         dirs = createDir(directories);
@@ -105,7 +123,9 @@ module.exports = {
     };
 
     function createDir(directories){
-      directories = directories.filter( dir => { return dir !== 'config' });
+      // directories = directories.filter( dir => { return dir !== 'config' });
+      directories = directories.filter( dir => { return configPath.indexOf(dir) === -1 });
+      
       directories.map( dir => {
         config = Object.assign(config, { [dir]: {} })
       });
@@ -127,6 +147,7 @@ module.exports = {
     };
 
     function readFile(key, filePath, resolve){
+      
       var files = [], extracted, modified = false, fileName = path.basename(filePath);
       walker = klaw(filePath);
       walker.on('data', item => {
@@ -146,6 +167,7 @@ module.exports = {
       var filePath, promises = [], filePromises = [];
       for (var idx in dirs) {
           filePath = configPath+idx;
+
           promises.push(
             new Promise ( (resolve, reject) => {
               getFile(idx, filePath, resolve);
@@ -167,7 +189,7 @@ module.exports = {
           }
         }
         Promise.all(filePromises).then( _fileResults => {
-          res.status(200).send({ success: true, msg: 'loaded succesfully !', data: _fileResults })
+          res.status(200).send({ success: true, msg: 'loaded successfully !', data: _fileResults, successPath: configPath })
         });
       })
     });

@@ -1,72 +1,88 @@
 var express = require('express');
 var path = require('path');
-var fs = require('fs');
-var log = require('node-pretty-log');
 var bodyParser = require('body-parser');
 var app = express();
+var modules = require('./modules'); 
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-app.use('/', express.static(path.resolve(__dirname, '../')));
+/* start socket io */
+// var http = require('http');
+// var server = http.Server(app);
+// var socket = require('socket.io')(server);
+// server.listen(8080);
+/* end socket io */
 
-var fsTools = require('./fsTools/fileSystem.js');
-var mongoActions = require('./mongo/actions.js');
-var configPath;// = 'source/plugins/settings/config/';
-// pass -cp to node server command
-var args = {};
-for (var i = 0; i < process.argv.length; i++) {
-  if (process.argv[i].indexOf('-') === 0) {
-    args[process.argv[i]] = process.argv[i + 1] || true;
-  }
+var localRequests = require('./localRequests');
+var Logger = require('./logger/constructor.js');
+var Helper = modules.Helpers.Helper;
+var FilesHelper = modules.Helpers.FilesHelper;
+
+var args = Helper.getArgs();
+var activateMongo = args['--mongo'] || args['-M'] || true
+var rootFolder = path.resolve(__dirname, "../");
+
+process.rootFolder = rootFolder;
+
+var config = Helper.getServerConfig();
+config.mongoActivate = Boolean(activateMongo);
+
+var port = config.port;
+
+var projects = config.projects;
+var defaultProject = projects[ projects.default ];
+
+var formattedPath = path.format({
+  root: defaultProject.root
+});
+
+// var pathForConfig = path.resolve(rootFolder, `${configPath}/serverConfig/default.json`);
+
+// FilesHelper.mergeFile(pathForConfig,config,(margeConfig)=>{
+    // console.log(margeConfig);
+
+    var logger = setLogger(config);
+    logger.log('success','config has been save to system');
+ 
+    app.use(bodyParser.json({limit: '500kb'})); // support json encoded bodies
+    app.use(bodyParser.urlencoded({ extended: true }));
+    
+    localRequests.settings.activate(app, formattedPath, defaultProject.mongo);
+    localRequests.access.activate(app);
+
+    app.listen(port, ()=> {
+        logger.log('info',`running on port ${ port }`);
+        // logger.log('success',  `Mongo activated`);
+      })
+      .setTimeout(config.proxyTimeout);
+    
+    var helpArgs = args['-h'] || args['--help'];
+    if (helpArgs) help();
+
+// });
+
+function setLogger(config){
+
+  var loggerConfig = config.logger;
+  logger = new Logger(loggerConfig);
+  process.logger = logger;
+  return logger;
+
 }
 
-var configPath = args['-cp'] || args['--config-path'];
-var helpArgs = args['-h'] || args['--help'];
-var mongoArgs = args['-m'] || args['--mongo'];
-
-if (mongoArgs) mongoActions.activate(app, null)
-
 function help() {
-  console.log(`
-Node Server:
+    console.log(`
 
---help, -h                          This help doc.
+  Node Server:
 
---mongo, -m                         Activate mongodb.
+      --help, -h                          This help doc.
 
---config-path, -cp                  configuration folder, relative to 'root' folder,
-                                    exapmle: source/path/to/config.
-                                    this app uses: source/plugins/settings/config/
+      --ip, -ip                           Example: 'node server --ip master'
+
+      --mongo, -M                         Activate MongoDB Client. 
+                                          Example: 'node server --mongo' 
+
+      --config-path, -cp                  configuration folder, relative to 'root' folder,
+                                          Example: source/path/to/config.
+                                          this app uses: config/
   `);
   // process.exit();
 };
-
-if (helpArgs) help()
-
-app.post('/saveFile', (req, res) => {
-  fsTools.saveFile(req, res, configPath);
-});
-
-app.post('/saveSettings', (req, res) => {
-  fsTools.save(req, res, configPath);
-});
-
-// app.post('/loadSettings', (req, res) => {
-//   fsTools.load(res, configPath);
-// });
-
-app.post('/loadFile', (req, res) => {
-  fsTools.loadFile(req, res, configPath);
-});
-
-let port = 5000;
-
-app.listen(port, ()=> {
-  if (!configPath) configPath = 'source/plugins/settings/config/';
-
-  help()
-
-  if (mongoArgs) log('info', '--', 'Mongodb activated')
-  log('success', `running port ${port}`) 
-
-})
