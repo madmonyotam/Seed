@@ -51,6 +51,10 @@ module.exports = {
                   {
                       label: core.translate('Examples'),
                       view: '/examples'
+                  },
+                  {
+                      label: core.translate('Settings'),
+                      view: '/settings/themes'
                   }
                 ]
               }

@@ -30,6 +30,7 @@ function loadUiPlugins() {
         require('./plugins/Inputs'),
         require('./plugins/Navigation'),
         require('./plugins/Project'),
+        require('./plugins/Settings'),
     
     ]);
 }

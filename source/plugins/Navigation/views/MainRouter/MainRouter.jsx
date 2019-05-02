@@ -9,9 +9,9 @@ module.exports = {
         initLoading: ['initLoading']
     },
 
-    dependencies: ['Project.NewProject','Examples.Examples','Layouts.Absolute'],
+    dependencies: ['Settings.View','Project.NewProject','Examples.Examples','Layouts.Absolute'],
 
-    get(NewProject, Examples, Absolute) {
+    get(Settings, NewProject, Examples, Absolute) {
 
         var core = this;
 
@@ -77,6 +77,7 @@ module.exports = {
                             <Route path="/" exact component={ this.WelcomeRender } />
                             <Route path="/new-project" component={ NewProject } />
                             <Route path="/examples" component={ Examples } />
+                            <Route path="/settings" component={ Settings } />
                         </Switch>
                     </Absolute>
                 )

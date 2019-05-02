@@ -1,0 +1,11 @@
+$bgColor : #ffffff;
+
+.selected_triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent $bgColor transparent transparent;
+    position: absolute;
+    right: 0px;
+}
