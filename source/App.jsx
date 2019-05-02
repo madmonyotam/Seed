@@ -36,7 +36,9 @@ function loadUiPlugins() {
 }
 
 function getRootWithRouter(Root) {
-    let root = (props)=>{ return <Root tree={seed.tree} location={props.location.pathname} /> }
+    let root = (props) => { 
+      return <Root tree={seed.tree} location={props.location.pathname} /> 
+    }
 
     return (
         <HashRouter>

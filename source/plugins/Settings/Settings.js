@@ -14,6 +14,7 @@ module.exports = {
     ],
     views: [
       require('./views/root'), 
+      require('./views/editors/code.editor'), 
     ],
 
     init(definition, done) {

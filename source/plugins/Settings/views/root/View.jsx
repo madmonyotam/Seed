@@ -1,10 +1,10 @@
 import { Route, Link, Switch } from "react-router-dom";
-import { find } from 'lodash';
+import { find , uniqueId } from 'lodash';
 module.exports = {
     name: "View",
     description: '',
-    dependencies: [ 'Navigation.RoutesMenu', 'Settings.FloatingMenu'],
-    get( RoutesMenu, FloatingMenu ) {
+    dependencies: [ 'Navigation.RoutesMenu', 'Settings.CodeEditor', 'Settings.FloatingMenu'],
+    get( RoutesMenu, CodeEditor, FloatingMenu ) {
         var core = this;
 
         var { React, PropTypes, Branch, ComponentMixin } = core.imports;
@@ -25,9 +25,7 @@ module.exports = {
             componentWillMount () {
             },
 
-            componentDidMount() { 
-              // console.debug('this.cursor.currentExample.get() => ', this.cursor.currentExample.get());
-              // console.debug('this.state => ', this.state);
+            componentDidMount() {  
               let { menu } = this.state;
               if (menu) {
                 this.buildRoutes(menu)
@@ -42,7 +40,8 @@ module.exports = {
                 return {
                   path: `${ match.path }/${ routeKey }`,
                   label: routeKey,
-                  view: undefined
+                  view: undefined,
+                  key: routeKey,
                 }
               })
               this.setState({
@@ -76,7 +75,12 @@ module.exports = {
             },  
             
             ComponentRender(routeName){
-              return <div style={{ padding: 15 }}> { core.translate(routeName) } </div>
+              let { menu, activeRoute } = this.state;
+              return (
+                <div style={{ height: '100%', width: '100%', padding: 10 }}>
+                  <CodeEditor data={ menu[routeName] } parentKey={ activeRoute.key } userID={ uniqueId('user_id_')  } />
+                </div>
+              )
             },
 
             onRouteChange(route){ ;
@@ -86,7 +90,7 @@ module.exports = {
             renderRouteComponent(route, key){
               return <Route key={ key } 
                             path={ route.path } 
-                            component={ route.view || this.ComponentRender.bind(this, route.label) } /> 
+                            component={ this.ComponentRender.bind(this, route.key) } /> 
             },
 
             render() { 
