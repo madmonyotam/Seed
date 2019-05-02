@@ -25,7 +25,11 @@ module.exports = {
 
             propsTypes: {
               data: PropTypes.object,
-              parentKey: PropTypes.string
+              parentKey: PropTypes.string,
+              fontSize: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+              ])
             },
 
             cursors: {
@@ -34,6 +38,7 @@ module.exports = {
 
             getDefaultProps(){
                 return {
+                  fontSize: 13,
                   data: {},
                   parentKey: ''
                 };
@@ -98,7 +103,7 @@ module.exports = {
                   height: '100%',
                   width: '100%',
                   borderRadius: 4,
-                  font: `14px/normal 'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', 'source-code-pro', monospace`
+                  fontFamily: `'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', 'source-code-pro', monospace`
                 }
               }
               return styles[propName]
@@ -160,6 +165,7 @@ module.exports = {
                         mode={ 'json' }
                         theme={ 'clouds_midnight' }
                         wrapEnabled={ true }
+                        fontSize={ this.props.fontSize }
                         debounceChangePeriod={ 150 }
                         value={ data != null ? `${data}` : '' }
                         editorProps={{ $blockScrolling: Infinity }}

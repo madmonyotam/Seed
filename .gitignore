@@ -20,3 +20,4 @@ server/config/serverConfig.json
 logs/error.csv
 *.csv
 logs/system.log
+server/config/serverConfig.json

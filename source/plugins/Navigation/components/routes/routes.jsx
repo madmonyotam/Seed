@@ -26,7 +26,7 @@ module.exports = {
 
             propsTypes: {
               routes: PropTypes.array.isRequired,
-              activeRoute: PropTypes.bool,
+              activeRoute: PropTypes.object,
               onRouteChange: PropTypes.func,
             },
 
@@ -37,28 +37,23 @@ module.exports = {
             }, 
 
             styles(s) {
-              let flex = {
-                display: 'flex',
-                flexDirection: 'column'
+              
+              let styles = {
+                container: {
+                  height: '100%',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                  padding: '0 0 0 5px',
+                  transition: 'all .25s ease-out',
+                  background: units.colors.blue015,
+                  maxWidth: 185,
+                  Width: 185,
+                  minWidth: 185,
+                }, 
               }
-                let styles = {
-                    container: {
-                      height: '100%',
-                      alignItems: 'flex-start',
-                      justifyContent: 'flex-start',
-                      padding: '0 0 0 5px',
-                      transition: 'all .25s ease-out',
-                      background: units.colors.blue015
-                    }, 
                 
-                }
-                
-                return(styles[s]);
+              return(styles[s]);
             },  
-
-            getHash(){
-              return location.hash.split('#')[1];
-            },
 
             handlRouteChange(route){
               if (this.props.onRouteChange) this.props.onRouteChange(route)
@@ -82,7 +77,7 @@ module.exports = {
               let { routes } = this.props;
 
               return (
-                <Column style={ this.styles('container') } >  
+                <Column style={ this.styles('container') } width={185}>  
                   { routes && routes.length ? routes.map(this.renderLink) : core.translate('Missing Routes!') }
                 </Column>
               );
