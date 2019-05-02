@@ -1,4 +1,5 @@
 node_modules/
+logs/
 output/build/main.bundle.js
 package-lock.json
 
@@ -15,3 +16,7 @@ source/plugins/settings/config/dimensions/modified\.json
 npm-debug.log*
 
 mongoRun\.js
+server/config/serverConfig.json
+logs/error.csv
+*.csv
+logs/system.log

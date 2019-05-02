@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 require('./triangle.scss')
 module.exports = {
-    name: 'ItemsMenu',
+    name: 'RoutesMenu',
+    description: 'Simple List Route Menu',
     dependencies: ['Layouts.Row', 'Layouts.Column', 'Simple.Label'],
     get(Row, Column, Label) {
 
@@ -24,17 +25,17 @@ module.exports = {
         return {
 
             propsTypes: {
+              routes: PropTypes.array.isRequired,
+              activeRoute: PropTypes.bool,
+              onRouteChange: PropTypes.func,
             },
 
             getDefaultProps() {
-                return { };
-            },
-
-            getInitialState(){
-              return {
-                routes: ['themes', 'icons']
-              }
+                return { 
+                  routes: [ ]
+                };
             }, 
+
             styles(s) {
               let flex = {
                 display: 'flex',
@@ -59,13 +60,18 @@ module.exports = {
               return location.hash.split('#')[1];
             },
 
-            renderLink(path, key){
-              let fullPath = `/settings/${ path }`;
-              let isActive = fullPath === this.getHash()
+            handlRouteChange(route){
+              if (this.props.onRouteChange) this.props.onRouteChange(route)
+            },
+
+            renderLink(route, key){
+              let { path, label } = route;
+              let isActive = route === this.props.activeRoute;
+
               return (
-                <Link key={ key } to={ fullPath } style={{ textDecoration: 'unset' }}>
-                  <Row boxShadow={ false } >
-                    <Label size={13} weight={500} width={'100%'} color={ units.colors.white } label={ core.translate(path).toUpperCase() } />
+                <Link key={ key } to={ path } style={{ textDecoration: 'unset' }}>
+                  <Row boxShadow={ false } onClick={ e => { this.handlRouteChange(route) } }>
+                    <Label size={13} weight={500} width={'100%'} color={ units.colors.white } label={ core.translate(label).toUpperCase() } />
                     <Triangle active={ isActive } />
                   </Row>
                 </Link>
@@ -73,11 +79,11 @@ module.exports = {
             },
 
             render() {
-              let { routes } = this.state;
+              let { routes } = this.props;
 
               return (
                 <Column style={ this.styles('container') } >  
-                  { routes.map(this.renderLink) }
+                  { routes && routes.length ? routes.map(this.renderLink) : core.translate('Missing Routes!') }
                 </Column>
               );
             }

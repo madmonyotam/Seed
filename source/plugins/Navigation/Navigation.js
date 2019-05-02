@@ -4,7 +4,8 @@ module.exports = {
     tree: require('./tree.js'),
     
     components: [
-      require('./components/top')
+      require('./components/top'),
+      require('./components/routes')
     ], 
 
     views: [

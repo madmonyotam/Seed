@@ -6,7 +6,7 @@
 	"projects": {
 		"default": "seed",
 		"seed": {
-			"root": "C:/repositories/seed/config/",
+			"root": "C:/Users/zzalostzer/Documents/git/Seed/config/",
 			"mongo": ""
 		}
 	},

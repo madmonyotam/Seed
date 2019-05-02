@@ -10,7 +10,6 @@ module.exports = {
     // ],
 
     components: [
-      require('./components/menus/items'), 
       require('./components/menus/floating'), 
     ],
     views: [
