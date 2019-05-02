@@ -31,6 +31,7 @@ function loadUiPlugins() {
         require('./plugins/Navigation'),
         require('./plugins/Project'),
         require('./plugins/Settings'),
+        require('./plugins/Decorators'),
     
     ]);
 }
