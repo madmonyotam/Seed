@@ -54,7 +54,7 @@ module.exports = {
                   },
                   {
                       label: core.translate('Settings'),
-                      view: '/settings/themes'
+                      view: '/settings'
                   }
                 ]
               }
@@ -100,8 +100,7 @@ module.exports = {
 
             renderNavButton(but, key){
               let { activeView } = this.props;
-              let isActive = (activeView === but.view);
-
+              let isActive = (activeView === but.view) || activeView.indexOf(but.view) > -1;
               return (
                 <Link key={ key } to={ but.view } style={{ textDecoration: 'unset', marginLeft: '15px' }} >
                   <Button onClick={ e => { this.setActiveItem(but.view) } }

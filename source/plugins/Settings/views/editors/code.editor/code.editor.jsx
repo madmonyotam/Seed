@@ -98,7 +98,7 @@ module.exports = {
                   height: '100%',
                   width: '100%',
                   borderRadius: 4,
-                  // boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.16)'
+                  font: `14px/normal 'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', 'source-code-pro', monospace`
                 }
               }
               return styles[propName]
