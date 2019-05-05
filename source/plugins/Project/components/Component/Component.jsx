@@ -1,6 +1,4 @@
 module.exports = {
-    name: "Component",
-    description: 'This is an example of a component',
     dependencies: [],    
     get() {
         
@@ -10,9 +8,6 @@ module.exports = {
 
         return {
             mixins: [ ComponentMixin ],
-
-            componentWillUnmount() {
-            },
 
             propsTypes: {
                 text: PropTypes.string,

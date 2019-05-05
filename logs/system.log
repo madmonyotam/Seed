@@ -30,3 +30,11 @@ info: config has been save to system
 info: running on port 5000
 info: config has been save to system
 info: running on port 5000
+info: config has been save to system
+info: running on port 5000
+error: uncaughtException: ENOENT: no such file or directory, stat 'c:\repositories\Seed\autoConfigFoldericons'
+Error: ENOENT: no such file or directory, stat 'c:\repositories\Seed\autoConfigFoldericons' {"error":{"errno":-4058,"code":"ENOENT","syscall":"stat","path":"c:\\repositories\\Seed\\autoConfigFoldericons"},"stack":"Error: ENOENT: no such file or directory, stat 'c:\\repositories\\Seed\\autoConfigFoldericons'","exception":true,"date":"Sun May 05 2019 12:07:19 GMT+0300 (Jerusalem Daylight Time)","process":{"pid":10284,"uid":null,"gid":null,"cwd":"c:\\repositories\\Seed","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v8.11.4","argv":["C:\\Program Files\\nodejs\\node.exe","c:\\repositories\\Seed\\server"],"memoryUsage":{"rss":45215744,"heapTotal":20832256,"heapUsed":18302984,"external":29625088}},"os":{"loadavg":[0,0,0],"uptime":19612.8992915},"trace":[]}
+error: uncaughtException: ENOENT: no such file or directory, stat 'c:\repositories\Seed\autoConfigFoldertheme'
+Error: ENOENT: no such file or directory, stat 'c:\repositories\Seed\autoConfigFoldertheme' {"error":{"errno":-4058,"code":"ENOENT","syscall":"stat","path":"c:\\repositories\\Seed\\autoConfigFoldertheme"},"stack":"Error: ENOENT: no such file or directory, stat 'c:\\repositories\\Seed\\autoConfigFoldertheme'","exception":true,"date":"Sun May 05 2019 12:07:19 GMT+0300 (Jerusalem Daylight Time)","process":{"pid":10284,"uid":null,"gid":null,"cwd":"c:\\repositories\\Seed","execPath":"C:\\Program Files\\nodejs\\node.exe","version":"v8.11.4","argv":["C:\\Program Files\\nodejs\\node.exe","c:\\repositories\\Seed\\server"],"memoryUsage":{"rss":45256704,"heapTotal":20832256,"heapUsed":18341960,"external":29625088}},"os":{"loadavg":[0,0,0],"uptime":19612.9052921},"trace":[]}
+info: config has been save to system
+info: running on port 5000

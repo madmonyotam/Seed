@@ -23,12 +23,12 @@ module.exports = {
           },
 
           render() {
-            let { code, scheme, context, children, codeHeight, exampleHeight } = this.props;
+            let { code, scheme, context, children, codeHeight, exampleHeight, style } = this.props;
               
               return (
                   <ExampleWrapper CodeSnippet={ code } codeHeight={ codeHeight } exampleHeight={ exampleHeight }  >
                       <ControlWrapper  scheme={ scheme } context={context} />
-                      <ComponentWrapper>
+                      <ComponentWrapper  style={style}>
                           { children }
                       </ComponentWrapper>
                   </ExampleWrapper>

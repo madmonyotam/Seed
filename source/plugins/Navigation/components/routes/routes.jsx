@@ -46,24 +46,9 @@ module.exports = {
                   padding: '0 0 0 5px',
                   transition: 'all .25s ease-out',
                   background: units.colors.blue015,
-                  maxWidth: 185,
-                  Width: 185,
                   minWidth: 185,
-                }, 
-              }
-                let styles = {
-                    container: {
-                      height: '100%',
-                      minWidth: 185,
-                      maxWidth: 185,
-                      width: 185,
-                      alignItems: 'flex-start',
-                      justifyContent: 'flex-start',
-                      padding: '0 0 0 5px',
-                      transition: 'all .25s ease-out',
-                      background: units.colors.blue015
-                    }, 
                 }
+              }
                 
               return(styles[s]);
             },  

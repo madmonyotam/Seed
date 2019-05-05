@@ -12,45 +12,31 @@ module.exports = {
         return {
             mixins: [ ComponentMixin ],
 
-            componentWillUnmount() {
-            },
-
             propsTypes: {
-                text: PropTypes.string,
+                color: PropTypes.string,
             },
 
             getDefaultProps(){
                 return {
-                    text: core.translate('my first core component'),
-                    text: 'my first core component',
+                    color: "#ffffff",
+                    animationSpeed: 750
                 };
             },
             
             getInitialState() {
                 return {
-                    hover: false,
                     active: false,
-                    backgroundColor: 'grey',
-                    count:0
+                    count:0,
+                    spanStyles: {}
                 };
             },
 
             componentDidMount() {
-                let { children } = this.props;
-                let { innerComponent } = this.state;
-
-                
-                let ripple = ReactDOM.findDOMNode(this);
-                let backgroundColor = ripple.children[0].style.backgroundColor;
-                this.setState({backgroundColor})
-            },
-
-            initUnits(){
-                this.textColor =  core.theme('colors.dark');
+                this.clean = false;
             },
 
             styles(s){
-                let { active, backgroundColor, hover } = this.state;
+                let { color, animationSpeed } = this.props;
 
 
                 const styles = {
@@ -58,8 +44,8 @@ module.exports = {
                         borderRadius: "100%",
                         position: "absolute",
                         opacity: 0,
-                        backgroundColor: "#ffffff",
-                        animation: "ripple 750ms",
+                        backgroundColor: color,
+                        animation: `ripple ${animationSpeed}ms`,
                     },
                     rippleCont: {
                         position: 'absolute',
@@ -77,26 +63,27 @@ module.exports = {
                 return(styles[s]);
             },
 
-            hoverOn(){
-                this.setState({hover:true});
-            },
-
-            hoverOff(){
-                this.setState({hover:false});
-            },
-
             activeOn(e){
+                this.clean = Math.random();
                 this.setState({active:true});
                 this.showRipple(e);
             },
 
             activeOff(e){
+                var clean = this.clean;
                 this.setState({active:false});
+                setTimeout(() => {
+                    if(clean === this.clean){
+                        this.setState({spanStyles:{}});
+                    }
+                }, 2000);
             },
 
-            showRipple(e,active){
+            showRipple(e){
                 const rippleContainer = e.currentTarget;
-                const size = rippleContainer.offsetWidth;
+                const wSize = rippleContainer.offsetWidth;
+                const hSize = rippleContainer.offsetHeight;
+                const size = hSize > wSize ? hSize : wSize;
                 const pos = rippleContainer.getBoundingClientRect();
                 const x = e.pageX - pos.x - (size / 2);
                 const y = e.pageY - pos.y - (size / 2);
@@ -111,7 +98,7 @@ module.exports = {
             },
             
             renderRippleSpan() {
-                const {active,spanStyles = {}} = this.state;
+                const {spanStyles} = this.state;
                 const spanArray = Object.keys(spanStyles);
 
                 if (spanArray && spanArray.length > 0) {
@@ -131,11 +118,10 @@ module.exports = {
                 return (
                     <div style={this.styles('wrapper')} 
                         onMouseDown={this.activeOn} 
-                        onMouseUp={this.activeOff} 
-                        onMouseEnter={this.hoverOn} 
-                        onMouseLeave={this.hoverOff} >
+                        onMouseUp={this.activeOff}>
 
                         { children }
+                        
                         <div style={this.styles('rippleCont')}>
                            { this.renderRippleSpan() }
                         </div>

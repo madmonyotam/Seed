@@ -1,7 +1,7 @@
 
 module.exports = {
-    dependencies: ['Layouts.Row','Simple.Label', 'Examples.ExampleHelper','Examples.SimpleExample','Decorators.Ripple'],
-    get(Row, Label, ExampleHelper, SimpleExample, Ripple) {
+    dependencies: ['Layouts.Center','Examples.SimpleExample','Decorators.Ripple'],
+    get(Center, SimpleExample, Ripple) {
 
         var core = this;
 
@@ -12,41 +12,50 @@ module.exports = {
 
             propScheme(){ 
                 return {
-                    size: { type: 'number' },
-                    weight: { type: 'number' },
-                    width: { type: 'default' },
-                    label: { type: 'default' },
                     color: { type: 'default' },
+                    animationSpeed: { type: 'number'}
                 }
             },
 
             getInitialState() {
-                let defaultProps = Label.getDefaultProps();
+                let defaultProps = Ripple.getDefaultProps();
                 return defaultProps;
             },
 
             getCode(){
-                let { size, weight, width, label, color } = this.state;
+                let { color, animationSpeed } = this.state;
 
                 return (`
-<Row boxShadow={true} >
-    <Label size={${size}} weight={${weight}} width={${width}} label={${label}} color={${color}}/>
-</Row>
+<Ripple color={${color}} animationSpeed={${animationSpeed}}>                            
+    <Center height={100} width={100} color={'#ddd'}>
+        <span>{core.translate('ripple')}</span>
+    </Center>
+</Ripple>
                 `)
             },
 
             render() {
-                let { size, weight, width, label, color } = this.state;
-                width = ExampleHelper.ifNumber_Convert(width);
-                size = ExampleHelper.ifNumber_Convert(size);
+                let { color, animationSpeed } = this.state;
 
                 return (
-                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
+                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } style={{justifyContent:'space-around'}}>
 
-                        <Ripple>                            
-                            <Row boxShadow={true} height={100} width={100} color={'blue'} >
-                                <Label label={'ripple'} color={color}/>
-                            </Row>
+                        <Ripple color={color} animationSpeed={animationSpeed}>                            
+                            <Center height={100} width={100} color={'#ddd'}>
+                                <span>{core.translate('ripple')}</span>
+                            </Center>
+                        </Ripple>
+
+                        <Ripple color={color} animationSpeed={animationSpeed}>                            
+                            <Center height={200} width={200} color={'#ddd'} >
+                                <span>{core.translate('ripple')}</span>
+                            </Center>
+                        </Ripple>
+
+                        <Ripple color={color} animationSpeed={animationSpeed}>                            
+                            <Center height={300} width={300} color={'#ddd'} >
+                                <span>{core.translate('ripple')}</span>
+                            </Center>
                         </Ripple>
             
                     </SimpleExample>
