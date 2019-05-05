@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 require('./ripple.css')
 
 module.exports = {
