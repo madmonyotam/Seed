@@ -86,13 +86,7 @@ module.exports = {
                           label={ label }  
                           theme={ 'filled' }
                           onChange={  this.handleOnChange.bind(this, stateName) }
-                          value={ context.state[stateName] }  />
-                        {/* <Label width={'100%'} label={label}/>
-                        <TextField
-                            id={stateName}
-                            type={ type }
-                            value={ context.state[stateName] }
-                            onChange={ this.handleOnChange.bind(this, stateName) } /> */}
+                          value={ context.state[stateName] }  /> 
                     </React.Fragment> 
                 )
             },
@@ -156,7 +150,7 @@ module.exports = {
 
                 return (
                     <Column boxShadow={true} width={'20%'} style={this.styles('root')}>
-                        { this.renderByScheme() }
+                      { this.renderByScheme() }
                     </Column>
                 )
             }

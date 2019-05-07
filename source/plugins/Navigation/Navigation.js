@@ -5,6 +5,7 @@ module.exports = {
     
     components: [
       require('./components/top'),
+      require('./components/floating'),
       require('./components/routes')
     ], 
 
