@@ -1,3 +1,5 @@
+import { isNaN, toNumber } from 'lodash';
+
 var mixin = (seed)=> {
 
     return ({
@@ -28,7 +30,7 @@ var mixin = (seed)=> {
         },
 
         getNumberFormatted(number, format) {              //numeraljs.com/
-            if(_.isNaN(_.toNumber(number))) return `${number}`;
+            if(isNaN(toNumber(number))) return `${number}`;
             
             let numberString = numeral(number).format(format || "0[.]0a");          
             return (numberString);

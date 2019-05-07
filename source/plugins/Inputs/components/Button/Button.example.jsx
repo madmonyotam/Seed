@@ -12,15 +12,14 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    variant: { type: 'select', group: 'initial', options: [ 'raised', 'outlined', 'flat' ] },
                     theme: { type: 'select', group: 'initial', options: [ 'default', 'primary', 'secondary' ] },
-
-                    ripple: { type: 'boolean', group: 'initial' },
-                    round: { type: 'boolean', group: 'initial' },
+                    variant: { type: 'select', group: 'initial', options: [ 'raised', 'outlined', 'flat' ] },
                     textColor: { type: 'string', group: 'initial' },
                     backgroundColor: { type: 'string', group: 'initial' },
                     width: { type: 'string', group: 'initial' },
                     height: { type: 'string', group: 'initial' },
+                    ripple: { type: 'boolean', group: 'initial' },
+                    round: { type: 'boolean', group: 'initial' },
                     
                 }
             },
@@ -35,14 +34,14 @@ module.exports = {
 
                 return (`
 <Button 
-  theme={ ${theme} } 
-  ripple={ ${ripple} } 
-  textColor={ ${textColor} } 
+  theme={ ${theme} }
+  variant={ ${variant} } 
+  textColor={ ${textColor || '' } } 
+  backgroundColor={ ${backgroundColor || '' } } 
   width={ ${width} }
   height={ ${height} }
-  round={ ${round} }
-  backgroundColor={ ${backgroundColor} } 
-  variant={ ${variant} } >
+  ripple={ ${ripple} } 
+  round={ ${round} } >
     Button
 </Button>
                 `)
@@ -57,18 +56,20 @@ module.exports = {
                         code={ this.getCode() } 
                         scheme={ this.propScheme() } 
                         codeHeight={ '50%' }
-                        exampleHeight={ '50%' } >
-                        
-                      <Button ripple={ ripple } 
+                        exampleHeight={ '50%' } > 
+
+                      <Button
+                              theme={ theme }  
+                              variant={ variant } 
                               textColor={ textColor } 
                               backgroundColor={ backgroundColor } 
                               width={ width }  
                               height={ height }  
-                              round={ round }  
-                              theme={ theme }  
-                              variant={ variant } >
+                              ripple={ ripple } 
+                              round={ round } >
                         Button
                       </Button>  
+
                     </SimpleExample>
                 )
             }

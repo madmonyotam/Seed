@@ -68,16 +68,16 @@ module.exports = {
 
             activeOn(e){
                 this.clean = Math.random();
-                this.setState({active:true});
+                this.safeState({active:true});
                 this.showRipple(e);
             },
 
             activeOff(e){
                 var clean = this.clean;
-                this.setState({active:false});
+                this.safeState({active:false});
                 setTimeout(() => {
                     if(clean === this.clean){
-                        this.setState({spanStyles:{}});
+                        this.safeState({spanStyles:{}});
                     }
                 }, 2000);
             },

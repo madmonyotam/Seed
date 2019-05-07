@@ -1,10 +1,9 @@
-import { Button } from '@material-ui/core'
 import { Link } from "react-router-dom";
 
 module.exports = {
     name: 'Top',
-    dependencies: ['Simple.Label'],
-    get(Label) {
+    dependencies: ['Simple.Label', 'Inputs.Button'],
+    get(Label, Button) {
 
         var core = this;
         var { React, PropTypes } = core.imports;
@@ -13,7 +12,8 @@ module.exports = {
             default: core.theme('colors.default'),
             secondary: core.theme('colors.secondary'),
             primary: core.theme('colors.primary'),
-            white: core.theme('colors.white')
+            white: core.theme('colors.white'),
+            dark: core.theme('colors.dark')
           },
           texts: {
             secondary: core.theme('texts.secondary'),
@@ -103,11 +103,11 @@ module.exports = {
               let isActive = (activeView === but.view) || activeView.indexOf(but.view) > -1;
               return (
                 <Link key={ key } to={ but.view } style={{ textDecoration: 'unset', marginLeft: '15px' }} >
-                  <Button onClick={ e => { this.setActiveItem(but.view) } }
-                          size={ 'small' }
-                          variant={ 'flat' }
-                          style={{ color: isActive ? units.colors.white : units.texts.logo , background: isActive ? units.colors.primary : 'transparent'  }}> 
-                    { but.label } 
+                  <Button onClick={ e => { this.setActiveItem(but.view) } } 
+                          backgroundColor={ isActive ? units.colors.primary : units.colors.dark }
+                          style={{ fontSize: 13, padding: '0 10px' }}
+                          variant={ isActive ? 'flat' : 'raised' } > 
+                    { but.label.toUpperCase() } 
                   </Button>
                 </Link>
               )
@@ -120,12 +120,12 @@ module.exports = {
                 <div style={ this.styles('container') } > 
                   <div key={ 'logo' } onClick={ e => { this.setActiveItem('/') } } >
                     <Link to={'/'} style={ this.styles('logo') }>
-                    <Label size={ 20 } weight={500} width={ '100%' } label={ core.translate('Seed') } color={ units.texts.logo }/>
-                    <Label size={ 14 } weight={400} width={ '100%' } label={ core.translate('Wrapped React Library') } color={ units.texts.logo }/>
+                      <Label size={ 20 } weight={500} width={ '100%' } label={ core.translate('Seed') } color={ units.texts.logo }/>
+                      <Label size={ 14 } weight={400} width={ '100%' } label={ core.translate('Wrapped React Library') } color={ units.texts.logo }/>
                     </Link>
                   </div> 
               
-                  <div>
+                  <div style={{ display: 'flex' }}>
 
                     { navItems.map(this.renderNavButton) }
                   </div>

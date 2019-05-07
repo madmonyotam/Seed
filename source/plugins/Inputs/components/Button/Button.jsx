@@ -147,15 +147,14 @@ module.exports = {
 
               let styles = { 
                 root: {
-                  fontSize: "0.875rem",
-                  fontFamily: "Roboto, Helvetica, Arial",
-                  fontWeight: 400,
+                  fontSize: 14,
+                  fontFamily: 'Roboto, Helvetica, Arial',
+                  fontWeight: 500,
                   lineHeight: 1.5,
                   borderRadius: round ? 4 : 0,
                   height:  Number(height) , 
                   minWidth: Number(width),
-                  width: Number(width),
-                  letterSpacing: "0.01071em",
+                  letterSpacing: '.025em',
                   cursor: 'pointer',
                   transition: 'background 0.15s ease-in-out, color 0.15s ease-in-out, border 0.15s ease-in-out',
                   display: 'flex',
@@ -172,7 +171,7 @@ module.exports = {
                   alignItems: 'inherit',
                   justifyContent: 'inherit',
                   borderRadius: 'inherit',
-                  padding: '5px',
+                  padding: 0
                 } 
               }
 
@@ -240,7 +239,7 @@ module.exports = {
 
             render() {
               return (
-                <div style={ this.styles('root') } onMouseEnter={ this.onMouseEnter } onMouseLeave={ this.onMouseLeave }> 
+                <div style={ this.styles('root') } onMouseEnter={ this.onMouseEnter } onMouseLeave={ this.onMouseLeave } onClick={ this.handleOnClick }> 
                   { this.renderButton() } 
                 </div>
               )
