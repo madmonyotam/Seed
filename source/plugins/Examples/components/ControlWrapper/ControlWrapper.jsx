@@ -99,7 +99,7 @@ module.exports = {
 
             renderSelectField(stateName, type, fullItem){
               let { context } = this.props;
-              let options = fullItem.options ? fullItem.options.map(opt => { return { value: opt, label: opt.toUpperCase } }) : [];
+              let options = fullItem.options ? fullItem.options.map(opt => { return { value: opt, label: opt } }) : [];
               let label = Helper.openCamelCase(stateName); 
 
               return(

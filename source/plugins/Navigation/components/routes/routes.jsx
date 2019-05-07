@@ -10,6 +10,7 @@ module.exports = {
 
         var core = this;
         var { React, PropTypes } = core.imports;
+
         const units = { 
           colors: { 
             blue015: core.theme('colors.blue015'),
@@ -18,7 +19,7 @@ module.exports = {
         }
         
         function Triangle({ active }) {
-          if (!active) return <div />;
+          if (!active) return null
           return <div className={'selected_triangle'} />;
         }
 

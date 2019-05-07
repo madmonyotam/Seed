@@ -1,5 +1,5 @@
 import Downshift from 'downshift';
-import { map, uniqueId } from 'lodash';
+import { map, uniqueId, isEqual } from 'lodash';
 import { Typography } from '@material-ui/core';
 module.exports = {
     name: 'Input',
@@ -21,7 +21,7 @@ module.exports = {
             labelOn: core.theme('texts.primary'),
             labelOff: core.theme('texts.secondary'),
             text: core.theme('texts.default'),
-            highlight: core.theme('colors.blue060'),
+            highlight: '#6B7ADD',
           }
         }
 
@@ -159,7 +159,7 @@ module.exports = {
                     padding: '5px 0',
                     overflow: 'auto', // TODO: change after simple scroller import
                     background: units.colors.white,
-                    boxShadow: ' 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)',
+                    boxShadow: ' 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16)',
                     borderRadius: 3,
                     listStyleType: 'none',
                     marginTop: 10
@@ -174,7 +174,8 @@ module.exports = {
                 },
                 suggestion: {
                   padding: 5, 
-                  fontSize: 12
+                  fontSize: 12,
+                  color: 'inherit'
                 },
                 suffix: {
                   fontSize: 11,
@@ -265,14 +266,14 @@ module.exports = {
             },
 
             renderOption(item, index, { getItemProps, highlightedIndex, selectedItem }){
-              let isSelected = selectedItem === item;
+              
+              let isSelected = isEqual(selectedItem, item) || selectedItem === item;
               let isHigh = highlightedIndex === index;
-
-              const style = () => {
+              const style = () => { 
                 return {
                   ...this.styles('downshiftItem'),
-                  backgroundColor: isHigh || isSelected ? units.colors.highlight : units.colors.white,
-                  color: units.colors.text,
+                  backgroundColor:  isSelected ? units.colors.highlight : units.colors.white,
+                  color: isSelected ? units.colors.white : units.colors.text,
                   fontWeight: isSelected ? 600 : 400,
                 }
               }
