@@ -33,7 +33,7 @@ module.exports = {
                   else if (menu[i][x].fileName.indexOf('default') > -1) config[i] = menu[i][x].data;
                 }
               }
-              console.debug('config => ', config);
+              
               promise.resolve({ config, menu })
             }
           });
