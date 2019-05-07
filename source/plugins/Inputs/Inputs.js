@@ -3,6 +3,7 @@ module.exports = {
     
     components: [
         require('./components/Input'),
+        require('./components/Switch'),
         require('./components/Button'),
     ], 
 
