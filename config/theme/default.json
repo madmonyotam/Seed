@@ -31,6 +31,11 @@
       "secondary": "colors.blue050",
       "disabled": "colors.grey070"
     },
+    "buttons": {
+      "default": "#d8d8d8",
+      "primary": "#6B7ADD",
+      "secondary": "#dd6a6a"       
+    },
     "borders": {
       "default":"colors.grey070"
     },

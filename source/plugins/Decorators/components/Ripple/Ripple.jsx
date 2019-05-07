@@ -13,11 +13,13 @@ module.exports = {
 
             propsTypes: {
                 color: PropTypes.string,
+                wrapperStyle: PropTypes.object,
             },
 
             getDefaultProps(){
                 return {
                     color: "#ffffff",
+                    wrapperStyle: {},
                     animationSpeed: 750
                 };
             },
@@ -35,7 +37,7 @@ module.exports = {
             },
 
             styles(s){
-                let { color, animationSpeed } = this.props;
+                let { color, animationSpeed, wrapperStyle } = this.props;
 
 
                 const styles = {
@@ -45,6 +47,7 @@ module.exports = {
                         opacity: 0,
                         backgroundColor: color,
                         animation: `ripple ${animationSpeed}ms`,
+                        transition: 'opacity 0.15s linear' 
                     },
                     rippleCont: {
                         position: 'absolute',
@@ -55,7 +58,8 @@ module.exports = {
                     },
                     wrapper: {
                         position: 'relative',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        ...wrapperStyle
                     }
                 }
                 
@@ -112,12 +116,13 @@ module.exports = {
             },
 
             render() {
-                let { children } = this.props
+                let { children, color, animationSpeed, wrapperStyle, ...props } = this.props
 
                 return (
                     <div style={this.styles('wrapper')} 
                         onMouseDown={this.activeOn} 
-                        onMouseUp={this.activeOff}>
+                        onMouseUp={this.activeOff}
+                        {...props} >
 
                         { children }
                         

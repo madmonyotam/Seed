@@ -1,6 +1,6 @@
 @keyframes ripple {
     from{
-        opacity: 0.6;
+        opacity: 0.35;
         transform: scale(0.3);
     }
     to {
