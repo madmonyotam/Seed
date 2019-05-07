@@ -13,11 +13,11 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    theme: { type: 'string', group: 'initial' },
-                    //options: { type: 'array' },
+                    theme: { type: 'select', group: 'initial', options: ['filled', 'outlined', 'default'] },
                     label: { type: 'string' },
                     placeholder: { type: 'string' },
                     openOnFocus: { type: 'boolean' },
+                    suggest: { type: 'boolean' , group: 'initial' },
                 }
             }, 
 
@@ -37,7 +37,7 @@ module.exports = {
             },
 
             getCode(){
-                let { options, placeholder, label, openOnFocus, theme } = this.state;
+                let { options, placeholder, label, openOnFocus, theme, suggest } = this.state;
 
                 return (`
 const options = ${JSON.stringify(options, null, 4)}
@@ -46,13 +46,14 @@ const options = ${JSON.stringify(options, null, 4)}
   options={ options }
   placeholder={ ${placeholder} } 
   openOnFocus={ ${openOnFocus} } 
+  suggest={ ${suggest} } 
   label={ ${label} } 
   theme={ ${theme} } />
                 `)
             },
 
             render() {
-                let { type, openOnFocus, options, placeholder, label, theme } = this.state;
+                let { type, suggest, openOnFocus, options, placeholder, label, theme } = this.state;
 
                 return (
                     <SimpleExample 
@@ -66,6 +67,7 @@ const options = ${JSON.stringify(options, null, 4)}
                           placeholder={ placeholder } 
                           openOnFocus={ openOnFocus } 
                           options={ options } 
+                          suggest={ suggest }  
                           label={ label }  
                           value={ '' }
                           theme={ theme } />

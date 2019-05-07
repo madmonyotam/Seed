@@ -1,10 +1,8 @@
-import { TextField } from "@material-ui/core";
-
 module.exports = {
     name: "ControlWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['Examples.SimpleToggle','Simple.Label','Layouts.Row','Layouts.Column','Simple.Helper'],
-    get(SimpleToggle, Label, Row, Column, Helper) {
+    dependencies: ['Examples.SimpleToggle', 'Inputs.Input' ,'Simple.Label','Layouts.Row','Layouts.Column','Simple.Helper'],
+    get(SimpleToggle, Input, Label, Row, Column, Helper) {
 
         var core = this;
 
@@ -74,19 +72,7 @@ module.exports = {
                         <SimpleToggle checked={checked} onChange={ this.handleOnChange.bind(this,stateName) }  />
                     </React.Fragment>   
                 )
-            },
-
-            renderSimple(stateName){
-                let { context } = this.props;
-                let label = Helper.openCamelCase(stateName);
-
-                return(
-                    <React.Fragment>
-                        <Label width={'100%'} label={label}/>
-                        <Label width={64} label={context.state[stateName]}/>
-                    </React.Fragment>   
-                )
-            },
+            }, 
 
             renderTextField(stateName, type){
                 let { context } = this.props;
@@ -94,17 +80,45 @@ module.exports = {
 
                 return(
                     <React.Fragment>
-                        <Label width={'100%'} label={label}/>
+                       <Input 
+                          type={ type } 
+                          placeholder={ stateName } 
+                          label={ label }  
+                          theme={ 'filled' }
+                          onChange={  this.handleOnChange.bind(this, stateName) }
+                          value={ context.state[stateName] }  />
+                        {/* <Label width={'100%'} label={label}/>
                         <TextField
                             id={stateName}
                             type={ type }
                             value={ context.state[stateName] }
-                            onChange={ this.handleOnChange.bind(this,stateName) } />
+                            onChange={ this.handleOnChange.bind(this, stateName) } /> */}
                     </React.Fragment> 
                 )
             },
 
-            renderComponentByType(type, stateName){
+            renderSelectField(stateName, type, fullItem){
+              let { context } = this.props;
+              let options = fullItem.options ? fullItem.options.map(opt => { return { value: opt, label: opt.toUpperCase } }) : [];
+              let label = Helper.openCamelCase(stateName); 
+
+              return(
+                  <React.Fragment>
+                      <Input 
+                        type={ 'autocomplete' } 
+                        placeholder={ stateName } 
+                        label={ label }  
+                        openOnFocus={ true }
+                        theme={ 'filled' }
+                        options={ options }
+                        suggest={ false }
+                        onChange={  this.handleOnChange.bind(this, stateName) }
+                        value={ context.state[stateName] } /> 
+                  </React.Fragment> 
+              )
+            },
+
+            renderComponentByType(type, stateName, defaultItem){
                 let { context } = this.props;
 
                 switch (type) {
@@ -112,13 +126,14 @@ module.exports = {
                         return  this.renderToggle( stateName );
 
                     case 'number': 
-                        return this.renderTextField( stateName, 'number' );
-                    
-                    case 'colorPicker':
-              //          return this.renderSimple( stateName, context );  
-                
+                        return this.renderTextField( stateName, 'number' ); 
+
+                    case 'select':
+                      return this.renderSelectField( stateName, 'autocomplete', defaultItem )
+
+                    // case 'colorPicker':
                     default:
-                    return this.renderTextField( stateName, 'text' );
+                      return this.renderTextField( stateName, 'text' );
                 }
             },
 
@@ -129,10 +144,9 @@ module.exports = {
                 return itemInScheme.map((item,key)=>{
                     let type = item[1].type;
                     let name = item[0];
-
                     return (
-                        <Row height={60} boxShadow={true} key={key} >
-                            { this.renderComponentByType(type, name) }
+                        <Row height={ 'auto' } boxShadow={ false } key={key} >
+                            { this.renderComponentByType(type, name, item[1]) }
                         </Row>
                     )
                 });

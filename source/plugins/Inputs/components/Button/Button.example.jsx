@@ -12,8 +12,9 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    variant: { type: 'string', group: 'initial' },
-                    theme: { type: 'string', group: 'initial' },
+                    variant: { type: 'select', group: 'initial', options: [ 'raised', 'outlined', 'flat' ] },
+                    theme: { type: 'select', group: 'initial', options: [ 'default', 'primary', 'secondary' ] },
+
                     ripple: { type: 'boolean', group: 'initial' },
                     round: { type: 'boolean', group: 'initial' },
                     textColor: { type: 'string', group: 'initial' },

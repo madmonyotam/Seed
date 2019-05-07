@@ -12,7 +12,7 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    theme: { type: 'string', group: 'initial' },
+                    theme: { type: 'select', group: 'initial', options: ['filled', 'outlined', 'default'] },
                     label: { type: 'string' },
                     placeholder: { type: 'string' },
                     type: { type: 'string' },

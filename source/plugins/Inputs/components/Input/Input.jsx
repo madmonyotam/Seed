@@ -39,6 +39,7 @@ module.exports = {
               placeholder: PropTypes.string,
               type: PropTypes.string,
               openOnFocus: PropTypes.bool,
+              suggest: PropTypes.bool, // if TRUE will filter the list 
               theme: PropTypes.oneOf([ 'default', 'outlined', 'filled' ]),
             },
 
@@ -55,6 +56,7 @@ module.exports = {
                 value: '',
                 label: 'label',
                 openOnFocus: false,
+                suggest: true,
                 placeholder: 'placeholder'
               };
             },
@@ -249,14 +251,17 @@ module.exports = {
             handleDownShiftSelect(selection){
               
               if (selection && selection.value) {
-                this.setState({ isDownShiftOpen: false })
+                this.setState({ isDownShiftOpen: false, focused: null });
+                if (this.inputRef && this.inputRef.current) this.inputRef.current.blur()
                 this.handleOnChange(selection.value)
               }
             },
 
             getSuggestions(inputValue){
               let { options } = this.state;
-              return options.filter(item => !inputValue || item.value.toLowerCase().includes(inputValue.toLowerCase())); 
+              let { suggest } = this.props;
+              if (suggest) return options.filter(item => !inputValue || item.value.toLowerCase().includes(inputValue.toLowerCase())); 
+              return options;
             },
 
             renderOption(item, index, { getItemProps, highlightedIndex, selectedItem }){
