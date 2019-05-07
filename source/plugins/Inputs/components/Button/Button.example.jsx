@@ -64,7 +64,7 @@ module.exports = {
                               textColor={ textColor } 
                               backgroundColor={ backgroundColor } 
                               width={ width }  
-                              height={ height }  
+                              height={ height }   
                               ripple={ ripple } 
                               round={ round } >
                         Button

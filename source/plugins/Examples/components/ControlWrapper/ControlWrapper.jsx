@@ -1,8 +1,8 @@
 module.exports = {
     name: "ControlWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['Examples.SimpleToggle', 'Inputs.Input' ,'Simple.Label','Layouts.Row','Layouts.Column','Simple.Helper'],
-    get(SimpleToggle, Input, Label, Row, Column, Helper) {
+    dependencies: ['Inputs.Switch', 'Inputs.Input' ,'Simple.Label','Layouts.Row','Layouts.Column','Simple.Helper'],
+    get(Switch, Input, Label, Row, Column, Helper) {
 
         var core = this;
 
@@ -68,8 +68,8 @@ module.exports = {
 
                 return(
                     <React.Fragment>
-                        <Label width={'100%'} label={label}/>
-                        <SimpleToggle checked={checked} onChange={ this.handleOnChange.bind(this,stateName) }  />
+                        <Label width={'100%'} label={label} weight={ 400 }/>
+                        <Switch size={ 1.75 } checked={checked} onChange={ this.handleOnChange.bind(this,stateName) }  />
                     </React.Fragment>   
                 )
             }, 
@@ -145,7 +145,7 @@ module.exports = {
                     let type = item[1].type;
                     let name = item[0];
                     return (
-                        <Row height={ 'auto' } boxShadow={ false } key={key} >
+                        <Row height={ 'auto' } boxShadow={ false } key={key} style={{ paddingRight: 15 }} >
                             { this.renderComponentByType(type, name, item[1]) }
                         </Row>
                     )

@@ -1,6 +1,13 @@
 import { uniqueId } from 'lodash';
 var tinycolor = require("tinycolor2");
 window.tinycolor = tinycolor;
+
+const colorTheme =  { 
+  default: '#D8D8D8',
+  primary: '#6B7ADD',
+  secondary: '#DD6A6A',
+}
+
 module.exports = {
     name: 'Button',
     description: '',
@@ -17,15 +24,11 @@ module.exports = {
             white: core.theme('colors.white'),
             dark: core.theme('colors.dark')
           },
-          theme : { 
-            default: core.theme('buttons.default'),
-            primary: core.theme('buttons.primary'),
-            secondary: core.theme('buttons.secondary'),
-          },
+          theme : colorTheme,
           hover: {
-            default: tinycolor(core.theme('buttons.default')).darken(10),
-            primary: tinycolor(core.theme('buttons.primary')).darken(10),
-            secondary: tinycolor(core.theme('buttons.secondary')).darken(10),
+            default: tinycolor( colorTheme.default ).darken(10),
+            primary: tinycolor( colorTheme.primary ).darken(10),
+            secondary: tinycolor( colorTheme.secondary ).darken(10),
           }
         }
 
@@ -115,8 +118,7 @@ module.exports = {
               const getStyle = () => {
                 let ops = {
                   backgroundColor: backgroundColor ? backgroundColor : units.theme[theme],
-                  color:tColor
-
+                  color: tColor
                 }
                 if (isOutlined) {
                   ops = {
@@ -145,6 +147,27 @@ module.exports = {
                 return ops 
               }
 
+              const getRippleMargin = () => {
+                if (style) {
+                  let set, fixedStyle;
+                  if (style.hasOwnProperty('padding')) {
+                    set = style.padding.split(' ');
+                    for (let i = 0; i < set.length; i++) {
+                      set[i] = `-${set[i]}`
+                    }
+                    return { margin: set.join(' '), padding: style.padding }
+                  }
+
+                  else if (style.hasOwnProperty('paddingLeft')) {
+                    fixedStyle = { marginLeft: `-${style.paddingLeft}`, paddingLeft: style.paddingLeft }
+                  }
+                  else if (style.hasOwnProperty('paddingRight')) {
+                    fixedStyle = { ...fixedStyle, marginLeft: `-${style.paddingRight}`, paddingRight: style.paddingRight }
+                  }
+                  return fixedStyle;
+                }
+              }
+
               let styles = { 
                 root: {
                   fontSize: 14,
@@ -171,7 +194,7 @@ module.exports = {
                   alignItems: 'inherit',
                   justifyContent: 'inherit',
                   borderRadius: 'inherit',
-                  padding: 0
+                  ...getRippleMargin()
                 } 
               }
 
@@ -179,7 +202,7 @@ module.exports = {
                 if (isOutlined) {
                   return { 
                     backgroundColor : tinycolor(backgroundColor ||  units.theme[theme] ).lighten(100)  ,  
-                    borderColor: tinycolor(backgroundColor ||  units.theme[theme] ).darken(10)  
+                    borderColor: tinycolor(backgroundColor ||  units.theme[theme] ).darken(15)  
                   }
                 } else if (backgroundColor) {
                   return {

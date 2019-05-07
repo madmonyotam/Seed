@@ -70,7 +70,7 @@ module.exports = {
                 let { active } = this.state;
                 let { size, backgroundOff, backgroundOn, circleColorOff, circleColorOn } = this.props;
 
-                let width = size*14;
+                let width = size*14.5;
                 let reduceWidth = size*10;
                 let frontSize = size*10;
 
@@ -87,7 +87,7 @@ module.exports = {
                     },
                     front: {
                         position: 'absolute',
-                        left: active ? width-reduceWidth+5 : -5,
+                        left: active ? width-reduceWidth+5 : -7.5,
                         height: frontSize,
                         width: frontSize,
                         transition: 'all 0.25s linear',
