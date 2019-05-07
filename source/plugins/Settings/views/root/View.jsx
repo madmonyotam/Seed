@@ -27,13 +27,13 @@ module.exports = {
 
             componentDidMount() {  
               let { menu } = this.state;
+              let { match } = this.props; // match.path  = parent route path
               if (menu) {
-                this.buildRoutes(menu)
+                this.buildRoutes(menu,match) 
               }
 
             },
-            buildRoutes(menu){
-              let { match } = this.props; // match.path  = parent route path
+            buildRoutes(menu,match){ 
 
               let menuKeys = Object.keys(menu)
               let routes = menuKeys.map((routeKey)=>{
@@ -54,6 +54,10 @@ module.exports = {
             },
 
             componentWillReceiveProps(nextProps) {  
+              let { menu } = this.state;
+              let { match } = this.props;
+
+              if(nextProps.match !== match) this.buildRoutes(menu,nextProps.match);
             }, 
             
             getCurrentRoute(routes){
