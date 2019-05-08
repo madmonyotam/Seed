@@ -9,7 +9,8 @@
     "folderShared": "folder_shared",
     "download": "file_download",
     "upload": "publish",
-    "arrow_right": "arrow_right"
+    "arrow_right": "arrow_right",
+    "clock": "access_time"
   },
   "notify":{
     "error": "error",

@@ -1,4 +1,8 @@
 module.exports = {
-  super: {},
-  new: { }
+  editor: {
+    cache: undefined
+  }
+  // super: {},
+  // new: { }
+
 }

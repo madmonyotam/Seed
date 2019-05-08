@@ -1,5 +1,5 @@
 import { uniqueId } from 'lodash';
-var tinycolor = require("tinycolor2");
+var tinycolor = require('tinycolor2');
 window.tinycolor = tinycolor;
 
 const colorTheme =  { 
@@ -26,9 +26,9 @@ module.exports = {
           },
           theme : colorTheme,
           hover: {
-            default: tinycolor( colorTheme.default ).darken(10),
-            primary: tinycolor( colorTheme.primary ).darken(10),
-            secondary: tinycolor( colorTheme.secondary ).darken(10),
+            default: tinycolor( colorTheme.default ).darken(7),
+            primary: tinycolor( colorTheme.primary ).darken(7),
+            secondary: tinycolor( colorTheme.secondary ).darken(7),
           }
         }
 
@@ -40,6 +40,7 @@ module.exports = {
               style: PropTypes.object,
               ripple: PropTypes.bool,
               round: PropTypes.bool,
+              active: PropTypes.bool,
               textColor: PropTypes.string,
               backgroundColor: PropTypes.string,
               width: PropTypes.oneOf([ 
@@ -60,6 +61,7 @@ module.exports = {
                 style: {},
                 ripple: true,
                 round: true,
+                active: false,
                 variant: 'outlined',
                 theme: 'default',
                 textColor: undefined,
@@ -104,7 +106,7 @@ module.exports = {
 
 
             styles(s) {
-              let { variant , backgroundColor, textColor, style, theme, ripple, round, height, width } = this.props;
+              let { variant, active, backgroundColor, textColor, style, theme, ripple, round, height, width } = this.props;
               let isFocused = this.getIsFocused();
 
               let isOutlined = variant === 'outlined';
@@ -211,7 +213,7 @@ module.exports = {
                 } else return { backgroundColor: units.hover[theme] }
               }
 
-              if (isFocused) {
+              if (isFocused && !active) {
                 styles.root = {
                   ...styles.root,
                   ...focused() 

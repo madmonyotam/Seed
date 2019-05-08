@@ -81,7 +81,7 @@ module.exports = {
             ComponentRender(routeName){
               let { menu, activeRoute } = this.state;
               return (
-                <div style={{ height: '100%', width: '100%', padding: 10 }}>
+                <div style={{ height: 'calc(100% - 20px)', width: '100%', padding: '0 0 2px 5px' }}>
                   <CodeEditor data={ menu[routeName] } parentKey={ activeRoute.key } userID={ uniqueId('user_id_')  } />
                 </div>
               )
@@ -98,21 +98,20 @@ module.exports = {
             },
 
             render() { 
-              let { routes } = this.state;
-              
+              let { routes, activeRoute } = this.state; 
               return (
 
                   <div id={'Settings_Root'} style={ this.styles('root') }> 
                     
                     <RoutesMenu routes={ routes } 
                                 onRouteChange={ this.onRouteChange } 
-                                activeRoute={ this.state.activeRoute } />
+                                activeRoute={ activeRoute } />
                     
                     <Switch>
                       { routes.map(this.renderRouteComponent) }
                     </Switch>
 
-                    {/* <FloatingMenu /> */}
+                    { activeRoute  ? <FloatingMenu /> : null }
                       
                   </div>
               )

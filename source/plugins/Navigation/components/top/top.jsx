@@ -106,6 +106,7 @@ module.exports = {
                   <Button onClick={ e => { this.setActiveItem(but.view) } } 
                           backgroundColor={ isActive ? units.colors.primary : units.colors.dark }
                           style={{ fontSize: 13, padding: '0 10px' }}
+                          active={ isActive }
                           variant={ isActive ? 'flat' : 'raised' } > 
                     { but.label.toUpperCase() } 
                   </Button>

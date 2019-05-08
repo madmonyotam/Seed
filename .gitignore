@@ -22,3 +22,4 @@ logs/system.log
 
 /source/plugins/settings/config/**/modified.json
 /server/config/serverConfig.json
+config/**/modified.json

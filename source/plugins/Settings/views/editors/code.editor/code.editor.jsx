@@ -5,7 +5,6 @@ import 'brace/mode/javascript';
 import 'brace/mode/json';
 import 'brace/ext/searchbox';
 import 'brace/ext/language_tools';
-import { Paper } from '@material-ui/core';
 
 module.exports = {
     name: "CodeEditor",
@@ -102,7 +101,7 @@ module.exports = {
                 editor: {
                   height: '100%',
                   width: '100%',
-                  borderRadius: 4,
+                  borderRadius: 0,
                   fontFamily: `'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', 'source-code-pro', monospace`
                 }
               }
@@ -116,8 +115,12 @@ module.exports = {
 
               const resetSession = () => {
                 setTimeout(() => {
-                  if (this._aceEditor.getSession().getUndoManager().hasUndo()) {
-                    this._aceEditor.getSession().getUndoManager().reset()
+                  if (this._aceEditor.session.getUndoManager().hasUndo()) {
+                    this._aceEditor.session.insert({
+                      row: this._aceEditor.session.getLength(),
+                      column: 4
+                    }, "\n\n");
+                    this._aceEditor.session.getUndoManager().reset();
                   }
                 }, 250);
               }
@@ -133,10 +136,10 @@ module.exports = {
               this._aceEditor.redo();
             },
 
-            handleSave(){
+            handleSave(e){
               let { parentKey } = this.props;
               let { data } = this.state;
-              core.emit('config:changed', { key: parentKey, data: data, code: true })
+              core.emit('file:save', e, { key: parentKey, data: data, code: true })
             },
 
             handleRestore(){
@@ -151,19 +154,19 @@ module.exports = {
               let UID = parentKey;
               let DATA = newValue;
               let COLLECTION_NAME = userID;
-
+              core.plugins.Settings.set(['editor', 'cache'], { [UID]: newValue });
               // core.setMongoCache(UID, DATA, COLLECTION_NAME);
             },
-
+            
             render() {
               let { data, keyBindings } = this.state;
               return (
-                  <Paper id={'root.codeEditor'} style={{ height: '100%', width: '100%' }}>
+                  <div id={'root.codeEditor'} style={{ height: '100%', width: '100%' }}>
                     <AceEditor
                         ref={ 'aceEditor' }
                         style={ this.styles('editor') }
                         mode={ 'json' }
-                        theme={ 'clouds_midnight' }
+                        theme={ 'xcode' }
                         wrapEnabled={ true }
                         fontSize={ this.props.fontSize }
                         debounceChangePeriod={ 150 }
@@ -174,7 +177,7 @@ module.exports = {
                         enableBasicAutocompletion={ true }
                         enableLiveAutocompletion={ true }
                         name={ '_jsonEditor' } />
-                  </Paper>
+                  </div>
               )
             }
         }

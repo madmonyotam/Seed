@@ -1,9 +1,10 @@
 module.exports = {
     name: 'Settings',
     tree: require('./tree.js'),
-    // actions: [
-    //     // require('./actions/...'), 
-    // ],
+    actions: [
+      require('./actions/save/file'), 
+      require('./actions/save/settings') 
+    ],
 
     // modules: [ 
     //     // require('./modules/...')
