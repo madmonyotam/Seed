@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 var tinycolor = require('tinycolor2');
-import moment from 'moment';
-
+import moment from 'moment'; 
+import { find } from 'lodash';
 module.exports = {
     name: 'FloatingMenu',
     dependencies: ['Simple.Label', 'Inputs.Button', 'Simple.Icon'],
@@ -44,28 +44,31 @@ module.exports = {
 
             getInitialState(){
               return {
-                menuItems: [
-                  {
-                    title: core.translate('Save'),
-                    icon: core.icons('general.save'),
-                    onClick: this.save
-                  },
-                  {
-                    title: core.translate('Load'),
-                    icon: core.icons('general.upload'),
-                    onClick: this.prevent
-                  },
-                  {
-                    title: core.translate('Restore'),
-                    icon: core.icons('notify.error'),
-                    onClick: this.prevent
-                  }
-                ]
+                menuItems: []
               }
             },
 
             componentDidMount() {
               core.on('file:save', this.save)
+              this.setMenuItems([
+                {
+                  title: core.translate('Save'),
+                  icon: core.icons('general.save'),
+                  onClick: this.save
+                },
+                {
+                  title: core.translate('Load'),
+                  icon: core.icons('general.upload'),
+                  subItems: true,
+                  key: 'load',
+                  onClick: this.load
+                },
+                {
+                  title: core.translate('Restore'),
+                  icon: core.icons('notify.error'),
+                  onClick: this.prevent
+                }
+              ])
             },            
 
             componentWillMount() { 
@@ -117,15 +120,65 @@ module.exports = {
               this.setState({ open: false })
             },
 
+            setMenuItems(items){
+              let dir = this.props.parentKey;
+              let { fileMenu } = core.plugins.access.get();
+              let dev = items.map(item => {
+                if (item.subItems && item.key == 'load') {
+                  return {
+                    ...item,
+                    subItems: fileMenu[dir]
+                  }
+                }
+                return item;
+              })
+              this.setState({ menuItems: dev })
+
+            },
+
+            getCachedDirName(){
+              let cache = core.plugins.Settings.get(['editor', 'cache']);
+              let dir = Object.keys(cache)[0];
+              let fileData = Object.values(cache)[0];
+              return { dir, fileData };
+            },
+
+            load(e, data) {
+              // let { fileName } = data;
+              let { menuItems } = this.state;
+              let item = find(menuItems, { key: 'load' }) 
+              let loadItem = item.subItems[0];
+              let fileName = loadItem.fileName;
+              let dir = loadItem.key; 
+              console.debug('loadItem => ', fileName, dir);
+
+              /** 
+              TODO: add some sugar, spice and everything nice!
+                    add other logic once we have simple file menu
+              **/
+
+              /*
+              let { activeTab } = this.state;
+              core.plugins.Settings.run('LoadFile', { fileName, dir })
+                  .then((newFile)=>{
+                    let data = {
+                      fileData: newFile,
+                      dir: activeTab.key,
+                      notify: false
+                    }
+                    core.plugins.Settings.run('saveSettings', data);
+                  });
+
+              },*/
+            },
+
             save(e, data){
               /** 
               TODO: add some sugar, spice and everything nice!
                     add better module for saving instances.
                     menu, code , keyboards
               **/ 
-              let cache = core.plugins.Settings.get(['editor', 'cache']);
-              let dir = Object.keys(cache)[0];
-              let fileData = Object.values(cache)[0];
+              let {dir, fileData} = this.getCachedDirName()
               
               if (data && data.code) fileData = JSON.parse(fileData)
 
@@ -138,16 +191,15 @@ module.exports = {
             },
 
             renderItem(item, key) {
-              if (!item) return null;
+              if (!item) return null; 
+               
               return (
-
-                <React.Fragment key={ key }>
-
+                 <React.Fragment key={ key }>
                   <div style={ this.styles('item') } title={ item.title } onClick={ item.onClick } >
                     <Icon color={ units.colors.white } icon={ item.icon } size={ 14 } />
                   </div> 
-
                 </React.Fragment>
+
               )  
             },
 

@@ -45,9 +45,9 @@ module.exports = {
         getInitialFiles(callback) {
           this.plugins.access.run('loadSettings')
               .then(( data ) => {
-                  // let { menu } = data;
+                  let { menu } = data;
                     
-                  // if (menu) { this.plugins.access.set(['fileMenu'], menu); };
+                  if (menu) { this.plugins.access.set(['fileMenu'], menu); };
 
                   if (callback) { callback(data); };
               }).catch(console.error)

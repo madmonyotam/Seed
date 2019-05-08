@@ -111,7 +111,7 @@ module.exports = {
                       { routes.map(this.renderRouteComponent) }
                     </Switch>
 
-                    { activeRoute  ? <FloatingMenu /> : null }
+                    { activeRoute  ? <FloatingMenu parentKey={ activeRoute.key } /> : null }
                       
                   </div>
               )
