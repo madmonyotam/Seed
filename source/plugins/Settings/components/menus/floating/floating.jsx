@@ -4,12 +4,12 @@ import moment from 'moment';
 import { find } from 'lodash';
 module.exports = {
     name: 'FloatingMenu',
-    dependencies: ['Simple.Label', 'Inputs.Button', 'Simple.Icon'],
-    get(Label, Button, Icon) {
+    dependencies: ['Simple.Loader', 'Inputs.Button', 'Simple.Icon'],
+    get(Loader, Button, Icon) {
 
-        var core = this;
-        this.time = moment().format('HH:mm:ss');
+        var core = this; 
         var { React, PropTypes } = core.imports;
+
         var units = { 
           colors: {
             default: core.theme('colors.default'),
@@ -44,7 +44,8 @@ module.exports = {
 
             getInitialState(){
               return {
-                menuItems: []
+                menuItems: [],
+                loading: false
               }
             },
 
@@ -66,7 +67,7 @@ module.exports = {
                 {
                   title: core.translate('Restore'),
                   icon: core.icons('notify.error'),
-                  onClick: this.prevent
+                  onClick: this.restore
                 }
               ])
             },            
@@ -86,13 +87,14 @@ module.exports = {
                 button: { ...flex, justifyContent:'center' },
                 
                 root: {
-                  backgroundColor: tinycolor(units.colors.secondary).darken(15),
+                  backgroundColor: units.colors.dark,
                   padding: '0 10px',
                   position:'absolute',
                   right: 0,
                   left: 190,
                   bottom: 0,
                   height: 22,
+                  zIndex: 5,
                   ...flex,
                   // flexDirection: 'column',
                   justifyContent: 'space-between'
@@ -100,6 +102,13 @@ module.exports = {
 
                 menu: {
                   ...flex,
+                },
+                info: {
+                  ...flex,
+                  position: 'relative',
+                  width: 75,
+                  height: '100%',
+                  justifyContent: 'flex-end',
                 },
                 item: {
                   cursor: 'pointer',
@@ -144,32 +153,45 @@ module.exports = {
             },
 
             load(e, data) {
+              // let { activeTab } = this.state;
               // let { fileName } = data;
+              /** 
+              TODO: add some sugar, spice and everything nice!
+                    add other logic once we have simple file menu
+              **/
+              this.setState({ loading: true })
+
               let { menuItems } = this.state;
               let item = find(menuItems, { key: 'load' }) 
               let loadItem = item.subItems[0];
               let fileName = loadItem.fileName;
               let dir = loadItem.key; 
-              console.debug('loadItem => ', fileName, dir);
+              // console.debug('loadItem => ', fileName, dir);
 
-              /** 
-              TODO: add some sugar, spice and everything nice!
-                    add other logic once we have simple file menu
-              **/
-
-              /*
-              let { activeTab } = this.state;
               core.plugins.Settings.run('LoadFile', { fileName, dir })
                   .then((newFile)=>{
-                    let data = {
-                      fileData: newFile,
-                      dir: activeTab.key,
-                      notify: false
-                    }
-                    core.plugins.Settings.run('saveSettings', data);
+                    console.debug('newFile => ', newFile);
+                    this.setState({ loading: false })
+
+                    // let data = {
+                    //   fileData: newFile,
+                    //   dir: activeTab.key,
+                    //   notify: false
+                    // }
+                    // core.plugins.Settings.run('saveSettings', data);
                   });
+              /*
 
               },*/
+            },
+            restore(e) {
+              let fileName = 'default.json';
+              let dir = this.props.parentKey; 
+              this.setState({ loading: true }) 
+              core.plugins.Settings.run('LoadFile', { fileName, dir })
+                  .then(()=>{
+                    this.setState({ loading: false }) 
+                  }) 
             },
 
             save(e, data){
@@ -178,16 +200,18 @@ module.exports = {
                     add better module for saving instances.
                     menu, code , keyboards
               **/ 
+              this.setState({ loading: true })
               let {dir, fileData} = this.getCachedDirName()
-              
-              if (data && data.code) fileData = JSON.parse(fileData)
-
+              fileData = JSON.parse(fileData)
               let params = {
                 fileData: fileData,
                 dir: dir,
                 notify: true
               }
               core.plugins.Settings.run('SaveSettings', params)
+                  .then( () => {
+                    this.setState({ loading: false })
+                  })
             },
 
             renderItem(item, key) {
@@ -204,7 +228,7 @@ module.exports = {
             },
 
             render() {
-              let { menuItems } = this.state;
+              let { menuItems, loading } = this.state;
 
               return (
                 <div style={ this.styles('root') } 
@@ -213,8 +237,11 @@ module.exports = {
                      
                   <div style={ this.styles('menu') }> { menuItems.map(this.renderItem) }</div>
                    
-                  <div style={ this.styles('item') } title={ moment().format('LLLL') }  >
-                    <Icon color={ units.colors.white } icon={ core.icons('general.clock') }  size={ 14 } />
+                  <div style={ this.styles('info') } >
+                    <div title={ moment().format('LLLL') }>
+                      <Icon color={ units.colors.white } icon={ core.icons('general.clock') }  size={ 14 } />
+                    </div>
+                    <Loader size={ 15 } color={ units.colors.white } show={ loading } />
                   </div>
                   
 
