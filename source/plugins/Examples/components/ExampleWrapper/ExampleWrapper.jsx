@@ -1,5 +1,3 @@
-import { Typography, Paper } from "@material-ui/core";
-
 module.exports = {
     name: "ExampleWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
@@ -8,10 +6,14 @@ module.exports = {
 
         var core = this;
 
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
         return {
-            mixins: [ ComponentMixin ],
+            mixins: [ ComponentMixin, Branch ],
+
+            cursors: {
+                currentExample: ['plugins','Examples','currentExample'],
+            },
 
             componentWillUnmount() {
             },
@@ -84,9 +86,8 @@ module.exports = {
 
             render() {
                 let controllerAndCopmonentMargin = 10;
-                let { snippet, exampleHeight } = this.props;
-                let element = snippet ? snippet.element : null;
-                let props = snippet ? snippet.props : null;
+                let { exampleHeight } = this.props;
+              //  console.log(this.state.currentExample);
 
                 return (
                     <Column width={'100%'} height={'100%'}>
@@ -96,7 +97,6 @@ module.exports = {
                       </Row>
 
                        { this.renderCodeSnippet() } 
-                      {/* <CodeSnippet Element={ element } ElementProps={ props }  /> */}
                     </Column>
                 )
             }

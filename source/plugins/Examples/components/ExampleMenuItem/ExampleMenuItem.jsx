@@ -64,17 +64,6 @@ module.exports = {
           return handleClick(item);
         }
 
-        //openDrawer()
-
-      },
-
-      renderInfoIcon(){
-        let { selected } = this.props;
-        if(!selected) return null
-
-        return(
-          <Icon size={20} color={ this.colors.info } icon={ core.icons('general.info') } />
-        )
       },
 
       render() {
@@ -86,7 +75,6 @@ module.exports = {
                     onClick={this.handleClick}>
             
             <Label label={name}/>
-            { this.renderInfoIcon() }
 
           </MenuItem>
         )
