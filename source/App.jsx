@@ -1,15 +1,15 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-var seed = require('seed');
+import Seed from 'simple-seed';
 import { HashRouter , Route } from "react-router-dom";
 
-seed.getInitialFiles( (DefaultFiles) => {
+Seed.getInitialFiles( (DefaultFiles) => {
 
-    seed.setConfiguration(DefaultFiles.config);
+    Seed.setConfiguration(DefaultFiles.config);
         
     loadUiPlugins();
 
-    seed.require(['Project.Root'],
+    Seed.require(['Project.Root'],
             (Root) => {
                 let root = getRootWithRouter(Root);
                 ReactDom.render( root, document.getElementById('app') );
@@ -20,7 +20,7 @@ seed.getInitialFiles( (DefaultFiles) => {
 
 function loadUiPlugins() {
 
-    seed.CreatePlugins([
+    Seed.CreatePlugins([
         require('./plugins/translate'), 
         require('./plugins/Layouts'),
         require('./plugins/Simple'),
@@ -38,7 +38,7 @@ function loadUiPlugins() {
 
 function getRootWithRouter(Root) {
     let root = (props) => { 
-      return <Root tree={seed.tree} location={props.location.pathname} /> 
+      return <Root tree={Seed.tree} location={props.location.pathname} /> 
     }
 
     return (
