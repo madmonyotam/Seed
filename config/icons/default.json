@@ -1,4 +1,14 @@
 {
+  "connection":{
+    "db": "layers",
+    "power":"power",
+    "power_off":"power_off",
+    "refresh": "sync" 
+  },
+  "files":{
+    "edit": "edit",
+    "copy": "file_copy"
+  },
   "general": {
     "info": "info",
     "save":"save",  
@@ -12,15 +22,19 @@
     "arrow_right": "arrow_right",
     "clock": "access_time"
   },
-  "notify":{
-    "error": "error",
-    "success": "check_circle",
-    "info": "info",
-    "warning": "warning"
-  },
-  "files":{
+  "genie": {
+    "clear": "clear",
+    "mongo": "files.upload",
+    "save": "save",
+    "generate": "play_arrow",
+    "code": "code",
+    "create": "settings",
+    "add": "add",
+    "table": "view_comfy",
+    "upload": "publish",
     "edit": "edit",
-    "copy": "file_copy"
+    "search": "search",
+    "remove": "delete"
   },
   "nav": {
     "home": "home",
@@ -38,14 +52,14 @@
     "right": "keyboard_arrow_right",
     "arrow_right": "arrow_right"
   },
+  "notify":{
+    "error": "error",
+    "success": "check_circle",
+    "info": "info",
+    "warning": "warning"
+  },
   "panel":{
     "expandMore": "expand_more",
     "expandLess": "expand_less"
-  },
-  "connection":{
-    "db": "layers",
-    "power":"power",
-    "power_off":"power_off",
-    "refresh": "sync" 
   }
 }

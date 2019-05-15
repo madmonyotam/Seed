@@ -5,13 +5,9 @@ module.exports = {
     name: "MainRouter",
     description: '',
 
-    bindings: {
-        initLoading: ['initLoading']
-    },
+    dependencies: ['Settings.View', 'Project.NewProject', 'Examples.Examples', 'Layouts.Absolute', 'Genie.GenieUi'],
 
-    dependencies: ['Settings.View','Project.NewProject','Examples.Examples','Layouts.Absolute'],
-
-    get(Settings, NewProject, Examples, Absolute) {
+    get(Settings, NewProject, Examples, Absolute, GenieUi) {
 
         var core = this;
 
@@ -75,6 +71,7 @@ module.exports = {
                     <Absolute style={this.styles('content')}>
                         <Switch>
                             <Route path="/" exact component={ this.WelcomeRender } />
+                            <Route path="/genie" component={ GenieUi } />
                             <Route path="/new-project" component={ NewProject } />
                             <Route path="/examples" component={ Examples } />
                             <Route path="/settings" component={ Settings } />

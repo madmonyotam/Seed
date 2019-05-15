@@ -2,9 +2,10 @@ module.exports = {
     name: 'Inputs',
     
     components: [
+        require('./components/Button'),
+        require('./components/IconButton'),
         require('./components/Input'),
         require('./components/Switch'),
-        require('./components/Button'),
     ], 
 
     init(definition, done) {

@@ -43,6 +43,8 @@ module.exports = {
               active: PropTypes.bool,
               textColor: PropTypes.string,
               backgroundColor: PropTypes.string,
+              onMouseEnter: PropTypes.func,
+              onMouseLeave: PropTypes.func,
               width: PropTypes.oneOf([ 
                 PropTypes.string, // '70px'
                 PropTypes.number // 70
@@ -64,6 +66,8 @@ module.exports = {
                 active: false,
                 variant: 'outlined',
                 theme: 'default',
+                onMouseEnter: ()=>{},
+                onMouseLeave: ()=>{},
                 textColor: undefined,
                 width: 70,
                 height: 32
@@ -83,7 +87,7 @@ module.exports = {
 
             componentWillReceiveProps(nextProps) {
               if (nextProps !== this.props) this.setRippleColor(nextProps)
-            },            
+            },
 
             componentWillMount() {
                 // this.initialUnits();
@@ -177,8 +181,8 @@ module.exports = {
                   fontWeight: 500,
                   lineHeight: 1.5,
                   borderRadius: round ? 4 : 0,
-                  height:  Number(height) , 
-                  minWidth: Number(width),
+                  height: height,
+                  minWidth: width,
                   letterSpacing: '.025em',
                   cursor: 'pointer',
                   transition: 'background 0.15s ease-in-out, color 0.15s ease-in-out, border 0.15s ease-in-out',
@@ -253,13 +257,15 @@ module.exports = {
             },
 
             onMouseEnter(e){
+              this.setState({ focused: this.state.uniqueName });
+              if (this.props.onMouseEnter) this.props.onMouseEnter(e);
               this.prevent(e);
-              this.setState({ focused: this.state.uniqueName })
             },
 
             onMouseLeave(e){
+              this.setState({ focused: undefined });
+              if (this.props.onMouseLeave) this.props.onMouseLeave(e);
               this.prevent(e)
-              this.setState({ focused: undefined })
             },
 
             render() {

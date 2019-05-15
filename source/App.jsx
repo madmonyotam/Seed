@@ -29,6 +29,7 @@ function loadUiPlugins() {
         require('./plugins/mongo'),
         require('./plugins/Inputs'),
         require('./plugins/Navigation'),
+        require('./plugins/Genie'),
         require('./plugins/Project'),
         require('./plugins/Settings'),
         require('./plugins/Decorators'),

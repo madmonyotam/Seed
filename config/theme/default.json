@@ -1,11 +1,15 @@
 {
     "colors": {
+        "black": "#000000",
         "white": "#ffffff",
         "gray": "#999999",
         "dark": "#333333",
         "secondary": "#2979ff",
         "primary": "#01579b",
         "boxShadow": "#cacaca",
+        "blue055": "#e7eff3bf",
+        "blue065": "#e7eff385",
+        "blue070": "#F3FAFD",
         "grey025": "#607D8B",
         "grey070": "#D8D8D8",
         "grey080": "#EDEDED",
@@ -15,29 +19,36 @@
         "blue050": "#54A9DD"
     },
     "examples": {
-      "mainBackground": "colors.grey090",
-      "codeBackground": "colors.dark",
-      "codeColor": "colors.white"
+        "mainBackground": "colors.grey090",
+        "codeBackground": "colors.dark",
+        "codeColor": "colors.white"
     },
     "texts": {
-      "default":"colors.dark",
-      "primary":"colors.blue015",
-      "secondary":"colors.grey025",
-      "background": "colors.grey080"
+        "default":"colors.dark",
+        "primary":"colors.blue015",
+        "secondary":"colors.grey025",
+        "background": "colors.grey080"
     },
     "backgrounds": {
-      "default": "colors.white",
-      "primary": "colors.blue010",
-      "secondary": "colors.blue050",
-      "disabled": "colors.grey070"
+        "default": "colors.white",
+        "primary": "colors.blue010",
+        "secondary": "colors.blue050",
+        "disabled": "colors.grey070"
     },
     "buttons": {
-      "default": "#d8d8d8",
-      "primary": "#6B7ADD",
-      "secondary": "#dd6a6a"       
+        "default": "#d8d8d8",
+        "primary": "#6B7ADD",
+        "secondary": "#dd6a6a"
     },
     "borders": {
-      "default":"colors.grey070"
+        "default":"colors.grey070"
+    },
+    "genie":{
+        "title_bg": "colors.grey080",
+        "lib_bg": "colors.blue055",
+        "cat_bg":"colors.blue065",
+        "button_text": "colors.black",
+        "hover": "colors.blue070"
     },
     "notify": {
         "success": "#56b631",

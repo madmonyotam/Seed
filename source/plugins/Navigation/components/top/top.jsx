@@ -49,6 +49,10 @@ module.exports = {
                       view: '/new-project'
                   },
                   {
+                      label: core.translate('Genie'),
+                      view: '/genie'
+                  },
+                  {
                       label: core.translate('Examples'),
                       view: '/examples'
                   },
