@@ -29,7 +29,7 @@ get(Icon, Button) {
                 iconColor: core.theme('texts.default'),
                 icon: core.icons('general.info'),
                 background: undefined,
-                buttonVariant: 'outlined',
+                buttonVariant: 'flat',
                 buttonTheme: 'default',
                 onClick: ()=>{},
                 style: {},
