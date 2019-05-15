@@ -12,7 +12,7 @@ module.exports = {
 
         var core = this; 
         return ({ fileName, dir }, promise) => {
-          core.request.post('/LoadFile', { filename: fileName, dir: dir })
+          core.request.post('/loadFile', { filename: fileName, dir: dir })
               .then( ({ response, results, error }) => {
                 if (error) {
                   console.error('error : ', error);

@@ -4,8 +4,8 @@ import moment from 'moment';
 import { find } from 'lodash';
 module.exports = {
     name: 'FloatingMenu',
-    dependencies: ['Simple.Loader', 'Inputs.Button', 'Simple.Icon'],
-    get(Loader, Button, Icon) {
+    dependencies: ['Simple.Loader', 'Decorators.Tooltip', 'Inputs.Button', 'Inputs.Switch', 'Simple.Icon'],
+    get(Loader, Tooltip, Button, Switch, Icon) {
 
         var core = this; 
         var { React, PropTypes } = core.imports;
@@ -27,7 +27,9 @@ module.exports = {
           },
           dim: {
             height: core.dim('nav.top.height')
-          }
+          },
+          boxShadow: `4px -4px 10px -10px rgba(0,0,0,0.12), 4px -10px 16px -12px rgba(0,0,0,0.16)`,
+
           
         } 
         return {
@@ -45,7 +47,9 @@ module.exports = {
             getInitialState(){
               return {
                 menuItems: [],
-                loading: false
+                useMongo: false,
+                loading: false,
+                popupPosition: { left: undefined }
               }
             },
 
@@ -55,6 +59,7 @@ module.exports = {
                 {
                   title: core.translate('Save'),
                   icon: core.icons('general.save'),
+                  key: 'save',
                   onClick: this.save
                 },
                 {
@@ -77,7 +82,7 @@ module.exports = {
             },
 
             styles(s) {
-              let { open } = this.state;
+              let { popupPosition } = this.state;
               let flex = {
                 display: 'flex',
                 alignItems: 'center'
@@ -91,7 +96,7 @@ module.exports = {
                   padding: '0 10px',
                   position:'absolute',
                   right: 0,
-                  left: 190,
+                  left: 0,
                   bottom: 0,
                   height: 22,
                   zIndex: 5,
@@ -113,21 +118,23 @@ module.exports = {
                 item: {
                   cursor: 'pointer',
                   marginRight: 10
+                },
+                popup: {
+                  position: 'absolute',
+                  zIndex: 10,
+                  width: 200, 
+                  height: 200,
+                  bottom: 22,
+                  backgroundColor: units.colors.dark,
+                  left: popupPosition && popupPosition.left || 0,
+                  boxShadow: units.boxShadow,
+                  borderTopRightRadius: 2,
+                  borderTopLeftRadius: 2
                 }
               }
               
               return(styles[s]);
-            }, 
-
-            onMouseEnter(e){
-              if (this.state.dragging) return;
-              this.setState({ open: true })
-            },
-
-            onMouseLeave(e){
-              if (this.state.dragging) return;
-              this.setState({ open: false })
-            },
+            },  
 
             setMenuItems(items){
               let dir = this.props.parentKey;
@@ -171,6 +178,8 @@ module.exports = {
               core.plugins.Settings.run('LoadFile', { fileName, dir })
                   .then((newFile)=>{
                     console.debug('newFile => ', newFile);
+                    
+
                     this.setState({ loading: false })
 
                     // let data = {
@@ -184,13 +193,26 @@ module.exports = {
 
               },*/
             },
+
             restore(e) {
               let fileName = 'default.json';
               let dir = this.props.parentKey; 
+
               this.setState({ loading: true }) 
+              
               core.plugins.Settings.run('LoadFile', { fileName, dir })
-                  .then(()=>{
-                    this.setState({ loading: false }) 
+                  .then((fileData)=>{
+                    let params = {
+                      fileData: fileData,
+                      dir: dir,
+                      notify: true
+                    }
+                    core.plugins.Settings.run('SaveSettings', params)
+                        .then(()=>{
+                          this.setState({ loading: false }) 
+                        })
+
+                    
                   }) 
             },
 
@@ -201,7 +223,7 @@ module.exports = {
                     menu, code , keyboards
               **/ 
               this.setState({ loading: true })
-              let {dir, fileData} = this.getCachedDirName()
+              let { dir, fileData } = this.getCachedDirName()
               fileData = JSON.parse(fileData)
               let params = {
                 fileData: fileData,
@@ -212,38 +234,48 @@ module.exports = {
                   .then( () => {
                     this.setState({ loading: false })
                   })
+            }, 
+
+            renderTP(item){
+              return <span>{ item.title }</span>
             },
 
             renderItem(item, key) {
               if (!item) return null; 
                
               return (
-                 <React.Fragment key={ key }>
-                  <div style={ this.styles('item') } title={ item.title } onClick={ item.onClick } >
+                <React.Fragment key={ key }>
+                  <Tooltip style={ this.styles('item') } content={ this.renderTP(item)  } position={ 'top' } onClick={ item.onClick } > 
                     <Icon color={ units.colors.white } icon={ item.icon } size={ 14 } />
-                  </div> 
+                  </Tooltip>
                 </React.Fragment>
 
               )  
-            },
+            }, 
 
             render() {
-              let { menuItems, loading } = this.state;
+              let { menuItems, loading, useMongo } = this.state;
 
               return (
-                <div style={ this.styles('root') } 
-                     onMouseEnter={ this.onMouseEnter } 
-                     onMouseLeave={ this.onMouseLeave }>
+                <div style={ this.styles('root') }  >
                      
-                  <div style={ this.styles('menu') }> { menuItems.map(this.renderItem) }</div>
+                  <div style={ this.styles('menu') }> 
+                    { menuItems.map(this.renderItem) }
+                  </div>
+
+                  {/* <div style={{ ...this.styles('menu'), color: units.colors.white, fontSize: 12 }}>
+                    <span> File System </span>
+                    <Switch size={ 1.2 } checked={ useMongo } style={{ margin: '0 15px' }} />
+                    <span> Mongo </span>
+                  </div> */}
                    
                   <div style={ this.styles('info') } >
-                    <div title={ moment().format('LLLL') }>
+                    
+                    <Tooltip style={ this.styles('item') } content={ moment().format('LLLL') } position={ 'bottom' }>
                       <Icon color={ units.colors.white } icon={ core.icons('general.clock') }  size={ 14 } />
-                    </div>
-                    <Loader size={ 15 } color={ units.colors.white } show={ loading } />
-                  </div>
-                  
+                    </Tooltip>
+                    <Loader size={ 15 } color={ units.colors.white } show={ loading } /> 
+                  </div> 
 
                 </div>
               );

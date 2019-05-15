@@ -1,5 +1,5 @@
 import AceEditor from 'react-ace';
-import 'brace/theme/clouds_midnight';
+import 'brace/theme/dawn';
 import 'brace/theme/xcode';
 import 'brace/mode/javascript';
 import 'brace/mode/json';
@@ -166,7 +166,7 @@ module.exports = {
                         ref={ 'aceEditor' }
                         style={ this.styles('editor') }
                         mode={ 'json' }
-                        theme={ 'xcode' }
+                        theme={ 'dawn' }
                         wrapEnabled={ true }
                         fontSize={ this.props.fontSize }
                         debounceChangePeriod={ 150 }

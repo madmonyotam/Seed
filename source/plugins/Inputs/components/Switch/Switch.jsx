@@ -58,17 +58,14 @@ module.exports = {
             },
 
             componentWillUnmount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            },
+            }, 
 
             initUnits(){
             },
 
             styles(s){
                 let { active } = this.state;
-                let { size, backgroundOff, backgroundOn, circleColorOff, circleColorOn } = this.props;
+                let { size, backgroundOff, backgroundOn, circleColorOff, circleColorOn, style } = this.props;
 
                 let width = size*14.5;
                 let reduceWidth = size*10;
@@ -83,7 +80,8 @@ module.exports = {
                         width: width,
                         background: active ? backgroundOn : backgroundOff,
                         borderRadius: 4*size,
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        ...style
                     },
                     front: {
                         position: 'absolute',

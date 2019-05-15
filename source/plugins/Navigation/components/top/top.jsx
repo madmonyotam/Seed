@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 module.exports = {
     name: 'Top',
-    dependencies: ['Simple.Label', 'Inputs.Button'],
-    get(Label, Button) {
+    dependencies: ['Simple.Label', 'Inputs.Button', 'Decorators.Tooltip'],
+    get(Label, Button, Tooltip) {
 
         var core = this;
         var { React, PropTypes } = core.imports;
@@ -105,8 +105,10 @@ module.exports = {
             renderNavButton(but, key){
               let { activeView } = this.props;
               let isActive = (activeView === but.view) || activeView.indexOf(but.view) > -1;
-              return (
-                <Link key={ key } to={ but.view } style={{ textDecoration: 'unset', marginLeft: '15px' }} >
+              return ( 
+
+                <Link key={ key } to={ but.view } style={{ textDecoration: 'unset', width: 'auto', marginLeft: 15 }} >
+
                   <Button onClick={ e => { this.setActiveItem(but.view) } } 
                           backgroundColor={ isActive ? units.colors.primary : units.colors.dark }
                           style={{ fontSize: 13, padding: '0 10px' }}
@@ -115,6 +117,7 @@ module.exports = {
                     { but.label.toUpperCase() } 
                   </Button>
                 </Link>
+
               )
             },
 
