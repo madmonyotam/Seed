@@ -12,11 +12,6 @@ module.exports = {
 
         return {
             mixins: [ ComponentMixin ],
-
-            propsTypes: {
-                text: PropTypes.string,
-            },
-
             
             propsTypes: {
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
