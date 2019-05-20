@@ -21,10 +21,13 @@ module.exports = {
             propsTypes: {
               position: PropTypes.oneOf(['top', 'top-right', 'top-left', 'bottom', 'bottom-right', 'bottom-left', 'left', 'right']),
               theme: PropTypes.oneOf['dark', 'light'],
+              interactive: PropTypes.bool,
               delay: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number,
               ]),
+              offsetX: PropTypes.number,
+              offsetY: PropTypes.number,
               content: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.object,
@@ -36,7 +39,10 @@ module.exports = {
               return {
                 theme: 'dark',
                 position: 'bottom',
+                interactive: false,
                 content: 'tooltip content',
+                offsetX: 5,
+                offsetY: 5,
                 delay: 250
               };
             },
@@ -44,23 +50,28 @@ module.exports = {
             getInitialState() {
               return {
                 visible: false,
-                position: '',
+                // position: '',
                 content: '',  
               };
             },
 
             componentDidMount() { 
+              document.addEventListener('click', this.handleInteractiveClick)
               this.setState({ 
                 content: this.props.content,
-                position: this.props.position 
+                // position: this.props.position 
               }) 
-
             }, 
 
+            componentWillUnmount() {
+              document.removeEventListener('click', this.handleInteractiveClick)
+            },
+            
+
             componentWillReceiveProps(nextProps) {
-              if (nextProps.position != this.props.position) {
-                this.setState({ position: nextProps.position }) 
-              }
+              // if (nextProps.position != this.props.position) {
+              //   this.setState({ position: nextProps.position }) 
+              // }
               if (nextProps.content != this.props.content) {
                 this.setState({ content: nextProps.content }, this.calcPosition); 
               }
@@ -112,7 +123,7 @@ module.exports = {
             },
 
             calcPosition(){
-            
+              let { offsetX, offsetY } = this.props;
               let ttNode = ReactDOM.findDOMNode(this.tooltipRef);
               if (!this.hoverEl || !ttNode) return;
               let hoverRect = this.hoverEl.getBoundingClientRect();
@@ -139,25 +150,25 @@ module.exports = {
                     if (direction === 'bottom' || direction === 'top') {
                       if (direction === 'bottom') {
                         if ((hoverRect.bottom + ttRect.height > wHeight )) { 
-                          this.measure['top'] = ttTop;
-                        } else this.measure['top'] = ttBottom;
+                          this.measure['top'] = ttTop + offsetY;
+                        } else this.measure['top'] = ttBottom + offsetY;
 
                       } else if (direction === 'top') {
-                        if ((hoverRect.top - hoverRect.height < 0)) this.measure['top'] = ttBottom;
-                        else this.measure['top'] = ttTop;
+                        if ((hoverRect.top - hoverRect.height < 0)) this.measure['top'] = ttBottom - offsetY;
+                        else this.measure['top'] = ttTop - offsetY;
                       } 
 
-                      if (middleX + ttWidth > wWidth) this.measure['left'] = ttLeft;
-                      else if (middleX < 0) this.measure['left'] = ttRight;
+                      if (middleX + ttWidth > wWidth) this.measure['left'] = ttLeft + offsetX;
+                      else if (middleX < 0) this.measure['left'] = ttRight + offsetX;
                     }
 
                     if (direction === 'left' || direction === 'right') {
                         if (direction === 'left') { 
-                          if (hoverRect.left + hoverRect.width - ttWidth < 0) this.measure['left'] = ttRight;
-                          else this.measure['left'] = ttLeft;
+                          if (hoverRect.left + hoverRect.width - ttWidth < 0) this.measure['left'] = ttRight + offsetX;
+                          else this.measure['left'] = ttLeft - offsetX;
                         } else if (direction === 'right') {
-                          if ((hoverRect.right + ttRect.width) > wWidth) this.measure['left'] = ttLeft;
-                          else this.measure['left'] = ttRight;
+                          if ((hoverRect.right + ttRect.width) > wWidth) this.measure['left'] = ttLeft + offsetX;
+                          else this.measure['left'] = ttRight + offsetX ;
                         }
                     }
                     if (cb) cb()
@@ -169,10 +180,11 @@ module.exports = {
 
                 if (!lastPosition){ 
                   if (firstPosition === 'left' || firstPosition === 'right' ) {
-                    this.measure['top'] = middleY;
+                    this.measure['top'] = middleY + offsetY;
                   }
                   else if (firstPosition === 'bottom' || firstPosition === 'top' ) {
-                    this.measure['left'] = middleX;
+                    this.measure['left'] = middleX + offsetX;
+                    console.log(offsetX)
                   }
 
                   setMeasures(firstPosition);
@@ -188,58 +200,14 @@ module.exports = {
 
             }, 
 
-            isInView(elem) {  
-              if (!(elem instanceof Element)) throw Error('DomUtil: elem is not an element.');
-              // const style = window.getComputedStyle(elem);
-             
-              // if (style.display === 'none'){ 
-              //   return false;
-              // }
-              // if (style.visibility !== 'visible'){ 
-              //   return false;
-              // }
-              // if (style.opacity < 0.1){ 
-                
-              //   return false;
-              // }
-              if (elem.offsetWidth + elem.offsetHeight + elem.getBoundingClientRect().height + elem.getBoundingClientRect().width === 0) {
-                return false;
-              }
-
-              const elemCenter = {
-                x: elem.getBoundingClientRect().left + elem.offsetWidth / 2,
-                y: elem.getBoundingClientRect().top + elem.offsetHeight / 2
-              };
-
-              if (elemCenter.x < 0) {
-                return false;
-              }
-              if (elemCenter.x > (document.documentElement.clientWidth || window.innerWidth)) {
-                return false;
-              }
-              if (elemCenter.y < 0) {
-                return false;
-              }
-              if (elemCenter.y > (document.documentElement.clientHeight || window.innerHeight)) {
-                return false;
-              }
-              
-              let pointContainer = document.elementFromPoint(elemCenter.x, elemCenter.y);
-              
-              do {
-                if (pointContainer === elem) return true;
-              } while (pointContainer = pointContainer.parentNode);
-              
-              return false
-            },
-            
             handleShow(event){
               let el = event.currentTarget;
-              let { position } = this.props;
+              let { position, interactive } = this.props;
+
               this.position = position;
               this.hoverEl = el;
               if (el && el !== null) {
-                el.addEventListener('mouseleave', this.handleHide)
+                if (!interactive) el.addEventListener('mouseleave', this.handleHide)
                 this.setState({ visible: true }, ()=>{
                   this.calcPosition();
                 })
@@ -247,14 +215,27 @@ module.exports = {
             },
 
             handleHide(e){
+              let { disableEvents } = this.state;
+              if (disableEvents) return;
               this.setState({ visible: false, showTp: false })
+            },
+
+            handleInteractiveClick(e){ 
+              this.setState({ disableEvents: false }, this.handleHide);
+            },
+
+            handleInteractive(e){
+              let { interactive } = this.props;
+              let { disableEvents } = this.state;
+              if (interactive) this.setState({ disableEvents: true }) 
+              else if (disableEvents) this.setState({ disableEvents: false });
             },
 
             renderTtContainer(visible){
               if (!visible) return null;
               return (
-                <div ref={ ref => { this.tooltipRef = ref } } className={ this.state.position } style={ this.styles('container') }>
-                  <div style ={ this.styles('inner') }>
+                <div ref={ ref => { this.tooltipRef = ref } } style={ this.styles('container') }>
+                  <div style ={ this.styles('inner') } onMouseEnter={ this.handleInteractive }>
                     { this.state.content }
                   </div>
                 </div>
@@ -263,8 +244,20 @@ module.exports = {
 
 
             render() {
-              let { content, theme, children, style, delay, position, ...props } = this.props
               let { visible } = this.state;
+
+              let { 
+                content,
+                interactive,
+                theme,
+                children,
+                style,
+                delay,
+                position,
+                offsetX,
+                offsetY,
+                ...props } = this.props
+
 
               return (
                   <div  { ...props } 

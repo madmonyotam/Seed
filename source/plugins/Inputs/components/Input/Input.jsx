@@ -154,7 +154,7 @@ module.exports = {
                 downshiftList: {
                     position:'fixed', 
                     width: this.getInpoutWidth() || 500, 
-                    maxHeight: 200,
+                    maxHeight: 215,
                     zIndex: 1,
                     padding: '5px 0',
                     overflow: 'auto', // TODO: change after simple scroller import

@@ -190,6 +190,7 @@ module.exports = {
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: textColor ,
+                  padding: 5,
                   ...getStyle(),
                   ...style
                 },
