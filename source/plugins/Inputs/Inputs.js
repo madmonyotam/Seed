@@ -4,6 +4,7 @@ module.exports = {
     components: [
         require('./components/Button'),
         require('./components/IconButton'),
+        require('./components/IconMenu'),
         require('./components/Input'),
         require('./components/Switch'),
     ], 

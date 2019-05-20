@@ -5,10 +5,11 @@ module.exports = {
     components: [
         require('./components/Absolute'),
         require('./components/Center'),
-        require('./components/Row'),
         require('./components/Column'),
+        require('./components/Divider'),
         require('./components/ExpandingPanel'),
         require('./components/LabeledComponent'),
+        require('./components/Row'),
     ],
 
     init(def, done){
