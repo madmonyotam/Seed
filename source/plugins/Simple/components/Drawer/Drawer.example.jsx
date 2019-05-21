@@ -1,8 +1,8 @@
 
 module.exports = {
     dependencies: ['Layouts.Row','Simple.Label', 'Examples.ExampleHelper',
-                   'Examples.SimpleExample','Simple.Drawer','Simple.Icon'],
-    get(Row, Label, ExampleHelper, SimpleExample, Drawer, Icon) {
+                   'Examples.SimpleExample','Simple.Drawer','Simple.Icon', 'Inputs.Button'],
+    get(Row, Label, ExampleHelper, SimpleExample, Drawer, Icon, Button) {
 
         var core = this;
 
@@ -122,9 +122,9 @@ module.exports = {
 
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
-                        <Row boxShadow={true} onClick={this.toggleDrawer} width={100} style={this.styles('row')}>
-                            <Label label={label} width={'unset'}/>
-                        </Row>
+                        <Button theme={ 'primary' } variant={ 'raised' }  onClick={this.toggleDrawer} >
+                            { label } 
+                        </Button>
                         <Drawer initialSize={initialSize}
                                 size={size}
                                 offset={offset}

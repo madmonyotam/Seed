@@ -88,12 +88,13 @@ module.exports = {
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } style={{ position:'relative' , display: 'flex', flexDirection: 'column'}}>
 
-                        <Tooltip content={ this.renderContent() } position={ position } theme={ theme } delay={ delay } >                            
-                            <Button theme={ 'secondary' } variant={ 'filled' } >
-                                <span>{core.translate('Dynamic Content')}</span>
-                            </Button>
-                        </Tooltip>
+                      <Tooltip content={ this.renderContent() } position={ position } theme={ theme } delay={ delay } >                            
+                          <Button theme={ 'secondary' } variant={ 'filled' } >
+                              <span>{core.translate('Dynamic Content')}</span>
+                          </Button>
+                      </Tooltip>
 
+                      <div style={{  marginTop: 15 }} >
                         <Tooltip  content={ this.renderContentState() } 
                                   position={ position } 
                                   interactive={ interactive } 
@@ -101,10 +102,11 @@ module.exports = {
                                   delay={ delay } 
                                   offsetX={ Number(offsetX) } 
                                   offsetY={ Number(offsetY) } >                            
-                            <Button theme={ 'primary' } variant={ 'filled' } style={{  marginTop: 15 }}  >
+                            <Button theme={ 'primary' } variant={ 'filled' }  >
                                 {core.translate('Hover Me')} 
                             </Button>
                         </Tooltip>
+                      </div>
             
                     </SimpleExample>
                 )

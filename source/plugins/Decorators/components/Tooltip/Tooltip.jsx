@@ -184,7 +184,6 @@ module.exports = {
                   }
                   else if (firstPosition === 'bottom' || firstPosition === 'top' ) {
                     this.measure['left'] = middleX + offsetX;
-                    console.log(offsetX)
                   }
 
                   setMeasures(firstPosition);

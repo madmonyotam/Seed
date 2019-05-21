@@ -97,7 +97,6 @@ get(Icon, Button) {
                     backgroundColor={this.props.background}
                     onMouseEnter={ this.handleFocus }
                     onMouseLeave={ this.handleUnfocus }
-                    padding={1}
                     width={this.props.iconSize}
                     height={this.props.iconSize}
                     onClick={this.props.onClick}

@@ -191,8 +191,7 @@ module.exports = {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: textColor ,
-                  padding: padding,
+                  color: textColor,
                   ...getStyle(),
                   ...style
                 },
@@ -204,7 +203,8 @@ module.exports = {
                   justifyContent: 'inherit',
                   borderRadius: 'inherit',
                   ...getRippleMargin()
-                } 
+                },
+                label: { padding: padding }
               }
 
               const focused = () => {
