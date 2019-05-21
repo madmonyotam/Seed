@@ -44,6 +44,7 @@ module.exports = {
               textColor: PropTypes.string,
               backgroundColor: PropTypes.string,
               onMouseEnter: PropTypes.func,
+              padding: PropTypes.number,
               onMouseLeave: PropTypes.func,
               width: PropTypes.oneOf([ 
                 PropTypes.string, // '70px'
@@ -66,6 +67,7 @@ module.exports = {
                 active: false,
                 variant: 'outlined',
                 theme: 'default',
+                padding: 5,
                 onMouseEnter: ()=>{},
                 onMouseLeave: ()=>{},
                 textColor: undefined,
@@ -110,7 +112,7 @@ module.exports = {
 
 
             styles(s) {
-              let { variant, active, backgroundColor, textColor, style, theme, ripple, round, height, width } = this.props;
+              let { variant, active, backgroundColor, textColor, style, theme, ripple, round, height, width, padding } = this.props;
               let isFocused = this.getIsFocused();
 
               let isOutlined = variant === 'outlined';
@@ -147,7 +149,7 @@ module.exports = {
                 if (!ripple) {
                   ops = {
                     ...ops,
-                    padding: '5px'
+                    padding: padding,
                   }
                 }
                 return ops 
@@ -156,8 +158,8 @@ module.exports = {
               const getRippleMargin = () => {
                 if (style) {
                   let set, fixedStyle;
-                  if (style.hasOwnProperty('padding')) {
-                    set = style.padding.split(' ');
+                  if (style.hasOwnProperty('padding') && seed.isString(style.padding)) {
+                    set = (style.padding.includes(' ')) ? style.padding.split(' ') : style.padding;
                     for (let i = 0; i < set.length; i++) {
                       set[i] = `-${set[i]}`
                     }
@@ -190,7 +192,7 @@ module.exports = {
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: textColor ,
-                  padding: 5,
+                  padding: padding,
                   ...getStyle(),
                   ...style
                 },

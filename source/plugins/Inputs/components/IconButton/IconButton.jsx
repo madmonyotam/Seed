@@ -47,6 +47,10 @@ get(Icon, Button) {
             let styles = {
                 button: {
                     borderRadius: this.props.iconSize,
+                    minHeight: this.props.iconSize,
+                    minWidth: this.props.iconSize,
+                    maxHeight: this.props.iconSize,
+                    maxWidth: this.props.iconSize,
                     ...this.props.style,
                 },
                 icon: {
@@ -69,27 +73,37 @@ get(Icon, Button) {
             this.handleSetFocus(UNSET);
         },
 
-        render() {
+        renderIcon() {
+            if (this.props.children) {
+                return this.props.children;
+            }
             let iconColor = (this.state.isHovered) ? tinycolor(this.props.iconColor).darken(7) : this.props.iconColor;
+            return (
+                <Icon
+                    size={this.props.iconSize}
+                    icon={this.props.icon}
+                    color={iconColor}
+                    style={this.styles('icon')}
+                />
+            );
+        },
+
+        render() {
 
             return (
                 <Button
                     variant={this.props.buttonVariant}
                     theme={this.props.buttonTheme}
                     backgroundColor={this.props.background}
-                    height={this.props.iconSize}
                     onMouseEnter={ this.handleFocus }
                     onMouseLeave={ this.handleUnfocus }
+                    padding={1}
                     width={this.props.iconSize}
+                    height={this.props.iconSize}
                     onClick={this.props.onClick}
                     style={this.styles('button')}
                 >
-                    <Icon
-                        size={this.props.iconSize}
-                        icon={this.props.icon}
-                        color={iconColor}
-                        style={this.styles('icon')}
-                    />
+                    {this.renderIcon()}
                 </Button>
             );
         }

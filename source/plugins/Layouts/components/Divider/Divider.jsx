@@ -17,6 +17,7 @@ module.exports = {
                 orientation: PropTypes.oneOf(['vertical', 'horizontal']),
                 color: PropTypes.string,
                 thikness: PropTypes.number,
+                margin: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 size: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 style: PropTypes.object,
             },
@@ -26,24 +27,27 @@ module.exports = {
                     orientation: 'vertical',
                     color: core.theme('borders.default'),
                     thikness: 1,
+                    margin: 0,
                     size: '100%',
                     style: {},
                 };
             },
 
             styles(s){
-                let {style, color, size, thikness} = this.props;
+                let {style, color, size, thikness, margin} = this.props;
 
                 const styles = {
                     vertical: {
                         height: size,
                         width: 1,
+                        margin: `0px ${margin}px`,
                         borderLeft: `${thikness}px solid ${color}`,
                         ...style,
                     },
                     horizontal: {
                         height: 1,
                         width: size,
+                        margin: `${margin}px 0px`,
                         borderTop: `${thikness}px solid ${color}`,
                         ...style,
                     }

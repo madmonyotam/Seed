@@ -1,9 +1,9 @@
-import { MenuList, IconButton, Popover, MenuItem  } from '@material-ui/core/';
+import { MenuList, Popover, MenuItem  } from '@material-ui/core/';
 import {isEmpty} from 'lodash';
 
 module.exports = {
-dependencies: ['Simple.Label', 'Layouts.Row', 'Simple.Icon', 'Layouts.Divider'],
-get( Label, Row, Icon, Divider) {
+dependencies: ['Simple.Label', 'Layouts.Row', 'Simple.Icon', 'Layouts.Divider', 'Inputs.IconButton'],
+get( Label, Row, Icon, Divider, IconButton) {
 
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports;
@@ -52,7 +52,7 @@ get( Label, Row, Icon, Divider) {
                 menuIconSize: 20,
                 icon: core.icons('general.info'),
                 iconSize: 20,
-                iconColor: null,
+                iconColor: core.theme('texts.default'),
                 active: false,
                 dropDown: false,
                 anchorOrigin:{ vertical: 'bottom', horizontal: 'right' },
@@ -142,7 +142,7 @@ get( Label, Row, Icon, Divider) {
                     marginRight: 10,
                 },
                 dropIcon: {
-                    width: '25px',
+                    width: 20,
                     height: '100%',
                 },
                 icon: {
@@ -154,15 +154,24 @@ get( Label, Row, Icon, Divider) {
                     width: iconSize + 10,
                     height: iconSize + 10,
                     position: 'relative',
-                    ...dropDown ? {
-                        borderRadius: 3,
-                        border: `1px solid ${this.colors.border}`,
-                        justifyContent: 'space-around',
-                        width: iconSize + 35,
-                        height: iconSize + 5,
-                        padding: 0,
-                    } : null,
                     ...iconButtonStyle
+                },
+                dropDownButton: {
+                    borderRadius: 3,
+                    border: `1px solid ${this.colors.border}`,
+                    minWidth: iconSize + 35,
+                    minHeight: iconSize + 10,
+                    padding: 0,
+                    ...iconButtonStyle
+                },
+                dropDownInner: {
+                    display: 'flex',
+                    position: 'relative',
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    minWidth: iconSize + 35,
+                    minHeight: iconSize + 10,
                 },
             }
 
@@ -187,32 +196,35 @@ get( Label, Row, Icon, Divider) {
           },
 
         renderIconButton() {
-            let {icon, iconSize, active, iconColor} = this.props;
+            let {icon, iconSize, active, iconColor, dropDown} = this.props;
 
-            const renderDropIcon = ()=>{
-                let { iconColor, dropDown } = this.props;
-  
-                if (!dropDown) return null;
-
+            const mainIcon = ()=>{
+                let color = active ? active : iconColor;
                 return (
-                    <React.Fragment>
-                        <Divider size={iconSize}/>
-                        <Icon
-                            style={this.styles('dropIcon')}
-                            icon={this.icons.dropDown}
-                            size={ 22 }
-                            color={ iconColor }
-                        />
-                    </React.Fragment>
-                )
+                    <Icon style={ this.styles('icon') } icon={icon} size={iconSize} color={ color }/>
+                );
             };
 
-            let color = active ? active : iconColor;
+            if (dropDown) {
+                return (
+                    <IconButton onClick={this.handleOpen} style={ this.styles('dropDownButton') }>
+                        <div style={this.styles('dropDownInner')}>
+                            {mainIcon()}
+                            <Divider color={iconColor} size={iconSize + 10} margin={2}/>
+                            <Icon
+                                style={this.styles('dropIcon')}
+                                icon={this.icons.dropDown}
+                                size={ 22 }
+                                color={ iconColor }
+                            />
+                        </div>
+                    </IconButton>
+                );
+            }
 
             return (
                 <IconButton onClick={this.handleOpen} style={ this.styles('iconButton') }>
-                    <Icon style={ this.styles('icon') } icon={icon} size={iconSize} color={ color }/>
-                    { renderDropIcon() }
+                    {mainIcon()}
                 </IconButton>
             );
         },
