@@ -16,7 +16,7 @@ module.exports = {
                     iconColor: { type: 'string', group: 'initial' },
                     background: { type: 'string', group: 'initial' },
                     icon: { type: 'icon', group: 'initial'},
-                    buttonVariant: { type: 'select', group: 'initial', options: [ 'raised', 'outlined', 'flat' ] },
+                    variant: { type: 'select', group: 'initial', options: [ 'raised', 'outlined', 'flat' ] },
                 }
             },
 
@@ -29,7 +29,7 @@ module.exports = {
             },
 
             getCode(){
-                let { icon, iconSize, iconColor, background, buttonVariant, clickResult } = this.state;
+                let { icon, iconSize, iconColor, background, variant, clickResult } = this.state;
 
                 return [
                     `<IconButton`,
@@ -37,7 +37,7 @@ module.exports = {
                     `   iconColor={${iconColor}}`,
                     `   iconSize={${iconSize}}`,
                     `   background={${background}}`,
-                    `   buttonVariant={${buttonVariant}}`,
+                    `   variant={${variant}}`,
                     `   onClick={console.log('a: ', a)}`,
                     `/>`,
                     ``,
@@ -52,7 +52,7 @@ module.exports = {
             },
 
             render() {
-                let { icon, iconSize, iconColor, background, buttonVariant, onClick } = this.state;
+                let { icon, iconSize, iconColor, background, variant, onClick } = this.state;
                 let size = ExampleHelper.ifNumber_Convert(iconSize);
 
                 return (
@@ -63,7 +63,7 @@ module.exports = {
                             iconColor={iconColor}
                             iconSize={size}
                             background={background}
-                            buttonVariant={buttonVariant}
+                            variant={variant}
                             onClick={this.printA}
                         />
             

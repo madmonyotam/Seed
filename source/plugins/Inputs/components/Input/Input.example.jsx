@@ -16,7 +16,7 @@ module.exports = {
                     label: { type: 'string' },
                     placeholder: { type: 'string' },
                     type: { type: 'string' },
-                    
+                    isMultipleValues: { type: 'boolean' },
                 }
             },
 
@@ -26,19 +26,20 @@ module.exports = {
             },
 
             getCode(){
-                let { type, placeholder, label,  theme } = this.state;
+                let { type, placeholder, label,  theme, isMultipleValues } = this.state;
 
                 return (`
 <Input 
   type={ ${type} } 
   placeholder={ ${placeholder} } 
   label={ ${label} } 
-  theme={ ${theme} } />
+  theme={ ${theme} } 
+  isMultipleValues={ ${isMultipleValues} } />
                 `)
             },
 
             render() {
-                let { type, placeholder, label, theme } = this.state;
+                let { type, placeholder, label, theme, isMultipleValues } = this.state;
 
                 return (
                     <SimpleExample 
@@ -53,6 +54,7 @@ module.exports = {
                           placeholder={ placeholder } 
                           label={ label }  
                           value={ '' }
+                          isMultipleValues={ isMultipleValues }
                           theme={ theme } />
                     </SimpleExample>
                 )

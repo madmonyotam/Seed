@@ -20,7 +20,8 @@
     "download": "file_download",
     "upload": "publish",
     "arrow_right": "arrow_right",
-    "clock": "access_time"
+    "clock": "access_time",
+    "delete": "close"
   },
   "genie": {
     "clear": "clear",

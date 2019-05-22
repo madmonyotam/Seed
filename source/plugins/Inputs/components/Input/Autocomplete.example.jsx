@@ -18,6 +18,7 @@ module.exports = {
                     placeholder: { type: 'string' },
                     openOnFocus: { type: 'boolean' },
                     suggest: { type: 'boolean' , group: 'initial' },
+                    isMultipleValues: { type: 'boolean' },
                 }
             }, 
 
@@ -37,7 +38,7 @@ module.exports = {
             },
 
             getCode(){
-                let { options, placeholder, label, openOnFocus, theme, suggest } = this.state;
+                let { options, placeholder, label, openOnFocus, theme, suggest, isMultipleValues } = this.state;
 
                 return (`
 const options = ${JSON.stringify(options, null, 4)}
@@ -47,13 +48,14 @@ const options = ${JSON.stringify(options, null, 4)}
   placeholder={ ${placeholder} } 
   openOnFocus={ ${openOnFocus} } 
   suggest={ ${suggest} } 
+  isMultipleValues={ ${isMultipleValues} } 
   label={ ${label} } 
   theme={ ${theme} } />
                 `)
             },
 
             render() {
-                let { type, suggest, openOnFocus, options, placeholder, label, theme } = this.state;
+                let { type, suggest, openOnFocus, options, placeholder, label, theme, isMultipleValues } = this.state;
 
                 return (
                     <SimpleExample 
@@ -68,6 +70,7 @@ const options = ${JSON.stringify(options, null, 4)}
                           openOnFocus={ openOnFocus } 
                           options={ options } 
                           suggest={ suggest }  
+                          isMultipleValues={ isMultipleValues }  
                           label={ label }  
                           value={ '' }
                           theme={ theme } />

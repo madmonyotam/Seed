@@ -204,7 +204,12 @@ module.exports = {
                   borderRadius: 'inherit',
                   ...getRippleMargin()
                 },
-                label: { padding: padding }
+                label: { 
+                  display: 'inherit',
+                  alignItems: 'inherit',
+                  justifyContent: 'inherit',
+                  padding: padding 
+                }
               }
 
               const focused = () => {

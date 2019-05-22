@@ -5,8 +5,8 @@ module.exports = {
     name: 'Input',
     description: '',
     propTypes: {},
-    dependencies: [/*,'Simple.SimpleScroller'*/],
-    get(/*Scroller*/) {
+    dependencies: ['Inputs.Chip'/*,'Simple.SimpleScroller'*/],
+    get(Chip/*Scroller*/) {
 
         var core = this;
 
@@ -39,6 +39,7 @@ module.exports = {
               placeholder: PropTypes.string,
               type: PropTypes.string,
               openOnFocus: PropTypes.bool,
+              isMultipleValues: PropTypes.bool,
               suggest: PropTypes.bool, // if TRUE will filter the list 
               theme: PropTypes.oneOf([ 'default', 'outlined', 'filled' ]),
             },
@@ -56,6 +57,7 @@ module.exports = {
                 value: '',
                 label: 'label',
                 openOnFocus: false,
+                isMultipleValues: false,
                 suggest: true,
                 placeholder: 'placeholder'
               };
@@ -64,6 +66,7 @@ module.exports = {
             getInitialState() {
               return {
                   value: '',
+                  multiValues: [],
                   uniqueName: uniqueId('input_'),
                   options: [],
                   isDownShiftOpen: false
@@ -235,14 +238,17 @@ module.exports = {
             }, 
 
             handleKeyDown(e){
+              let { value, multiValues } = this.state;
+              let { handleKeyDown, isMultipleValues } = this.props;
               if(e && e.keyCode){
                 if (e.keyCode === 27 ) {
                   this.prevent(e)
                   this.handleClearInput(e);
                   return;
 
-                } else if (e.keyCode === 13 && this.props.handleKeyDown) {
-                  this.props.handleKeyDown(this.state.value) 
+                } else if (e.keyCode === 13)  {
+                  if (isMultipleValues) this.setState({ multiValues: [ ...multiValues, value ] }, this.handleClearInput)
+                  else if (handleKeyDown) handleKeyDown(value) 
                 } 
               }
               
@@ -250,31 +256,41 @@ module.exports = {
             }, 
 
             handleDownShiftSelect(selection){
+              let { isMultipleValues } = this.props;
+              let { multiValues } = this.state;
               
               if (selection && selection.value) {
                 this.setState({ isDownShiftOpen: false, focused: null });
                 if (this.inputRef && this.inputRef.current) this.inputRef.current.blur()
                 this.handleOnChange(selection.value)
+                if (isMultipleValues) this.setState({ multiValues: [ ...multiValues, selection.value ] }, this.handleClearInput)
               }
             },
 
             getSuggestions(inputValue){
-              let { options } = this.state;
-              let { suggest } = this.props;
-              if (suggest) return options.filter(item => !inputValue || item.value.toLowerCase().includes(inputValue.toLowerCase())); 
-              return options;
+              let { options, multiValues } = this.state;
+              let { suggest, isMultipleValues } = this.props;
+              let filteredOptions = [ ...options ];
+              if (suggest) {
+                filteredOptions = filteredOptions.filter( item => !inputValue || item.value.toLowerCase().includes(inputValue.toLowerCase()));
+              }
+              if (isMultipleValues) { 
+                filteredOptions = filteredOptions.filter( item =>  multiValues.indexOf(item.value) < 0 )
+              }
+              return filteredOptions;
             },
 
             renderOption(item, index, { getItemProps, highlightedIndex, selectedItem }){
               
               let isSelected = isEqual(selectedItem, item) || selectedItem === item;
-              let isHigh = highlightedIndex === index;
+              let isHighlighted = highlightedIndex === index;
+              let isActive = isSelected || isHighlighted
               const style = () => { 
                 return {
                   ...this.styles('downshiftItem'),
-                  backgroundColor:  isSelected ? units.colors.highlight : units.colors.white,
-                  color: isSelected ? units.colors.white : units.colors.text,
-                  fontWeight: isSelected ? 600 : 400,
+                  backgroundColor:  isActive ? units.colors.highlight : units.colors.white,
+                  color: isActive ? units.colors.white : units.colors.text,
+                  fontWeight: isActive ? 600 : 400,
                 }
               }
 
@@ -315,9 +331,15 @@ module.exports = {
                 <div { ...getMenuProps() } style={ this.styles('downshiftList') }>
 
                   { 
-                    map(options, (option, idx)=>{
-                     return  this.renderOption(option, idx, params)
-                    }) 
+                    options && options.length ? 
+                      
+                      map(options, (option, idx)=>{
+                        return  this.renderOption(option, idx, params)
+                      }) : 
+                      
+                      <Typography style={{ ...this.styles('suggestion'), color: units.colors.suffix }}>
+                        { core.translate(`(No options to show)`) }
+                      </Typography>
                   } 
 
                 </div>
@@ -354,8 +376,25 @@ module.exports = {
               }
             },
 
+            renderChips(){
+              let { multiValues } = this.state;
+              if (multiValues && multiValues.length ) {
+                return (
+                  <div style={{ display: 'flex', flexWrap: 'wrap' }} >
+                    {
+                      map(multiValues, (value, key)=>{
+                        return <Chip style={{ marginRight: 5, marginBottom: 5 }} key={ key } text={ value }/>
+                      })
+                    }
+                  </div>
+                ) 
+              }
+              return null;
+            },
+
             renderInput(type, downshiftProps){
-              let { openOnFocus } = this.props;
+              let { openOnFocus, placeholder } = this.props;
+              let { value, uniqueName } = this.state;
               let getInputProps = undefined; 
               let clearSelection = undefined; 
               let isAuotocomplete = type === 'autocomplete';
@@ -375,26 +414,30 @@ module.exports = {
                         // this.setState({ focused: null, isDownShiftOpen: false });
                       } else {
                         this.handleOnChange(e.target.value)
-                        this.setState({ focused: this.state.uniqueName, isDownShiftOpen: true });
+                        this.setState({ focused: uniqueName, isDownShiftOpen: true });
                       }
                     }
                   })
                 } else return { onChange: e => { this.handleOnChange(e.target.value) } }
               } 
               return (
-                <input  
-                        type={ isAuotocomplete ? 'text' : type }
-                        name={ this.state.uniqueName }
-                        ref={ this.inputRef }
-                        value={ this.state.value } 
-                        onKeyDown={ this.handleKeyDown }
-                        style={ this.styles('input') }
-                        placeholder={ this.props.placeholder }
+                <React.Fragment>
+                  { this.renderChips() }
+                  <input  
+                          type={ isAuotocomplete ? 'text' : type }
+                          name={ uniqueName }
+                          ref={ this.inputRef }
+                          value={ value } 
+                          onKeyDown={ this.handleKeyDown }
+                          style={ this.styles('input') }
+                          placeholder={ placeholder }
 
-                        { ...setprops() }
+                          { ...setprops() }
 
-                        onFocus={ e => { this.setState({ focused: this.state.uniqueName, isDownShiftOpen: openOnFocus && isAuotocomplete ? true : false }) } }
-                        onBlur={ e => { this.setState({ focused: null, isDownShiftOpen: false }) } } />
+                          onFocus={ e => { this.setState({ focused: uniqueName, isDownShiftOpen: openOnFocus && isAuotocomplete ? true : false }) } }
+                          onBlur={ e => { this.setState({ focused: null, isDownShiftOpen: false }) } } />
+                </React.Fragment>
+
               );
             },
 

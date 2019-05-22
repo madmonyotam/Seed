@@ -16,8 +16,8 @@ get(Icon, Button) {
             iconSize: PropTypes.number,
             iconColor: PropTypes.string,
             background: PropTypes.string,
-            buttonVariant: PropTypes.oneOf(['outlined', 'reised', 'flat']),
-            buttonTheme: PropTypes.oneOf(['default', 'primary', 'secondary']),
+            variant: PropTypes.oneOf(['outlined', 'reised', 'flat']),
+            theme: PropTypes.oneOf(['default', 'primary', 'secondary']),
             onClick: PropTypes.func,
             style: PropTypes.object,
             iconStyle: PropTypes.object,
@@ -29,8 +29,8 @@ get(Icon, Button) {
                 iconColor: core.theme('texts.default'),
                 icon: core.icons('general.info'),
                 background: undefined,
-                buttonVariant: 'flat',
-                buttonTheme: 'default',
+                variant: 'flat',
+                theme: 'default',
                 onClick: ()=>{},
                 style: {},
                 iconStyle: {},
@@ -74,35 +74,38 @@ get(Icon, Button) {
         },
 
         renderIcon() {
-            if (this.props.children) {
-                return this.props.children;
-            }
-            let iconColor = (this.state.isHovered) ? tinycolor(this.props.iconColor).darken(7) : this.props.iconColor;
-            return (
-                <Icon
-                    size={this.props.iconSize}
-                    icon={this.props.icon}
-                    color={iconColor}
-                    style={this.styles('icon')}
-                />
-            );
+          let { children, iconSize, icon, iconColor } = this.props;
+          let { isHovered } = this.state;
+
+          if (children) return children;
+          let color = (isHovered) ? tinycolor(iconColor).darken(7) : iconColor;
+          return (
+              <Icon
+                  size={ iconSize }
+                  icon={ icon }
+                  color={ color }
+                  style={this.styles('icon')}
+              />
+          );
         },
 
         render() {
-
+          let { variant, theme, background, iconSize, onClick } = this.props;
             return (
                 <Button
-                    variant={this.props.buttonVariant}
-                    theme={this.props.buttonTheme}
-                    backgroundColor={this.props.background}
+                    variant={ variant }
+                    theme={ theme }
+                    backgroundColor={ background }
                     onMouseEnter={ this.handleFocus }
                     onMouseLeave={ this.handleUnfocus }
-                    width={this.props.iconSize}
-                    height={this.props.iconSize}
-                    onClick={this.props.onClick}
-                    style={this.styles('button')}
-                >
-                    {this.renderIcon()}
+                    width={ iconSize }
+                    height={ iconSize }
+                    padding={ 0 }
+                    onClick={ onClick }
+                    style={this.styles('button')} >
+
+                  { this.renderIcon() }
+
                 </Button>
             );
         }
