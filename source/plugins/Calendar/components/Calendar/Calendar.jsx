@@ -1,6 +1,6 @@
 module.exports = {
-    dependencies: [],    
-    get() {
+    dependencies: ['Layouts.Column'],    
+    get(Column) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -43,7 +43,7 @@ module.exports = {
 
                 const styles = {
                     root: {
-                        color: this.textColor,
+                       border: '1px solid black'
                     },
                 
                 }
@@ -66,12 +66,12 @@ module.exports = {
             render() {
 
                 return (
-                    <div style={this.styles('root')}>
+                    <Column boxShadow={true} >
                         {/* { this.renderMonthYearsBar() }
                         { this.renderDaysBar() }
                         { this.renderMainCont() } */}
 
-                    </div>
+                    </Column>
                 )
             } 
 
