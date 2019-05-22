@@ -1,6 +1,6 @@
 module.exports = {
-    dependencies: ['Layouts.Column','Calendar.DaysBar'],    
-    get(Column, DaysBar) {
+    dependencies: ['Layouts.Column','Calendar.YearSelect','Calendar.DaysBar'],    
+    get(Column, YearSelect, DaysBar) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -72,7 +72,10 @@ module.exports = {
             render() {
 
                 return (
-                    <Column boxShadow={true} width={350} >
+                    <Column boxShadow={true} width={ '-webkit-fill-available' }>
+                      <YearSelect />
+                      <DaysBar firstDayInWeek={2} shortName={true} />
+                        {/* { this.renderMonthYearsBar() }
                         { this.renderDaysBar() }
                         {/* { this.renderMonthYearsBar() }
                         { this.renderMainCont() } */}
