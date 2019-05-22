@@ -3,8 +3,11 @@ module.exports = {
     get() {
         
         var core = this;
-
         var { React, PropTypes, ComponentMixin } = core.imports;
+
+        const units = {
+            textColor: core.theme('colors.dark')
+        }
 
         return {
             mixins: [ ComponentMixin ],
@@ -27,7 +30,7 @@ module.exports = {
             },
 
             componentWillMount () {
-                this.initUnits();
+
             },
 
             componentDidMount() {
@@ -40,15 +43,11 @@ module.exports = {
                 
             },
 
-            initUnits(){
-                this.textColor =  core.theme('colors.dark');
-            },
-
             styles(s){
 
                 const styles = {
                     root: {
-                        color: this.textColor,
+                        color: units.textColor,
                     },
                 
                 }

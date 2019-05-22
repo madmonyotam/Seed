@@ -5,10 +5,10 @@ module.exports = {
     modules: [],
     components: [
         require('./components/Calendar'),
+        require('./components/DaysBar'),
     ],
 
-    extend: {
-    },
+    extend: {},
 
     init(def, done){
         

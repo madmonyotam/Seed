@@ -1,6 +1,6 @@
 module.exports = {
-    dependencies: ['Layouts.Column'],    
-    get(Column) {
+    dependencies: ['Layouts.Column','Calendar.DaysBar'],    
+    get(Column, DaysBar) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -63,12 +63,18 @@ module.exports = {
                 // }
             },
 
+            renderDaysBar(){
+                return(
+                    <DaysBar firstDayInWeek={2} shortName={true} />
+                )
+            },
+
             render() {
 
                 return (
-                    <Column boxShadow={true} >
-                        {/* { this.renderMonthYearsBar() }
+                    <Column boxShadow={true} width={350} >
                         { this.renderDaysBar() }
+                        {/* { this.renderMonthYearsBar() }
                         { this.renderMainCont() } */}
 
                     </Column>
