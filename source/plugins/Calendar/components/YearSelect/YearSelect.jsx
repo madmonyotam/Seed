@@ -15,12 +15,12 @@ module.exports = {
       mixins: [ ComponentMixin ],
 
       propsTypes: {
+        onChange: PropTypes.func,
+        onPickerChange: PropTypes.func.isRequired,
       },
 
       getDefaultProps(){
         return { 
-          onChange: PropTypes.func,
-          onViewChange: PropTypes.func,
         };
       },
 
@@ -97,8 +97,10 @@ module.exports = {
 
       renderMainDate(){
         let { currentDate } = this.state;
+        let { onPickerChange } = this.props;
+
         return (
-          <Button style={ this.styles('mainDate') }> 
+          <Button style={ this.styles('mainDate') } onClick={ onPickerChange }> 
             { moment(currentDate).format('MMM YYYY') } 
           </Button>
         )

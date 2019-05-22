@@ -7,6 +7,7 @@ module.exports = {
         require('./components/Calendar'),
         require('./components/DaysBar'),
         require('./components/YearSelect'),
+        require('./components/MonthPicker'),
     ],
 
     extend: {},

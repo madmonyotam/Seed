@@ -1,10 +1,12 @@
 module.exports = {
-    dependencies: ['Layouts.Column','Calendar.YearSelect','Calendar.DaysBar'],    
-    get(Column, YearSelect, DaysBar) {
+    dependencies: ['Layouts.Column','Calendar.YearSelect','Calendar.DaysBar','Calendar.MonthPicker'],    
+    get(Column, YearSelect, DaysBar, MonthPicker) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
 
+        const DAY = 1;
+        const MONTH = 2;
         const units = {}
 
         return {
@@ -23,7 +25,7 @@ module.exports = {
             
             getInitialState() {
                 return {
-                    picker: 'day'
+                    picker: DAY
                 };
             },
 
@@ -53,7 +55,9 @@ module.exports = {
             },
 
             renderMonthPicker(){
-                
+                return(
+                    <MonthPicker />
+                )
             },
 
             renderWeeks(){
@@ -64,9 +68,9 @@ module.exports = {
                 let { picker } = this.state
 
                 switch (picker) {
-                    case 'month':
+                    case MONTH:
                         return this.renderMonthPicker()
-                    case 'day':
+                    case DAY:
                         return this.renderWeeks()
 
                 }
@@ -76,7 +80,7 @@ module.exports = {
                 let { daysShortName, firstDayInWeek } = this.props;
                 let { picker } = this.state;
 
-                if(picker!=='day') return;
+                if(picker!==DAY) return;
 
                 return(
                     <DaysBar firstDayInWeek={firstDayInWeek} shortName={daysShortName} />
@@ -84,7 +88,10 @@ module.exports = {
             },
 
             handleToggleView(){
+                let { picker } = this.state;
 
+                if(picker == DAY) return this.setState({picker:MONTH});
+                this.setState({picker:DAY});
             },
 
             handleChange(newDate) {
