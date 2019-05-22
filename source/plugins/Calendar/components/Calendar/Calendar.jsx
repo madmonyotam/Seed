@@ -52,21 +52,30 @@ module.exports = {
                 return(styles[s]);
             },
 
+            renderMonthPicker(){
+                
+            },
+
+            renderWeeks(){
+
+            },
+
             renderMainCont(){
                 let { picker } = this.state
 
-                // switch (picker) {
-                //     case 'month':
-                //         return this.renderMonthPicker()
-                //     case 'day':
-                //         return this.renderWeeks()
+                switch (picker) {
+                    case 'month':
+                        return this.renderMonthPicker()
+                    case 'day':
+                        return this.renderWeeks()
 
-                // }
+                }
             },
 
             renderDaysBar(){
                 let { daysShortName, firstDayInWeek } = this.props;
-                let { picker } = this.props;
+                let { picker } = this.state;
+
                 if(picker!=='day') return;
 
                 return(
@@ -91,10 +100,7 @@ module.exports = {
                                   pickerState={ this.state.picker } />
 
                         { this.renderDaysBar() }
-
-                        {/* { this.renderMonthYearsBar() }
-                        { this.renderMainCont() } */}
-
+                        { this.renderMainCont() } 
                     </Column>
                 )
             } 
