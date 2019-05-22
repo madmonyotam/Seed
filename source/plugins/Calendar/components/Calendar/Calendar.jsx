@@ -11,12 +11,13 @@ module.exports = {
             mixins: [ ComponentMixin ],
 
             propsTypes: {
-                text: PropTypes.string,
+                firstDayInWeek: PropTypes.number,
             },
 
             getDefaultProps(){
                 return {
-                    text: 'my first  calendar',
+                    daysShortName: true,
+                    firstDayInWeek: 1,
                 };
             },
             
@@ -64,18 +65,18 @@ module.exports = {
             },
 
             renderDaysBar(){
+                let { daysShortName, firstDayInWeek } = this.props;
+
                 return(
-                    <DaysBar firstDayInWeek={2} shortName={true} />
+                    <DaysBar firstDayInWeek={firstDayInWeek} shortName={daysShortName} />
                 )
             },
 
             render() {
 
                 return (
-                    <Column boxShadow={true} width={ '-webkit-fill-available' }>
+                    <Column boxShadow={true} width={500} >
                       <YearSelect />
-                      <DaysBar firstDayInWeek={2} shortName={true} />
-                        {/* { this.renderMonthYearsBar() }
                         { this.renderDaysBar() }
                         {/* { this.renderMonthYearsBar() }
                         { this.renderMainCont() } */}

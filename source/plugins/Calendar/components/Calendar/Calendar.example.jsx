@@ -12,7 +12,8 @@ module.exports = {
 
             propScheme(){ 
                 return {
-                    color: { type: 'color' }
+                    firstDayInWeek: { type: 'number', group: 'initial' },
+                    daysShortName: { type: 'boolean'  }
                 }
             },
 
@@ -22,7 +23,7 @@ module.exports = {
             },
 
             getCode(){
-                let { color } = this.state;
+                let { firstDayInWeek, daysShortName } = this.state;
 
                 return (`
 <Calendar/>
@@ -30,13 +31,13 @@ module.exports = {
             },
 
             render() {
-                let { icon, size, color } = this.state;
-                size = ExampleHelper.ifNumber_Convert(size);
+                let { firstDayInWeek, daysShortName } = this.state;
+                firstDayInWeek = Number(firstDayInWeek);
 
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
 
-                            <Calendar/>
+                            <Calendar firstDayInWeek={firstDayInWeek} daysShortName={daysShortName}  />
             
                     </SimpleExample>
                 )
