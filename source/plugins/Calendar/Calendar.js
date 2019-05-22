@@ -2,11 +2,9 @@ module.exports = {
     name: 'Calendar',
     dependencies: ['core.plugin.tree'],
     actions: [],
-    modules: [
-
-    ],
+    modules: [],
     components: [
-
+        require('./components/Calendar'),
     ],
 
     extend: {
