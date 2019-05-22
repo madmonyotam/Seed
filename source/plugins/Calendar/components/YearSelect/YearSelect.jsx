@@ -18,7 +18,10 @@ module.exports = {
       },
 
       getDefaultProps(){
-        return { };
+        return { 
+          onChange: PropTypes.func,
+          onViewChange: PropTypes.func,
+        };
       },
 
       getInitialState() {
@@ -59,14 +62,36 @@ module.exports = {
 
       handlePrevious(momentKey){
         let { currentDate } = this.state;
+        let { onChange } = this.props;
+        
         let prevDate = moment(currentDate).subtract(1, momentKey);
+        
+        let date = {
+          year: moment(prevDate).year(),
+          month: moment(prevDate).month()+1,
+          full:  moment(prevDate).format()
+        }
+        
+        if (onChange) onChange(date)
+        
         this.setState({ currentDate: prevDate })
       },
 
       handleNext(momentKey){
         let { currentDate } = this.state;
-        let prevDate = moment(currentDate).add(1, momentKey);
-        this.setState({ currentDate: prevDate })
+        let { onChange } = this.props;
+
+        let nextDate = moment(currentDate).add(1, momentKey);
+
+        let date = {
+          year: moment(nextDate).year(),
+          month: moment(nextDate).month()+1,
+          full:  moment(nextDate).format()
+        }
+
+        if (onChange) onChange(date)
+
+        this.setState({ currentDate: nextDate })
       },
 
 

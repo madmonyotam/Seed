@@ -74,12 +74,24 @@ module.exports = {
                 )
             },
 
+            handleToggleView(){
+
+            },
+
+            handleChange(newDate) {
+              console.debug('newDate => ', newDate);
+            },
+
             render() {
 
                 return (
                     <Column boxShadow={true} width={500} >
-                      <YearSelect />
+                      <YearSelect onChange={ this.handleChange } 
+                                  onPickerChange={ this.handleToggleView }
+                                  pickerState={ this.state.picker } />
+
                         { this.renderDaysBar() }
+
                         {/* { this.renderMonthYearsBar() }
                         { this.renderMainCont() } */}
 
