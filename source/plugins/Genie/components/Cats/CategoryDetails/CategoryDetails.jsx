@@ -4,20 +4,18 @@ import {isEmpty} from 'lodash';
 module.exports = {
     name: 'CategoryDetails',
     description: 'This is an example of a component',
-    dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 
-        // 'Simple.IconMenu',
+    dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
         'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Simple.Icon',
         // 'Simple.FileDownloader', 
         'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults' ],
 
-        get( Column, Row, Label, Badge,
-            //  IconMenu,
+        get( Column, Row, Label, Badge, IconMenu,
         Generator, MockEditor, MockTable, MongoHandler, Icon,
         // FileDownloader, 
         PopupHandler, CategoryItemEditor, NoResults
         ) {
-        var core = this;
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var seed = this;
+        var { React, PropTypes, ComponentMixin } = seed.imports;
 
         return {
             mixins: [ ComponentMixin ],
@@ -69,15 +67,15 @@ module.exports = {
                     minCreate: 1,
                 };
                 this.colors = {
-                    text: core.theme('texts.default'),
-                    generate: core.theme('texts.primary'),
-                    icon: core.theme('texts.primary'),
-                    border: core.theme('borders.light'),
-                    lib: core.theme('Genie.lib_bg'),
-                    cat: core.theme('Genie.cat_bg')
+                    text: seed.theme('texts.default'),
+                    generate: seed.theme('texts.primary'),
+                    icon: seed.theme('texts.primary'),
+                    border: seed.theme('borders.light'),
+                    lib: seed.theme('Genie.lib_bg'),
+                    cat: seed.theme('Genie.cat_bg')
                 };
                 this.backgrounds = {
-                    default: core.theme('backgrounds.default')
+                    default: seed.theme('backgrounds.default')
                 };
                 this.dims = {
                     mainHeight: 'calc(100% - 50px)',
@@ -86,15 +84,15 @@ module.exports = {
                     createActionsInputWidth: 100,
                 };
                 this.icons = {
-                    arrowUp: core.icons('navigate.arrow_up'),
-                    arrowDown: core.icons('navigate.arrow_down'),
-                    table: core.icons('genie.table'),
-                    code: core.icons('genie.code'),
-                    create: core.icons('genie.create'),
-                    mongo: core.icons('genie.mongo'),
-                    save: core.icons('genie.save'),
-                    generate: core.icons('genie.generate'),
-                    add: core.icons('genie.add'),
+                    arrowUp: seed.icons('navigate.arrow_up'),
+                    arrowDown: seed.icons('navigate.arrow_down'),
+                    table: seed.icons('genie.table'),
+                    code: seed.icons('genie.code'),
+                    create: seed.icons('genie.create'),
+                    mongo: seed.icons('genie.mongo'),
+                    save: seed.icons('genie.save'),
+                    generate: seed.icons('genie.generate'),
+                    add: seed.icons('genie.add'),
                 };
             },
 
@@ -145,7 +143,7 @@ module.exports = {
             },
 
             updateParentKeyAndStateItems(props) {
-                let data = this.serialize(core.plugins.Genie.getMock());
+                let data = this.serialize(seed.plugins.Genie.getMock());
                 let stateItems = data[this.parentKey];
                 
                 if (this.state.mode === this.CREATE) {
@@ -179,10 +177,10 @@ module.exports = {
                             text: 'Saved to MongoDB Successfully!',
                             alertKind: 'success'
                         }
-                        core.emit('notify',notify);
+                        seed.emit('notify',notify);
                     }
                 }
-                let collectionName = core.getCurrentUser().tenantId
+                let collectionName = seed.getCurrentUser().tenantId
 
                 let saveItem = {
                     'key': saveKey.toLowerCase() ,
@@ -190,13 +188,13 @@ module.exports = {
                     'total-results': data.res.length
                 }
 
-                let currentUser = core.getCurrentUser();
+                let currentUser = seed.getCurrentUser();
                 let dbName = currentUser ? currentUser.tenantId : undefined
                 MongoHandler.automate(dbName, collectionName, saveItem, cb);
             },
 
             handleUpdateTree( data, mode ) {
-                let mock = this.serialize(core.plugins.Genie.getMock());
+                let mock = this.serialize(seed.plugins.Genie.getMock());
 
                 let newData = {
                     type: data.type
@@ -210,7 +208,7 @@ module.exports = {
                 else mock[this.parentKey][data.title] = newData;
 
                 this.setState({stateItems: mock[this.parentKey]});
-                core.plugins.Genie.setMock(mock);
+                seed.plugins.Genie.setMock(mock);
             },
 
             handleUpdateItems(data) {
@@ -246,7 +244,7 @@ module.exports = {
                             icon={this.icons.mongo}
                             size={this.dims.actionButtonIcon}
                             onClick={saveMongo}
-                            title={core.translate('Upload to MongoDB')}
+                            title={seed.translate('Upload to MongoDB')}
                         />
                         {/* <FileDownloader
                             key={'download'}
@@ -259,7 +257,7 @@ module.exports = {
                                 icon={this.icons.save}
                                 onClick={console.log('MISSING FILEDOWNLOADER')}
                                 size={this.dims.actionButtonIcon}
-                                title={core.translate('Save to file')}
+                                title={seed.translate('Save to file')}
                             />
                         {/* </FileDownloader> */}
 
@@ -274,7 +272,7 @@ module.exports = {
                             onClick={this.handleGenerate}
                             icon={this.icons.generate}
                             size={this.dims.actionButtonIcon}
-                            title={core.translate('Generate code')}
+                            title={seed.translate('Generate code')}
                         />
                     </React.Fragment>
                 );
@@ -289,10 +287,10 @@ module.exports = {
                     model = JSON.parse(model);
                 }
 
-                let data = this.serialize(core.plugins.Genie.getMock());
+                let data = this.serialize(seed.plugins.Genie.getMock());
                     data[this.parentKey] = model;
                 
-                core.plugins.Genie.setMock(data);
+                seed.plugins.Genie.setMock(data);
             },
 
             renderSaveToTreeButton() {
@@ -314,26 +312,26 @@ module.exports = {
                         onClick={click}
                         icon={this.icons.save}
                         size={this.dims.actionButtonIcon}
-                        title={core.translate('Save Changes')}
+                        title={seed.translate('Save Changes')}
                     />
                 );
             },
 
             handleAddItem() {
-                let all = core.plugins.Genie.getMock();
+                let all = seed.plugins.Genie.getMock();
 
                 const change = ()=>{
                     let data = PopupHandler.getData();
                     this.handleUpdateTree(data, 'add');
-                    core.emit('Popup.close');
+                    seed.emit('Popup.close');
                 };
 
                 PopupHandler.openSimpleModal({
-                    title: core.translate('Add new item to category'),
+                    title: seed.translate('Add new item to category'),
                     body: <CategoryItemEditor parentKey={this.parentKey}/>,
                     bodyStyle: {minHeight: 'unset'},
                     okButton: {
-                        btnTitle: core.translate('Add'),
+                        btnTitle: seed.translate('Add'),
                         btnFunc: change
                    }
                 });
@@ -347,7 +345,7 @@ module.exports = {
                             onClick={this.handleAddItem}
                             icon={this.icons.add}
                             size={this.dims.actionButtonIcon}
-                            title={core.translate('Add Item')}
+                            title={seed.translate('Add Item')}
                         />
                         {this.renderSaveToTreeButton()}
                     </React.Fragment>
@@ -374,23 +372,21 @@ module.exports = {
                         onClick: ()=>{ click(this.CREATE); }
                     },
                 ];
-                let title = `${core.translate('View Mode')}: ${core.translate(modeTitle)}`;
+                let title = `${seed.translate('View Mode')}: ${seed.translate(modeTitle)}`;
 
-                return null;
-                // return (
-                //     <IconMenu
-                //         key={'view'}
-                //         iconSize={14}
-                //         dropDown={true}
-                //         icon={showIcon}
-                //         iconColor={this.colors.icon}
-                //         menuTitle={title}
-                //         selected={this.state.mode}
-                //         menuItems={items}
-                //         tooltip={title}
-                //         style={this.styles('button')}
-                //     />
-                // );
+                return (
+                    <IconMenu
+                        key={'view'}
+                        iconSize={14}
+                        dropDown={true}
+                        icon={showIcon}
+                        iconColor={this.colors.icon}
+                        menuTitle={title}
+                        selected={this.state.mode}
+                        menuItems={items}
+                        style={this.styles('button')}
+                    />
+                );
             },
 
             renderTitle() {
@@ -437,10 +433,10 @@ module.exports = {
                 return (
                     <div  onClick = { this.props.addLib } style={this.styles('welcome')}>
                         <Row width={'fit-contant'}>
-                            <Label size={40} label={core.translate('Welcome to  genie')} style={{textTransform: 'uppercase' }}/>
+                            <Label size={40} label={seed.translate('Welcome to  genie')} style={{textTransform: 'uppercase' }}/>
                         </Row>
                         <Row width={'fit-contant'} height={100}>
-                            <Label size={20} label={core.translate('Click here to start')}/>
+                            <Label size={20} label={seed.translate('Click here to start')}/>
                         </Row>
                     </div>
                 );
@@ -450,9 +446,9 @@ module.exports = {
                 return (
                     <NoResults
                         onClick = { this.props.addCat }
-                        text={ core.translate('add category') }
-                        icon={ core.icons('general.add') }
-                        color={ core.theme('texts.default') }
+                        text={ seed.translate('add category') }
+                        icon={ seed.icons('general.add') }
+                        color={ seed.theme('texts.default') }
                         background= { this.colors.cat }
                         size={6}
                     />
@@ -463,9 +459,9 @@ module.exports = {
                 return (
                     <NoResults
                         onClick = { this.handleAddItem }
-                        text={ core.translate('Add Item') }
-                        icon={ core.icons('general.add') }
-                        color={ core.theme('texts.default') }
+                        text={ seed.translate('Add Item') }
+                        icon={ seed.icons('general.add') }
+                        color={ seed.theme('texts.default') }
                         background= { this.backgrounds.default }
                         size={6}
                     />

@@ -3,26 +3,28 @@ import { uniq, isEmpty } from 'lodash';
 
 module.exports = {
     name: "GenieUi",
-    bindings: {
-        currentLibrary: ['currentLibrary'],
-        currentCategory: ['currentCategory'],
-        data: ['plugins', 'Settings', 'config', 'genie']
-    },
-    dependencies: ['Genie.Libraries', 'Genie.Categories', 'Genie.CategoryDetails', 'Genie.MockUIHelpers', 
+    dependencies: ['Genie.Libraries', 'Genie.Categories', 'Genie.CategoryDetails', 
                    'Layouts.Column', 'Layouts.Row', 'Genie.MenuTitleBar'],
 
-    get( Libraries, Categories, CategoryDetails, MockUIHelpers,
+    get( Libraries, Categories, CategoryDetails,
          Column, Row, MenuTitleBar) {
 
         var core = this;
 
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
         return {
-            mixins: [ ComponentMixin ],
+            mixins: [ ComponentMixin, Branch ],
+            
+            cursors: {
+                currentLibrary: ['plugins','Genie','currentLibrary'],
+                currentCategory: ['plugins','Genie','currentCategory'],
+                data: ['plugins', 'Settings', 'genie'],
+            },
 
             componentWillMount() {
                 this.initUnits();
+                this.startSettingsGenie();
             },
 
             componentDidMount() { 
@@ -48,10 +50,13 @@ module.exports = {
                 this.units = {
                     transition: 0.2,
                 };
+
             },
 
             styles(propName) {
-                let noMenu = (!this.props.currentLibrary && !this.state.openLibAdd);
+                let {currentLibrary, openLibAdd} = this.state;
+
+                let noMenu = (!currentLibrary && !openLibAdd);
 
                 let styles = {
                     root: {
@@ -99,14 +104,21 @@ module.exports = {
                 return styles[propName]
             },
 
+            startSettingsGenie() {
+                let {data} = this.state;
+                if ( !data || !data.hasOwnProperty('genie') ) {
+                    seed.plugins.Genie.setMock({});
+                }
+            },
+
             treeFirstLoad() {
                 let data = core.plugins.Genie.getMock();
                 if ( !data || isEmpty(data)) return null;
+                console.log('data :', data);
 
                 let lib = this.getLibrariesLabels(data)[0];
-                let cat = this.getCategoriesLabels(data, lib)[0];
 
-                MockUIHelpers.libraryOpen( lib, cat );
+                this.setState({currentLibrary: lib});
             },
 
             getLibrariesLabels(data) {
@@ -121,8 +133,12 @@ module.exports = {
                 return libraries;
             },
 
-            getCategoriesLabels(data, library = this.props.currentLibrary) {
+            getCategoriesLabels(library) {
+                let {data, currentLibrary} = this.state;
+                
                 if ( !data || isEmpty(data)) return null;
+
+                if (!library) library = currentLibrary;
 
                 let keys = Object.keys(data);
 
@@ -136,7 +152,8 @@ module.exports = {
                 return categories;
             },
 
-            getCategoryItems( data, library, category ) {
+            getCategoryItems(library, category) {
+                let {data} = this.state;
                 if ( !data || isEmpty(data)) return null;
                 if(!category) return null;
 
@@ -145,7 +162,9 @@ module.exports = {
                 return data[selector];
             },
 
-            handleSearch(str, data) {
+            handleSearch(str) {
+                let {data} = this.state;
+
                 let libraries = [];
 
                 if (str && str.length) {
@@ -175,7 +194,8 @@ module.exports = {
                 });
             },
 
-            handleCloseAdd(data) {
+            handleCloseAdd() {
+                let {data} = this.state;
                 this.setState({
                     openLibAdd: false,
                     openCatAdd: false,
@@ -183,23 +203,22 @@ module.exports = {
                 this.handleSearch('', data)
             },
 
-            renderMenu(selectedCategory, currentLibrary, categories, data) {
-
-                let {openLibAdd, openCatAdd, libQuerry, catQuerry} = this.state;
+            renderMenu(selectedCategory, categories) {
+                let {openLibAdd, openCatAdd, libQuerry, catQuerry, currentLibrary, data} = this.state;
 
                 let libraries = this.getLibrariesLabels(data);
 
                 let commonParams = {
                     currentCategory: selectedCategory,
                     currentLibrary: currentLibrary,
-                    closeAdd: ()=>this.handleCloseAdd(data),
+                    closeAdd: ()=>this.handleCloseAdd(),
                 };
 
                 return (
                     <Paper id={'Lists'} elevation={ 2 } style={ this.styles('lists') }>
                         <Column id={'Menu'} style={ this.styles('menu') } >
                             <MenuTitleBar
-                                searchCB={(str)=>{this.handleSearch(str, data)}}
+                                searchCB={(str)=>{this.handleSearch(str)}}
                                 addLib={this.handleAddLib}
                                 addCat={this.handleAddCat}
                             />
@@ -213,18 +232,16 @@ module.exports = {
             },
 
             render() {
-                let {data} = this.props;
-                // return core.bind(['plugins', 'Settings', 'config', 'genie'], (data)=>{
-                let { currentLibrary, currentCategory } = this.props;
-                
-                let categories = this.getCategoriesLabels(data);
+                let {currentLibrary, currentCategory} = this.state;
+
+                let categories = this.getCategoriesLabels();
                 let selectedCategory = (isEmpty(categories)) ? null : (categories.includes(currentCategory)) ? currentCategory : categories[0];
 
-                let items = this.getCategoryItems(data, currentLibrary, selectedCategory);
+                let items = this.getCategoryItems(currentLibrary, selectedCategory);
 
                 return (
                     <Row padding={3} id={'MockgeneratorUi'} style={ this.styles('root') }>
-                        {this.renderMenu(selectedCategory, currentLibrary, categories, data)}
+                        {this.renderMenu(selectedCategory, categories)}
                         <Paper id={'CategoryDetails'} elevation={ 2 } style={ this.styles('openLibrary') } >
                             <CategoryDetails
                                 items={items}
@@ -236,9 +253,6 @@ module.exports = {
                         </Paper>
                     </Row>
                 )
-
-                // });
-
             }
         }
     }

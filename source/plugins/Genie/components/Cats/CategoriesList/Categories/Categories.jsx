@@ -2,19 +2,17 @@ import { uniq, isEmpty } from 'lodash';
 import { Input } from '@material-ui/core';
 
 module.exports = {
-    name: "Categories",
-
-    dependencies: [ 'Simple.NoResults', 'Genie.CategoryItem', 'Genie.MockUIHelpers',
-                    'Simple.Icon', 'Layouts.Row' ],
-    get( NoResults, CategoryItem, MockUIHelpers,
-         Icon, Row ) {
-
-        var core = this;
-
-        var { React, PropTypes, ComponentMixin } = core.imports;
+    dependencies: [ 'Simple.NoResults', 'Genie.CategoryItem', 'Simple.Icon', 'Layouts.Row' ],
+    get( NoResults, CategoryItem, Icon, Row ) {
+        var seed = this;
+        var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
         return {
-            mixins: [ ComponentMixin ],
+            mixins: [ ComponentMixin, Branch ],
+
+            cursors: {
+                currentCategory: ['plugins','Genie','currentCategory'],
+            },
 
             propsTypes: {
                 labels: PropTypes.array,
@@ -77,13 +75,13 @@ module.exports = {
                     rowHeight: 40,
                 };
                 this.colors = {
-                    text: core.theme('texts.default'),
+                    text: seed.theme('texts.default'),
                 };
                 this.backgrounds = {
-                    default: core.theme('backgrounds.default'),
+                    default: seed.theme('backgrounds.default'),
                 };
                 this.icons = {
-                    clear: core.icons('genie.clear')
+                    clear: seed.icons('genie.clear')
                 };
             },
 
@@ -134,10 +132,10 @@ module.exports = {
                 else {
                     if(labels.includes(value)) {
                         let notify = {
-                            text: core.translate('this category name is already exist'),
+                            text: seed.translate('this category name is already exist'),
                             alertKind: 'error'
                         }
-                        core.emit('notify',notify);
+                        seed.emit('notify',notify);
                         return 
                     }
                     labels.unshift(value);
@@ -145,18 +143,17 @@ module.exports = {
                     
                 this.setState({labels})
 
-                
-                let data = this.serialize(core.plugins.Genie.getMock());
+                let data = this.serialize(seed.plugins.Genie.getMock());
                 let indicator = `${currentLibrary}:${value}`;
                 
                 if ( data[indicator] ) {
-                    let errorText = core.translate('category is already exist');
-                    core.emit('notify', { text: errorText, alertKind: 'error' });
+                    let errorText = seed.translate('category is already exist');
+                    seed.emit('notify', { text: errorText, alertKind: 'error' });
                     return null;
                 }
                 
                 data[indicator] = {};
-                core.plugins.Genie.setMock(data);
+                seed.plugins.Genie.setMock(data);
                 this.handleSelect(value);
             },
 
@@ -164,19 +161,19 @@ module.exports = {
                 let { labels } = this.state;
                 let { currentLibrary } = this.props;
 
-                let data = this.serialize(core.plugins.Genie.getMock());
+                let data = this.serialize(seed.plugins.Genie.getMock());
                 let indicator = `${currentLibrary}:${value}`;
                 let oldIndicator = `${currentLibrary}:${oldValue}`;
                 
                 if ( data[indicator] ) {
-                    let errorText = core.translate('category is already exist');
-                    core.emit('notify', { text: errorText, alertKind: 'error' });
+                    let errorText = seed.translate('category is already exist');
+                    seed.emit('notify', { text: errorText, alertKind: 'error' });
                     return null;
                 }
 
                 data[indicator] = data[oldIndicator];
                 delete data[oldIndicator]; 
-                core.plugins.Genie.setMock(data);                
+                seed.plugins.Genie.setMock(data);                
 
                 let newLabels = this.serialize( labels );
                 let place = newLabels.indexOf(oldValue);
@@ -188,18 +185,18 @@ module.exports = {
             handleRemove(value) { 
                 let { currentLibrary } = this.props;
                 let { labels } = this.state;
-                let data = this.serialize(core.plugins.Genie.getMock());
+                let data = this.serialize(seed.plugins.Genie.getMock());
                 let indicator = `${currentLibrary}:${value}`;
                 
-                let text = core.translate(`Are you sure that do you want to remove the "${value}" category from "${currentLibrary}" library`);
-                let head = core.translate(`Remove "${value}" category`);
+                let text = seed.translate(`Are you sure that do you want to remove the "${value}" category from "${currentLibrary}" library`);
+                let head = seed.translate(`Remove "${value}" category`);
                 
-                core.plugins.popovers.Caution( text, head,
+                seed.plugins.popovers.Caution( text, head,
                     ( sure )=>{
                         if ( sure ) {
                             
                             delete data[indicator];
-                            core.plugins.Genie.setMock(data);
+                            seed.plugins.Genie.setMock(data);
 
                             let newLabels = [...labels];
                             newLabels.splice( newLabels.indexOf(value), 1);
@@ -215,8 +212,9 @@ module.exports = {
             },
 
             handleSelect(value) {
-                core.emit('MenuTitleBar_closeSearch');
-                MockUIHelpers.categoryOpen( value );
+                seed.emit('MenuTitleBar_closeSearch');
+
+                this.cursor.currentCategory.set(value)
             },
 
             handleMapLibs(){
@@ -263,9 +261,9 @@ module.exports = {
                     <NoResults
                         onClick = { this.add }
                         text={ '' }
-                        icon={ core.icons('general.add') }
-                        color={ core.theme('texts.default') }
-                        background= { core.theme('Genie.cat_bg') }
+                        icon={ seed.icons('general.add') }
+                        color={ seed.theme('texts.default') }
+                        background= { seed.theme('Genie.cat_bg') }
                         size={6}
                     />
                 );
@@ -299,14 +297,14 @@ module.exports = {
                             style={ this.styles('input')}
                             autoFocus={ true }
                             onKeyDown={ this.handleAddKeyDown }
-                            placeholder={ core.translate('Add Category') }
+                            placeholder={ seed.translate('Add Category') }
                         />
                         <Icon 
                             color={this.colors.text}
                             icon={this.icons.clear}
                             size={this.dims.iconSize}
                             onClick={this.handleCloseAdd}
-                            title={core.translate('Clear')}
+                            title={seed.translate('Clear')}
                         />
                     </Row>
                 );

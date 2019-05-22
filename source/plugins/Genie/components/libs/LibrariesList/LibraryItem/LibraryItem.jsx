@@ -141,6 +141,11 @@ module.exports = {
                 return styles[propName]
             },
 
+            prevent(e){
+                if (e.preventDefault) e.preventDefault();
+                if (e.stopPropagation) e.stopPropagation();
+            },
+
             handleOnChange(e) {
                 let value = e.target.value;
                 this.setState({ newValue: value });

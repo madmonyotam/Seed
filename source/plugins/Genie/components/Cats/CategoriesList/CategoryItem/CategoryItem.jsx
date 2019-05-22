@@ -7,9 +7,9 @@ module.exports = {
     dependencies: ['Simple.Icon','Simple.Label'],
     get(Icon, Label) {
 
-        var core = this;
+        var seed = this;
 
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var { React, PropTypes, ComponentMixin } = seed.imports;
 
         return {
             mixins: [ ComponentMixin ],
@@ -63,12 +63,12 @@ module.exports = {
                     minTextWidthReduction: 15,
                 };
                 this.colors = {
-                    border: core.theme('borders.default'),
+                    border: seed.theme('borders.default'),
                 };
                 this.backgrounds = {
-                    selected: core.theme('Genie.cat_bg'),
-                    default: core.theme('backgrounds.default'),
-                    hover: core.theme('Genie.hover'),
+                    selected: seed.theme('Genie.cat_bg'),
+                    default: seed.theme('backgrounds.default'),
+                    hover: seed.theme('Genie.hover'),
                 };
                 this.tippyDefaultProps = {
                     arrowTransform: 'scale(0.8)',
@@ -81,10 +81,10 @@ module.exports = {
                     theme: 'light _single'
                 };
                 this.icons = {
-                    edit: core.icons('files.edit'),
-                    remove: core.icons('files.delete'),
-                    cancel: core.icons('navigate.close'),
-                    ok: core.icons('discovery.done'),
+                    edit: seed.icons('files.edit'),
+                    remove: seed.icons('files.delete'),
+                    cancel: seed.icons('navigate.close'),
+                    ok: seed.icons('discovery.done'),
                 };
             },
 
@@ -142,6 +142,12 @@ module.exports = {
                 return styles[propName]
             },
 
+            prevent(e){
+                if (e.preventDefault) e.preventDefault();
+                if (e.stopPropagation) e.stopPropagation();
+            },
+
+
             handleOnChange(e) {
                 let value = e.target.value;
                 this.setState({ newValue: value });
@@ -152,7 +158,7 @@ module.exports = {
                 this.setState({ value: '' }, ()=>{ if (onClear) { onClear(e) } });
             },
 
-            handleEditKeyDown(e){
+            handleEditKeyDown(e) {
                 
                 if ( e && e.keyCode === 27 ) { // ESC
                     this.prevent( e );
@@ -218,11 +224,11 @@ module.exports = {
             renderEditIcons(){
                 return (
                   <div id={'renderEditIcons'} style={ this.styles('renderEditIcons') } >
-                    {/* <Tippy content={ core.translate('Cancel') } {...this.tippyDefaultProps} > */}
+                    {/* <Tippy content={ seed.translate('Cancel') } {...this.tippyDefaultProps} > */}
                         <Icon size={ 16 } icon={ this.icons.cancel } onClick={ this.handleCancel } style={{ ...this.styles('icon'), marginRight: 10 }} />
                     {/* </Tippy> */}
   
-                    // <Tippy content={ core.translate('Ok') } {...this.tippyDefaultProps} >
+                    // <Tippy content={ seed.translate('Ok') } {...this.tippyDefaultProps} >
                         <Icon size={ 16 } icon={ this.icons.ok } onClick={ this.renameCB } style={ this.styles('icon') }/>
                     // </Tippy>
                   </div>
@@ -232,7 +238,7 @@ module.exports = {
 
             renderRemove(){
                 return(
-                //   <Tippy content={ core.translate('Remove') } {...this.tippyDefaultProps} >
+                //   <Tippy content={ seed.translate('Remove') } {...this.tippyDefaultProps} >
                         <Icon id={'renderRemove.Icon'} size={ 16 } icon={ this.icons.remove } onClick={ this.removeCB } style={{ ...this.styles('icon'), marginLeft: 10 }}/>
                 //   </Tippy>
                 )
@@ -247,7 +253,7 @@ module.exports = {
                 if (showRowIcons && !isEditable) {
                     return (
                       <div id={'renderRowIcons'} style={ this.styles('rowIcons') } >
-                        {/* <Tippy content={ core.translate('Rename') } {...this.tippyDefaultProps} > */}
+                        {/* <Tippy content={ seed.translate('Rename') } {...this.tippyDefaultProps} > */}
                             <Icon size={ 16 } icon={ this.icons.edit } onClick={ this.handleEdit } style={ this.styles('icon') } />
                         {/* </Tippy> */}
 

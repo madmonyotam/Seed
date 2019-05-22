@@ -28,7 +28,7 @@ get(Icon, Button) {
                 iconSize: 24,
                 iconColor: core.theme('texts.default'),
                 icon: core.icons('general.info'),
-                background: undefined,
+                background: core.theme('backgrounds.default'),
                 variant: 'flat',
                 theme: 'default',
                 onClick: ()=>{},

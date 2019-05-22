@@ -15,6 +15,7 @@ module.exports = {
                     icon: { type: 'icon', group: 'initial'},
                     iconSize: { type: 'number', group: 'initial' },
                     iconColor: { type: 'string', group: 'initial' },
+                    background: { type: 'string', group: 'initial' },
                     menuTitle: { type: 'string', group: 'initial' },
                     dropDown: { type: 'boolean', group: 'initial' },
                 }
@@ -28,7 +29,7 @@ module.exports = {
             },
 
             getCode(){
-                let {icon, iconSize, iconColor, menuTitle, dropDown, clickResult } = this.state;
+                let {icon, iconSize, iconColor, background, menuTitle, dropDown, clickResult } = this.state;
 
                 return [
                     `<IconMenu`,
@@ -40,7 +41,9 @@ module.exports = {
                     `       { text: 'Create', value: 'Create', iconProps: {icon: 'genie.create', onClick: ()=>{ this.print('create'); } },`,
                     `   ] }`,
                     `   dropDown={${dropDown}}`,
-                    `   iconColor={${iconColor}} />`,
+                    `   iconColor={${iconColor}}`,
+                    `   background={${background}}`,
+                    `/>`,
                     ``,
                     `>> log: ${clickResult}`
                 ].join('\n');
@@ -53,7 +56,7 @@ module.exports = {
             },
 
             render() {
-                let { icon, iconSize, iconColor, menuTitle, dropDown } = this.state;
+                let { icon, iconSize, iconColor, background, menuTitle, dropDown } = this.state;
                 let size = ExampleHelper.ifNumber_Convert(iconSize);
 
                 const items = [
@@ -63,7 +66,7 @@ module.exports = {
                 ];
 
                 return (
-                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
+                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } codeHeight={ '40%' } exampleHeight={ '60%' } >
 
                         <IconMenu
                             icon={ icon }
@@ -72,6 +75,7 @@ module.exports = {
                             menuItems={ items }
                             dropDown={ dropDown }
                             iconColor={ iconColor }
+                            background={ background }
                         />
             
                     </SimpleExample>

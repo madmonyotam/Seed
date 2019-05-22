@@ -1,1 +1,7 @@
-{}
+{
+    "asdf:qwer": {
+        "qweqwe": {
+            "type": "boolean"
+        }
+    }
+}

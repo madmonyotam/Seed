@@ -26,11 +26,17 @@ get( Label, Row, Icon, Divider, IconButton) {
                 }),
                 onClick: PropTypes.func,
             }).isRequired,
+
             icon: PropTypes.string,
+            iconColor: PropTypes.string,
             iconSize: PropTypes.number,
+            iconStyle: PropTypes.object,
+            iconButtonStyle: PropTypes.object,
+            
+            selected: PropTypes.any,
+            background: PropTypes.string,
             active: PropTypes.bool,
             dropDown: PropTypes.bool,
-            iconColor: PropTypes.string,
             anchorOrigin: PropTypes.shape({
                 vertical: PropTypes.oneOf(['bottom', 'top']),
                 horizontal: PropTypes.oneOf(['right', 'left']),
@@ -50,9 +56,15 @@ get( Label, Row, Icon, Divider, IconButton) {
                 menuStyle: {},
                 menuItems: [],
                 menuIconSize: 20,
+
                 icon: core.icons('general.info'),
-                iconSize: 20,
                 iconColor: core.theme('texts.default'),
+                iconSize: 20,
+                iconStyle: {},
+                iconButtonStyle: {},
+                
+                selected: undefined,
+                background: core.theme('backgrounds.default'),
                 active: false,
                 dropDown: false,
                 anchorOrigin:{ vertical: 'bottom', horizontal: 'right' },
@@ -87,7 +99,7 @@ get( Label, Row, Icon, Divider, IconButton) {
 
 
         styles(s) {
-            let {style, menuStyle, menuWidth, menuItemStyle, dropDown,
+            let {style, menuStyle, menuWidth, menuItemStyle, background,
                 iconStyle, iconSize, iconButtonStyle, active, iconColor} = this.props;
 
             let menuItem = {
@@ -147,12 +159,15 @@ get( Label, Row, Icon, Divider, IconButton) {
                 },
                 icon: {
                     color: active ? this.colors.active : iconColor,
+                    minWidth: iconSize,
+                    minHeight: iconSize,
+                    background: background,
                     transition: 'color 0.15s ease-in-out',
                     ...iconStyle
                 },
                 iconButton: {
-                    width: iconSize + 10,
-                    height: iconSize + 10,
+                    minWidth: iconSize + 10,
+                    minHeight: iconSize + 10,
                     position: 'relative',
                     ...iconButtonStyle
                 },
@@ -170,6 +185,7 @@ get( Label, Row, Icon, Divider, IconButton) {
                     flexDirection: 'row',
                     justifyContent: 'space-around',
                     alignItems: 'center',
+                    background: background,
                     minWidth: iconSize + 35,
                     minHeight: iconSize + 10,
                 },
@@ -196,20 +212,18 @@ get( Label, Row, Icon, Divider, IconButton) {
           },
 
         renderIconButton() {
-            let {icon, iconSize, active, iconColor, dropDown} = this.props;
-
-            const mainIcon = ()=>{
-                let color = active ? active : iconColor;
-                return (
-                    <Icon style={ this.styles('icon') } icon={icon} size={iconSize} color={ color }/>
-                );
-            };
+            let {icon, iconSize, active, iconColor, dropDown, background} = this.props;
+            let color = active ? active : iconColor;
 
             if (dropDown) {
                 return (
-                    <IconButton onClick={this.handleOpen} style={ this.styles('dropDownButton') }>
+                    <IconButton 
+                        onClick={this.handleOpen}
+                        background={background}
+                        style={ this.styles('dropDownButton') }
+                    >
                         <div style={this.styles('dropDownInner')}>
-                            {mainIcon()}
+                            <Icon style={ this.styles('icon') } icon={icon} size={iconSize} color={ color }/>
                             <Divider color={iconColor} size={iconSize + 10} margin={2}/>
                             <Icon
                                 style={this.styles('dropIcon')}
@@ -223,9 +237,14 @@ get( Label, Row, Icon, Divider, IconButton) {
             }
 
             return (
-                <IconButton onClick={this.handleOpen} style={ this.styles('iconButton') }>
-                    {mainIcon()}
-                </IconButton>
+                <IconButton 
+                    icon={icon}
+                    iconSize={iconSize}
+                    iconColor={color}
+                    background={background}
+                    onClick={this.handleOpen}
+                    style={ this.styles('iconButton') }
+                />
             );
         },
 

@@ -2,19 +2,18 @@ module.exports = {
     name: 'MenuTitleBar',
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Row', 
-                    // 'Simple.IconMenu',
+                    'Inputs.IconMenu',
                     'Simple.Icon', 'Simple.Label',
                     'Inputs.Input'],
     get(Row, 
-        // IconMenu, 
+        IconMenu, 
         Icon, Label,
         Input) {
         let core = this;
         
         let SearchIcon = Icon;
         let CloseIcon = Icon;
-        let MoreIcon = Icon;
-        // let MoreIcon = IconMenu;
+        let MoreIcon = IconMenu;
 
         let MenuTitleBar = Row;
         let IconsRow = Row;
@@ -188,18 +187,10 @@ module.exports = {
                             icon={this.icons.search}
                         />
                         <MoreIcon key={'MoreIcon'}
-                            size={this.dims.iconSize}
-                            onClick={console.log('MISSING ICONMENU')}
-                            title={core.translate('Search')}
-                            icon={this.icons.search}
-                        />
-                        {/* <MoreIcon key={'MoreIcon'}
-                            tooltip={core.translate('Add')}
-                            iconSize={this.dims.iconSize}
                             icon={this.icons.threeDots}
+                            iconSize={this.dims.iconSize}
                             menuItems={menuList}
-                            iconButtonStyle={{padding:0}}
-                        /> */}
+                        />
                     </IconsRow>
                 )
             },

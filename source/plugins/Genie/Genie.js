@@ -23,7 +23,6 @@ module.exports = {
 
     modules: [
         require('./modules/HelpersCentral/Helpers'),
-        require('./modules/HelpersCentral/MockUIHelpers'),
 
         require('./modules/Generator'),
     ],
@@ -33,17 +32,16 @@ module.exports = {
     ],
 
     init(definition, done) {
-        var core = definition;
+        var seed = definition;
 
         var _options = {
-
             setMock( data ){
-                core.plugins.Settings.set(['config','genie'], data);
-                setTimeout(()=>{core.emit('config:changed')}, 250);
+                seed.plugins.Settings.set(['genie'], data);
+                setTimeout(()=>{seed.emit('config:changed')}, 250);
             },
 
             getMock(){
-               return  core.plugins.Settings.get(['config','genie']);
+               return seed.plugins.Settings.get('genie');
             }
         };
 
