@@ -33,6 +33,7 @@ function loadUiPlugins() {
         require('./plugins/Project'),
         require('./plugins/Settings'),
         require('./plugins/Decorators'),
+        require('./plugins/Calendar'),
     
     ]);
 }
