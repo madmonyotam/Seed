@@ -17,7 +17,7 @@ module.exports = {
             getDefaultProps(){
                 return {
                     daysShortName: true,
-                    firstDayInWeek: 1,
+                    firstDayInWeek: 1
                 };
             },
             
@@ -66,6 +66,8 @@ module.exports = {
 
             renderDaysBar(){
                 let { daysShortName, firstDayInWeek } = this.props;
+                let { picker } = this.props;
+                if(picker!=='day') return;
 
                 return(
                     <DaysBar firstDayInWeek={firstDayInWeek} shortName={daysShortName} />
