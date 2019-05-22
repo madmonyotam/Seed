@@ -1,6 +1,8 @@
 import Downshift from 'downshift';
 import { map, uniqueId, isEqual } from 'lodash';
 import { Typography } from '@material-ui/core';
+var tinycolor = require('tinycolor2');
+
 module.exports = {
     name: 'Input',
     description: '',
@@ -267,6 +269,12 @@ module.exports = {
               }
             },
 
+            handleDeleteChip(event, chipValue){
+              let { multiValues } = this.state;
+              let newValues = multiValues.filter( item => { return item !== chipValue })
+              this.setState({ multiValues: newValues })
+            },
+
             getSuggestions(inputValue){
               let { options, multiValues } = this.state;
               let { suggest, isMultipleValues } = this.props;
@@ -288,8 +296,8 @@ module.exports = {
               const style = () => { 
                 return {
                   ...this.styles('downshiftItem'),
-                  backgroundColor:  isActive ? units.colors.highlight : units.colors.white,
-                  color: isActive ? units.colors.white : units.colors.text,
+                  backgroundColor:  isSelected ? units.colors.highlight : isHighlighted ? tinycolor( units.colors.highlight ).lighten(25) : units.colors.white,
+                  color: isSelected ? units.colors.white : units.colors.text,
                   fontWeight: isActive ? 600 : 400,
                 }
               }
@@ -383,7 +391,10 @@ module.exports = {
                   <div style={{ display: 'flex', flexWrap: 'wrap' }} >
                     {
                       map(multiValues, (value, key)=>{
-                        return <Chip style={{ marginRight: 5, marginBottom: 5 }} key={ key } text={ value }/>
+                        return <Chip key={ key } 
+                                     style={{ marginRight: 5, marginBottom: 5 }}  
+                                     text={ value } 
+                                     onDelete={ this.handleDeleteChip } />
                       })
                     }
                   </div>
