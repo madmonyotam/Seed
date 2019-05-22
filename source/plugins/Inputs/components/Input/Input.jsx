@@ -386,9 +386,10 @@ module.exports = {
 
             renderChips(){
               let { multiValues } = this.state;
+
               if (multiValues && multiValues.length ) {
                 return (
-                  <div style={{ display: 'flex', flexWrap: 'wrap' }} >
+                  <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: this.props.label ? 5 : 0 }} >
                     {
                       map(multiValues, (value, key)=>{
                         return <Chip key={ key } 
