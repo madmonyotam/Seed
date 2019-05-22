@@ -1,6 +1,8 @@
+import moment from 'moment';
+
 module.exports = {
-    dependencies: ['Layouts.Column','Calendar.YearSelect','Calendar.DaysBar','Calendar.MonthPicker'],    
-    get(Column, YearSelect, DaysBar, MonthPicker) {
+    dependencies: ['Layouts.Column','Calendar.YearSelect','Calendar.DaySelect','Calendar.DaysBar', 'Calendar.MonthPicker'],    
+    get(Column, YearSelect, DaySelect, DaysBar, MonthPicker) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -25,7 +27,8 @@ module.exports = {
             
             getInitialState() {
                 return {
-                    picker: DAY
+                    picker: DAY,
+                    currentDate: moment().format()
                 };
             },
 
@@ -61,7 +64,7 @@ module.exports = {
             },
 
             renderWeeks(){
-
+              return <DaySelect currentDate={ this.state.currentDate }/>
             },
 
             renderMainCont(){
@@ -82,9 +85,7 @@ module.exports = {
 
                 if(picker!==DAY) return;
 
-                return(
-                    <DaysBar firstDayInWeek={firstDayInWeek} shortName={daysShortName} />
-                )
+                return <DaysBar firstDayInWeek={firstDayInWeek} shortName={daysShortName} />
             },
 
             handleToggleView(){

@@ -6,6 +6,7 @@ module.exports = {
     components: [
         require('./components/Calendar'),
         require('./components/DaysBar'),
+        require('./components/DaySelect'),
         require('./components/YearSelect'),
         require('./components/MonthPicker'),
     ],
