@@ -55,13 +55,14 @@ module.exports = {
         let disabled = this.getDisabled()
         let formatted = day.format('DD'); 
         let textColor = this.isCurrent() ? units.colors.textSelected : units.colors.text; 
+        textColor = disabled ? units.colors.textOutOfMonth : textColor; 
 
         return (
           <Center>
             <Button variant={ 'flat' } 
                     theme={ this.isCurrent() ? 'primary' : 'default' }
                     round={ false } 
-                    textColor={ disabled ? units.colors.textOutOfMonth : textColor }
+                    textColor={ textColor }
                     width={ '100%' } 
                     height={ '100%' } 
                     onClick={ e => { onSelect(dayDate) } }> 
