@@ -27,7 +27,7 @@ module.exports = {
                     daysShortName: true,
                     monthShortName: false,
                     firstDayInWeek: 1,
-                    width: 500,
+                    width: 550,
                     height: 500
                 };
             },

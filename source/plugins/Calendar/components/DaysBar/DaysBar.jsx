@@ -99,7 +99,12 @@ module.exports = {
                     row: {
                         justifyContent: 'space-between',
                         paddingRight: 0
-                    },
+                   },
+
+                   label:{
+                        textAlign: 'center', 
+                        padding: 5
+                   }
                 
                 }
                 
@@ -112,8 +117,8 @@ module.exports = {
 
                 return (
 
-                  <Center  key={day.key} >
-                    <Label label={label} width={ '100%' } height={ '100%' } style={{ textAlign: 'center' }} />
+                  <Center  key={day.key} width={"calc(100%/7)"} >
+                    <Label label={label} width={ '100%' } height={ '100%' } style={this.styles('label')} />
                   </Center>
                 ) 
             },
