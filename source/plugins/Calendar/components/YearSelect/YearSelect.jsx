@@ -162,9 +162,9 @@ module.exports = {
 
            <Tooltip content={ 'Today' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('calendar.today') }
-                    size={ 19 } 
+                    size={ 18 } 
                     style={ this.styles('icon') } 
-                    variant={ 'filled' }
+                    variant={ 'outlined' }
                     onClick={ e => { this.handleToday() } } />
             </Tooltip>
           </div>

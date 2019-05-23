@@ -21,55 +21,50 @@ module.exports = {
 
       propsTypes: {
         onSelect: PropTypes.func,
-        date: PropTypes.string,
-        isCurrent: PropTypes.bool,
-      },
-
-      getDefaultProps(){
-        return { 
-          isCurrent: false
-        };
-      },
-
-      getInitialState() {
-        return { 
-        };
-      },
-
-      componentDidMount() { 
+        current: PropTypes.string,
+        dayDate: PropTypes.string,
       }, 
 
-      componentWillReceiveProps (nextProps) {
+      getDay(){
+        let { dayDate } = this.props;
+        return moment(dayDate)
       },
 
-      styles(s){
+      getCurrent(){
+        let { current } = this.props;
+        return moment(current)
+      },
 
-        const styles = {
-         
-        }
+      getDisabled(){
+        let current = this.getCurrent();
+        let day = this.getDay();
+        let startOfMonth = moment(current).startOf('month').format();
+        let endOfMonth = moment(current).endOf('month').format();
+        return moment(day.format()).isBefore(startOfMonth) || moment(day.format()).isAfter(endOfMonth) 
+      },
 
-        return(styles[s]);
-      },   
+      isCurrent(){
+        let day = this.getDay();
+        let current = this.getCurrent()
+        return moment(day).isSame(current, 'day')
+      },
       render() {
-        let day = moment(this.props.date);
-        let formatted = day.format('DD');
-        let startOfMonth = moment(this.props.current).startOf('month').format();
-        let endOfMonth = moment(this.props.current).endOf('month').format();
-        let current = moment(this.props.current)
-        
-        let isCurrent = moment(day).isSame(current, 'day');
-        let textColor = isCurrent ? units.colors.textSelected : units.colors.text;
-        let dis = moment(day.format()).isBefore(startOfMonth) || moment(day.format()).isAfter(endOfMonth) 
+        let { onSelect, dayDate } = this.props;
+
+        let day = this.getDay();
+        let disabled = this.getDisabled()
+        let formatted = day.format('DD'); 
+        let textColor = this.isCurrent() ? units.colors.textSelected : units.colors.text; 
 
         return (
           <Center>
             <Button variant={ 'flat' } 
-                    theme={ isCurrent ? 'primary' : 'default' }
+                    theme={ this.isCurrent() ? 'primary' : 'default' }
                     round={ false } 
-                    textColor={ dis ? units.colors.textOutOfMonth : textColor }
+                    textColor={ disabled ? units.colors.textOutOfMonth : textColor }
                     width={ '100%' } 
                     height={ '100%' } 
-                    onClick={ e => { this.props.onSelect(this.props.date) } }> 
+                    onClick={ e => { onSelect(dayDate) } }> 
 
               { formatted }
 

@@ -74,7 +74,7 @@ module.exports = {
         let { currentDate, onSelect } = this.props;
 
         return <Day key={ i } 
-                    date={ day } 
+                    dayDate={ day } 
                     current={ currentDate } 
                     onSelect={ onSelect } /> 
       },
