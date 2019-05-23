@@ -44,6 +44,7 @@
         "default":"colors.grey070"
     },
     "genie":{
+        "white_bg": "colors.white",
         "title_bg": "colors.grey080",
         "lib_bg": "colors.blue055",
         "cat_bg":"colors.blue065",

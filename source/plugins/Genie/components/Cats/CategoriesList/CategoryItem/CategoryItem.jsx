@@ -66,9 +66,9 @@ module.exports = {
                     border: seed.theme('borders.default'),
                 };
                 this.backgrounds = {
-                    selected: seed.theme('Genie.cat_bg'),
-                    default: seed.theme('backgrounds.default'),
-                    hover: seed.theme('Genie.hover'),
+                    selected: seed.theme('genie.cat_bg'),
+                    default: seed.theme('genie.white_bg'),
+                    hover: seed.theme('genie.hover'),
                 };
                 this.tippyDefaultProps = {
                     arrowTransform: 'scale(0.8)',
@@ -81,10 +81,10 @@ module.exports = {
                     theme: 'light _single'
                 };
                 this.icons = {
-                    edit: seed.icons('files.edit'),
-                    remove: seed.icons('files.delete'),
-                    cancel: seed.icons('navigate.close'),
-                    ok: seed.icons('discovery.done'),
+                    edit: seed.icons('genie.edit'),
+                    remove: seed.icons('genie.remove'),
+                    cancel: seed.icons('genie.close'),
+                    ok: seed.icons('genie.done'),
                 };
             },
 

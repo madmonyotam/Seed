@@ -143,7 +143,7 @@ module.exports = {
                     
                 this.setState({labels})
 
-                let data = this.serialize(seed.plugins.Genie.getMock());
+                let data = this.serialize(seed.get('genie'));
                 let indicator = `${currentLibrary}:${value}`;
                 
                 if ( data[indicator] ) {
@@ -153,7 +153,7 @@ module.exports = {
                 }
                 
                 data[indicator] = {};
-                seed.plugins.Genie.setMock(data);
+                seed.set('genie', data);
                 this.handleSelect(value);
             },
 
@@ -161,7 +161,7 @@ module.exports = {
                 let { labels } = this.state;
                 let { currentLibrary } = this.props;
 
-                let data = this.serialize(seed.plugins.Genie.getMock());
+                let data = this.serialize(seed.get('genie'));
                 let indicator = `${currentLibrary}:${value}`;
                 let oldIndicator = `${currentLibrary}:${oldValue}`;
                 
@@ -173,7 +173,7 @@ module.exports = {
 
                 data[indicator] = data[oldIndicator];
                 delete data[oldIndicator]; 
-                seed.plugins.Genie.setMock(data);                
+                seed.set('genie', data);                
 
                 let newLabels = this.serialize( labels );
                 let place = newLabels.indexOf(oldValue);
@@ -185,7 +185,7 @@ module.exports = {
             handleRemove(value) { 
                 let { currentLibrary } = this.props;
                 let { labels } = this.state;
-                let data = this.serialize(seed.plugins.Genie.getMock());
+                let data = this.serialize(seed.get('genie'));
                 let indicator = `${currentLibrary}:${value}`;
                 
                 let text = seed.translate(`Are you sure that do you want to remove the "${value}" category from "${currentLibrary}" library`);
@@ -196,7 +196,7 @@ module.exports = {
                         if ( sure ) {
                             
                             delete data[indicator];
-                            seed.plugins.Genie.setMock(data);
+                            seed.set('genie', data);
 
                             let newLabels = [...labels];
                             newLabels.splice( newLabels.indexOf(value), 1);
@@ -261,7 +261,7 @@ module.exports = {
                     <NoResults
                         onClick = { this.add }
                         text={ '' }
-                        icon={ seed.icons('general.add') }
+                        icon={ seed.icons('genie.add') }
                         color={ seed.theme('texts.default') }
                         background= { seed.theme('Genie.cat_bg') }
                         size={6}

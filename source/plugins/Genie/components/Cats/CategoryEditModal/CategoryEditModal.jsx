@@ -82,7 +82,7 @@ module.exports = {
 
             createOptions(){
                 let options=[];
-                let all = core.plugins.Genie.getMock();
+                let all = seed.get('genie');
                 let keys = Object.keys(all);
 
                 let libraries = keys.map( k => k.split(':')[0] );

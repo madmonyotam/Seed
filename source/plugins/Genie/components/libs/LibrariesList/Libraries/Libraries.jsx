@@ -176,7 +176,7 @@ get(NoResults, LibraryItem, Icon, Row) {
         },
 
         handleLibraryRename( oldLabel, newLabel) {
-            let data = ComponentMixin.serialize( seed.plugins.Genie.getMock() );
+            let data = ComponentMixin.serialize( seed.get('genie') );
             let dataEntries = Object.entries( data ).sort();
 
             for (let i = 0; i < dataEntries.length; i++) {
@@ -191,11 +191,11 @@ get(NoResults, LibraryItem, Icon, Row) {
                     data[newIndicator] = values;
                 }
             }
-            seed.plugins.Genie.setMock(data);
+            seed.set('genie', data);
         },
 
         handleLibraryRemove( label ) {
-            let data = ComponentMixin.serialize( seed.plugins.Genie.getMock() );
+            let data = ComponentMixin.serialize( seed.get('genie') );
             let dataEntries = Object.entries( data ).sort();
             let libraries = uniq( dataEntries.map( e => e[0].split(':')[0] ) );
 
@@ -210,7 +210,7 @@ get(NoResults, LibraryItem, Icon, Row) {
                 if ( entryLib === label ) delete data[indicator];
             }
             if ( !data || isEmpty(data) ) data = {};
-            seed.plugins.Genie.setMock(data);
+            seed.set('genie', data);
         },
 
         compareLabels( labels1, labels2) {

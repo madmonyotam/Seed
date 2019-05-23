@@ -65,9 +65,9 @@ module.exports = {
                     border: core.theme('borders.default'),
                 };
                 this.backgrounds = {
-                    selected: core.theme('Genie.lib_bg'),
-                    default: core.theme('backgrounds.default'),
-                    hover: core.theme('Genie.hover'),
+                    selected: core.theme('genie.lib_bg'),
+                    default: core.theme('genie.white_bg'),
+                    hover: core.theme('genie.hover'),
                 };
                 this.tippyDefaultProps = {
                     arrowTransform: 'scale(0.8)',
@@ -80,10 +80,10 @@ module.exports = {
                     theme: 'light _single'
                 };
                 this.icons = {
-                    edit: core.icons('files.edit'),
-                    remove: core.icons('files.delete'),
-                    cancel: core.icons('navigate.close'),
-                    ok: core.icons('discovery.done'),
+                    edit: core.icons('genie.edit'),
+                    remove: core.icons('genie.remove'),
+                    cancel: core.icons('genie.close'),
+                    ok: core.icons('genie.done'),
                 };
             },
 

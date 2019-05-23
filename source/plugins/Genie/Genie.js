@@ -35,14 +35,6 @@ module.exports = {
         var seed = definition;
 
         var _options = {
-            setMock( data ){
-                seed.plugins.Settings.set(['genie'], data);
-                setTimeout(()=>{seed.emit('config:changed')}, 250);
-            },
-
-            getMock(){
-               return seed.plugins.Settings.get('genie');
-            }
         };
 
         done(_options);

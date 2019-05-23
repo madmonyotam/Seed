@@ -3,15 +3,12 @@ import { uniq, isEmpty } from 'lodash';
 
 module.exports = {
     name: "GenieUi",
-    dependencies: ['Genie.Libraries', 'Genie.Categories', 'Genie.CategoryDetails', 
-                   'Layouts.Column', 'Layouts.Row', 'Genie.MenuTitleBar'],
+    dependencies: ['Genie.Libraries', 'Genie.Categories', 'Genie.CategoryDetails', 'Layouts.Column', 'Layouts.Row', 'Genie.MenuTitleBar'],
 
-    get( Libraries, Categories, CategoryDetails,
-         Column, Row, MenuTitleBar) {
+    get( Libraries, Categories, CategoryDetails, Column, Row, MenuTitleBar) {
+        var seed = this;
 
-        var core = this;
-
-        var { React, PropTypes, ComponentMixin, Branch } = core.imports;
+        var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
         return {
             mixins: [ ComponentMixin, Branch ],
@@ -19,15 +16,20 @@ module.exports = {
             cursors: {
                 currentLibrary: ['plugins','Genie','currentLibrary'],
                 currentCategory: ['plugins','Genie','currentCategory'],
-                data: ['plugins', 'Settings', 'genie'],
+                data: ['plugins', 'access', 'genie'],
             },
 
             componentWillMount() {
                 this.initUnits();
-                this.startSettingsGenie();
             },
 
-            componentDidMount() { 
+            componentDidMount() {
+                this.treeFirstLoad();
+                this.eventsHandler('on');
+            },
+
+            componentWillUnmount() {
+                this.eventsHandler('off');
             },
 
             getInitialState() {
@@ -40,12 +42,11 @@ module.exports = {
             },
 
             initUnits() {
-                this.treeFirstLoad();
                 this.dims = {
                     menuWidth: 380,
                 };
                 this.colors = {
-                    border: core.theme('borders.default'),
+                    border: seed.theme('borders.default'),
                 };
                 this.units = {
                     transition: 0.2,
@@ -104,24 +105,40 @@ module.exports = {
                 return styles[propName]
             },
 
-            startSettingsGenie() {
-                let {data} = this.state;
-                if ( !data || !data.hasOwnProperty('genie') ) {
-                    seed.plugins.Genie.setMock({});
+            eventsHandler(action) {
+                seed[action]('genieSave', this.handleSave);
+
+                let windowEvent = (action == 'on') ? 'addEventListener' : 'removeEventListener';
+
+                document[windowEvent]('keydown', this.handleKeypress);
+            },
+
+            handleSave() {
+                return core.emit('file:save', this.state.data);
+            },
+
+            handleKeypress(event) {
+                
+                if (event.code == 'KeyS' && event.composed && event.ctrlKey) {
+                    event.preventDefault(); event.stopPropagation();
+                    return this.handleSave();
                 }
             },
 
             treeFirstLoad() {
-                let data = core.plugins.Genie.getMock();
-                if ( !data || isEmpty(data)) return null;
-                console.log('data :', data);
+                let libraries = this.getLibrariesLabels();
+                if (!libraries || !libraries.length) return null
 
-                let lib = this.getLibrariesLabels(data)[0];
-
-                this.setState({currentLibrary: lib});
+                this.setState( (state, props)=>{
+                    if (!state.currentLibrary || !state.currentLibrary.length) {
+                        return {currentLibrary: libraries[0]}
+                    }
+                });
             },
 
-            getLibrariesLabels(data) {
+            getLibrariesLabels() {
+                let {data} = this.state;
+
                 if ( !data || isEmpty(data)) return null;
 
                 let keys = Object.keys(data);
@@ -133,18 +150,16 @@ module.exports = {
                 return libraries;
             },
 
-            getCategoriesLabels(library) {
+            getCategoriesLabels() {
                 let {data, currentLibrary} = this.state;
                 
                 if ( !data || isEmpty(data)) return null;
-
-                if (!library) library = currentLibrary;
 
                 let keys = Object.keys(data);
 
                 let categories = keys.map( k => {
                     let [lib, cat] = k.split(':');
-                    if (lib === library) return cat;
+                    if (lib === currentLibrary) return cat;
                 });
                 categories = categories.filter(Boolean);
                 categories.sort();
@@ -204,9 +219,9 @@ module.exports = {
             },
 
             renderMenu(selectedCategory, categories) {
-                let {openLibAdd, openCatAdd, libQuerry, catQuerry, currentLibrary, data} = this.state;
+                let {openLibAdd, openCatAdd, libQuerry, catQuerry, currentLibrary} = this.state;
 
-                let libraries = this.getLibrariesLabels(data);
+                let libraries = this.getLibrariesLabels();
 
                 let commonParams = {
                     currentCategory: selectedCategory,

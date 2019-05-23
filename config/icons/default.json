@@ -34,6 +34,8 @@
     "table": "view_comfy",
     "upload": "publish",
     "edit": "edit",
+    "done": "done",
+    "close": "close",
     "search": "search",
     "remove": "delete"
   },

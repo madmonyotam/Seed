@@ -143,7 +143,7 @@ module.exports = {
             },
 
             updateParentKeyAndStateItems(props) {
-                let data = this.serialize(seed.plugins.Genie.getMock());
+                let data = this.serialize(seed.get('genie'));
                 let stateItems = data[this.parentKey];
                 
                 if (this.state.mode === this.CREATE) {
@@ -194,7 +194,7 @@ module.exports = {
             },
 
             handleUpdateTree( data, mode ) {
-                let mock = this.serialize(seed.plugins.Genie.getMock());
+                let mock = this.serialize(seed.get('genie'));
 
                 let newData = {
                     type: data.type
@@ -208,7 +208,7 @@ module.exports = {
                 else mock[this.parentKey][data.title] = newData;
 
                 this.setState({stateItems: mock[this.parentKey]});
-                seed.plugins.Genie.setMock(mock);
+                seed.set('genie', mock);
             },
 
             handleUpdateItems(data) {
@@ -287,10 +287,11 @@ module.exports = {
                     model = JSON.parse(model);
                 }
 
-                let data = this.serialize(seed.plugins.Genie.getMock());
+                let data = this.serialize(seed.get('genie'));
                     data[this.parentKey] = model;
                 
-                seed.plugins.Genie.setMock(data);
+                console.log('data :', data);
+                seed.set('genie', data);
             },
 
             renderSaveToTreeButton() {
@@ -318,7 +319,7 @@ module.exports = {
             },
 
             handleAddItem() {
-                let all = seed.plugins.Genie.getMock();
+                let all = seed.get('genie');
 
                 const change = ()=>{
                     let data = PopupHandler.getData();
@@ -447,7 +448,7 @@ module.exports = {
                     <NoResults
                         onClick = { this.props.addCat }
                         text={ seed.translate('add category') }
-                        icon={ seed.icons('general.add') }
+                        icon={ seed.icons('genie.add') }
                         color={ seed.theme('texts.default') }
                         background= { this.colors.cat }
                         size={6}
@@ -460,7 +461,7 @@ module.exports = {
                     <NoResults
                         onClick = { this.handleAddItem }
                         text={ seed.translate('Add Item') }
-                        icon={ seed.icons('general.add') }
+                        icon={ seed.icons('genie.add') }
                         color={ seed.theme('texts.default') }
                         background= { this.backgrounds.default }
                         size={6}
