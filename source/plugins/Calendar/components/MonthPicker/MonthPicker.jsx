@@ -1,21 +1,25 @@
 module.exports = {
-    dependencies: ['Layouts.Row','Simple.Label','Layouts.Column','Layouts.Center'],    
-    get(Row, Label, Column, Center) {
+    dependencies: ['Layouts.Row','Layouts.Column','Layouts.Center','Inputs.Button'],    
+    get(Row, Column, Center, Button) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
 
         const units = {
-            background: core.theme('buttons.primary'),
-            border: core.theme('borders.default'),
-        }
+            colors: {
+                text: core.theme('calendar.text'),
+                textSelected: core.theme('calendar.textSelected'),
+                border: core.theme('borders.default')
+            }
+          }
 
         return {
             mixins: [ ComponentMixin ],
 
             propsTypes: {
-                correntMonth: PropTypes.number,
+                currentMonth: PropTypes.number,
                 shortName: PropTypes.bool,
+                onSelect: PropTypes.func,
             },
 
             getDefaultProps(){
@@ -30,29 +34,9 @@ module.exports = {
                 };
             },
 
-            componentDidMount() {
-            },
-
-            styles(s){
-
-                const styles = {
-                    cell: {
-                        border: `1px solid ${units.border}`,
-                        flex:1
-                    },
-                    row: {
-                        minHeight: 50
-                    }
-                
-                }
-                
-                return(styles[s]);
-            },
-
-            renderThreeMonth(startMonth){
-                let { shortName } = this.props;
-
-                let Months= [
+            
+            componentWillMount () {
+                this.months= [
                     {
                         key: 1,
                         shortName: core.translate('jen'),
@@ -70,8 +54,8 @@ module.exports = {
                     },
                     {
                         key: 4,
-                        shortName: core.translate('Apr'),
-                        name: core.translate('April')
+                        shortName: core.translate('apr'),
+                        name: core.translate('april')
                     },
                     {
                         key: 5,
@@ -113,16 +97,59 @@ module.exports = {
                         shortName: core.translate('dec'),
                         name: core.translate('december')
                     }
-                ]
+                ]  
+            },
 
-                let MonthsToRender = Months.slice(startMonth,startMonth+3);
+            componentDidMount() {
+            },
+
+            styles(s){
+
+                const styles = {
+                    cell: {
+                        border: `1px solid ${units.colors.border}`,
+                        flex:1
+                    },
+                    button: {
+                        textTransform: "uppercase",
+                    },
+                    row: {
+                        minHeight: 50
+                    }
+                
+                }
+                
+                return(styles[s]);
+            },
+
+            handleMonthSelect(event, month){
+              if (this.props.onSelect) this.props.onSelect(month)
+            },
+
+            renderThreeMonth(startMonth){
+                let { shortName, currentMonth } = this.props;
+
+                let MonthsToRender = this.months.slice(startMonth,startMonth+3);
                 return MonthsToRender.map((m)=>{
 
                     let label = shortName ? m.shortName : m.name;
+                    let isCurrent = currentMonth === m.key;
+                    let textColor = isCurrent ? units.colors.textSelected :  units.colors.text;;
 
                     return(
-                        <Center key={m.key}  width={'unset'} color={units.background} style={this.styles('cell')}>
-                            <Label label={label} width={'fit-content'} height={'fit-content'}/>
+                        <Center key={m.key}  width={'unset'} style={this.styles('cell')}>
+                            <Button style={ this.styles('button') }
+                                    theme={ isCurrent ? 'primary' : 'default' }
+                                    variant={ 'flat' } 
+                                    round={ false } 
+                                    textColor={ textColor }
+                                    width={ '100%' } 
+                                    height={ '100%' } 
+                                    onClick={ e => { this.props.onSelect(m) } }> 
+
+                                    { label }
+
+                            </Button>
                         </Center>
                     )
                 })

@@ -2,8 +2,8 @@ import { MenuList, Popover, MenuItem  } from '@material-ui/core/';
 import {isEmpty} from 'lodash';
 
 module.exports = {
-dependencies: ['Simple.Label', 'Layouts.Row', 'Simple.Icon', 'Layouts.Divider', 'Inputs.IconButton'],
-get( Label, Row, Icon, Divider, IconButton) {
+dependencies: ['Simple.Label', 'Layouts.Row', 'Layouts.Center', 'Simple.Icon', 'Layouts.Divider', 'Inputs.IconButton','Inputs.Button'],
+get( Label, Row, Center, Icon, Divider, IconButton, Button) {
 
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports;
@@ -171,24 +171,10 @@ get( Label, Row, Icon, Divider, IconButton) {
                     position: 'relative',
                     ...iconButtonStyle
                 },
-                dropDownButton: {
-                    borderRadius: 3,
-                    border: `1px solid ${this.colors.border}`,
-                    minWidth: iconSize + 35,
-                    minHeight: iconSize + 10,
-                    padding: 0,
-                    ...iconButtonStyle
-                },
-                dropDownInner: {
-                    display: 'flex',
-                    position: 'relative',
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
-                    background: background,
-                    minWidth: iconSize + 35,
-                    minHeight: iconSize + 10,
-                },
+                sideIcon: {
+                    padding:'0 5px', 
+                    minWidth: iconSize
+                }
             }
 
             return(styles[s]);
@@ -217,22 +203,28 @@ get( Label, Row, Icon, Divider, IconButton) {
 
             if (dropDown) {
                 return (
-                    <IconButton 
+                    <Button 
+                    padding={0}
                         onClick={this.handleOpen}
                         background={background}
-                        style={ this.styles('dropDownButton') }
-                    >
-                        <div style={this.styles('dropDownInner')}>
-                            <Icon style={ this.styles('icon') } icon={icon} size={iconSize} color={ color }/>
-                            <Divider color={iconColor} size={iconSize + 10} margin={2}/>
-                            <Icon
-                                style={this.styles('dropIcon')}
-                                icon={this.icons.dropDown}
-                                size={ 22 }
-                                color={ iconColor }
-                            />
-                        </div>
-                    </IconButton>
+                        width={'fit-content'}
+                        height={iconSize+10}>
+
+                        <Row padding={0} height={iconSize+10}>
+                            <Center width={'50%'} style={this.styles('sideIcon')}>
+                                <Icon style={ this.styles('icon') } icon={icon} size={iconSize} color={ color }/>
+                            </Center>
+                            <Center width={'50%'}>
+                                <Icon
+                                    style={this.styles('dropIcon')}
+                                    icon={this.icons.dropDown}
+                                    size={ 18 }
+                                    color={ iconColor }/>
+                            </Center>
+
+                        </Row>
+
+                    </Button>
                 );
             }
 

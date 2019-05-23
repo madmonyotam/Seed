@@ -2,90 +2,24 @@ import moment from 'moment';
 window.moment = moment;
 module.exports = {
   
-  dependencies: ['Layouts.Row', 'Layouts.Column', 'Decorators.Tooltip', 'Inputs.IconButton', 'Inputs.Button'],    
+  dependencies: ['Calendar.Day', 'Layouts.Row', 'Layouts.Column'],    
 
-  get(Row, Column, Tooltip, IconButton, Button) {
+  get(Day, Row, Column) {
 
     var core = this;
-    var { React, PropTypes, ComponentMixin } = core.imports;
-    var { Fragment } = React;
-    const units = {}
+    var { React, PropTypes, ComponentMixin } = core.imports; 
 
     return {
       mixins: [ ComponentMixin ],
 
       propsTypes: {
-        onDaySelect: PropTypes.func,
+        onSelect: PropTypes.func,
         currentDate: PropTypes.string,
-      },
-
-      getDefaultProps(){
-        return { 
-        };
-      },
-
-      getInitialState() {
-        return { 
-        };
-      },
-
-      componentDidMount() {
-        if (this.props.currentDate) {
-          this.setWeeks(this.props.currentDate)
-        }
-      },
-
-      setWeeks(startDate){
-        let numDays = moment(startDate).daysInMonth()
-        let month = moment(startDate).month();  
-        let firstDay = moment(startDate).startOf('month');//.format('d');
-        // let firstDay = moment(startDate).startOf('month');
-        // let endDay = moment(startDate).endOf('month');
-
-        
-        // // let range = moment().range(moment(month).startOf('month'), moment(month).endOf('month'));
-        // let days = range.by('days');
-
-        // // Create a range for the month we can iterate through
-        // let monthRange = moment.range(firstDay, endDay);
-
-        // // // Get all the weeks during the current month
-        // let weeks = []
-        // // for (let mday of monthRange.by('days')) {
-        // //   if (weeks.indexOf(mday.week()) === -1) {
-        // //     weeks.push(mday.week());
-        // //   }
-        // // }
-        // console.debug('numDays', numDays);
-        // for (var end = moment(startDate).add(1, 'month'); moment(startDate).isBefore(end); moment(startDate).add(1, 'day')) {
-        //   console.log('x ->',moment(startDate).format('D-ddd'));
-        // }
-        let day;
-        let blanks = []; 
-        
-
-        // for (let i = 0; i < firstDay; i++) {
-        //   blanks.push(i);
-        // }
-        console.debug('firstDay => ', moment(firstDay).startOf('week'));
-        this.setState({ blanks })
-
-// let weeks = []
-        // for (let x = 1; x < numDays+1; x++) {
-        //   day = moment(startDate).month(month).date(x);
-        //   // if ()
-        //   console.log('day -> ',day.format());
-        //   console.log('startOfWeek -> ', day.startOf('week').format())
-        //   console.log('endOfWeek -> ', day.endOf('week').format())
-        //   console.log('startOfMonth -> ', moment(startDate).startOf('month').format())
-        // }
-        // console.debug('firstDay => ', firstDay.format());
-        // console.debug('endDay => ', endDay.format());
-
-      },
-
-      componentWillReceiveProps (nextProps) {
-      },
+        firstDayInWeek: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number
+        ])
+      }, 
 
       styles(s){
 
@@ -102,26 +36,55 @@ module.exports = {
         return(styles[s]);
       },  
 
-      render() {
-
-        // return (
-          
-        //   <Row boxShadow={ true } width={ '100%' } height={ 50 } padding={ 15 } style={{ justifyContent: 'center' }} >       
-        //     { this.renderPrevious() }
-
-        //     { this.renderMainDate() }
-            
-        //     { this.renderNext() }
-        //   </Row>
-        // )
+      renderWeek(weekIndex, key){
+        let { firstDayInWeek, currentDate } = this.props;
+        let firstDayOfMonth = moment(currentDate).startOf('month');
         
-        let { blanks } = this.state;
+        if(firstDayInWeek > 6 || firstDayInWeek < 0) firstDayInWeek = 0;
+        
+        let firstDay = moment(firstDayOfMonth).add(1, 'weeks').startOf('week').isoWeekday(firstDayInWeek); 
+
+        if (moment(firstDayOfMonth).isBefore(moment(firstDay)) ) {
+          firstDay = moment(firstDay).subtract(1, 'weeks') 
+        }
+
+        let week = []; 
+        let next = firstDay.add(weekIndex, 'days'); 
+
+        week.push(next.format());
+
+        const getWeeks = () => {
+          for (let x = 1; x <= 6; x++ ) {
+            week.push( next.add(1, 'days').format() )
+          }
+          return week
+        }
 
         return (
-          <Column height={ 'calc(100% - 100px)' } width={ '100%' }>
-            <Row>
-              { blanks && blanks.length ? <span>blank</span> : null }
-            </Row>
+          <Row key={ key } padding={ 0 } height={ 'calc( 100% / 6 )' } style={{ minHeight: 50 }} >
+            {
+              getWeeks().map(this.renderDay)
+            }
+          </Row>
+        )
+
+      },
+
+      renderDay(day, i){
+        let { currentDate, onSelect } = this.props;
+
+        return <Day key={ i } 
+                    dayDate={ day } 
+                    current={ currentDate } 
+                    onSelect={ onSelect } /> 
+      },
+
+      render() {
+        let rows = [ 0, 7, 14, 21, 28, 35 ] 
+        
+        return (
+          <Column style={{ padding: '0' }} height={ 'calc(100% - 100px)' } width={ '100%' }>
+            { rows.map(this.renderWeek) }
           </Column>
         )
       } 

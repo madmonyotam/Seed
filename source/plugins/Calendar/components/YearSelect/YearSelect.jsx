@@ -15,33 +15,24 @@ module.exports = {
       mixins: [ ComponentMixin ],
 
       propsTypes: {
+        onToday: PropTypes.func,
         onChange: PropTypes.func,
         onPickerChange: PropTypes.func.isRequired,
-      },
-
-      getDefaultProps(){
-        return { 
-        };
-      },
-
+      }, 
+      
       getInitialState() {
         return { 
-          currentDate: moment()
+          currentDate: this.props.currentDate
         };
       },
-
-      componentDidMount() {
-      },
-
+ 
       componentWillReceiveProps (nextProps) {
+        this.setState({ currentDate: nextProps.currentDate })
       },
 
       styles(s){
 
-        const styles = {
-          root: {
-            border: '1px solid black'
-          },
+        const styles = { 
           icon: {
             cursor: 'pointer',
             margin: '0 5px'
@@ -68,7 +59,7 @@ module.exports = {
         
         let date = {
           year: moment(prevDate).year(),
-          month: moment(prevDate).month()+1,
+          month: moment(prevDate).month(),
           full:  moment(prevDate).format()
         }
         
@@ -85,7 +76,7 @@ module.exports = {
 
         let date = {
           year: moment(nextDate).year(),
-          month: moment(nextDate).month()+1,
+          month: moment(nextDate).month(),
           full:  moment(nextDate).format()
         }
 
@@ -94,36 +85,45 @@ module.exports = {
         this.setState({ currentDate: nextDate })
       },
 
+      handleToday(){
+        let { onToday } = this.props;
+        let date = {
+          year: moment().year(),
+          month: moment().month(),
+          full:  moment().format()
+        }
+        onToday(date)
+      },
+
 
       renderMainDate(){
         let { currentDate } = this.state;
         let { onPickerChange } = this.props;
 
         return (
-          <Button style={ this.styles('mainDate') } onClick={ onPickerChange }> 
+          <Button variant={ 'filled' } style={ this.styles('mainDate') } onClick={ onPickerChange }> 
             { moment(currentDate).format('MMM YYYY') } 
           </Button>
         )
-      },
-
-
+      }, 
 
       renderPrevious(){
         return (
           <Fragment>
 
-            <Tooltip content={ 'Previous year' } position={ 'left' } offsetY={ 0 }>
+            <Tooltip content={ 'Previous year' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('navigate.left') } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
-                    size={ 19 } 
+                    iconSize={ 22 } 
                     onClick={ e => { this.handlePrevious('years') } } />
             </Tooltip>
 
-            <Tooltip content={ 'Previous month' } position={ 'left' } offsetY={ 0 }>
+            <Tooltip content={ 'Previous month' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
 
               <IconButton icon={ core.icons('navigate.arrow_left') } 
                     variant={ 'outlined' }
+                    iconSize={ 24 } 
                     style={ this.styles('icon') } 
                     onClick={ e => { this.handlePrevious('months') } } />
             </Tooltip>
@@ -137,23 +137,39 @@ module.exports = {
       renderNext(){
         return (
           <Fragment>
-            <Tooltip content={ 'Next month' } position={ 'right' } offsetY={ 0 }>
-            
+
+            <Tooltip content={ 'Next month' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('navigate.arrow_right') } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
+                    iconSize={ 24 } 
                     onClick={ e => { this.handleNext('months') } } />
             </Tooltip>
 
-            <Tooltip content={ 'Next year' } position={ 'right' } offsetY={ 0 }>
+            <Tooltip content={ 'Next year' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('navigate.right') }
-                    size={ 19 } 
+                    iconSize={ 22 } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
                     onClick={ e => { this.handleNext('years') } } />
-            </Tooltip>
+            </Tooltip> 
 
           </Fragment>
+        )
+      },
+
+      renderToday(){
+        return (
+          <div style={{ position: 'absolute', right: '15px' }}>
+
+           <Tooltip content={ 'Today' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
+              <IconButton icon={ core.icons('calendar.today') }
+                    iconSize={ 18 } 
+                    style={ this.styles('icon') } 
+                    variant={ 'outlined' }
+                    onClick={ e => { this.handleToday() } } />
+            </Tooltip>
+          </div>
         )
       },
 
@@ -166,6 +182,8 @@ module.exports = {
             { this.renderMainDate() }
             
             { this.renderNext() }
+
+            { this.renderToday() }
           </Row>
         )
       } 

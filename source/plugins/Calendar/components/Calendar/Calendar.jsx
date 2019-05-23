@@ -15,13 +15,22 @@ module.exports = {
             mixins: [ ComponentMixin ],
 
             propsTypes: {
+                onDaySelect: PropTypes.func,
                 firstDayInWeek: PropTypes.number,
+                daysShortName: PropTypes.bool,
+                monthShortName: PropTypes.bool,
+                width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+                height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             },
 
             getDefaultProps(){
                 return {
                     daysShortName: true,
-                    firstDayInWeek: 1
+                    monthShortName: false,
+                    firstDayInWeek: 0,
+                    width: 400,
+                    height: 400,
+                    onDaySelect: (date) => { console.log('onDaySelect -',date) }
                 };
             },
             
@@ -30,26 +39,14 @@ module.exports = {
                     picker: DAY,
                     currentDate: moment().format()
                 };
-            },
-
-            componentWillMount () {
-            },
-
-            componentDidMount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            },
-
-            componentWillUnmount () {
-                
-            },
-
+            }, 
+ 
             styles(s){
 
                 const styles = {
-                    root: {
-                       border: '1px solid black'
+                    wrapper: {
+                       minWidth: 400,
+                       minHeight: 400,
                     },
                 
                 }
@@ -57,14 +54,57 @@ module.exports = {
                 return(styles[s]);
             },
 
+            handleToggleView(){
+                let { picker } = this.state;
+
+                if(picker == DAY) return this.setState({picker:MONTH});
+                this.setState({picker:DAY});
+            },
+
+            handleYearChange(newDate) {
+              let { onDaySelect } = this.props; 
+              let currentDate = moment([newDate.year, newDate.month, 1]).format();
+              this.setState({ currentDate: currentDate })
+              onDaySelect(currentDate)
+
+            },
+
+            handleMonthChange(month){
+              let { currentDate } = this.state;
+              let { onDaySelect } = this.props; 
+              let year = moment(currentDate).year();
+              let newDate = moment([year, month.key-1, 1]).format();
+              this.setState({ currentDate: newDate }, this.handleToggleView)
+              onDaySelect(newDate)
+
+            },
+            
+            handleDayChange(date){
+              let { onDaySelect } = this.props; 
+              this.setState({ currentDate: moment(date).format() })
+              onDaySelect(moment(date).format())
+            },
+
+            handleSetToday(today){
+              this.setState({ currentDate: today.full })
+              let { onDaySelect } = this.props; 
+              onDaySelect(today.full)
+
+            },
+
             renderMonthPicker(){
+                let { monthShortName } = this.props;
+                let { currentDate } = this.state;
+                let currentMonth = moment(currentDate).month()+1;
+
                 return(
-                    <MonthPicker />
+                    <MonthPicker onSelect={ this.handleMonthChange } shortName={monthShortName} currentMonth={currentMonth}/>
                 )
             },
 
             renderWeeks(){
-              return <DaySelect currentDate={ this.state.currentDate }/>
+              let { firstDayInWeek } = this.props;
+              return <DaySelect firstDayInWeek={firstDayInWeek} currentDate={ this.state.currentDate } onSelect={ this.handleDayChange }/>
             },
 
             renderMainCont(){
@@ -88,24 +128,18 @@ module.exports = {
                 return <DaysBar firstDayInWeek={firstDayInWeek} shortName={daysShortName} />
             },
 
-            handleToggleView(){
-                let { picker } = this.state;
-
-                if(picker == DAY) return this.setState({picker:MONTH});
-                this.setState({picker:DAY});
-            },
-
-            handleChange(newDate) {
-              console.debug('newDate => ', newDate);
-            },
-
             render() {
+              let { picker, currentDate } = this.state;
+              let { width, height } = this.props;
+
 
                 return (
-                    <Column boxShadow={true} width={500} >
-                      <YearSelect onChange={ this.handleChange } 
+                    <Column boxShadow={true} width={width} height={height} style={this.styles('wrapper')} >
+                      <YearSelect onChange={ this.handleYearChange } 
+                                  currentDate={ currentDate }
+                                  onToday={ this.handleSetToday }
                                   onPickerChange={ this.handleToggleView }
-                                  pickerState={ this.state.picker } />
+                                  pickerState={ picker } />
 
                         { this.renderDaysBar() }
                         { this.renderMainCont() } 

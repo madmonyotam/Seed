@@ -11,12 +11,18 @@
         "blue065": "#e7eff385",
         "blue070": "#F3FAFD",
         "grey025": "#607D8B",
+        "grey050": "#a0a0a0",
         "grey070": "#D8D8D8",
         "grey080": "#EDEDED",
         "grey090": "#F5F5F5",
         "blue010": "#004175",
         "blue015": "#01579B",
         "blue050": "#54A9DD"
+    },
+    "calendar": {
+        "text": "colors.dark",
+        "textSelected": "colors.white",
+        "textOutOfMonth": "colors.grey050"
     },
     "examples": {
         "mainBackground": "colors.grey090",

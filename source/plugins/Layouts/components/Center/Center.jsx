@@ -47,10 +47,10 @@ module.exports = {
             },
 
             render() {
-                let { children } = this.props
+                let { children, onClick } = this.props
 
                 return (
-                    <div style={this.styles('center')}>
+                    <div style={this.styles('center')} onClick={ onClick }>
                         { children }
                     </div>
                 )
