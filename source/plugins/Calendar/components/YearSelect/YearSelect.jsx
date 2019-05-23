@@ -115,7 +115,7 @@ module.exports = {
               <IconButton icon={ core.icons('navigate.left') } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
-                    size={ 19 } 
+                    iconSize={ 22 } 
                     onClick={ e => { this.handlePrevious('years') } } />
             </Tooltip>
 
@@ -123,6 +123,7 @@ module.exports = {
 
               <IconButton icon={ core.icons('navigate.arrow_left') } 
                     variant={ 'outlined' }
+                    iconSize={ 24 } 
                     style={ this.styles('icon') } 
                     onClick={ e => { this.handlePrevious('months') } } />
             </Tooltip>
@@ -141,12 +142,13 @@ module.exports = {
               <IconButton icon={ core.icons('navigate.arrow_right') } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
+                    iconSize={ 24 } 
                     onClick={ e => { this.handleNext('months') } } />
             </Tooltip>
 
             <Tooltip content={ 'Next year' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('navigate.right') }
-                    size={ 19 } 
+                    iconSize={ 22 } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
                     onClick={ e => { this.handleNext('years') } } />
@@ -162,7 +164,7 @@ module.exports = {
 
            <Tooltip content={ 'Today' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('calendar.today') }
-                    size={ 18 } 
+                    iconSize={ 18 } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
                     onClick={ e => { this.handleToday() } } />

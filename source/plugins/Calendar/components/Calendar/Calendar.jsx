@@ -15,6 +15,7 @@ module.exports = {
             mixins: [ ComponentMixin ],
 
             propsTypes: {
+                onDaySelect: PropTypes.func,
                 firstDayInWeek: PropTypes.number,
                 daysShortName: PropTypes.bool,
                 monthShortName: PropTypes.bool,
@@ -27,8 +28,9 @@ module.exports = {
                     daysShortName: true,
                     monthShortName: false,
                     firstDayInWeek: 0,
-                    width: 550,
-                    height: 500
+                    width: 400,
+                    height: 400,
+                    onDaySelect: (date) => { console.log('onDaySelect -',date) }
                 };
             },
             
@@ -43,8 +45,8 @@ module.exports = {
 
                 const styles = {
                     wrapper: {
-                       minWidth: 300,
-                       minHeight: 300,
+                       minWidth: 400,
+                       minHeight: 400,
                     },
                 
                 }
@@ -60,23 +62,34 @@ module.exports = {
             },
 
             handleYearChange(newDate) {
+              let { onDaySelect } = this.props; 
               let currentDate = moment([newDate.year, newDate.month, 1]).format();
               this.setState({ currentDate: currentDate })
+              onDaySelect(currentDate)
+
             },
 
             handleMonthChange(month){
               let { currentDate } = this.state;
+              let { onDaySelect } = this.props; 
               let year = moment(currentDate).year();
               let newDate = moment([year, month.key-1, 1]).format();
               this.setState({ currentDate: newDate }, this.handleToggleView)
+              onDaySelect(newDate)
+
             },
             
             handleDayChange(date){
+              let { onDaySelect } = this.props; 
               this.setState({ currentDate: moment(date).format() })
+              onDaySelect(moment(date).format())
             },
 
             handleSetToday(today){
               this.setState({ currentDate: today.full })
+              let { onDaySelect } = this.props; 
+              onDaySelect(today.full)
+
             },
 
             renderMonthPicker(){
