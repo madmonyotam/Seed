@@ -10,7 +10,8 @@ module.exports = {
     var { React, PropTypes, ComponentMixin } = core.imports; 
     const units = {
       colors: {
-        textSelected: core.theme('calendar.textSelected')
+        textSelected: core.theme('calendar.textSelected'),
+        textOutOfMonth: core.theme('calendar.textOutOfMonth'),
       }
     }
 
@@ -64,7 +65,7 @@ module.exports = {
             <Button variant={ 'flat' } 
                     theme={ isCurrent ? 'primary' : 'default' }
                     round={ false } 
-                    textColor={ dis ? '#613333c4' : textColor }
+                    textColor={ dis ? units.colors.textOutOfMonth : textColor }
                     width={ '100%' } 
                     height={ '100%' } 
                     onClick={ e => { this.props.onSelect(this.props.date) } }> 
