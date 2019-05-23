@@ -18,6 +18,9 @@
         "blue015": "#01579B",
         "blue050": "#54A9DD"
     },
+    "calendar": {
+        "textSelected": "colors.white"
+    },
     "examples": {
         "mainBackground": "colors.grey090",
         "codeBackground": "colors.dark",
