@@ -16,12 +16,19 @@ module.exports = {
 
             propsTypes: {
                 firstDayInWeek: PropTypes.number,
+                daysShortName: PropTypes.bool,
+                monthShortName: PropTypes.bool,
+                width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+                height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             },
 
             getDefaultProps(){
                 return {
                     daysShortName: true,
-                    firstDayInWeek: 1
+                    monthShortName: false,
+                    firstDayInWeek: 1,
+                    width: 500,
+                    height: 500
                 };
             },
             
@@ -48,8 +55,9 @@ module.exports = {
             styles(s){
 
                 const styles = {
-                    root: {
-                       border: '1px solid black'
+                    wrapper: {
+                       minWidth: 300,
+                       minHeight: 300,
                     },
                 
                 }
@@ -58,8 +66,9 @@ module.exports = {
             },
 
             renderMonthPicker(){
+                let { monthShortName } = this.props;
                 return(
-                    <MonthPicker onSelect={ this.handleMonthChange }/>
+                    <MonthPicker onSelect={ this.handleMonthChange } shortName={monthShortName}/>
                 )
             },
 
@@ -114,8 +123,11 @@ module.exports = {
             
             render() {
               let { picker, currentDate } = this.state;
+              let { width, height } = this.props;
+
+
                 return (
-                    <Column boxShadow={true} width={500} >
+                    <Column boxShadow={true} width={width} height={height} style={this.styles('wrapper')} >
                       <YearSelect onChange={ this.handleYearChange } 
                                   currentDate={ currentDate }
                                   onPickerChange={ this.handleToggleView }

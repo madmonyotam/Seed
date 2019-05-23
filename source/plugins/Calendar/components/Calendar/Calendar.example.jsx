@@ -1,7 +1,7 @@
 
 module.exports = {
-    dependencies: ['Layouts.Row', 'Examples.ExampleHelper', 'Examples.SimpleExample','Calendar.Calendar'],
-    get(Row, ExampleHelper, SimpleExample, Calendar) {
+    dependencies: ['Examples.ExampleHelper', 'Examples.SimpleExample','Calendar.Calendar'],
+    get(ExampleHelper, SimpleExample, Calendar) {
 
         var core = this;
 
@@ -13,7 +13,10 @@ module.exports = {
             propScheme(){ 
                 return {
                     firstDayInWeek: { type: 'number', group: 'initial' },
-                    daysShortName: { type: 'boolean'  }
+                    daysShortName: { type: 'boolean'  },
+                    monthShortName: { type: 'boolean'},
+                    width: { type: 'string'},
+                    height: { type: 'string'}
                 }
             },
 
@@ -23,7 +26,7 @@ module.exports = {
             },
 
             getCode(){
-                let { firstDayInWeek, daysShortName } = this.state;
+                let { firstDayInWeek, daysShortName, monthShortName, width, height } = this.state;
 
                 return (`
 <Calendar/>
@@ -31,13 +34,19 @@ module.exports = {
             },
 
             render() {
-                let { firstDayInWeek, daysShortName } = this.state;
+                let { firstDayInWeek, daysShortName, monthShortName, width, height } = this.state;
                 firstDayInWeek = Number(firstDayInWeek);
+                width = ExampleHelper.ifNumber_Convert(width);
+                height = ExampleHelper.ifNumber_Convert(height);
 
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
 
-                            <Calendar firstDayInWeek={firstDayInWeek} daysShortName={daysShortName}  />
+                            <Calendar   width={width}
+                                        height={height}
+                                        firstDayInWeek={firstDayInWeek} 
+                                        daysShortName={daysShortName}
+                                        monthShortName={monthShortName}  />
             
                     </SimpleExample>
                 )
