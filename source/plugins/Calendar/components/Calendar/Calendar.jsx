@@ -59,12 +59,12 @@ module.exports = {
 
             renderMonthPicker(){
                 return(
-                    <MonthPicker />
+                    <MonthPicker onSelect={ this.handleMonthChange }/>
                 )
             },
 
             renderWeeks(){
-              return <DaySelect currentDate={ this.state.currentDate }/>
+              return <DaySelect currentDate={ this.state.currentDate } onSelect={ this.handleDayChange }/>
             },
 
             renderMainCont(){
@@ -95,17 +95,31 @@ module.exports = {
                 this.setState({picker:DAY});
             },
 
-            handleChange(newDate) {
-              console.debug('newDate => ', newDate);
+            handleYearChange(newDate) {
+              let currentDate = moment([newDate.year, newDate.month, 1]).format();
+              this.setState({ currentDate: currentDate })
             },
 
-            render() {
+            handleMonthChange(month){
+              let { currentDate } = this.state;
+              let year = moment(currentDate).year();
+              let newDate = moment([year, month.key-1, 1]).format();
+              this.setState({ currentDate: newDate }, this.handleToggleView)
+            },
+            
+            handleDayChange(date){
+              this.setState({ currentDate: moment(date).format() })
 
+            },
+            
+            render() {
+              let { picker, currentDate } = this.state;
                 return (
                     <Column boxShadow={true} width={500} >
-                      <YearSelect onChange={ this.handleChange } 
+                      <YearSelect onChange={ this.handleYearChange } 
+                                  currentDate={ currentDate }
                                   onPickerChange={ this.handleToggleView }
-                                  pickerState={ this.state.picker } />
+                                  pickerState={ picker } />
 
                         { this.renderDaysBar() }
                         { this.renderMainCont() } 

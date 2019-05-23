@@ -1,6 +1,6 @@
 module.exports = {
-    dependencies: ['Layouts.Row','Simple.Label'],    
-    get(Row, Label) {
+    dependencies: ['Layouts.Row', 'Layouts.Center', 'Simple.Label'],    
+    get(Row, Center, Label) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -97,7 +97,8 @@ module.exports = {
 
                 const styles = {
                     row: {
-                        justifyContent: 'space-around',
+                        justifyContent: 'space-between',
+                        paddingRight: 0
                     },
                 
                 }
@@ -109,7 +110,12 @@ module.exports = {
                 let { shortName } = this.props;
                 let label = shortName ? day.shortName : day.name;
 
-                return <Label key={day.key} label={label} width={'fit-content'}/>
+                return (
+
+                  <Center  key={day.key} >
+                    <Label label={label} width={ '100%' } height={ '100%' } style={{ textAlign: 'center' }} />
+                  </Center>
+                ) 
             },
             
             renderDays(){
@@ -121,7 +127,7 @@ module.exports = {
             render() {
 
                 return (
-                    <Row style={this.styles('row')}>
+                    <Row style={this.styles('row')} padding={ '15px 0' } >
                         { this.renderDays() }
                     </Row>
                 )

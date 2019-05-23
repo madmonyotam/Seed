@@ -36,22 +36,6 @@ module.exports = {
               };
             },
 
-            getInitialState() {
-                return {};
-            },
-
-            componentWillMount () { 
-            },
-
-            componentDidMount() {
-            },
-
-            componentWillUnmount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            }, 
-
             styles(s){
               let { onClick, style, variant, theme } = this.props;
               let color, 

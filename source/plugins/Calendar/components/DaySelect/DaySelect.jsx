@@ -2,9 +2,9 @@ import moment from 'moment';
 window.moment = moment;
 module.exports = {
   
-  dependencies: ['Layouts.Row', 'Layouts.Column', 'Decorators.Tooltip', 'Inputs.IconButton', 'Inputs.Button'],    
+  dependencies: ['Layouts.Row', 'Layouts.Column', 'Layouts.Center', 'Decorators.Tooltip', 'Inputs.IconButton', 'Inputs.Button', 'Calendar.Day'],    
 
-  get(Row, Column, Tooltip, IconButton, Button) {
+  get(Row, Column, Center, Tooltip, IconButton, Button, Day) {
 
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports;
@@ -29,60 +29,8 @@ module.exports = {
         };
       },
 
-      componentDidMount() {
-        if (this.props.currentDate) {
-          this.setWeeks(this.props.currentDate)
-        }
-      },
-
-      setWeeks(startDate){
-        let numDays = moment(startDate).daysInMonth()
-        let month = moment(startDate).month();  
-        let firstDay = moment(startDate).startOf('month');//.format('d');
-        // let firstDay = moment(startDate).startOf('month');
-        // let endDay = moment(startDate).endOf('month');
-
-        
-        // // let range = moment().range(moment(month).startOf('month'), moment(month).endOf('month'));
-        // let days = range.by('days');
-
-        // // Create a range for the month we can iterate through
-        // let monthRange = moment.range(firstDay, endDay);
-
-        // // // Get all the weeks during the current month
-        // let weeks = []
-        // // for (let mday of monthRange.by('days')) {
-        // //   if (weeks.indexOf(mday.week()) === -1) {
-        // //     weeks.push(mday.week());
-        // //   }
-        // // }
-        // console.debug('numDays', numDays);
-        // for (var end = moment(startDate).add(1, 'month'); moment(startDate).isBefore(end); moment(startDate).add(1, 'day')) {
-        //   console.log('x ->',moment(startDate).format('D-ddd'));
-        // }
-        let day;
-        let blanks = []; 
-        
-
-        // for (let i = 0; i < firstDay; i++) {
-        //   blanks.push(i);
-        // }
-        console.debug('firstDay => ', moment(firstDay).startOf('week'));
-        this.setState({ blanks })
-
-// let weeks = []
-        // for (let x = 1; x < numDays+1; x++) {
-        //   day = moment(startDate).month(month).date(x);
-        //   // if ()
-        //   console.log('day -> ',day.format());
-        //   console.log('startOfWeek -> ', day.startOf('week').format())
-        //   console.log('endOfWeek -> ', day.endOf('week').format())
-        //   console.log('startOfMonth -> ', moment(startDate).startOf('month').format())
-        // }
-        // console.debug('firstDay => ', firstDay.format());
-        // console.debug('endDay => ', endDay.format());
-
-      },
+      componentDidMount() { 
+      }, 
 
       componentWillReceiveProps (nextProps) {
       },
@@ -102,26 +50,44 @@ module.exports = {
         return(styles[s]);
       },  
 
-      render() {
+      renderWeek(weekIndex, key){
+        let firstDayOfMonth = moment(this.props.currentDate).startOf('month');
+        let week = []; 
+        let firstDay = moment(firstDayOfMonth).startOf('week')
+        let next = firstDay.add(weekIndex, 'days'); 
 
-        // return (
-          
-        //   <Row boxShadow={ true } width={ '100%' } height={ 50 } padding={ 15 } style={{ justifyContent: 'center' }} >       
-        //     { this.renderPrevious() }
+        week.push(next.format());
 
-        //     { this.renderMainDate() }
-            
-        //     { this.renderNext() }
-        //   </Row>
-        // )
-        
-        let { blanks } = this.state;
+        const getWeeks = () => {
+          for (let x = 1; x <= 6; x++ ) {
+            week.push( next.add(1, 'days').format() )
+          }
+          return week
+        }
 
         return (
-          <Column height={ 'calc(100% - 100px)' } width={ '100%' }>
-            <Row>
-              { blanks && blanks.length ? <span>blank</span> : null }
-            </Row>
+          <Row key={ key } padding={ 0 } height={ 'calc( 100% / 6 )' } style={{ minHeight: 50 }} >
+            {
+              getWeeks().map(this.renderDay)
+            }
+          </Row>
+        )
+
+      },
+
+      renderDay(day, i){
+        return <Day key={ i } 
+                    date={ day } 
+                    current={ this.props.currentDate } 
+                    onSelect={ this.props.onSelect } /> 
+      },
+
+      render() {
+        let rows = [ 0, 7, 14, 21, 28, 35 ] 
+        
+        return (
+          <Column style={{ padding: '0' }} height={ 'calc(100% - 100px)' } width={ '100%' }>
+            { rows.map(this.renderWeek) }
           </Column>
         )
       } 

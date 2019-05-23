@@ -26,7 +26,7 @@ module.exports = {
 
       getInitialState() {
         return { 
-          currentDate: moment()
+          currentDate: this.props.currentDate
         };
       },
 
@@ -34,6 +34,7 @@ module.exports = {
       },
 
       componentWillReceiveProps (nextProps) {
+        this.setState({ currentDate: nextProps.currentDate })
       },
 
       styles(s){
@@ -68,7 +69,7 @@ module.exports = {
         
         let date = {
           year: moment(prevDate).year(),
-          month: moment(prevDate).month()+1,
+          month: moment(prevDate).month(),
           full:  moment(prevDate).format()
         }
         
@@ -85,7 +86,7 @@ module.exports = {
 
         let date = {
           year: moment(nextDate).year(),
-          month: moment(nextDate).month()+1,
+          month: moment(nextDate).month(),
           full:  moment(nextDate).format()
         }
 

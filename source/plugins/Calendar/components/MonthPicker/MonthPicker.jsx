@@ -16,6 +16,7 @@ module.exports = {
             propsTypes: {
                 correntMonth: PropTypes.number,
                 shortName: PropTypes.bool,
+                onSelect: PropTypes.func,
             },
 
             getDefaultProps(){
@@ -47,6 +48,10 @@ module.exports = {
                 }
                 
                 return(styles[s]);
+            },
+
+            handleMonthSelect(event, month){
+              if (this.props.onSelect) this.props.onSelect(month)
             },
 
             renderThreeMonth(startMonth){
@@ -121,7 +126,7 @@ module.exports = {
                     let label = shortName ? m.shortName : m.name;
 
                     return(
-                        <Center key={m.key}  width={'unset'} color={units.background} style={this.styles('cell')}>
+                        <Center key={m.key}  width={'unset'} color={units.background} style={this.styles('cell')} onClick={ e => { this.props.onSelect(m) } }>
                             <Label label={label} width={'fit-content'} height={'fit-content'}/>
                         </Center>
                     )
