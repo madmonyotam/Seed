@@ -1,6 +1,6 @@
 module.exports = {
-    dependencies: ['Layouts.Row','Simple.Label','Layouts.Column','Layouts.Center','Inputs.Button'],    
-    get(Row, Label, Column, Center, Button) {
+    dependencies: ['Layouts.Row','Layouts.Column','Layouts.Center','Inputs.Button'],    
+    get(Row, Column, Center, Button) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
