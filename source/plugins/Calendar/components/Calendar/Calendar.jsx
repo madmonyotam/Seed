@@ -52,10 +52,40 @@ module.exports = {
                 return(styles[s]);
             },
 
+            handleToggleView(){
+                let { picker } = this.state;
+
+                if(picker == DAY) return this.setState({picker:MONTH});
+                this.setState({picker:DAY});
+            },
+
+            handleYearChange(newDate) {
+              let currentDate = moment([newDate.year, newDate.month, 1]).format();
+              this.setState({ currentDate: currentDate })
+            },
+
+            handleMonthChange(month){
+              let { currentDate } = this.state;
+              let year = moment(currentDate).year();
+              let newDate = moment([year, month.key-1, 1]).format();
+              this.setState({ currentDate: newDate }, this.handleToggleView)
+            },
+            
+            handleDayChange(date){
+              this.setState({ currentDate: moment(date).format() })
+            },
+
+            handleSetToday(today){
+              this.setState({ currentDate: today.full })
+            },
+
             renderMonthPicker(){
                 let { monthShortName } = this.props;
+                let { currentDate } = this.state;
+                let currentMonth = moment(currentDate).month()+1;
+
                 return(
-                    <MonthPicker onSelect={ this.handleMonthChange } shortName={monthShortName}/>
+                    <MonthPicker onSelect={ this.handleMonthChange } shortName={monthShortName} currentMonth={currentMonth}/>
                 )
             },
 
@@ -83,33 +113,6 @@ module.exports = {
                 if(picker!==DAY) return;
 
                 return <DaysBar firstDayInWeek={firstDayInWeek} shortName={daysShortName} />
-            },
-
-            handleToggleView(){
-                let { picker } = this.state;
-
-                if(picker == DAY) return this.setState({picker:MONTH});
-                this.setState({picker:DAY});
-            },
-
-            handleYearChange(newDate) {
-              let currentDate = moment([newDate.year, newDate.month, 1]).format();
-              this.setState({ currentDate: currentDate })
-            },
-
-            handleMonthChange(month){
-              let { currentDate } = this.state;
-              let year = moment(currentDate).year();
-              let newDate = moment([year, month.key-1, 1]).format();
-              this.setState({ currentDate: newDate }, this.handleToggleView)
-            },
-            
-            handleDayChange(date){
-              this.setState({ currentDate: moment(date).format() })
-            },
-
-            handleSetToday(today){
-              this.setState({ currentDate: today.full })
             },
 
             render() {

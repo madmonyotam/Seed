@@ -10,6 +10,7 @@ module.exports = {
     var { React, PropTypes, ComponentMixin } = core.imports; 
     const units = {
       colors: {
+        text: core.theme('calendar.text'),
         textSelected: core.theme('calendar.textSelected'),
         textOutOfMonth: core.theme('calendar.textOutOfMonth'),
       }
@@ -57,7 +58,7 @@ module.exports = {
         let current = moment(this.props.current)
         
         let isCurrent = moment(day).isSame(current, 'day');
-        let textColor = isCurrent ? units.colors.textSelected : '#333';
+        let textColor = isCurrent ? units.colors.textSelected : units.colors.text;
         let dis = moment(day.format()).isBefore(startOfMonth) || moment(day.format()).isAfter(endOfMonth) 
 
         return (

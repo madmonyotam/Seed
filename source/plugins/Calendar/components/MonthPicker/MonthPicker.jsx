@@ -6,16 +6,18 @@ module.exports = {
         var { React, PropTypes, ComponentMixin } = core.imports;
 
         const units = {
-            background: core.theme('buttons.primary'),
-            border: core.theme('borders.default'),
-            text: core.theme('calendar.textSelected')
-        }
+            colors: {
+                text: core.theme('calendar.text'),
+                textSelected: core.theme('calendar.textSelected'),
+                border: core.theme('borders.default')
+            }
+          }
 
         return {
             mixins: [ ComponentMixin ],
 
             propsTypes: {
-                correntMonth: PropTypes.number,
+                currentMonth: PropTypes.number,
                 shortName: PropTypes.bool,
                 onSelect: PropTypes.func,
             },
@@ -105,7 +107,7 @@ module.exports = {
 
                 const styles = {
                     cell: {
-                        border: `1px solid ${units.border}`,
+                        border: `1px solid ${units.colors.border}`,
                         flex:1
                     },
                     button: {
@@ -125,20 +127,22 @@ module.exports = {
             },
 
             renderThreeMonth(startMonth){
-                let { shortName } = this.props;
+                let { shortName, currentMonth } = this.props;
 
                 let MonthsToRender = this.months.slice(startMonth,startMonth+3);
                 return MonthsToRender.map((m)=>{
 
                     let label = shortName ? m.shortName : m.name;
+                    let isCurrent = currentMonth === m.key;
+                    let textColor = isCurrent ? units.colors.textSelected :  units.colors.text;;
 
                     return(
                         <Center key={m.key}  width={'unset'} style={this.styles('cell')}>
                             <Button style={ this.styles('button') }
+                                    theme={ isCurrent ? 'primary' : 'default' }
                                     variant={ 'flat' } 
-                                    theme={ 'primary' }
                                     round={ false } 
-                                    textColor={ units.text }
+                                    textColor={ textColor }
                                     width={ '100%' } 
                                     height={ '100%' } 
                                     onClick={ e => { this.props.onSelect(m) } }> 
