@@ -2,38 +2,24 @@ import moment from 'moment';
 window.moment = moment;
 module.exports = {
   
-  dependencies: ['Layouts.Row', 'Layouts.Column', 'Layouts.Center', 'Decorators.Tooltip', 'Inputs.IconButton', 'Inputs.Button', 'Calendar.Day'],    
+  dependencies: ['Calendar.Day', 'Layouts.Row', 'Layouts.Column'],    
 
-  get(Row, Column, Center, Tooltip, IconButton, Button, Day) {
+  get(Day, Row, Column) {
 
     var core = this;
-    var { React, PropTypes, ComponentMixin } = core.imports;
-    var { Fragment } = React;
-    const units = {}
+    var { React, PropTypes, ComponentMixin } = core.imports; 
 
     return {
       mixins: [ ComponentMixin ],
 
       propsTypes: {
-        onDaySelect: PropTypes.func,
+        onSelect: PropTypes.func,
         currentDate: PropTypes.string,
-      },
-
-      getDefaultProps(){
-        return { 
-        };
-      },
-
-      getInitialState() {
-        return { 
-        };
-      },
-
-      componentDidMount() { 
+        firstDayInWeek: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number
+        ])
       }, 
-
-      componentWillReceiveProps (nextProps) {
-      },
 
       styles(s){
 
@@ -51,9 +37,18 @@ module.exports = {
       },  
 
       renderWeek(weekIndex, key){
-        let firstDayOfMonth = moment(this.props.currentDate).startOf('month');
+        let { firstDayInWeek, currentDate } = this.props;
+        let firstDayOfMonth = moment(currentDate).startOf('month');
+        
+        if(firstDayInWeek > 6 || firstDayInWeek < 0) firstDayInWeek = 0;
+        
+        let firstDay = moment(firstDayOfMonth).add(1, 'weeks').startOf('week').isoWeekday(firstDayInWeek); 
+
+        if (moment(firstDayOfMonth).isBefore(moment(firstDay)) ) {
+          firstDay = moment(firstDay).subtract(1, 'weeks') 
+        }
+
         let week = []; 
-        let firstDay = moment(firstDayOfMonth).startOf('week')
         let next = firstDay.add(weekIndex, 'days'); 
 
         week.push(next.format());
@@ -76,10 +71,12 @@ module.exports = {
       },
 
       renderDay(day, i){
+        let { currentDate, onSelect } = this.props;
+
         return <Day key={ i } 
                     date={ day } 
-                    current={ this.props.currentDate } 
-                    onSelect={ this.props.onSelect } /> 
+                    current={ currentDate } 
+                    onSelect={ onSelect } /> 
       },
 
       render() {

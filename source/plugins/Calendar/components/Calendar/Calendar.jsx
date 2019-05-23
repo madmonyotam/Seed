@@ -26,7 +26,7 @@ module.exports = {
                 return {
                     daysShortName: true,
                     monthShortName: false,
-                    firstDayInWeek: 1,
+                    firstDayInWeek: 0,
                     width: 550,
                     height: 500
                 };
@@ -37,21 +37,8 @@ module.exports = {
                     picker: DAY,
                     currentDate: moment().format()
                 };
-            },
-
-            componentWillMount () {
-            },
-
-            componentDidMount() {
-            },
-
-            componentWillReceiveProps (nextProps) {
-            },
-
-            componentWillUnmount () {
-                
-            },
-
+            }, 
+ 
             styles(s){
 
                 const styles = {
@@ -73,7 +60,8 @@ module.exports = {
             },
 
             renderWeeks(){
-              return <DaySelect currentDate={ this.state.currentDate } onSelect={ this.handleDayChange }/>
+              let { firstDayInWeek } = this.props;
+              return <DaySelect firstDayInWeek={firstDayInWeek} currentDate={ this.state.currentDate } onSelect={ this.handleDayChange }/>
             },
 
             renderMainCont(){
@@ -118,9 +106,12 @@ module.exports = {
             
             handleDayChange(date){
               this.setState({ currentDate: moment(date).format() })
-
             },
-            
+
+            handleSetToday(today){
+              this.setState({ currentDate: today.full })
+            },
+
             render() {
               let { picker, currentDate } = this.state;
               let { width, height } = this.props;
@@ -130,6 +121,7 @@ module.exports = {
                     <Column boxShadow={true} width={width} height={height} style={this.styles('wrapper')} >
                       <YearSelect onChange={ this.handleYearChange } 
                                   currentDate={ currentDate }
+                                  onToday={ this.handleSetToday }
                                   onPickerChange={ this.handleToggleView }
                                   pickerState={ picker } />
 

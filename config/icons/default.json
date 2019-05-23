@@ -23,6 +23,10 @@
     "clock": "access_time",
     "delete": "close"
   },
+  "calendar": {
+    "today": "today",
+    "calendar": "calendar_today"
+  },
   "genie": {
     "clear": "clear",
     "mongo": "files.upload",

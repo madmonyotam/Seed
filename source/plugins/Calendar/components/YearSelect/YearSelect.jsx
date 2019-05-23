@@ -15,34 +15,24 @@ module.exports = {
       mixins: [ ComponentMixin ],
 
       propsTypes: {
+        onToday: PropTypes.func,
         onChange: PropTypes.func,
         onPickerChange: PropTypes.func.isRequired,
-      },
-
-      getDefaultProps(){
-        return { 
-        };
-      },
-
+      }, 
+      
       getInitialState() {
         return { 
           currentDate: this.props.currentDate
         };
       },
-
-      componentDidMount() {
-      },
-
+ 
       componentWillReceiveProps (nextProps) {
         this.setState({ currentDate: nextProps.currentDate })
       },
 
       styles(s){
 
-        const styles = {
-          root: {
-            border: '1px solid black'
-          },
+        const styles = { 
           icon: {
             cursor: 'pointer',
             margin: '0 5px'
@@ -95,25 +85,33 @@ module.exports = {
         this.setState({ currentDate: nextDate })
       },
 
+      handleToday(){
+        let { onToday } = this.props;
+        let date = {
+          year: moment().year(),
+          month: moment().month(),
+          full:  moment().format()
+        }
+        onToday(date)
+      },
+
 
       renderMainDate(){
         let { currentDate } = this.state;
         let { onPickerChange } = this.props;
 
         return (
-          <Button style={ this.styles('mainDate') } onClick={ onPickerChange }> 
+          <Button variant={ 'filled' } style={ this.styles('mainDate') } onClick={ onPickerChange }> 
             { moment(currentDate).format('MMM YYYY') } 
           </Button>
         )
-      },
-
-
+      }, 
 
       renderPrevious(){
         return (
           <Fragment>
 
-            <Tooltip content={ 'Previous year' } position={ 'left' } offsetY={ 0 }>
+            <Tooltip content={ 'Previous year' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('navigate.left') } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
@@ -121,7 +119,7 @@ module.exports = {
                     onClick={ e => { this.handlePrevious('years') } } />
             </Tooltip>
 
-            <Tooltip content={ 'Previous month' } position={ 'left' } offsetY={ 0 }>
+            <Tooltip content={ 'Previous month' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
 
               <IconButton icon={ core.icons('navigate.arrow_left') } 
                     variant={ 'outlined' }
@@ -138,23 +136,38 @@ module.exports = {
       renderNext(){
         return (
           <Fragment>
-            <Tooltip content={ 'Next month' } position={ 'right' } offsetY={ 0 }>
-            
+
+            <Tooltip content={ 'Next month' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('navigate.arrow_right') } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
                     onClick={ e => { this.handleNext('months') } } />
             </Tooltip>
 
-            <Tooltip content={ 'Next year' } position={ 'right' } offsetY={ 0 }>
+            <Tooltip content={ 'Next year' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
               <IconButton icon={ core.icons('navigate.right') }
                     size={ 19 } 
                     style={ this.styles('icon') } 
                     variant={ 'outlined' }
                     onClick={ e => { this.handleNext('years') } } />
-            </Tooltip>
+            </Tooltip> 
 
           </Fragment>
+        )
+      },
+
+      renderToday(){
+        return (
+          <div style={{ position: 'absolute', right: '15px' }}>
+
+           <Tooltip content={ 'Today' } position={ 'bottom' } offsetY={ 10 }  offsetX={ 0 }>
+              <IconButton icon={ core.icons('calendar.today') }
+                    size={ 19 } 
+                    style={ this.styles('icon') } 
+                    variant={ 'filled' }
+                    onClick={ e => { this.handleToday() } } />
+            </Tooltip>
+          </div>
         )
       },
 
@@ -167,6 +180,8 @@ module.exports = {
             { this.renderMainDate() }
             
             { this.renderNext() }
+
+            { this.renderToday() }
           </Row>
         )
       } 
