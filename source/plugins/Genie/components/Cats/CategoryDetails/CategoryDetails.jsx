@@ -6,13 +6,13 @@ module.exports = {
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
         'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Simple.Icon',
-        // 'Simple.FileDownloader', 
-        'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults' ],
+        // 'Simple.FileDownloader', 'popovers.PopupHandler', 
+        'Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
 
         get( Column, Row, Label, Badge, IconMenu,
         Generator, MockEditor, MockTable, MongoHandler, Icon,
-        // FileDownloader, 
-        PopupHandler, CategoryItemEditor, NoResults
+        // FileDownloader, PopupHandler, 
+        CategoryItemEditor, NoResults,Drawer
         ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin } = seed.imports;
@@ -46,6 +46,7 @@ module.exports = {
             componentWillUnmount() {
                 this.setState({
                     counter: 1,
+                    open: false,
                 });
             },
 
@@ -289,8 +290,7 @@ module.exports = {
 
                 let data = this.serialize(seed.get('genie'));
                     data[this.parentKey] = model;
-                
-                console.log('data :', data);
+
                 seed.set('genie', data);
             },
 
@@ -318,24 +318,30 @@ module.exports = {
                 );
             },
 
-            handleAddItem() {
-                let all = seed.get('genie');
+            // handleAddItem() {
+            //     let all = seed.get('genie');
 
-                const change = ()=>{
-                    let data = PopupHandler.getData();
-                    this.handleUpdateTree(data, 'add');
-                    seed.emit('Popup.close');
-                };
+            //     const change = ()=>{
+            //         let data = PopupHandler.getData();
+            //         this.handleUpdateTree(data, 'add');
+            //         seed.emit('Popup.close');
+            //     };
 
-                PopupHandler.openSimpleModal({
-                    title: seed.translate('Add new item to category'),
-                    body: <CategoryItemEditor parentKey={this.parentKey}/>,
-                    bodyStyle: {minHeight: 'unset'},
-                    okButton: {
-                        btnTitle: seed.translate('Add'),
-                        btnFunc: change
-                   }
-                });
+            //     PopupHandler.openSimpleModal({
+            //         title: seed.translate('Add new item to category'),
+            //         body: <CategoryItemEditor parentKey={this.parentKey}/>,
+            //         bodyStyle: {minHeight: 'unset'},
+            //         okButton: {
+            //             btnTitle: seed.translate('Add'),
+            //             btnFunc: change
+            //        }
+            //     });
+            // },
+
+            renderAddDrawer() {
+                return (
+                    <CategoryItemEditor parentKey={this.parentKey}/>
+                )
             },
 
             renderTableActions() {
@@ -343,7 +349,8 @@ module.exports = {
                     <React.Fragment>
                         <Icon
                             color={this.colors.text}
-                            onClick={this.handleAddItem}
+                            // onClick={this.handleAddItem}
+                            onClick={this.toggleDrawer}
                             icon={this.icons.add}
                             size={this.dims.actionButtonIcon}
                             title={seed.translate('Add Item')}
@@ -459,7 +466,8 @@ module.exports = {
             addItem() {
                 return (
                     <NoResults
-                        onClick = { this.handleAddItem }
+                        // onClick = { this.handleAddItem }
+                        onClick = { this.toggleDrawer }
                         text={ seed.translate('Add Item') }
                         icon={ seed.icons('genie.add') }
                         color={ seed.theme('texts.default') }
@@ -467,6 +475,15 @@ module.exports = {
                         size={6}
                     />
                 );
+            },
+
+            toggleDrawer(){
+                let { open } = this.state;  
+
+                if (open) seed.emit('closeSimpleDrawer',{id:'GenieCategoryDetails'});
+                else      seed.emit('openSimpleDrawer',{id:'GenieCategoryDetails'});
+          
+                this.setState((state, props)=>{return {open: !state.open}});
             },
 
             render() {
@@ -482,6 +499,9 @@ module.exports = {
                         <Column width={'100%'} height={this.dims.mainHeight} >
                             { this.renderBody() }
                         </Column>
+                        <Drawer size={'calc(100% - 50px)'} offset={50} drawerId={'GenieCategoryDetails'}>
+                            { this.renderAddDrawer() }
+                        </Drawer>
                     </Column>
                 )
             } 

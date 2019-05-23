@@ -61,17 +61,17 @@ module.exports = {
             },
 
             getCode(){
-                let { size, icon, color } = this.state;
+                let { initialSize, size, offset, openFrom, transition, isLocked } = this.state;
 
-                return (`
-<Drawer initialSize={initialSize}
-        size={size}
-        offset={offset}
-        openFrom={openFrom}
-        transition={transition}
-        isLocked={isLocked}
-        />
-                `)
+                return [
+                    `<Drawer initialSize={${initialSize}}`,
+                    `    size={${size}}`,
+                    `    offset={${offset}}`,
+                    `    openFrom={${openFrom}}`,
+                    `    transition={${transition}}`,
+                    // `    isLocked={${isLocked}}`,
+                    `/>`,
+                ].join('\n')
             },
 
             toggleDrawer(){
@@ -130,7 +130,7 @@ module.exports = {
                                 offset={offset}
                                 openFrom={openFrom}
                                 transition={transition}
-                                isLocked={isLocked}
+                                // isLocked={isLocked}
                                 drawerId={'simple'}>
 
                                 { this.renderRows() }

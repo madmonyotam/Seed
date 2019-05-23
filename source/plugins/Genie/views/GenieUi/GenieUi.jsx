@@ -21,11 +21,14 @@ module.exports = {
 
             componentWillMount() {
                 this.initUnits();
+                // this.setCurrentLibrary();
             },
 
             componentDidMount() {
-                this.treeFirstLoad();
                 this.eventsHandler('on');
+                setTimeout(() => {
+                    this.setCurrentLibrary();
+                }, 150);
             },
 
             componentWillUnmount() {
@@ -125,15 +128,11 @@ module.exports = {
                 }
             },
 
-            treeFirstLoad() {
+            setCurrentLibrary() {
                 let libraries = this.getLibrariesLabels();
                 if (!libraries || !libraries.length) return null
 
-                this.setState( (state, props)=>{
-                    if (!state.currentLibrary || !state.currentLibrary.length) {
-                        return {currentLibrary: libraries[0]}
-                    }
-                });
+                this.setState( (state, props)=>{ return {currentLibrary: libraries[0]} });
             },
 
             getLibrariesLabels() {

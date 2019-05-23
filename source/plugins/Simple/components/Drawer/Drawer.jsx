@@ -17,7 +17,7 @@ module.exports = {
                 drawerId: PropTypes.string.isRequired,
                 size: PropTypes.number,   // the height/width of the drawer
                 offset: PropTypes.number, // the length that the drawer opens from
-                openFrom: PropTypes.string, // top/right/bottom/left - direction the drawer open fromd
+                openFrom: PropTypes.oneOf(['top','right','bottom','left']), // direction the drawer open from
                 transition: PropTypes.number,
                 initialSize: PropTypes.number,
             },
