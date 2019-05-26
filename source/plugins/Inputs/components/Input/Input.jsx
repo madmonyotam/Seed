@@ -89,9 +89,12 @@ module.exports = {
               if (nextProps.options && nextProps.options !== this.props.options) {
                 this.setState({ options: nextProps.options })
               }
+
               if (nextProps.value && nextProps.value !== this.props.value) {
                 this.setState({ value: nextProps.value });
-              } 
+              } else if (nextProps.value == '' ) {
+                this.setState({ value: '' });
+              }
             },
 
             getIsFocused(){
@@ -224,14 +227,13 @@ module.exports = {
             },
 
             handleOnChange(value) {
-                this.setState({ value });
+                this.setState((s,p)=>{return{ value }});
                 if (this.props.onChange) {
                   this.props.onChange(value)
                 }
             },
 
             handleClearInput(e){
-
               this.setState({ value: '', }, ()=>{
                   if (this.props.onClear) {
                       this.props.onClear(e)
@@ -377,9 +379,9 @@ module.exports = {
                     </Downshift>
                   );
 
-                default:
                 case 'number':
                 case 'text':
+                default:
                   return this.renderInput(type)
               }
             },

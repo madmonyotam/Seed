@@ -1,9 +1,8 @@
 import { uniq, isEmpty } from 'lodash';
-import { Input } from '@material-ui/core';
 
 module.exports = {
-dependencies: ['Simple.NoResults', 'Genie.LibraryItem', 'Simple.Icon', 'Layouts.Row'],
-get(NoResults, LibraryItem, Icon, Row) {
+dependencies: ['Simple.NoResults', 'Genie.LibraryItem', 'Simple.Icon', 'Layouts.Row', 'Inputs.Input'],
+get(NoResults, LibraryItem, Icon, Row, Input) {
     var core = this;
     var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
@@ -48,7 +47,9 @@ get(NoResults, LibraryItem, Icon, Row) {
             let { labels } = this.props;
             this.initUnits()
 
-            if (labels && !this.compareArrays( labels, this.state.labels))
+            let areEqual = this.compareArrays( labels, this.state.labels);
+
+            if (labels && !areEqual)
                 this.setState({labels: this.state.labels.concat(labels)} );
         },
 
@@ -68,7 +69,9 @@ get(NoResults, LibraryItem, Icon, Row) {
 
             let labels = this.state.labels;
 
-            if ( noLabels || !hasNextLabels || !this.compareLabels( this.props.labels, nextProps.labels) ) {
+            let areEqual = this.compareArrays( this.props.labels, nextProps.labels)
+
+            if ( noLabels || !hasNextLabels || !areEqual ) {
                 labels = this.state.labels.concat(nextLabels);
                 labels = uniq(labels);
             }
@@ -131,15 +134,12 @@ get(NoResults, LibraryItem, Icon, Row) {
         },
 
         compareArrays( first, second ) {
-            if (!first || !second) return false;
-            if (first.length !== second.length) return false;
-            for (let i = 0; i < first.length; i++) {
-                let f = first[i];
-                if (f instanceof Array && second[i] instanceof Array) {
-                    if (!this.compareArrays(f, second[i])) return false;
-                } else if ( f !== second[i]) return false;
-            }
-            return true;
+            if (!(first && second)) return false;
+
+            let sameLength = first.length === second.length;
+            let sameValues = first.sort().every(function(value, index) { return value === second.sort()[index]});
+
+            return sameLength && sameValues;
         },
 
         handleLibraryOpen( library ) {
@@ -211,16 +211,6 @@ get(NoResults, LibraryItem, Icon, Row) {
             }
             if ( !data || isEmpty(data) ) data = {};
             seed.set('genie', data);
-        },
-
-        compareLabels( labels1, labels2) {
-            let bothExist  = labels1 && labels2;
-            if ( !bothExist ) return false;
-
-            let sameLength = labels1.length === labels2.length;
-            let sameValues = labels1.sort().every(function(value, index) { return value === labels2.sort()[index]});
-
-            return bothExist && sameLength && sameValues;
         },
 
         handleAdd(value) {
@@ -369,7 +359,6 @@ get(NoResults, LibraryItem, Icon, Row) {
                 <Row height={this.dims.rowHeight} color={this.backgrounds.default} boxShadow={true}>
                     <Input
                         style={ this.styles('input')}
-                        fullWidth={ true }
                         autoFocus={ true }
                         onKeyDown={ this.handleAddKeyDown }
                         placeholder={ core.translate('Add Library') }

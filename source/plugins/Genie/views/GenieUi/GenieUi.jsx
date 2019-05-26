@@ -183,7 +183,7 @@ module.exports = {
 
                 if (str && str.length) {
                     let keys = Object.keys(data);
-                    keys = keys.filter(k=>k.includes(str));
+                    keys = keys.filter(k => k.toLowerCase().includes( str.toLowerCase() ));
                     keys.forEach(k => {
                         let lib = k.split(':')[0];
                         libraries.push(lib);

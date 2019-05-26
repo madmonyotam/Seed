@@ -129,20 +129,25 @@ module.exports = {
             },
 
             handleOpenSearch() {
-                this.setState({ openSearch: true })
+                this.setState((s, p)=>{return { openSearch: true }})
             },
 
             handleCloseSearch() {
-                this.setState({ openSearch: false, searchValue: '' });
+                this.setState((s, p)=>{return { openSearch: false}});
                 this.props.searchCB('');
+                setTimeout(() => {
+                    this.setState((s, p)=>{return { searchValue: '' }});
+                }, this.units.closeIconRowTransition * 1000);
             },
 
             renderSearchInput() {
+                let {searchValue} = this.state;
+
                 const handleChange = searchValue => {
-                    this.setState({searchValue});
+                    this.setState((s, p)=>{return{searchValue}});
                     this.props.searchCB(searchValue);
                 };
-
+                
                 return(
                     <Row padding={0} style={this.styles('searchInput')}>
                         <Input
@@ -150,9 +155,8 @@ module.exports = {
                             style={this.styles('Input')}
                             inputStyle={this.styles('input')}
                             onChange ={handleChange}
-                            value={this.state.searchValue}
+                            value={searchValue}
                             autoFocus={true}
-                            onClear={this.handleCloseSearch}
                             placeholder={core.translate('Search')}
                         />
                         <CloseIcon key={'CloseIcon'}
