@@ -9,6 +9,7 @@ module.exports = {
         require('./components/Caution'),
         require('./components/Notify'),
         require('./components/Popup'),
+        require('./components/Popup/PopupButtons'),
     ],
 
     // examples: [     

@@ -1,6 +1,7 @@
 {
     "colors": {
         "black": "#000000",
+        "black070": "#000000b3",
         "white": "#ffffff",
         "gray": "#999999",
         "dark": "#333333",
@@ -33,13 +34,15 @@
         "default":"colors.dark",
         "primary":"colors.blue015",
         "secondary":"colors.grey025",
-        "background": "colors.grey080"
+        "background": "colors.grey080",
+        "popupTitle": "colors.white"
     },
     "backgrounds": {
         "default": "colors.white",
         "primary": "colors.blue010",
         "secondary": "colors.blue050",
-        "disabled": "colors.grey070"
+        "disabled": "colors.grey070",
+        "popupPane": "colors.black070"
     },
     "buttons": {
         "default": "#d8d8d8",

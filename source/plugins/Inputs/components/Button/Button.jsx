@@ -47,6 +47,7 @@ module.exports = {
               padding: PropTypes.number,
               isLoading: PropTypes.bool,
               onMouseLeave: PropTypes.func,
+              disabled: PropTypes.bool,
               width: PropTypes.oneOf([ 
                 PropTypes.string, // '70px'
                 PropTypes.number // 70
@@ -66,6 +67,7 @@ module.exports = {
                 ripple: true,
                 round: true,
                 active: false,
+                disabled: false,
                 variant: 'outlined',
                 theme: 'default',
                 padding: 5,
@@ -114,7 +116,7 @@ module.exports = {
 
 
             styles(s) {
-              let { variant, active, backgroundColor, textColor, style, theme, ripple, round, height, width, padding } = this.props;
+              let { variant, active, backgroundColor, textColor, style, theme, ripple, round, height, width, padding, disabled } = this.props;
               let isFocused = this.getIsFocused();
 
               let isOutlined = variant === 'outlined';
@@ -188,7 +190,7 @@ module.exports = {
                   height: height,
                   minWidth: width,
                   letterSpacing: '.025em',
-                  cursor: 'pointer',
+                  cursor: disabled ? 'default' : 'pointer',
                   transition: 'background 0.15s ease-in-out, color 0.15s ease-in-out, border 0.15s ease-in-out',
                   display: 'flex',
                   alignItems: 'center',
@@ -210,7 +212,14 @@ module.exports = {
                   display: 'inherit',
                   alignItems: 'inherit',
                   justifyContent: 'inherit',
-                  padding: padding 
+                  padding: padding,
+                  /** not selectable text */
+                  WebkitTouchCallout: "none", /* iOS Safari */
+                  WebkitUserSelect: "none", /* Safari */
+                  KhtmlUserSelect: "none", /* Konqueror HTML */
+                  MozUserSelect: "none", /* Firefox */
+                  MsUserSelect: "none", /* Internet Explorer/Edge */
+                  userSelect: "none",/* Non-prefixed version, currently supported by Chrome and Opera */
                 }
               }
 
@@ -227,7 +236,7 @@ module.exports = {
                 } else return { backgroundColor: units.hover[theme] }
               }
 
-              if (isFocused && !active) {
+              if (isFocused && !active && !disabled) {
                 styles.root = {
                   ...styles.root,
                   ...focused() 
@@ -259,7 +268,7 @@ module.exports = {
               if (ripple) {
 
                 return (
-                  <Ripple color={ this.state.rippleColor } animationSpeed={ rippleSpeed } wrapperStyle={ this.styles('rippleWrapper') }>                            
+                  <Ripple color={ this.state.rippleColor } animationSpeed={ rippleSpeed } wrapperStyle={ this.styles('rippleWrapper') }>
                     <div style={ this.styles('label') }>
                       { kids }
                     </div>
@@ -284,9 +293,11 @@ module.exports = {
             },
 
             render() {
-              let { title } = this.props;
+              let { title, disabled } = this.props;
+              let click = disabled ? ()=>{} : this.handleOnClick;
+
               return (
-                <div style={ this.styles('root') } onMouseEnter={ this.onMouseEnter } onMouseLeave={ this.onMouseLeave } onClick={ this.handleOnClick } title={title}> 
+                <div style={ this.styles('root') } onMouseEnter={ this.onMouseEnter } onMouseLeave={ this.onMouseLeave } onClick={ click } title={title}> 
                   { this.renderButton() } 
                 </div>
               )
