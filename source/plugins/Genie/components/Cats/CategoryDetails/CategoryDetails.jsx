@@ -5,14 +5,14 @@ module.exports = {
     name: 'CategoryDetails',
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
-        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Simple.Icon',
-        // 'Simple.FileDownloader', 'popovers.PopupHandler', 
-        'Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
+        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Decorators.FileDownloader',
+        // 'popovers.PopupHandler', 
+        'Inputs.IconButton','Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
 
         get( Column, Row, Label, Badge, IconMenu,
-        Generator, MockEditor, MockTable, MongoHandler, Icon,
-        // FileDownloader, PopupHandler, 
-        CategoryItemEditor, NoResults,Drawer
+        Generator, MockEditor, MockTable, MongoHandler, FileDownloader,
+        // PopupHandler, 
+        IconButton, CategoryItemEditor, NoResults, Drawer
         ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin } = seed.imports;
@@ -228,39 +228,41 @@ module.exports = {
                 const inputOnChange = (e)=>{
                     this.setState({counter: e.target.value});
                 };
+
                 const inputProps = {
                     type: 'number',
                     max: this.units.maxCreate,
                     min: this.units.minCreate,
                     style: {textAlign: 'center'}
                 };
+
                 const saveMongo = (e)=>{
                     this.handleSaveToMongo(e, this.parentKey, this.state.codeData);
                 };
 
                 return (
                     <React.Fragment>
-                         <Icon key={'mongo'}
-                            color={this.colors.text}
-                            icon={this.icons.mongo}
-                            size={this.dims.actionButtonIcon}
-                            onClick={saveMongo}
-                            title={seed.translate('Upload to MongoDB')}
-                        />
-                        {/* <FileDownloader
+
+                        <IconButton key={'mongo'}
+                                    hoverSize={ 5 }
+                                    iconSize={this.dims.actionButtonIcon}
+                                    onClick={saveMongo}
+                                    title={seed.translate('Upload to MongoDB')}
+                                    icon={this.icons.mongo} />
+
+                        <FileDownloader
                             key={'download'}
                             content={this.state.codeData}
                             fileName={this.parentKey}
-                            fileExtension={'json'}
-                        > */}
-                            <Icon key={'file'}
-                                color={this.colors.text}
-                                icon={this.icons.save}
-                                onClick={console.log('MISSING FILEDOWNLOADER')}
-                                size={this.dims.actionButtonIcon}
-                                title={seed.translate('Save to file')}
-                            />
-                        {/* </FileDownloader> */}
+                            fileExtension={'json'} >
+
+                            <IconButton key={'file'}
+                                    hoverSize={ 5 }
+                                    iconSize={this.dims.actionButtonIcon}
+                                    title={seed.translate('Save to file')}
+                                    icon={this.icons.save} />
+
+                        </FileDownloader>
 
                         <Input
                             value={this.state.counter}
@@ -268,13 +270,14 @@ module.exports = {
                             style={this.styles('createActionsInput')}
                             inputProps={inputProps}
                         />
-                        <Icon key={'generate'}
-                            color={this.colors.text}
-                            onClick={this.handleGenerate}
-                            icon={this.icons.generate}
-                            size={this.dims.actionButtonIcon}
-                            title={seed.translate('Generate code')}
-                        />
+
+                        <IconButton key={'generate'}
+                                    hoverSize={ 5 }
+                                    iconSize={this.dims.actionButtonIcon}
+                                    onClick={this.handleGenerate}
+                                    title={seed.translate('Generate code')}
+                                    icon={this.icons.generate} />
+
                     </React.Fragment>
                 );
             },
@@ -308,13 +311,12 @@ module.exports = {
                 };
 
                 return (
-                    <Icon
-                        color={this.colors.text}
-                        onClick={click}
-                        icon={this.icons.save}
-                        size={this.dims.actionButtonIcon}
-                        title={seed.translate('Save Changes')}
-                    />
+                    <IconButton key={'SaveChanges'}
+                                hoverSize={ 5 }
+                                iconSize={this.dims.actionButtonIcon}
+                                onClick={click}
+                                title={seed.translate('Save Changes')}
+                                icon={this.icons.save} />
                 );
             },
 
@@ -347,14 +349,13 @@ module.exports = {
             renderTableActions() {
                 return (
                     <React.Fragment>
-                        <Icon
-                            color={this.colors.text}
-                            // onClick={this.handleAddItem}
-                            onClick={this.toggleDrawer}
-                            icon={this.icons.add}
-                            size={this.dims.actionButtonIcon}
-                            title={seed.translate('Add Item')}
-                        />
+
+                        <IconButton key={'mongo'}
+                                hoverSize={ 5 }
+                                iconSize={this.dims.actionButtonIcon}
+                                onClick={this.toggleDrawer}
+                                title={seed.translate('Add Item')}
+                                icon={this.icons.add} />
                         {this.renderSaveToTreeButton()}
                     </React.Fragment>
                 );

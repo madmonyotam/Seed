@@ -4,6 +4,7 @@ module.exports = {
     components: [
         require('./components/Ripple'),
         require('./components/Tooltip'),
+        require('./components/FileDownloader'),
     ], 
 
     init(definition, done) {
