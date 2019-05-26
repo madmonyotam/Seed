@@ -96,9 +96,10 @@ get(Icon, Button) {
         },
 
         render() {
-          let { variant, theme, background, iconSize, onClick } = this.props;
+          let { variant, theme, background, iconSize, onClick, title } = this.props;
             return (
                 <Button
+                    title={ title }
                     variant={ variant }
                     theme={ theme }
                     backgroundColor={ background }

@@ -4,12 +4,19 @@ import { MenuItem, ClickAwayListener, Input } from '@material-ui/core/';
 module.exports = {
     name: "CategoryItem",
 
-    dependencies: ['Simple.Icon','Simple.Label'],
-    get(Icon, Label) {
+    dependencies: ['Inputs.IconButton','Simple.Label'],
+    get(IconButton, Label) {
 
         var seed = this;
-
         var { React, PropTypes, ComponentMixin } = seed.imports;
+
+        const units = {
+            buttonProps: {
+                hoverSize: 5,
+                iconSize: 16,
+                background: 'transparent'
+            }
+        }
 
         return {
             mixins: [ ComponentMixin ],
@@ -109,7 +116,7 @@ module.exports = {
                     },
                     renderEditIcons: {
                         position: 'absolute',
-                        right: '2.5px',
+                        right: -10,
                         zIndex: 2,
                         display: 'flex',
                         height: '100%',
@@ -130,13 +137,10 @@ module.exports = {
                         justifyContent: 'center',
                         position: 'absolute',
                         zIndex: 2,
-                        right: 5,
+                        right: 0,
                         display: 'flex',
                         height: '100%',
                         alignItems: 'center'
-                    },
-                    icon: { 
-                        cursor: 'pointer'
                     }
                 }
                 return styles[propName]
@@ -224,13 +228,16 @@ module.exports = {
             renderEditIcons(){
                 return (
                   <div id={'renderEditIcons'} style={ this.styles('renderEditIcons') } >
-                    {/* <Tippy content={ seed.translate('Cancel') } {...this.tippyDefaultProps} > */}
-                        <Icon size={ 16 } icon={ this.icons.cancel } onClick={ this.handleCancel } style={{ ...this.styles('icon'), marginRight: 10 }} />
-                    {/* </Tippy> */}
+
+                        <IconButton     title={seed.translate('Cancel')}
+                                        onClick={ this.handleCancel }
+                                        icon={this.icons.cancel} 
+                                        {...units.buttonProps} />
   
-                    // <Tippy content={ seed.translate('Ok') } {...this.tippyDefaultProps} >
-                        <Icon size={ 16 } icon={ this.icons.ok } onClick={ this.renameCB } style={ this.styles('icon') }/>
-                    // </Tippy>
+                        <IconButton     title={seed.translate('OK')}
+                                        onClick={ this.renameCB }
+                                        icon={this.icons.ok} 
+                                        {...units.buttonProps} />
                   </div>
   
                 )
@@ -238,9 +245,11 @@ module.exports = {
 
             renderRemove(){
                 return(
-                //   <Tippy content={ seed.translate('Remove') } {...this.tippyDefaultProps} >
-                        <Icon id={'renderRemove.Icon'} size={ 16 } icon={ this.icons.remove } onClick={ this.removeCB } style={{ ...this.styles('icon'), marginLeft: 10 }}/>
-                //   </Tippy>
+
+                    <IconButton     title={seed.translate('Remove')}
+                                    onClick={ this.removeCB }
+                                    icon={this.icons.remove} 
+                                    {...units.buttonProps} />
                 )
             },
 
@@ -253,9 +262,11 @@ module.exports = {
                 if (showRowIcons && !isEditable) {
                     return (
                       <div id={'renderRowIcons'} style={ this.styles('rowIcons') } >
-                        {/* <Tippy content={ seed.translate('Rename') } {...this.tippyDefaultProps} > */}
-                            <Icon size={ 16 } icon={ this.icons.edit } onClick={ this.handleEdit } style={ this.styles('icon') } />
-                        {/* </Tippy> */}
+
+                            <IconButton     title={seed.translate('Rename')}
+                                            onClick={ this.handleEdit }
+                                            icon={this.icons.edit}
+                                            {...units.buttonProps} />
 
                         { this.renderRemove() }
                       </div>

@@ -284,8 +284,9 @@ module.exports = {
             },
 
             render() {
+              let { title } = this.props;
               return (
-                <div style={ this.styles('root') } onMouseEnter={ this.onMouseEnter } onMouseLeave={ this.onMouseLeave } onClick={ this.handleOnClick }> 
+                <div style={ this.styles('root') } onMouseEnter={ this.onMouseEnter } onMouseLeave={ this.onMouseLeave } onClick={ this.handleOnClick } title={title}> 
                   { this.renderButton() } 
                 </div>
               )
