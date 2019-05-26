@@ -20,23 +20,23 @@ module.exports = {
     },
 
     init(definition, done) {
-        var core = definition;
+        var seed = definition;
 
         var notifications = {
 
             addNotify(text,alertKind) {
-                core.emit('addNotify',{text,alertKind});
+                seed.emit('addNotify',{text,alertKind});
             },
 
             openPopup(data) {
                 let {title, body, bodyStyle, okButton, buttons, modalStyle} = data;
                 let {btnTitle, btnFunc} = okButton;
 
-                core.emit('Popup', {title, body, bodyStyle, btnTitle, btnFunc, buttons, modalStyle});
+                seed.emit('Popup', {title, body, bodyStyle, btnTitle, btnFunc, buttons, modalStyle});
             },
 
             Caution(text,title,func) {
-                core.emit('Caution', {text, title, func} );
+                seed.emit('Caution', {text, title, func} );
             },
 
             openLightbox( data ) {
@@ -45,7 +45,7 @@ module.exports = {
                  * set title or info to 'none' for eliminate it;
                  */
 
-                if (!data || _.isEmpty(data)) return core.emit('Lightbox.open');
+                if (!data || _.isEmpty(data)) return seed.emit('Lightbox.open');
 
                 let { children, rootStyle, innerStyle, bodyStyle, childrenStyle } = data;
 
@@ -53,7 +53,7 @@ module.exports = {
 
                 let lightTitle = (data.title && !_.isEmpty(data.title)) ? data.title : {hasInfo: Boolean(data.info !== 'none') };
 
-                core.emit('Lightbox.open', {
+                seed.emit('Lightbox.open', {
                     lightBody: {children, rootStyle, innerStyle, bodyStyle, childrenStyle},
                     lightTitle: lightTitle,
                     lightInfo: lightInfo,

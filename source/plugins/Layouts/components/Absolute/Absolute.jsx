@@ -16,6 +16,7 @@ module.exports = {
                 top: PropTypes.number,
                 bottom: PropTypes.number,
                 right: PropTypes.number,
+                elevation: PropTypes.number,
                 left: PropTypes.number,
             },
 
@@ -26,6 +27,7 @@ module.exports = {
                     right: 0,
                     left: 0,
                     padding: 0,
+                    elevation: 1000,
                     color: 'unset'
                 };
             },
@@ -37,7 +39,7 @@ module.exports = {
             },
 
             styles(s){
-                let { padding ,color, style, top, bottom, right, left } = this.props;
+                let { padding ,color, style, top, bottom, right, left, elevation } = this.props;
 
                 const styles = {
                     view: {
@@ -49,6 +51,7 @@ module.exports = {
                         overflow: 'hidden',
                         background: color,
                         padding: padding,
+                        zIndex: elevation,
                         ...style
                     }
                 }

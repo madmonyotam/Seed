@@ -12,8 +12,8 @@ module.exports = {
     name: 'Button',
     description: '',
     propTypes: {},
-    dependencies: ['Decorators.Ripple' ],
-    get(Ripple) {
+    dependencies: ['Decorators.Ripple', 'Simple.Loader' ],
+    get(Ripple, Loader) {
 
         var core = this;
 
@@ -45,6 +45,7 @@ module.exports = {
               backgroundColor: PropTypes.string,
               onMouseEnter: PropTypes.func,
               padding: PropTypes.number,
+              isLoading: PropTypes.bool,
               onMouseLeave: PropTypes.func,
               width: PropTypes.oneOf([ 
                 PropTypes.string, // '70px'
@@ -68,6 +69,7 @@ module.exports = {
                 variant: 'outlined',
                 theme: 'default',
                 padding: 5,
+                isLoading: false,
                 onMouseEnter: ()=>{},
                 onMouseLeave: ()=>{},
                 textColor: undefined,
@@ -245,22 +247,27 @@ module.exports = {
                 if (this.props.onClick) {
                   this.props.onClick(e)
                 }
-            }, 
+            },
+
             renderButton( ){ 
-  
-              let { ripple, rippleSpeed, children } = this.props;
+              let { ripple, rippleSpeed, children, isLoading, width, height, textColor } = this.props;
+              let loadersize = width > height ? height : width;
+                  loadersize = loadersize * 0.7;
+
+              let kids = isLoading ? <Loader size={loadersize} color={textColor}/> : children;
+
               if (ripple) {
 
                 return (
                   <Ripple color={ this.state.rippleColor } animationSpeed={ rippleSpeed } wrapperStyle={ this.styles('rippleWrapper') }>                            
                     <div style={ this.styles('label') }>
-                      { children }
+                      { kids }
                     </div>
                   </Ripple>
                 )
               }
               return  <div style={ this.styles('label') }>
-                        { children }
+                        { kids }
                       </div>
             },
 

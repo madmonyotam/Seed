@@ -12,9 +12,10 @@ module.exports = {
       'Navigation.Top',
       'popovers.Notify',
       'popovers.Caution',
+      'popovers.Popup',
       'Simple.Loader',
     ],
-    get(MainRouter, Navigation, Notify, Caution, Loader) {
+    get(MainRouter, Navigation, Notify, Caution, Popup, Loader) {
 
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -38,15 +39,20 @@ module.exports = {
             },
 
             componentDidMount() {
-                core.on('notify',this.addNotification);
+                this.eventsHandler('on');
             },
 
             componentWillUnmount() {
-                core.off('notify',this.addNotification);
+                this.eventsHandler('off');
             },
 
             componentDidCatch(err){
                 this.setState({ error: err && err.toString() })
+            },
+
+            eventsHandler(action) {
+                core[action]('notify', this.addNotification);
+                core[action]('popup', this.addPopup);
             },
 
             start() {
@@ -78,6 +84,10 @@ module.exports = {
                 core.plugins.popovers.addNotify(text, alertKind);
             },
 
+            addPopup(data){
+                core.plugins.popovers.openPopup(data);
+            },
+
             styles(s) {
 
                 let styles = {
@@ -101,9 +111,10 @@ module.exports = {
                 return (
                     <div style={ this.styles('root') }>
                         <Navigation handleViews={this.handleNav} activeView={activeView} />
+                        <MainRouter/>
                         <Notify />
                         <Caution />
-                        <MainRouter/>   
+                        <Popup/>
                     </div>
                 )
             }

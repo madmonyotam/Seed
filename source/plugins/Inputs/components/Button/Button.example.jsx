@@ -16,6 +16,7 @@ get(Button, SimpleExample, ExampleHelper, Icon) {
                 backgroundColor: { type: 'string', group: 'initial' },
                 width: { type: 'string', group: 'initial' },
                 height: { type: 'string', group: 'initial' },
+                isLoading: { type: 'boolean'},
                 ripple: { type: 'boolean', group: 'initial' },
                 round: { type: 'boolean', group: 'initial' },
                 
@@ -28,26 +29,25 @@ get(Button, SimpleExample, ExampleHelper, Icon) {
         },
 
         getCode(){
-            let { ripple, backgroundColor, textColor, theme,  variant, round, width, height } = this.state;
+            let { ripple, backgroundColor, textColor, theme, isLoading, variant, round, width, height } = this.state;
 
             return [
-                `<Button `,
-                `    theme={ ${theme} }`,
-                `    variant={ ${variant} } `,
-                `    textColor={ ${textColor || '' } } `,
-                `    backgroundColor={ ${backgroundColor || '' } } `,
-                `    width={ ${width} }`,
-                `    height={ ${height} }`,
-                `    ripple={ ${ripple} } `,
-                `    round={ ${round} }`,
-                `>`,
+                `<Button theme={ ${theme} }`,
+                `        variant={ ${variant} } `,
+                `        textColor={ ${textColor || '' } } `,
+                `        backgroundColor={ ${backgroundColor || '' } } `,
+                `        width={ ${width} }`,
+                `        height={ ${height} }`,
+                `        ripple={ ${ripple} } `,
+                `        isLoading={ ${isLoading} } `,
+                `        round={ ${round} } >`,
                 `    Button`,
                 `</Button>`,
             ].join('\n');
         },
 
         render() {
-            let { ripple, backgroundColor, textColor, theme,  variant, round, width, height } = this.state;
+            let { ripple, backgroundColor, textColor, theme, isLoading, variant, round, width, height } = this.state;
             width = ExampleHelper.ifNumber_Convert(width);
             height = ExampleHelper.ifNumber_Convert(height);
 
@@ -56,8 +56,8 @@ get(Button, SimpleExample, ExampleHelper, Icon) {
                     context={this} 
                     code={ this.getCode() } 
                     scheme={ this.propScheme() } 
-                    codeHeight={ '50%' }
-                    exampleHeight={ '50%' } > 
+                    codeHeight={ '25%' }
+                    exampleHeight={ '75%' } > 
 
                     <Button
                         theme={ theme }
@@ -67,6 +67,7 @@ get(Button, SimpleExample, ExampleHelper, Icon) {
                         width={ width }
                         height={ height }
                         ripple={ ripple }
+                        isLoading={ isLoading }
                         round={ round }
                     >
                         Button

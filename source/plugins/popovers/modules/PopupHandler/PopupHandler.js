@@ -2,30 +2,28 @@ module.exports = {
     name: "PopupHandler",
     dependencies: [],
     get() {
-        var core = this;
+        var seed = this;
 
         return {
-
             clearData(){
-                core.plugins.popovers.set(['popup','data'],{});
+                seed.plugins.popovers.set(['popup','data'],{});
             },
             
             getData(){
-                return core.plugins.popovers.get(['popup','data']);
+                return seed.plugins.popovers.get(['popup','data']);
             },
 
             addData(data){
-                core.plugins.popovers.set(['popup','data'],data);
+                seed.plugins.popovers.set(['popup','data'],data);
             },
 
             disableOkBtn(){
-                core.plugins.popovers.set(['popup','disable'],true);
+                seed.plugins.popovers.set(['popup','disable'],true);
             },
 
             enableOkBtn(){
-                core.plugins.popovers.set(['popup','disable'],false);
+                seed.plugins.popovers.set(['popup','disable'],false);
             },
-
         };
     }
 }

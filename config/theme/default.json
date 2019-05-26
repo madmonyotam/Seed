@@ -44,7 +44,9 @@
     "buttons": {
         "default": "#d8d8d8",
         "primary": "#6B7ADD",
-        "secondary": "#dd6a6a"
+        "secondary": "#dd6a6a",
+        "white": "colors.white",
+        "disabled": "colors.grey070"
     },
     "borders": {
         "default":"colors.grey070"

@@ -5,14 +5,14 @@ module.exports = {
     name: 'CategoryDetails',
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
-        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Decorators.FileDownloader',
-        // 'popovers.PopupHandler', 
-        'Inputs.IconButton','Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
+        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Simple.Icon',
+        // 'Simple.FileDownloader', 
+        'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
 
         get( Column, Row, Label, Badge, IconMenu,
-        Generator, MockEditor, MockTable, MongoHandler, FileDownloader,
-        // PopupHandler, 
-        IconButton, CategoryItemEditor, NoResults, Drawer
+        Generator, MockEditor, MockTable, MongoHandler, Icon,
+        // FileDownloader, 
+        PopupHandler, CategoryItemEditor, NoResults,Drawer
         ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin } = seed.imports;
@@ -320,30 +320,24 @@ module.exports = {
                 );
             },
 
-            // handleAddItem() {
-            //     let all = seed.get('genie');
+            handleAddItem() {
+                let all = seed.get('genie');
 
-            //     const change = ()=>{
-            //         let data = PopupHandler.getData();
-            //         this.handleUpdateTree(data, 'add');
-            //         seed.emit('Popup.close');
-            //     };
+                const change = ()=>{
+                    let data = PopupHandler.getData();
+                    this.handleUpdateTree(data, 'add');
+                    seed.emit('Popup.close');
+                };
 
-            //     PopupHandler.openSimpleModal({
-            //         title: seed.translate('Add new item to category'),
-            //         body: <CategoryItemEditor parentKey={this.parentKey}/>,
-            //         bodyStyle: {minHeight: 'unset'},
-            //         okButton: {
-            //             btnTitle: seed.translate('Add'),
-            //             btnFunc: change
-            //        }
-            //     });
-            // },
-
-            renderAddDrawer() {
-                return (
-                    <CategoryItemEditor parentKey={this.parentKey}/>
-                )
+                seed.emit('popup',{
+                    title: seed.translate('Add new item to category'),
+                    body: <CategoryItemEditor parentKey={this.parentKey}/>,
+                    bodyStyle: {minHeight: 'unset'},
+                    okButton: {
+                        btnTitle: seed.translate('Add'),
+                        btnFunc: change
+                   }
+                });
             },
 
             renderTableActions() {
@@ -353,7 +347,7 @@ module.exports = {
                         <IconButton key={'mongo'}
                                 hoverSize={ 5 }
                                 iconSize={this.dims.actionButtonIcon}
-                                onClick={this.toggleDrawer}
+                            onClick={this.handleAddItem}
                                 title={seed.translate('Add Item')}
                                 icon={this.icons.add} />
                         {this.renderSaveToTreeButton()}
@@ -467,8 +461,8 @@ module.exports = {
             addItem() {
                 return (
                     <NoResults
-                        // onClick = { this.handleAddItem }
-                        onClick = { this.toggleDrawer }
+                        onClick = { this.handleAddItem }
+                        // onClick = { this.toggleDrawer }
                         text={ seed.translate('Add Item') }
                         icon={ seed.icons('genie.add') }
                         color={ seed.theme('texts.default') }
@@ -501,7 +495,7 @@ module.exports = {
                             { this.renderBody() }
                         </Column>
                         <Drawer size={'calc(100% - 50px)'} offset={50} drawerId={'GenieCategoryDetails'}>
-                            { this.renderAddDrawer() }
+                            <CategoryItemEditor parentKey={this.parentKey}/>
                         </Drawer>
                     </Column>
                 )
