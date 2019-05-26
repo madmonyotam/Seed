@@ -1,18 +1,12 @@
 module.exports = {
     name: 'MenuTitleBar',
     description: 'This is an example of a component',
-    dependencies: [ 'Layouts.Row', 
-                    'Inputs.IconMenu',
-                    'Simple.Icon', 'Simple.Label',
-                    'Inputs.Input'],
-    get(Row, 
-        IconMenu, 
-        Icon, Label,
-        Input) {
+    dependencies: [ 'Layouts.Row', 'Inputs.IconMenu', 'Inputs.IconButton', 'Simple.Label', 'Inputs.Input'],
+    get(Row, IconMenu, IconButton, Label, Input) {
         let core = this;
         
-        let SearchIcon = Icon;
-        let CloseIcon = Icon;
+        let SearchIcon = IconButton;
+        let CloseIcon = IconButton;
         let MoreIcon = IconMenu;
 
         let MenuTitleBar = Row;
@@ -98,7 +92,6 @@ module.exports = {
                 const styles = {
                     root: {
                         position: 'relative',
-
                         borderBottom: `1px solid ${this.colors.border}`,
                     },
                     search: {
@@ -124,7 +117,7 @@ module.exports = {
                         transition: `width ${this.units.transition}s ${this.units.transition}s ease-in-out, min-width ${this.units.transition}s ${this.units.transition}s ease-in-out`,
                     },
                     Input: {
-                        marginRight: 10,
+                         marginRight: 10,
                     },
                     input: {
                         fontSize: this.dims.fontSize,
@@ -153,6 +146,7 @@ module.exports = {
                 return(
                     <Row padding={0} style={this.styles('searchInput')}>
                         <Input
+                            label={null}
                             style={this.styles('Input')}
                             inputStyle={this.styles('input')}
                             onChange ={handleChange}
@@ -162,7 +156,9 @@ module.exports = {
                             placeholder={core.translate('Search')}
                         />
                         <CloseIcon key={'CloseIcon'}
-                            size={this.dims.iconSize}
+                            style={{ marginRight: 5 }}
+                            hoverSize={ 5 }
+                            iconSize={this.dims.iconSize}
                             onClick={this.handleCloseSearch}
                             title={core.translate('Clear')}
                             icon={this.icons.clear}
@@ -181,7 +177,8 @@ module.exports = {
                 return (
                     <IconsRow style={this.styles('iconsRow')}>
                         <SearchIcon key={'SearchIcon'}
-                            size={this.dims.iconSize}
+                            iconSize={this.dims.iconSize}
+                            hoverSize={ 5 }
                             onClick={this.handleOpenSearch}
                             title={core.translate('Search')}
                             icon={this.icons.search}
@@ -197,8 +194,8 @@ module.exports = {
 
             render() {
                 return (
-                    <MenuTitleBar id={'MenuTitleBar'} style={this.styles('root')}>
-                        <Row padding={0}>
+                    <MenuTitleBar id={'MenuTitleBar'} style={this.styles('root')} padding={0}>
+                        <Row>
                             <Label label={core.translate('Menu')} style={{textTransform: 'uppercase'}} />
                         </Row>
                         {this.renderSearchInput()}

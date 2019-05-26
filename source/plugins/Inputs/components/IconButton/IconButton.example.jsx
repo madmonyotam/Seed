@@ -12,10 +12,11 @@ module.exports = {
 
             propScheme(){ 
                 return {
-                    iconSize: { type: 'number', group: 'initial' },
-                    iconColor: { type: 'string', group: 'initial' },
-                    background: { type: 'string', group: 'initial' },
-                    icon: { type: 'icon', group: 'initial'},
+                    hoverSize: { type: 'number' },
+                    iconSize: { type: 'number' },
+                    iconColor: { type: 'string' },
+                    background: { type: 'string' },
+                    icon: { type: 'icon'},
                     variant: { type: 'select', group: 'initial', options: [ 'raised', 'outlined', 'flat' ] },
                 }
             },
@@ -52,7 +53,7 @@ module.exports = {
             },
 
             render() {
-                let { icon, iconSize, iconColor, background, variant, onClick } = this.state;
+                let { icon, iconSize, iconColor, background, variant, hoverSize, onClick } = this.state;
                 let size = ExampleHelper.ifNumber_Convert(iconSize);
 
                 return (
@@ -62,6 +63,7 @@ module.exports = {
                             icon={icon}
                             iconColor={iconColor}
                             iconSize={size}
+                            hoverSize={hoverSize}
                             background={background}
                             variant={variant}
                             onClick={this.printA}

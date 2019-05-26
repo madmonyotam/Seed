@@ -21,6 +21,7 @@ get(Icon, Button) {
             onClick: PropTypes.func,
             style: PropTypes.object,
             iconStyle: PropTypes.object,
+            hoverSize: PropTypes.number,
         },
 
         getDefaultProps() {
@@ -34,6 +35,7 @@ get(Icon, Button) {
                 onClick: ()=>{},
                 style: {},
                 iconStyle: {},
+                hoverSize: 0
             }
         },
 
@@ -44,17 +46,21 @@ get(Icon, Button) {
         },
 
         styles(s) {
+            let { hoverSize, iconSize, style, iconStyle } = this.props;
+            let addSize = hoverSize*2;
+
             let styles = {
                 button: {
-                    borderRadius: this.props.iconSize,
-                    minHeight: this.props.iconSize,
-                    minWidth: this.props.iconSize,
-                    maxHeight: this.props.iconSize,
-                    maxWidth: this.props.iconSize,
-                    ...this.props.style,
+                    borderRadius: '50%',
+                    minHeight: iconSize+addSize,
+                    minWidth: iconSize+addSize,
+                    maxHeight: iconSize+addSize,
+                    maxWidth: iconSize+addSize,
+                    ...style,
                 },
                 icon: {
-                    ...this.props.iconStyle
+                    margin: hoverSize,
+                    ...iconStyle
                 },
             }
 
