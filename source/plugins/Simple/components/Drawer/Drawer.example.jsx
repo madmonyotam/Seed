@@ -16,7 +16,7 @@ module.exports = {
                     initialSize:{ type: 'number', group: 'initial' },
                     size: { type: 'number', group: 'initial' },
                     offset: { type: 'number' },
-                    openFrom: { type: 'default' },
+                    openFrom: { type: 'select', options: [ 'top', 'bottom', 'left', 'right' ] },
                     transition: { type: 'number' },
                     isLocked: { type: 'boolean' },
                 };       

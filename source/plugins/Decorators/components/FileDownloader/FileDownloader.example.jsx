@@ -13,29 +13,36 @@ module.exports = {
             propScheme(){ 
                 return {
                     fileName: { type: 'string' },
+                    fileExtension: { type: 'string' },
                     disabled: { type: 'boolean' }
                 }
             },
 
             getInitialState() {
                 let defaultProps = FileDownloader.getDefaultProps();
+                defaultProps.fileExtension = 'json'
                 return defaultProps;
             },
 
             getCode(){
-                let { color, animationSpeed } = this.state;
+                let { fileName, disabled } = this.state;
 
                 return (`
-<Ripple color={${color}} animationSpeed={${animationSpeed}}>                            
-    <Center height={100} width={100} color={'#ddd'}>
-        <span>{core.translate('ripple')}</span>
-    </Center>
-</Ripple>
+<FileDownloader content={test}
+                disabled={ ${disabled} }
+                fileName={${fileName}}
+                fileExtension={'json'}>
+    
+    <Button theme={ 'primary' } variant={ 'raised' }>
+        {core.translate('download')}
+    </Button>
+
+</FileDownloader>
                 `)
             },
 
             render() {
-                let { fileName, disabled } = this.state;
+                let { fileName, disabled, fileExtension } = this.state;
                 let test = {
                     test: 'is working'
                 }
@@ -46,10 +53,10 @@ module.exports = {
                         <FileDownloader content={test}
                                         disabled={ disabled }
                                         fileName={fileName}
-                                        fileExtension={'json'}>
+                                        fileExtension={fileExtension}>
                                                
                             <Button theme={ 'primary' } variant={ 'raised' }>
-                                <span>{core.translate('download')}</span>
+                                {core.translate('download')}
                             </Button>
                         </FileDownloader>
             
