@@ -43,7 +43,7 @@ module.exports = {
                         height: 15*size,
                         borderRadius: '42%',
                         background: core.theme('colors.white'),
-                        border: `1px solid ${core.theme('colors.border')}`,
+                        border: `1px solid ${core.theme('borders.default')}`,
                         paddingRight: 3*size,
                         paddingLeft: 3*size,
                         margin: `0px ${5*size}px`,

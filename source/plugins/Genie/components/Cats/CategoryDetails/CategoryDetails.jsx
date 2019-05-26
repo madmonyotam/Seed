@@ -408,11 +408,11 @@ module.exports = {
 
                 return (
                     <Row color={this.backgrounds.default} style={this.styles('titleRow')}>
-                        <Row padding={0}>
-                            <Label label={title} />
+                        <Row padding={0} width={'50%'}>
+                            <Label label={title} width={'fit-content'} />
                             <Badge size={1} count={badge} />
                         </Row>
-                        <Row padding={0} style={this.styles('actions')}>
+                        <Row padding={0} width={'50%'} style={this.styles('actions')}>
                             {this.handleActions()}
                             {this.renderViewButton()}
                         </Row>
