@@ -5,11 +5,11 @@ module.exports = {
     name: 'CategoryDetails',
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
-        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Simple.Icon',
+        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Inputs.IconButton',
         'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
 
         get( Column, Row, Label, Badge, IconMenu,
-        Generator, MockEditor, MockTable, MongoHandler, Icon,
+        Generator, MockEditor, MockTable, MongoHandler, IconButton,
         FileDownloader, PopupHandler, CategoryItemEditor, NoResults,Drawer
         ) {
         var seed = this;
