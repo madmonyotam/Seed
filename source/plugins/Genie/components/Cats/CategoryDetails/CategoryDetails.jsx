@@ -6,13 +6,11 @@ module.exports = {
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
         'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Simple.Icon',
-        // 'Simple.FileDownloader', 
-        'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
+        'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
 
         get( Column, Row, Label, Badge, IconMenu,
         Generator, MockEditor, MockTable, MongoHandler, Icon,
-        // FileDownloader, 
-        PopupHandler, CategoryItemEditor, NoResults,Drawer
+        FileDownloader, PopupHandler, CategoryItemEditor, NoResults,Drawer
         ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin } = seed.imports;
