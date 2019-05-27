@@ -82,15 +82,14 @@ module.exports = {
             componentDidMount() {
                 this.inputRef = React.createRef();
                 if (this.props.options) this.setState({ options: this.props.options })
-                if (this.props.value) this.setState({ value: this.props.value }) 
+                if (this.props.value !== '' ) this.setState({ value: this.props.value }) 
             },
 
             componentWillReceiveProps(nextProps) {
               if (nextProps.options && nextProps.options !== this.props.options) {
                 this.setState({ options: nextProps.options })
               }
-
-              if (nextProps.value && nextProps.value !== this.props.value) {
+              if (nextProps.value && nextProps.value !== this.props.value && nextProps.value !== '') {
                 this.setState({ value: nextProps.value });
               } else if (nextProps.value == '' ) {
                 this.setState({ value: '' });
@@ -434,6 +433,7 @@ module.exports = {
                   })
                 } else return { onChange: e => { this.handleOnChange(e.target.value) } }
               } 
+              // console.log('value -> ',value);
               return (
                 <React.Fragment>
                   { this.renderChips() }
