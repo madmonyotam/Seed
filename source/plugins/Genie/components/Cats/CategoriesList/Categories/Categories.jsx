@@ -1,9 +1,8 @@
 import { uniq, isEmpty } from 'lodash';
-import { Input } from '@material-ui/core';
 
 module.exports = {
-    dependencies: [ 'Simple.NoResults', 'Genie.CategoryItem', 'Simple.Icon', 'Layouts.Row' ],
-    get( NoResults, CategoryItem, Icon, Row ) {
+    dependencies: [ 'Simple.NoResults', 'Genie.CategoryItem', 'Inputs.IconButton', 'Layouts.Row', 'Inputs.Input' ],
+    get( NoResults, CategoryItem, IconButton, Row, Input ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
@@ -70,7 +69,6 @@ module.exports = {
             initUnits(){
                 this.dims = {
                     fontSize: 13,
-                    iconSize: 16,
                     buttonIconSize: 27,
                     rowHeight: 40,
                 };
@@ -290,22 +288,25 @@ module.exports = {
             renderAdd() {
                 let {addIsOpen} = this.state;
                 if (!addIsOpen) return null;
-
+    
+                let inputStyle = { height:28, paddingLeft: 2 }
+                let rowStyle = { paddingRight: 5 }
+    
                 return (
-                    <Row height={this.dims.rowHeight} color={this.backgrounds.default} boxShadow={true}>
+                    <Row height={this.dims.rowHeight} color={this.backgrounds.default} boxShadow={true} style={rowStyle} >
                         <Input
-                            style={ this.styles('input')}
+                            label={''}
+                            inputStyle={inputStyle}
                             autoFocus={ true }
                             onKeyDown={ this.handleAddKeyDown }
                             placeholder={ seed.translate('Add Category') }
                         />
-                        <Icon 
-                            color={this.colors.text}
-                            icon={this.icons.clear}
-                            size={this.dims.iconSize}
-                            onClick={this.handleCloseAdd}
-                            title={seed.translate('Clear')}
-                        />
+                        <IconButton    
+                            onClick={ this.handleCloseAdd }
+                            icon={this.icons.clear} 
+                            hoverSize= { 5 }
+                            iconSize= { 16 }
+                            background= 'transparent' />
                     </Row>
                 );
             },

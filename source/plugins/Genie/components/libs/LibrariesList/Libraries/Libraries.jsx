@@ -1,8 +1,8 @@
 import { uniq, isEmpty } from 'lodash';
 
 module.exports = {
-dependencies: ['Simple.NoResults', 'Genie.LibraryItem', 'Simple.Icon', 'Layouts.Row', 'Inputs.Input'],
-get(NoResults, LibraryItem, Icon, Row, Input) {
+dependencies: ['Simple.NoResults', 'Genie.LibraryItem', 'Inputs.IconButton', 'Layouts.Row', 'Inputs.Input'],
+get(NoResults, LibraryItem, IconButton, Row, Input) {
     var core = this;
     var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
@@ -90,7 +90,6 @@ get(NoResults, LibraryItem, Icon, Row, Input) {
         initUnits(){
             this.dims = {
                 fontSize: 13,
-                iconSize: 16,
                 buttonIconSize: 27,
                 rowHeight: 40,
             };
@@ -119,10 +118,6 @@ get(NoResults, LibraryItem, Icon, Row, Input) {
                     position: "relative",
                     width: "100%",
                     height: "100%",
-                },
-                input: {
-                    fontSize: this.dims.fontSize,
-                    marginRight: 10,
                 },
                 button: {
                     width: this.dims.buttonIconSize, 
@@ -355,20 +350,24 @@ get(NoResults, LibraryItem, Icon, Row, Input) {
             let {addIsOpen} = this.state;
             if (!addIsOpen) return null;
 
+            let inputStyle = { height:28, paddingLeft: 2 }
+            let rowStyle = { paddingRight: 5 }
+
             return (
-                <Row height={this.dims.rowHeight} color={this.backgrounds.default} boxShadow={true}>
+                <Row height={this.dims.rowHeight} color={this.backgrounds.default} boxShadow={true} style={rowStyle} >
                     <Input
-                        style={ this.styles('input')}
+                        label={''}
+                        inputStyle={inputStyle}
                         autoFocus={ true }
                         onKeyDown={ this.handleAddKeyDown }
                         placeholder={ core.translate('Add Library') }
                     />
-                    <Icon
-                        size={ this.dims.iconSize }
+                    <IconButton    
                         onClick={ this.handleCloseAdd }
-                        title={ core.translate('Clear') }
-                        icon={this.icons.clear}
-                    />
+                        icon={this.icons.clear} 
+                        hoverSize= { 5 }
+                        iconSize= { 16 }
+                        background= 'transparent' />
                 </Row>
             );
         },
