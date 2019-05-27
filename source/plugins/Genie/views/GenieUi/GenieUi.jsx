@@ -220,7 +220,6 @@ module.exports = {
 
             renderMenu(selectedCategory, categories) {
                 let {openLibAdd, openCatAdd, libQuerry, catQuery, currentLibrary} = this.state;
-
                 let libraries = this.getLibrariesLabels();
 
                 let commonParams = {

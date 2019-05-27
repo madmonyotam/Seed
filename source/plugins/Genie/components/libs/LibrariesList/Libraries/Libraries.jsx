@@ -12,6 +12,7 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
         cursors: {
             currentLibrary: ['plugins','Genie','currentLibrary'],
             currentCategory: ['plugins','Genie','currentCategory'],
+            genie: ['plugins','access','genie']
         },
 
         propsTypes: {

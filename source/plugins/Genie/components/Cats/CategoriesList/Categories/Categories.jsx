@@ -77,6 +77,7 @@ module.exports = {
 
             getCategoriesLabels() {
                 let { currentLibrary, genie } = this.state;
+
                 let keys = Object.keys(genie);
                 if(isEmpty(keys)) return [];
 
@@ -85,6 +86,7 @@ module.exports = {
                     if (lib === currentLibrary) return cat;
                 });
 
+                categories = categories.filter(Boolean);
                 return categories;
             },
 
@@ -126,7 +128,7 @@ module.exports = {
             },
 
             handleRemove(value) { 
-                let { currentLibrary, genie } = this.state;
+                let { currentLibrary, currentCategory , genie } = this.state;
                 let labels = this.getCategoriesLabels().sort();
 
                 let data = this.serialize(genie);
@@ -142,9 +144,11 @@ module.exports = {
                             delete data[indicator];
                             this.cursor.genie.set(data); 
 
-                            let select = labels[0]
-                            if(value === select ) select = labels[1] || '';
-                            this.handleSelect( select );
+                            if(currentCategory === value){
+                                let select = labels[0]
+                                if(value === select ) select = labels[1] || '';
+                                this.handleSelect( select );
+                            }
                         }
                     }
                 )
