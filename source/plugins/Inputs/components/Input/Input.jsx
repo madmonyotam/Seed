@@ -461,8 +461,10 @@ module.exports = {
             },
 
             render() {
+              let {onKeyDown} = this.props;
+
                 return (
-                    <div id={'SimpleInput.root'}  style={{ width: '100%', position: 'relative', height: 'auto' }}> 
+                    <div id={'SimpleInput.root'}  style={{ width: '100%', position: 'relative', height: 'auto' }} onKeyDown={onKeyDown}> 
                       { this.renderLabel(this.props.label) }  
                       { this.renderInputs(this.props.type) }
                     </div>

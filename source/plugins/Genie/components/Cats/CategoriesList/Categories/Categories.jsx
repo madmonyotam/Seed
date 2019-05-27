@@ -6,142 +6,93 @@ module.exports = {
         var seed = this;
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
+        const units = {
+            colors: {
+                text: seed.theme('texts.default'),
+            },
+            backgrounds: {
+                default: seed.theme('backgrounds.default'),
+            },
+            icons: {
+                clear: seed.icons('genie.clear')
+            }
+        }
+
+        const style = {
+            root: {
+                display: 'flex',
+                position: 'relative',
+                flexDirection: 'column',
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+                boxShadow: "rgba(0, 0, 0, 0.2) 0px 1px 2px -1px"
+            },
+            mapWrapper: {
+                position: "relative",
+                width: "100%",
+                height: "100%",
+            }
+        }
+
         return {
             mixins: [ ComponentMixin, Branch ],
 
             cursors: {
+                currentLibrary: ['plugins','Genie','currentLibrary'],
                 currentCategory: ['plugins','Genie','currentCategory'],
+                genie: ['plugins','access','genie'],
             },
 
             propsTypes: {
-                labels: PropTypes.array,
-                currentCategory: PropTypes.string,
-                currentLibrary: PropTypes.string,
                 addIsOpen: PropTypes.bool,
-                querry: PropTypes.string,
+                searchValue: PropTypes.string,
                 closeAdd: PropTypes.func,
             },
 
             getDefaultProps() {
                 return {
-                    labels: [],
-                    currentCategory: null,
-                    currentLibrary: null,
-                    showTitleBar: PropTypes.bool,
                     addIsOpen: false,
-                    querry: '',
+                    searchValue:'',
                     closeAdd: ()=>{},
                 };
             },
 
             getInitialState() {
                 return {
-                    labels: [],
-                    searchValue: '',
                     addIsOpen: false
                 };
             },
 
-            componentWillMount() {
-                let { labels } = this.props;
-                this.initUnits()
-
-                if ( !labels || isEmpty(labels) ) this.setState({lables:[]});
-                else this.setState({labels});
-            },
-
             componentWillReceiveProps(nextProps) {
-                let {labels, querry} = this.props;
-
-                let noLabels = !labels || isEmpty(labels);
-                let noNextLabels = !nextProps.labels || isEmpty(nextProps.labels);
-                let nextLabels = noNextLabels ? nextProps.currentCategory ? [nextProps.currentCategory]: [] : nextProps.labels.concat([nextProps.currentCategory]);
-                    nextLabels = uniq(nextLabels);
-
-                if ( noLabels || noNextLabels || !this.compareLabels( labels, nextProps.labels) )
-                    this.setState({labels: nextLabels});
-                if (nextProps.querry !== querry)
-                    this.handleSearch(nextProps.querry);
-                if (nextProps.addIsOpen)
-                    this.setState({addIsOpen:nextProps.addIsOpen});
-            },
-
-            initUnits(){
-                this.dims = {
-                    fontSize: 13,
-                    buttonIconSize: 27,
-                    rowHeight: 40,
-                };
-                this.colors = {
-                    text: seed.theme('texts.default'),
-                };
-                this.backgrounds = {
-                    default: seed.theme('backgrounds.default'),
-                };
-                this.icons = {
-                    clear: seed.icons('genie.clear')
-                };
+                if (!seed.isUndefined(nextProps.addIsOpen)) this.setState({addIsOpen:nextProps.addIsOpen});
             },
 
             styles(propName) {
                 let styles = {
-                    root: {
-                        display: 'flex',
-                        position: 'relative',
-                        flexDirection: 'column',
-                        width: '100%',
-                        height: '100%',
-                        overflow: 'hidden',
-                        boxShadow: "rgba(0, 0, 0, 0.2) 0px 1px 2px -1px"
-                    },
-                    mapWrapper: {
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                    },
-                    input: {
-                        fontSize: this.dims.fontSize,
-                        marginRight: 10,
-                    },
-                    button: {
-                        width: this.dims.buttonIconSize, 
-                        height: this.dims.buttonIconSize,
-                        color: this.colors.text,
-                    },
                 }
+
                 return styles[propName]
             },
 
-            compareLabels( labels1, labels2) {
-                let bothExist  = labels1 && labels2;
-                if ( !bothExist ) return false;
+            getCategoriesLabels() {
+                let { currentLibrary, genie } = this.state;
+                let keys = Object.keys(genie);
+                if(isEmpty(keys)) return [];
 
-                let sameLength = labels1.length === labels2.length;
-                let sameValues = labels1.sort().every(function(value, index) { return value === labels2.sort()[index]});
+                let categories = keys.map( k => {
+                    let [lib, cat] = k.split(':');
+                    if (lib === currentLibrary) return cat;
+                });
 
-                return bothExist && sameLength && sameValues;
+                return categories;
             },
 
             handleAdd(value) {
-                let { labels } = this.state;
-                let { currentLibrary } = this.props;
-
-                if ( !labels || isEmpty(labels) ) labels = [value];
-                else {
-                    if(labels.includes(value)) {
-                        let notify = {
-                            text: seed.translate('this category name is already exist'),
-                            alertKind: 'error'
-                        }
-                        seed.emit('notify',notify);
-                        return 
-                    }
-                    labels.unshift(value);
-                }
-                    
-                this.setState({labels})
-
-                let data = this.serialize(seed.get('genie'));
+                let { genie } = this.state;
+                let { currentLibrary } = this.state;
+    
+                let data = this.serialize(genie);
                 let indicator = `${currentLibrary}:${value}`;
                 
                 if ( data[indicator] ) {
@@ -151,15 +102,14 @@ module.exports = {
                 }
                 
                 data[indicator] = {};
-                seed.set('genie', data);
+                this.cursor.genie.set(data);
                 this.handleSelect(value);
             },
 
             handleRename(oldValue, value) {
-                let { labels } = this.state;
-                let { currentLibrary } = this.props;
+                let { genie, currentLibrary } = this.state;
 
-                let data = this.serialize(seed.get('genie'));
+                let data = this.serialize(genie);
                 let indicator = `${currentLibrary}:${value}`;
                 let oldIndicator = `${currentLibrary}:${oldValue}`;
                 
@@ -171,19 +121,15 @@ module.exports = {
 
                 data[indicator] = data[oldIndicator];
                 delete data[oldIndicator]; 
-                seed.set('genie', data);                
-
-                let newLabels = this.serialize( labels );
-                let place = newLabels.indexOf(oldValue);
-                newLabels[place] = value;
-                this.setState({ labels: newLabels });
+                this.cursor.genie.set(data);               
                 this.handleSelect( value );
             },
 
             handleRemove(value) { 
-                let { currentLibrary } = this.props;
-                let { labels } = this.state;
-                let data = this.serialize(seed.get('genie'));
+                let { currentLibrary, genie } = this.state;
+                let labels = this.getCategoriesLabels().sort();
+
+                let data = this.serialize(genie);
                 let indicator = `${currentLibrary}:${value}`;
                 
                 let text = seed.translate(`Are you sure that do you want to remove the "${value}" category from "${currentLibrary}" library`);
@@ -194,31 +140,25 @@ module.exports = {
                         if ( sure ) {
                             
                             delete data[indicator];
-                            seed.set('genie', data);
+                            this.cursor.genie.set(data); 
 
-                            let newLabels = [...labels];
-                            newLabels.splice( newLabels.indexOf(value), 1);
-                            this.setState({ labels: newLabels });
-                            this.handleSelect( newLabels[0] );
+                            let select = labels[0]
+                            if(value === select ) select = labels[1] || '';
+                            this.handleSelect( select );
                         }
                     }
                 )
             },
 
-            handleSearch(value) {
-                this.safeState({searchValue: value});
-            },
-
             handleSelect(value) {
                 seed.emit('MenuTitleBar_closeSearch');
-
-                this.cursor.currentCategory.set(value)
+                this.cursor.currentCategory.set(value);
             },
 
-            handleMapLibs(){
-                let { labels, searchValue } = this.state;
-
-                if ( !labels || isEmpty(labels) ) return this.renderNoResults();
+            handleMapCats(){
+                let { searchValue } = this.props;
+                let labels = this.getCategoriesLabels();
+                if ( isEmpty(labels) ) return this.renderNoResults();
                 
                 let showLabels = labels.filter( t => t.toLowerCase().includes( searchValue.toLowerCase() ) );
                     showLabels = showLabels.sort();
@@ -227,8 +167,8 @@ module.exports = {
             },
 
             handleCloseAdd() {
-                if (this.props.closeAdd)
-                    this.props.closeAdd();
+                let { closeAdd } = this.props;
+                if (closeAdd) closeAdd();
                 this.setState({addIsOpen:false})
             },
 
@@ -268,7 +208,7 @@ module.exports = {
             },
 
             renderLine( label ){
-                let { currentCategory } = this.props;
+                let { currentCategory } = this.state;
                 let isSelected = label === currentCategory;
 
                 return (
@@ -279,9 +219,7 @@ module.exports = {
                         removeCB={ this.handleRemove }
                         renameCB={ this.handleRename }
                         itemValue={ label }
-                        rowHeight={this.dims.rowHeight}
-                        style={ this.styles('editText') }
-                    />
+                        rowHeight={ 40 } />
                 )
             },
 
@@ -293,7 +231,7 @@ module.exports = {
                 let rowStyle = { paddingRight: 5 }
     
                 return (
-                    <Row height={this.dims.rowHeight} color={this.backgrounds.default} boxShadow={true} style={rowStyle} >
+                    <Row height={40} color={units.backgrounds.default} boxShadow={true} style={rowStyle} >
                         <Input
                             label={''}
                             inputStyle={inputStyle}
@@ -303,7 +241,7 @@ module.exports = {
                         />
                         <IconButton    
                             onClick={ this.handleCloseAdd }
-                            icon={this.icons.clear} 
+                            icon={units.icons.clear} 
                             hoverSize= { 5 }
                             iconSize= { 16 }
                             background= 'transparent' />
@@ -312,14 +250,14 @@ module.exports = {
             },
 
             render() {
-                let {currentLibrary} = this.props;
+                let { currentLibrary } = this.state;
                 if(!currentLibrary) return null;
 
                 return (
-                    <div id={'Categories.root'} style={ this.styles('root') }>
+                    <div id={'Categories.root'} style={ style.root }>
                         {this.renderAdd()}
-                        <div style={ this.styles('mapWrapper')}>
-                            { this.handleMapLibs() }
+                        <div style={ style.mapWrapper }>
+                            { this.handleMapCats() }
                         </div>
                     </div>
                 )

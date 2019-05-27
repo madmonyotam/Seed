@@ -40,7 +40,7 @@ module.exports = {
                     openLibAdd: false,
                     openCatAdd: false,
                     libQuerry: undefined,
-                    catQuerry: '',
+                    catQuery: '',
                 };
             },
 
@@ -132,6 +132,7 @@ module.exports = {
                 let libraries = this.getLibrariesLabels();
                 if (!libraries || !libraries.length) return null
 
+                this.cursor.currentLibrary.set(libraries[0]);
                 this.setState( (state, props)=>{ return {currentLibrary: libraries[0]} });
             },
 
@@ -191,7 +192,7 @@ module.exports = {
                     libraries = uniq(libraries);
                 }
 
-                this.setState({libQuerry: libraries, catQuerry: str});
+                this.setState({libQuerry: libraries, catQuery: str});
             },
 
             handleAddLib() {
@@ -218,7 +219,7 @@ module.exports = {
             },
 
             renderMenu(selectedCategory, categories) {
-                let {openLibAdd, openCatAdd, libQuerry, catQuerry, currentLibrary} = this.state;
+                let {openLibAdd, openCatAdd, libQuerry, catQuery, currentLibrary} = this.state;
 
                 let libraries = this.getLibrariesLabels();
 
@@ -238,7 +239,7 @@ module.exports = {
                             />
                             <Row padding={0} height={'calc(100% - 50px)'}>
                                 <Libraries  labels={libraries}  querry={libQuerry} addIsOpen={openLibAdd} {...commonParams} />
-                                <Categories labels={categories} querry={catQuerry} addIsOpen={openCatAdd} {...commonParams} />
+                                <Categories searchValue={catQuery} addIsOpen={openCatAdd} {...commonParams} />
                             </Row>
                         </Column>
                     </Paper>

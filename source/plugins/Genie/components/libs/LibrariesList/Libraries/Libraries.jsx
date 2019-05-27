@@ -302,7 +302,7 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
                     this.handleCloseAdd();
                     break;
                 case 13: // Enter
-                    if (addValue.length) {
+                    if (addValue.trim().length) {
                         this.handleAdd(addValue);
                         this.handleCloseAdd();
                     }
