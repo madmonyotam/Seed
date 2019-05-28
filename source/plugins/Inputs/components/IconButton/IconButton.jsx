@@ -16,7 +16,7 @@ get(Icon, Button) {
             iconSize: PropTypes.number,
             iconColor: PropTypes.string,
             background: PropTypes.string,
-            variant: PropTypes.oneOf(['outlined', 'reised', 'flat']),
+            variant: PropTypes.oneOf(['outlined', 'raised', 'flat']),
             theme: PropTypes.oneOf(['default', 'primary', 'secondary']),
             onClick: PropTypes.func,
             style: PropTypes.object,

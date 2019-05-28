@@ -68,8 +68,7 @@ get(Button, SimpleExample, ExampleHelper, Icon) {
                         height={ height }
                         ripple={ ripple }
                         isLoading={ isLoading }
-                        round={ round }
-                    >
+                        round={ round }  >
                         Button
                     </Button>
 
