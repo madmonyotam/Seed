@@ -74,10 +74,15 @@ module.exports = {
             },
 
             styles(s){
-              let { style, theme, width, height, elevation, backdrop  } = this.props;
-              let { showTp } = this.state;
+              let { style, theme, width, height, elevation, backdrop, position  } = this.props;
+              let { showTp, visible } = this.state;
               let isDark = theme === 'dark';
-
+              const oppo = {
+                top: 'bottom',
+                bottom: 'top',
+                left: 'right',
+                right: 'left',
+              }
               const darkStyle = {
                 background: 'rgba(4, 4, 4, 1)',
                 color: units.colors.white
@@ -86,26 +91,22 @@ module.exports = {
               const lightStyle = {
                 background: 'rgba(255, 255, 255, 1)',
                 color: units.colors.dark
-              };
-
-              const interactiveStyle = {
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0,
-              };
+              }; 
 
               let styles = {
                 root: {
-                  ...interactiveStyle,
-                  background: backdrop && showTp ? 'rgba(3, 3, 3, 0.25)' : 'transparent',
-                  zIndex: showTp ? 100 : -100,
+                  position: visible ? 'fixed' : 'unset',
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                  background: backdrop && visible ? 'rgba(3, 3, 3, 0.25)' : 'transparent',
+                  zIndex: visible ? 100 : -100,
                   ...style
                 },
                 container: {
                   opacity: showTp ? 1 : 0,
-                  transition: `opacity 250ms linear`,
+                  transition: `opacity 0.25s linear`,
                   width: 'fit-content',
                   height: 'fit-content',
                   position: 'fixed',
@@ -119,6 +120,9 @@ module.exports = {
                   boxShadow: elevationsBoxShadows[elevation],
                   borderRadius: 3,
                   fontSize: 12,
+                  transformOrigin: oppo[position],
+                  transform: showTp ? 'scale(1)' : 'scale(1.1)',
+                  transition: `transform 0.10s linear 0.05s`,
                   ...isDark ? darkStyle : lightStyle
                 },
                 icon: {
@@ -227,14 +231,14 @@ module.exports = {
               if (!e || core.isUndefined(e) || this.state.disableEvents) return;
               let { onClose } = this.props;
               this.safeState({ 
-                visible: false, 
                 showTp: false, 
+                disableEvents: false, 
+                visible: false, 
                 anchorEl: undefined, 
-                disableEvents: false 
               })
               document.removeEventListener('click', this.handleHide)
               document.removeEventListener('keyup', this.handleKeyUp)
-              if (onClose) onClose(e)
+              if (onClose) onClose(e) 
             },  
 
             renderTtContainer(visible){
@@ -281,8 +285,7 @@ module.exports = {
                 elevation,
                 interactive,
                 backdrop,
-                ...props } = this.props
-
+                ...props } = this.props 
 
               return (
                   <div  { ...props }

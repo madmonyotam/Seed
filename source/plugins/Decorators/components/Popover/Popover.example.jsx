@@ -12,15 +12,15 @@ module.exports = {
 
             propScheme(){
                 return {
-                    position: { type: 'select', options: ['top', 'bottom', 'left', 'right' ]},
+                    position: { type: 'select', options: ['top', 'bottom', 'left', 'right' ], group: 'initial'},
                     theme: { type: 'select', options: ['dark', 'light']},
                     elevation: { type: 'select', options: [ 1,2,3,4,5,6,7,8,9,10 ]},
                     width: { type: 'number' },
                     height: { type: 'number' },
                     offsetX: { type: 'number' },
                     offsetY: { type: 'number' },
-                    interactive: { type: 'boolean' },
-                    backdrop: { type: 'boolean' },
+                    interactive: { type: 'boolean', group: 'initial' },
+                    backdrop: { type: 'boolean', group: 'initial' },
                 }
             },
 
@@ -83,7 +83,8 @@ module.exports = {
                                 height={ Number(height) }
                                 offsetX={ Number(offsetX) }
                                 offsetY={ Number(offsetY) } 
-                                interactive={ interactive }  >
+                                interactive={ interactive } 
+                                onClose={ e => { this.setState({ anchorEl: undefined }) } } >
                         { this.renderContentState() }
                       </Popover>
 
