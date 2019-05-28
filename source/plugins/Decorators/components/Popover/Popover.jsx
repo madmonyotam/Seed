@@ -37,7 +37,8 @@ module.exports = {
               offsetX: PropTypes.number,
               offsetY: PropTypes.number,
               elevation: PropTypes.oneOf([1,2,3,4,5,6,7,8,9,10]),
-              interactive: PropTypes.bool
+              interactive: PropTypes.bool,
+              backdrop: PropTypes.bool,
             },
 
             getDefaultProps(){
@@ -50,7 +51,8 @@ module.exports = {
                 elevation: 4,
                 width: 150,
                 height: undefined,
-                interactive: false
+                interactive: false,
+                backdrop: false
               };
             },
 
@@ -68,11 +70,11 @@ module.exports = {
 
             componentWillReceiveProps(nextProps) { 
               if (nextProps.anchorEl ) this.setState({ anchorEl: nextProps.anchorEl }, this.handleShow)
-              if (nextProps.children != this.props.children || this.props.position !== nextProps.children ) this.calcPosition();
+              if (nextProps.children != this.props.children || this.props.position !== nextProps.position ) this.calcPosition();
             },
 
             styles(s){
-              let { style, theme, width, height, elevation  } = this.props;
+              let { style, theme, width, height, elevation, backdrop  } = this.props;
               let { showTp } = this.state;
               let isDark = theme === 'dark';
 
@@ -86,10 +88,20 @@ module.exports = {
                 color: units.colors.dark
               };
 
+              const interactiveStyle = {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+              };
+
               let styles = {
                 root: {
-                  position: 'relative',
-                  ...style ,
+                  ...interactiveStyle,
+                  background: backdrop && showTp ? 'rgba(3, 3, 3, 0.25)' : 'transparent',
+                  zIndex: showTp ? 100 : -100,
+                  ...style
                 },
                 container: {
                   opacity: showTp ? 1 : 0,
@@ -222,7 +234,7 @@ module.exports = {
               })
               document.removeEventListener('click', this.handleHide)
               document.removeEventListener('keyup', this.handleKeyUp)
-              onClose(e)
+              if (onClose) onClose(e)
             },  
 
             renderTtContainer(visible){
@@ -237,7 +249,7 @@ module.exports = {
                      onMouseLeave={ interactive ? null : enable } 
                      style={ this.styles('container') }>
 
-                  <div id={ 'simple_popover-inner' } style ={ this.styles('inner') }  >
+                  <div id={ 'simple_popover-inner' } style ={ this.styles('inner') } >
                     { interactive ?
                       <Icon
                           size={ 16 }
@@ -268,6 +280,7 @@ module.exports = {
                 anchorEl,
                 elevation,
                 interactive,
+                backdrop,
                 ...props } = this.props
 
 

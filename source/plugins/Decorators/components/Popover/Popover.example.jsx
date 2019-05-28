@@ -1,11 +1,11 @@
 
 module.exports = {
-    dependencies: ['Simple.Loader','Layouts.Column', 'Layouts.Center','Examples.SimpleExample','Decorators.Popover', 'Inputs.Button'],
-    get(Loader, Column, Center, SimpleExample, Popover, Button) {
+    dependencies: ['Layouts.Column', 'Examples.SimpleExample','Decorators.Popover', 'Inputs.Button'],
+    get(Column, SimpleExample, Popover, Button) {
 
         var core = this;
 
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var { React, ComponentMixin } = core.imports;
 
         return {
             mixins: [ ComponentMixin ],
@@ -19,7 +19,8 @@ module.exports = {
                     height: { type: 'number' },
                     offsetX: { type: 'number' },
                     offsetY: { type: 'number' },
-                    interactive: { type: 'boolean', group: 'initial' },
+                    interactive: { type: 'boolean' },
+                    backdrop: { type: 'boolean' },
                 }
             },
 
@@ -29,7 +30,7 @@ module.exports = {
             }, 
 
             getCode(){
-                let { elevation, position, theme, offsetX, offsetY, interactive} = this.state;
+                let { elevation, position, theme, offsetX, offsetY, interactive, backdrop } = this.state;
 
                 return (`
 <Popover anchorEl={ anchorEl } 
@@ -39,6 +40,7 @@ module.exports = {
          offsetX={${offsetX}}
          offsetY={${offsetY}} 
          interactive={${interactive}} 
+         backdrop={${backdrop}} 
          onClose={ e => { this.setState({ anchorEl: undefined }) } }>
 </Popover>
 <Button theme={ 'primary' } variant={ 'filled' } onClick={ e => { this.setState({ anchorEl: e.currentTarget }) } }>
@@ -48,7 +50,7 @@ module.exports = {
             }, 
 
             renderContentState(){
-              let { position, theme, elevation, offsetX, offsetY, interactive } = this.state;
+              let { position, theme, elevation, offsetX, offsetY, interactive, backdrop } = this.state;
 
               return (
                 <Column style={{ width: '100%' }}>
@@ -58,25 +60,30 @@ module.exports = {
                   <div> { core.translate('Offset Y') } : { offsetY } </div>
                   <div> { core.translate('Elevation') } : { elevation } </div>
                   <div> { core.translate('Interactive') } : { interactive.toString() } </div>
+                  <div> { core.translate('Backdrop') } : { backdrop.toString() } </div>
                 </Column>
               )
             },
 
             render() {
-                let { position, theme, elevation, offsetX, offsetY, anchorEl, width, height, interactive } = this.state;
+                let { position, theme, elevation, offsetX, offsetY, backdrop, anchorEl, width, height, interactive } = this.state;
                 return (
-                    <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } style={{ position:'relative' , display: 'flex', flexDirection: 'column'}}>
+                    <SimpleExample  context={this} 
+                                    code={ this.getCode() } 
+                                    scheme={ this.propScheme() } 
+                                    codeHeight={ '40%' }
+                                    exampleHeight={ '60%' } >
 
                       <Popover  anchorEl={ anchorEl } 
                                 position={ position } 
                                 theme={ theme } 
+                                backdrop={ backdrop } 
                                 elevation={ Number(elevation) } 
                                 width={ Number(width) }
                                 height={ Number(height) }
                                 offsetX={ Number(offsetX) }
                                 offsetY={ Number(offsetY) } 
-                                interactive={ interactive } 
-                                onClose={ e => { this.setState({ anchorEl: undefined }) } }>
+                                interactive={ interactive }  >
                         { this.renderContentState() }
                       </Popover>
 
