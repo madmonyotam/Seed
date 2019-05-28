@@ -68,13 +68,6 @@ module.exports = {
                 if (!seed.isUndefined(nextProps.addIsOpen)) this.setState({addIsOpen:nextProps.addIsOpen});
             },
 
-            styles(propName) {
-                let styles = {
-                }
-
-                return styles[propName]
-            },
-
             getCategoriesLabels() {
                 let { currentLibrary, genie } = this.state;
 
@@ -122,8 +115,8 @@ module.exports = {
                 }
 
                 data[indicator] = data[oldIndicator];
-                delete data[oldIndicator]; 
-                this.cursor.genie.set(data);               
+                delete data[oldIndicator];
+                this.cursor.genie.set(data);
                 this.handleSelect( value );
             },
 

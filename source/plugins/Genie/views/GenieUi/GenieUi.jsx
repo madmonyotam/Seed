@@ -21,7 +21,6 @@ module.exports = {
 
             componentWillMount() {
                 this.initUnits();
-                // this.setCurrentLibrary();
             },
 
             componentDidMount() {
@@ -39,8 +38,7 @@ module.exports = {
                 return {
                     openLibAdd: false,
                     openCatAdd: false,
-                    libQuerry: undefined,
-                    catQuery: '',
+                    query: '',
                 };
             },
 
@@ -178,21 +176,7 @@ module.exports = {
             },
 
             handleSearch(str) {
-                let {data} = this.state;
-
-                let libraries = [];
-
-                if (str && str.length) {
-                    let keys = Object.keys(data);
-                    keys = keys.filter(k => k.toLowerCase().includes( str.toLowerCase() ));
-                    keys.forEach(k => {
-                        let lib = k.split(':')[0];
-                        libraries.push(lib);
-                    });
-                    libraries = uniq(libraries);
-                }
-
-                this.setState({libQuerry: libraries, catQuery: str});
+                this.setState({query: str});
             },
 
             handleAddLib() {
@@ -218,28 +202,20 @@ module.exports = {
                 this.handleSearch('', data)
             },
 
-            renderMenu(selectedCategory, categories) {
-                let {openLibAdd, openCatAdd, libQuerry, catQuery, currentLibrary} = this.state;
-                let libraries = this.getLibrariesLabels();
-
-                let commonParams = {
-                    currentCategory: selectedCategory,
-                    currentLibrary: currentLibrary,
-                    closeAdd: ()=>this.handleCloseAdd(),
-                };
+            renderMenu() {
+                let {openLibAdd, openCatAdd, query} = this.state;
 
                 return (
                     <Paper id={'Lists'} elevation={ 2 } style={ this.styles('lists') }>
                         <Column id={'Menu'} style={ this.styles('menu') } >
-                            <MenuTitleBar
-                                searchCB={(str)=>{this.handleSearch(str)}}
-                                addLib={this.handleAddLib}
-                                addCat={this.handleAddCat}
-                            />
+
+                            <MenuTitleBar addLib={this.handleAddLib} addCat={this.handleAddCat} searchCB={(str)=>{this.handleSearch(str)}} />
+
                             <Row padding={0} height={'calc(100% - 50px)'}>
-                                <Libraries  labels={libraries}  querry={libQuerry} addIsOpen={openLibAdd} {...commonParams} />
-                                <Categories searchValue={catQuery} addIsOpen={openCatAdd} {...commonParams} />
+                                <Libraries  searchValue={query} addIsOpen={openLibAdd} closeAdd={this.handleCloseAdd} />
+                                <Categories searchValue={query} addIsOpen={openCatAdd} closeAdd={this.handleCloseAdd} />
                             </Row>
+
                         </Column>
                     </Paper>
                 );
@@ -255,7 +231,7 @@ module.exports = {
 
                 return (
                     <Row padding={3} id={'MockgeneratorUi'} style={ this.styles('root') }>
-                        {this.renderMenu(selectedCategory, categories)}
+                        {this.renderMenu()}
                         <Paper id={'CategoryDetails'} elevation={ 2 } style={ this.styles('openLibrary') } >
                             <CategoryDetails
                                 items={items}
