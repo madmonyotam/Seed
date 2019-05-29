@@ -144,7 +144,6 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
             this.setState((state, props)=>{
                 this.cursor.genie.set(data);
                 return {
-                    genie: data,
                     labels: newLabels,
                 }
             });
@@ -197,7 +196,7 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
 
             this.setState((s,p)=>{
                 this.cursor.genie.set(data);
-                return { labels: newLabels, genie: data }
+                return { labels: newLabels }
             });
 
             this.handleSelect( value );
