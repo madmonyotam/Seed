@@ -14,6 +14,7 @@ module.exports = {
                 return {
                     position: { type: 'select', options: ['top', 'bottom', 'left', 'right' ], group: 'initial'},
                     theme: { type: 'select', options: ['dark', 'light']},
+                    animation: { type: 'select', options: ['pop', 'slide']},
                     elevation: { type: 'select', options: [ 1,2,3,4,5,6,7,8,9,10 ]},
                     width: { type: 'number' },
                     height: { type: 'number' },
@@ -30,12 +31,13 @@ module.exports = {
             }, 
 
             getCode(){
-                let { elevation, position, theme, offsetX, offsetY, interactive, backdrop } = this.state;
+                let { elevation, position, theme, offsetX, offsetY, interactive, backdrop, animation } = this.state;
 
                 return (`
 <Popover anchorEl={ anchorEl } 
          position={'${position}'}
          theme={'${theme}'} 
+         animation={'${animation}'} 
          elevation={${elevation}}
          offsetX={${offsetX}}
          offsetY={${offsetY}} 
@@ -50,12 +52,13 @@ module.exports = {
             }, 
 
             renderContentState(){
-              let { position, theme, elevation, offsetX, offsetY, interactive, backdrop } = this.state;
+              let { position, theme, elevation, offsetX, offsetY, interactive, backdrop, animation } = this.state;
 
               return (
                 <Column style={{ width: '100%' }}>
                   <div> { core.translate('Position') } : { position } </div>
                   <div> { core.translate('Theme') } : { theme } </div>
+                  <div> { core.translate('Animation') } : { animation } </div>
                   <div> { core.translate('Offset X') } : { offsetX } </div>
                   <div> { core.translate('Offset Y') } : { offsetY } </div>
                   <div> { core.translate('Elevation') } : { elevation } </div>
@@ -66,7 +69,7 @@ module.exports = {
             },
 
             render() {
-                let { position, theme, elevation, offsetX, offsetY, backdrop, anchorEl, width, height, interactive } = this.state;
+                let { position, theme, elevation, offsetX, offsetY, backdrop, anchorEl, width, height, interactive, animation } = this.state;
                 return (
                     <SimpleExample  context={this} 
                                     code={ this.getCode() } 
@@ -77,6 +80,7 @@ module.exports = {
                       <Popover  anchorEl={ anchorEl } 
                                 position={ position } 
                                 theme={ theme } 
+                                animation={ animation } 
                                 backdrop={ backdrop } 
                                 elevation={ Number(elevation) } 
                                 width={ Number(width) }

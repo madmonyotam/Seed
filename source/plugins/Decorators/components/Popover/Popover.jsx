@@ -31,6 +31,7 @@ module.exports = {
             propsTypes: {
               position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
               theme: PropTypes.oneOf['dark', 'light'],
+              animation: PropTypes.oneOf['slide', 'pop'],
               anchorEl: PropTypes.object, // any DOM event - e.currentTarget
               width: PropTypes.number,
               height: PropTypes.number,
@@ -45,6 +46,7 @@ module.exports = {
               return {
                 theme: 'dark',
                 position: 'bottom',
+                animation: 'pop',
                 offsetX: 0,
                 offsetY: 0, 
                 anchorEl: undefined,
@@ -73,16 +75,44 @@ module.exports = {
               if (nextProps.children != this.props.children || this.props.position !== nextProps.position ) this.calcPosition();
             },
 
-            styles(s){
-              let { style, theme, width, height, elevation, backdrop, position  } = this.props;
-              let { showTp, visible } = this.state;
-              let isDark = theme === 'dark';
+            getAnimation(show){
+              let { position, animation } = this.props;
+              let isX = position === 'left' || position === 'right';
+
               const oppo = {
                 top: 'bottom',
                 bottom: 'top',
                 left: 'right',
                 right: 'left',
+              } 
+
+              let anim = {
+                transformOrigin: oppo[position]
               }
+
+              switch (animation) {
+                case 'slide':
+                  if (isX) {
+                    anim.transform = show ? 'translateX(0)' : position === 'right' ? 'translateX(5%)' : 'translateX(-5%)'
+                  }
+                  else {
+                    anim.transform = show ? 'translateY(0)' : position === 'bottom' ? 'translateY(5%)' : 'translateY(-5%)'
+                  }
+                  break;
+              
+                default:
+                  anim.transform = show ? 'scale(1)' : 'scale(1.1)'
+                  break;
+              }
+              return anim;
+
+            },
+
+            styles(s){
+              let { style, theme, width, height, elevation, backdrop  } = this.props;
+              let { showTp, visible } = this.state;
+              let isDark = theme === 'dark'; 
+
               const darkStyle = {
                 background: 'rgba(4, 4, 4, 1)',
                 color: units.colors.white
@@ -120,9 +150,12 @@ module.exports = {
                   boxShadow: elevationsBoxShadows[elevation],
                   borderRadius: 3,
                   fontSize: 12,
-                  transformOrigin: oppo[position],
-                  transform: showTp ? 'scale(1)' : 'scale(1.1)',
+                  ...this.getAnimation(showTp),
+                  // transformOrigin: oppo[position],
+                  // transform: showTp ? 'translateY(0)' : 'translateY(5%)',
+                  // transform: showTp ? 'scale(1)' : 'scale(1.1)',
                   transition: `transform 0.10s linear 0.05s`,
+
                   ...isDark ? darkStyle : lightStyle
                 },
                 icon: {
@@ -172,7 +205,7 @@ module.exports = {
                       }
 
                       if (hrLeft + ttWidth > wWidth) {
-                        this.measure['left'] = ttLeft;
+                        this.measure['left'] = ttLeft + hoverRect.width;
                       }
                       else if (hrLeft < 0) {
                         this.measure['left'] = ttLeft// hrRight + offsetX;
@@ -285,6 +318,7 @@ module.exports = {
                 elevation,
                 interactive,
                 backdrop,
+                animation,
                 ...props } = this.props 
 
               return (
