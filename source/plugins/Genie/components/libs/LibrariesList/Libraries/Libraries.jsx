@@ -272,7 +272,7 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
         },
 
         renderLine( label ){
-            let { currentLibrary } = this.props;
+            let { currentLibrary } = this.state;
             let isSelected = label === currentLibrary;
 
             return (
