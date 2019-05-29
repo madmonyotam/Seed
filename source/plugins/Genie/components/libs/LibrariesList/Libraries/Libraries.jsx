@@ -212,8 +212,20 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
         },
 
         handleSelect(value) {
+            let { genie } = this.state;
             seed.emit('MenuTitleBar_closeSearch');
             this.cursor.currentLibrary.set(value);
+
+            let keys = Object.keys(genie);
+
+            for (let i = 0; i < keys.length; i++) {
+                if(keys[i].indexOf(value)>-1){
+                    let cat = keys[i].split(':')[1];
+                    this.cursor.currentCategory.set(cat);
+                    break
+                }
+            }
+
         },
 
         handleMapLibs(){
