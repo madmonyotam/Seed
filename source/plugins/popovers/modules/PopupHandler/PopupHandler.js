@@ -17,7 +17,9 @@ module.exports = {
                 return seed.plugins.popovers.get(['popup', id, 'data']);
             },
 
-            open({id, parameters}) {
+            open(args) {
+                let id = args && args.hasOwnProperty('id') ? args.id : mainId;
+                let parameters = args && args.hasOwnProperty('parameters') ? args.parameters : {};
                 if (!id) id = mainId;
                 seed.plugins.popovers.openPopup(id, parameters);
             },
@@ -27,12 +29,17 @@ module.exports = {
                 seed.emit('PopupClose', id);
             },
 
-            addData({id, data}){
-                if (!id) id = mainId;
+            addData(args){
+                let id = args && args.hasOwnProperty('id') ? args.id : mainId;
+                let data = args && args.hasOwnProperty('data') ? args.data : {};
+
                 let popup = seed.plugins.popovers.get('popup');
+
                 if (!popup.hasOwnProperty(id)) {
                     seed.plugins.popovers.set(['popup', id ], {});
                 }
+                this.disableOkBtn(id);
+
                 seed.plugins.popovers.set(['popup', id, 'data'], data);
             },
 

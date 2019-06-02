@@ -155,7 +155,7 @@ module.exports = {
                     if (!hasTitle || !hasValue || !hasCount)
                         PopupHandler.disableOkBtn();
                     else {
-                        PopupHandler.addData({oldTitle, title, type, value, count});
+                        PopupHandler.addData({data: {oldTitle, title, type, value, count}});
                         PopupHandler.enableOkBtn();
                     }
                 }
@@ -164,14 +164,14 @@ module.exports = {
                         if (!hasTitle || !hasValue)
                             PopupHandler.disableOkBtn();
                         else {
-                            PopupHandler.addData({oldTitle, title, type, value});
+                            PopupHandler.addData({data: {oldTitle, title, type, value}});
                             PopupHandler.enableOkBtn();
                         }
                     } else {
                         if (!hasTitle)
                             PopupHandler.disableOkBtn();
                         else {
-                            PopupHandler.addData({oldTitle, title, type});
+                            PopupHandler.addData({data: {oldTitle, title, type}});
                             PopupHandler.enableOkBtn();
                         }
                     }

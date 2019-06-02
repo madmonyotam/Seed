@@ -201,7 +201,7 @@ module.exports = {
             renderEditButton(rowData) {
                 const click = event => { 
 
-                    PopupHandler.addData(rowData)
+                    PopupHandler.addData({data: rowData})
 
                     const change = ()=>{
                         let data = PopupHandler.getData();
@@ -209,14 +209,16 @@ module.exports = {
                         core.emit('Popup.close');
                     };
     
-                    PopupHandler.openSimpleModal({
-                        title: core.translate('Edit category item'),
-                        body: <CategoryItemEditor mode={'edit'} parentKey={this.props.parentKey}/>,
-                        bodyStyle: {minHeight: 'unset'},
-                        okButton: {
-                            btnTitle: core.translate('Save'),
-                            btnFunc: change
-                       }
+                    PopupHandler.open({
+                        parameters: {
+                            title: core.translate('Edit category item'),
+                            body: <CategoryItemEditor mode={'edit'} parentKey={this.props.parentKey}/>,
+                            bodyStyle: {minHeight: 'unset'},
+                            okButton: {
+                                btnTitle: core.translate('Save'),
+                                btnFunc: change
+                           }
+                        }
                     });
                 };
 

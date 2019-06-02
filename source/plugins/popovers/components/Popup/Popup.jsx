@@ -17,23 +17,23 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             titleLabelColor: PropTypes.string,
             titleColor: PropTypes.string,
-            paneColor: PropTypes.string,
+            backdropColor: PropTypes.string,
             background: PropTypes.string,
-            buttonsBackground: PropTypes.string,
+            footerBackground: PropTypes.string,
         },
 
         getDefaultProps() {
             return {
                 id: 'mainPopup',
-                width: 800,
-                height: 500,
+                width: 700,
+                height: 400,
                 titleHeight: 50,
                 footerHeight: 50,
                 titleLabelColor: core.theme('texts.popupTitle'),
                 titleColor: core.theme('backgrounds.primary'),
-                paneColor: core.theme('backgrounds.popupPane'),
+                backdropColor: core.theme('backgrounds.popupPane'),
                 background: core.theme('backgrounds.default'),
-                buttonsBackground: core.theme('backgrounds.default'),
+                footerBackground: core.theme('backgrounds.default'),
             };
         },
 
@@ -62,19 +62,22 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         componentWillReceiveProps(nextProps) {},
 
         initUnits(){
-            this.dims = {};
+            this.dims = {
+                minHeight: 50,
+            };
             this.colors = {};
             this.backgrounds = {};
             this.icons = {};
         },
 
         styles(propName) {
-            let {height, titleHeight} = this.props;
+            let {titleHeight, footerHeight} = this.props;
             let {modalStyle, bodyStyle} = this.state;
 
             let styles = {
                 root: {
-                    maxHeight: height,
+                    minHeight: 50 + titleHeight + footerHeight,
+                    maxHeight: '100%',
                     ...modalStyle
                 },
                 title: {
@@ -82,6 +85,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                     justifyContent:'space-between',
                 },
                 body: {
+                    maxHeight: `calc(100% - ${titleHeight + footerHeight}px)`,
                     ...bodyStyle,
                 },
             };
@@ -93,16 +97,16 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             core[action]('PopupClose',this.handleClose);
         },
 
-        handleClickOpen(popupData) {
-            if(!popupData) {
+        handleClickOpen(params) {
+            if(!params) {
                 this.setState({ open: true });
                 return
             }
 
             let {id} = this.props;
-            let {title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, modalStyle } = popupData;
+            let {title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, modalStyle } = params;
 
-            if (popupData.id && popupData.id !== id) {
+            if (params.id && params.id !== id) {
                 this.setState({ open: false });
             } else {
                 this.setState({ title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons , modalStyle, open: true });
@@ -115,6 +119,21 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                 PopupHandler.clearData(id);
                 this.setState({ open: false, isLoading: false });
             }
+        },
+
+        handleBodyHeight() {
+            let {height} = (this.state && this.state.height) ? this.state : this.props;
+            let {titleHeight, footerHeight, id} = this.props;
+            let localHeight = height;
+
+            if (typeof localHeight == 'string' && localHeight.indexOf('%') === localHeight.length -1) {
+                let screen = document.getElementById(id);
+                let percent = Number(localHeight.slice(0,-1));
+                let maxHeight = screen.offsetHeight - titleHeight - footerHeight;
+                localHeight = maxHeight * percent/100;
+            }
+
+            return localHeight < this.dims.minHeight ? this.dims.minHeight : localHeight;
         },
 
         renderTitle() {
@@ -137,7 +156,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
         renderFooter() {
             let {btnTitle, btnFunc, buttons} = this.state;
-            let {footerHeight, id, buttonsBackground} = this.props;
+            let {footerHeight, id, footerBackground} = this.props;
 
             return (
                 <PopupButtons
@@ -147,7 +166,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                     okLoading={false}
                     cancelCB={()=>{this.handleClose(id)}}
                     children={buttons}
-                    background={buttonsBackground}
+                    background={footerBackground}
                     height={footerHeight}
                 />
             );
@@ -155,26 +174,28 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
         renderOpen() {
             let {width}  = (this.state && this.state.width) ? this.state : this.props;
-            let {height} = (this.state && this.state.height) ? this.state : this.props;
             let {body} = this.state;
-            let {paneColor, background, titleHeight, footerHeight, id} = this.props;
+            let {backdropColor, background, titleHeight, footerHeight, id} = this.props;
 
-            let bodyHeight = height - titleHeight - footerHeight;
+            let bodyHeight = this.handleBodyHeight()
+            let popupHeight = bodyHeight + titleHeight + footerHeight;
 
             return (
                 <Absolute id={id}>
-                    <Center color={paneColor} onClick={()=>{this.handleClose(id)}}>
+                    <Center color={backdropColor} onClick={()=>{this.handleClose(id)}}>
 
                         <Column 
                             width={width}
-                            height={height}
+                            height={popupHeight}
                             boxShadow={true}
                             color={background}
                             style={this.styles('root')}
                             onClick={(e)=>{e.stopPropagation()}}
                         >
                             {this.renderTitle()}
-                            <Column width={width} height={bodyHeight} style={this.styles('bodyStyle')}>
+                            <Column width={width} 
+                                height={bodyHeight}
+                                style={this.styles('bodyStyle')}>
                                 {body}
                             </Column>
                             {this.renderFooter()}

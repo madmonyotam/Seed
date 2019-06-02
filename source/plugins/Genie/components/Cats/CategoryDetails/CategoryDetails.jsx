@@ -319,19 +319,19 @@ module.exports = {
             },
 
             handleAddItem() {
-                let all = seed.get('genie');
-
                 const change = ()=>{
                     let data = PopupHandler.getData();
+                    console.log({data});
                     this.handleUpdateTree(data, 'add');
                     seed.emit('Popup.close');
                 };
+
+                PopupHandler.addData();
 
                 PopupHandler.open({
                     parameters:{
                         title: seed.translate('Add new item to category'),
                         body: <CategoryItemEditor parentKey={this.parentKey}/>,
-                        bodyStyle: {minHeight: 'unset'},
                         okButton: {
                             btnTitle: seed.translate('Add'),
                             btnFunc: change

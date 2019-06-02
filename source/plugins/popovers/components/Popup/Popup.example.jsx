@@ -12,15 +12,15 @@ module.exports = {
 
             propScheme(){ // TODO:  
                 return {
-                    titleHeight: {type: 'string', group: 'initial'},
-                    footerHeight: {type: 'string', group: 'initial'},
+                    titleHeight: {type: 'string'},
+                    footerHeight: {type: 'string'},
                     width: {type: 'string'},
                     height: {type: 'string'},
                     titleLabelColor: {type: 'string'},
                     titleColor: {type: 'string'},
-                    paneColor: {type: 'string'},
+                    backdropColor: {type: 'string'},
                     background: {type: 'string'},
-                    buttonsBackground: {type: 'string'},
+                    footerBackground: {type: 'string'},
                 }
             },
 
@@ -31,7 +31,7 @@ module.exports = {
             },
 
             getCode(){
-                let { titleHeight, footerHeight, width, height, titleLabelColor, titleColor, paneColor, background, buttonsBackground } = this.state;
+                let { titleHeight, footerHeight, width, height, titleLabelColor, titleColor, backdropColor, background, footerBackground } = this.state;
 
                 return [
                     `/** at main render */`,
@@ -40,12 +40,12 @@ module.exports = {
                     `    titleHeight={${titleHeight}}`,
                     `    footerHeight={${footerHeight}}`,
                     `    width={${width}}`,
-                    `    height={${height}}`,
+                    `    height={${height}} // the minimum height is 50px`,
                     `    titleLabelColor={${titleLabelColor}}`,
                     `    titleColor={${titleColor}}`,
-                    `    paneColor={${paneColor}}`,
+                    `    backdropColor={${backdropColor}}`,
                     `    background={${background}}`,
-                    `    buttonsBackground={${buttonsBackground}}`,
+                    `    footerBackground={${footerBackground}}`,
                     `/>`,
                     ` `,
                     `/** at the caller*/`,
@@ -80,7 +80,7 @@ module.exports = {
             },
 
             render() {
-                let { titleHeight, footerHeight, width, height, titleLabelColor, titleColor, paneColor, background, buttonsBackground, id } = this.state;
+                let { titleHeight, footerHeight, width, height, titleLabelColor, titleColor, backdropColor, background, footerBackground, id } = this.state;
                 titleHeight = ExampleHelper.ifNumber_Convert(titleHeight);
                 footerHeight = ExampleHelper.ifNumber_Convert(footerHeight);
                 width = ExampleHelper.ifNumber_Convert(width);
@@ -105,9 +105,9 @@ module.exports = {
                             height={ height }
                             titleLabelColor={ titleLabelColor }
                             titleColor={ titleColor }
-                            paneColor={ paneColor }
+                            backdropColor={ backdropColor }
                             background={ background}
-                            buttonsBackground={ buttonsBackground}
+                            footerBackground={ footerBackground}
                         />
                     </SimpleExample>
                 )

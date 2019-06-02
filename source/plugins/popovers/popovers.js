@@ -29,8 +29,8 @@ module.exports = {
                 seed.emit('addNotify',{text,alertKind});
             },
 
-            openPopup(id, data) {
-                let {title, body, bodyStyle, okButton, buttons, modalStyle} = data;
+            openPopup(id, parameters) {
+                let {title, body, bodyStyle, okButton, buttons, modalStyle} = parameters;
                 let {btnTitle, btnFunc} = okButton;
 
                 seed.emit('Popup', {id, title, body, bodyStyle, btnTitle, btnFunc, buttons, modalStyle});
