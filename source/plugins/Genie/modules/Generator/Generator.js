@@ -2,8 +2,19 @@ import faker from 'faker';
 import moment from 'moment';
 import { isEmpty } from 'lodash';
 
+
+// types:
+
+// 'number',
+// 'string',
+// 'numberRange',
+// 'dateRange',
+// 'autocomplete',
+// 'autocompleteArray',
+// 'boolean',
+// 'array',
+
 module.exports = {
-    name: "Generator",
     dependencies: [],
 
     get() {
@@ -55,7 +66,7 @@ module.exports = {
             name: { type: 'fullName' }
         };
 
-        function getCategories () {
+        function getCategoriesKeys() {
           let cats = core.tree.get(["plugins", "access", "genie"]);
           let keys = Object.keys(cats);
           return keys
@@ -70,8 +81,7 @@ module.exports = {
             avatar: {
                 info: "Random avatar image",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.image.avatar();
@@ -81,7 +91,7 @@ module.exports = {
                 info: "Random element from a given array",
                 scheme: {
                   type: 'array',
-                  value: 'chip' 
+                  placeholder: core.translate('enter multiplay values')
                 },
                 generate: (element)=>{
                     return faker.random.arrayElement( element.value );
@@ -91,7 +101,7 @@ module.exports = {
                 info: "Random element from a given array as one item array",
                 scheme: {
                     type: 'array',
-                    value: 'chip' 
+                    placeholder: core.translate('enter multiplay values')
                 },
                 generate: (element)=>{
                     return [faker.random.arrayElement( element.value )];
@@ -100,8 +110,7 @@ module.exports = {
             arrayEmpty: {
                 info: 'Array without values',
                 scheme: {
-                  type: null,
-                  value: null 
+                  type: null
                 },
                 generate: (element)=>{
                     return [];
@@ -110,8 +119,7 @@ module.exports = {
             boolean: {
                 info: "Random boolean value",
                 scheme: {
-                    type: 'boolean',
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.random.boolean();
@@ -121,12 +129,13 @@ module.exports = {
                 info: "A single category object",
                 scheme: {
                   type: 'autocomplete',
-                  value: getCategories()
+                  options: getCategoriesKeys(),
+                  placeholder: core.translate('choose category from list')
                 },
                 generate: (element)=>{
                     let newObject = {};
 
-                    let dataFromFile = { ...core.tree.get(["plugins","Settings","config","genie"]) };
+                    let dataFromFile = { ...core.tree.get(["plugins","Settings","config","mockGenerator"]) };
                     const item = dataFromFile[element.value];
 
                     for (const key in item) {
@@ -143,8 +152,9 @@ module.exports = {
             categoriesArray:{
                 info: "An array of multi categories selected",
                 scheme: {
-                    type: 'autocompleteArray', // can select more than one categories
-                    value: getCategories() 
+                    type: 'autocompleteArray',
+                    options: getCategoriesKeys(),
+                    placeholder: core.translate('choose categories from list') 
                 },
                 generate: (element)=>{
                     let newArray = [];
@@ -159,8 +169,7 @@ module.exports = {
             categoryEmpty: {
                 info: 'Empty object',
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null, 
                 },
                 generate: (element)=>{
                     return {};
@@ -170,7 +179,8 @@ module.exports = {
                 info: "A list of categories, count will be it's size",
                 scheme: {
                     type: 'autocomplete',
-                    value: getCategories(),
+                    options: getCategoriesKeys(),
+                    placeholder: core.translate('choose category from list'),
                     count: true
                 },
                 generate: (element)=>{
@@ -182,7 +192,7 @@ module.exports = {
     
                     for (let i = 0; i < count; i++) {
                         let listObject = {}
-                        let dataFromFile = { ...core.tree.get(["plugins","Settings","config","genie"]) };
+                        let dataFromFile = { ...core.tree.get(["plugins","Settings","config","mockGenerator"]) };
                         const item = dataFromFile[element.value];
 
                         for (const key in item) {
@@ -200,8 +210,7 @@ module.exports = {
             company: {
                 info: "Random company name",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.company.companyName();
@@ -210,8 +219,7 @@ module.exports = {
             color: {
                 info: "Color hex code",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.internet.color();
@@ -220,8 +228,7 @@ module.exports = {
             country: {
                 info: "Random country name",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.address.country();
@@ -230,8 +237,8 @@ module.exports = {
             date: {
                 info: "Today's date in a mask. ex. `DD-MM-YYYY`",
                 scheme: {
-                    type: 'text', // Not an required field
-                    value: 'DD-MM-YYYY' // Not the date string, but a mask ex: DD-MM-YYYY
+                    type: 'string',
+                    placeholder: 'DD-MM-YYYY' 
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -246,7 +253,7 @@ module.exports = {
                 info: "Returns date between two given dates based in a optional date mask",
                 scheme: {
                     type: 'dateRange',
-                    value: {
+                    value: {          
                         from: "dateString",
                         to: "dateString",
                         mask: 'dateMask'
@@ -269,8 +276,8 @@ module.exports = {
             dateFuture: {
                 info: "Returns a future date string based in a optional date mask",
                 scheme: {
-                    type: 'optionalString', // Not an required field
-                    value: 'dateMask' // Not the date string, but a mask ex: DD-MM-YYYY
+                    type: 'dateMask', // Not an required field
+                    placeholder: 'DD-MM-YYYY',
                 },
                 generate: (element)=>{
                     let dateformat = (element && element.value && element.value.trim().length ) ? element.value : null;
@@ -280,8 +287,8 @@ module.exports = {
             datePast: {
                 info: "Returns a past date string based in a optional date mask",
                 scheme: {
-                    type: 'optionalString', // Not an required field
-                    value: 'dateMask' // Not the date string, but a mask ex: DD-MM-YYYY
+                    type: 'dateMask', // Not an required field
+                    placeholder: 'DD-MM-YYYY',
                 },
                 generate: (element)=>{
                     let dateformat = (element && element.value && element.value.trim().length ) ? element.value : null;
@@ -295,7 +302,7 @@ module.exports = {
                     value: {
                         from: "dateString",
                         to: "dateString",
-                        mask: 'dateMask'
+                        mask: 'dateMask',
                     }
                 },
                 generate: (element)=>{
@@ -328,8 +335,7 @@ module.exports = {
             domain: {
                 info: "A random domain",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.internet.domainName();
@@ -338,8 +344,7 @@ module.exports = {
             email: {
                 info:"Email address from 'example' domain",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.internet.exampleEmail();
@@ -348,8 +353,7 @@ module.exports = {
             false: {
                 info:"false",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return false;
@@ -359,7 +363,7 @@ module.exports = {
                 info: "Returns same given value",
                 scheme: {
                     type: 'string',
-                    value: 'fixedValue' 
+                    placeholder: core.translate('fixedValue') 
                 },
                 generate: (element)=>{
                     return element.value;
@@ -368,8 +372,7 @@ module.exports = {
             id: {
                 info: "Random uuid code",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.random.uuid();
@@ -379,7 +382,7 @@ module.exports = {
                 info:"Random image with optional given size. Ex: 640x480 ",
                 scheme: {
                     type: 'string',
-                    value: 'widthXheght'
+                    placeholder: core.translate('size: 640x480') 
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -391,7 +394,7 @@ module.exports = {
                 info:"Random business image with optional given size. Ex: 640x480 ",
                 scheme: {
                     type: 'string',
-                    value: 'widthXheght'
+                    placeholder: core.translate('size: 640x480') 
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -402,8 +405,7 @@ module.exports = {
             ip: {
                 info: "Ipv4 address",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.internet.ip();
@@ -412,8 +414,7 @@ module.exports = {
             ipv6: {
                 info: "Ipv6 address",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.internet.ipv6();
@@ -422,8 +423,7 @@ module.exports = {
             jobTitle: {
                 info: "Random job title",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.name.jobTitle();
@@ -432,8 +432,7 @@ module.exports = {
             nameFirst: {
                 info: "Random first name",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.name.firstName();
@@ -442,8 +441,7 @@ module.exports = {
             nameFull: {
                 info: "Random name and lastname",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return `${faker.name.firstName()} ${faker.name.lastName()}`;
@@ -452,8 +450,7 @@ module.exports = {
             nameLast: {
                 info: "Random lastname",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.name.lastName();
@@ -462,8 +459,7 @@ module.exports = {
             number: {
                 info: "Random number",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.random.number();
@@ -472,8 +468,7 @@ module.exports = {
             nullValue: {
                 info: "nullValue",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return null;
@@ -483,7 +478,7 @@ module.exports = {
                 info: "Random number with max value",
                 scheme: {
                     type: 'number',
-                    value: 'maxValue' 
+                    placeholder: core.translate('max')  
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -494,7 +489,7 @@ module.exports = {
                 info: "Random number starting from value",
                 scheme: {
                     type: 'number',
-                    value: 'minValue'
+                    placeholder: core.translate('min')  
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -507,8 +502,14 @@ module.exports = {
                 scheme: {
                     type: 'numberRange',
                     value: {
-                        min: "number",
-                        max: "number",
+                        min: {
+                            type: 'number',
+                            placeholder: core.translate('min') 
+                        },
+                        max: {
+                            type: 'number',
+                            placeholder: core.translate('max') 
+                        }
                     }
                 },
                 generate: (element)=>{
@@ -520,16 +521,19 @@ module.exports = {
                     let min = (hasMin) ? value.min : 0;
                     let max = (hasMax) ? value.max : 10;
 
+                    min = Number(min);
+                    max = Number(max);
+
                     if ( max <= min ) max = min + 1;
 
-                    return faker.random.number({min, max});
+                    return Math.floor(Math.random() * (max-min+1) ) + Number(min);
                 }
             },
             numberZeroMax: {
                 info: "Zero or a random number under max value",
                 scheme: {
                     type: 'number',
-                    value: 'numberMax'
+                    placeholder: core.translate('max')  
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -545,8 +549,8 @@ module.exports = {
             numberMask: {
                 info:"Returns a number based on a mask using # for replace, ex: $#.###,##",
                 scheme: {
-                    type: 'string',
-                    value: 'numberMask' // ex: $#.###,##
+                    type: 'numberMask',
+                    placeholder: core.translate('$#.###,##')  
                 },
                 generate: (element)=>{
                     return faker.helpers.replaceSymbolWithNumber( value );
@@ -555,8 +559,7 @@ module.exports = {
             paragraph: {
                 info: "Random paragraph text with optional number of sentences",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null 
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -568,7 +571,7 @@ module.exports = {
                 info: "Sentence with specific number of words",
                 scheme: {
                     type: 'number',
-                    value: 'numberOfWords'
+                    placeholder: core.translate('number of words')                      
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -580,7 +583,7 @@ module.exports = {
                 info: "Text with specific number of lines",
                 scheme: {
                     type: 'number',
-                    value: 'numberOfLines'
+                    placeholder: core.translate('number of lines')
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -591,8 +594,7 @@ module.exports = {
             url: {
                 info: "URL address",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.internet.url();
@@ -601,8 +603,7 @@ module.exports = {
             userName: {
                 info: "User name",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.internet.userName();
@@ -611,8 +612,7 @@ module.exports = {
             word: {
                 info: "Single word",
                 scheme: {
-                    type: null,
-                    value: null 
+                    type: null
                 },
                 generate: (element)=>{
                     return faker.random.word();

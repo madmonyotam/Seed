@@ -81,9 +81,6 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                     minHeight: titleHeight,
                     justifyContent:'space-between',
                 },
-                titleLabel: {
-                    textTransform: 'uppercase',
-                },
                 body: {
                     ...bodyStyle,
                 },
@@ -126,7 +123,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
             return(
                 <Row color={titleColor} height={titleHeight} style={this.styles('title')}>
-                    <Label labe={title} color={titleLabelColor} style={this.styles('titleLabel')}/>
+                    <Label labe={title} color={titleLabelColor} transform={'uppercase'}/>
                     <IconButton 
                         iconSize={18}
                         iconColor={titleLabelColor}

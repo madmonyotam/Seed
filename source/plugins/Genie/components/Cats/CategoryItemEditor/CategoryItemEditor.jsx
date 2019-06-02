@@ -1,12 +1,9 @@
-import { Typography } from '@material-ui/core'
 module.exports = {
     name: 'CategoryItemEditor',
-    dependencies: ['Simple.Icon', 'Layouts.Column', 'popovers.PopupHandler', 
-                    'Inputs.Input',
-                    // 'Simple.Input_L1',
-                    'Genie.Generator',
-                ],
-    get(Icon, Column, PopupHandler, Input, Generator,) {
+    dependencies: [ 'Simple.Icon', 'Layouts.Column', 'popovers.PopupHandler', 'Inputs.Input','Genie.Generator',
+                    'Decorators.Tooltip', 'Simple.Label'],
+    get(Icon, Column, PopupHandler, Input, Generator,
+        Tooltip, Label) {
 
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -28,6 +25,14 @@ module.exports = {
 
             getInitialState() {
                 let types = Generator.getTypes(); 
+                let mapedTypes = types.map((type)=>{
+                    return { 
+                        label: type, 
+                        value: type, 
+                        info: Generator.getTypeInfo(type)
+                    }
+                });
+
                 return {
                     oldTitle: '',
                     title: '',
@@ -35,9 +40,7 @@ module.exports = {
                     type: '',
                     inputValue: '',
                     value: '',
-                    typesOptions: types.map((type)=>{
-                      return { label: type, value: type, info: Generator.getTypeInfo(type)  }
-                    }),
+                    typesOptions: mapedTypes,
                     count: null,
                     currentType: null,
                     categoriesOptions: undefined,
@@ -79,8 +82,27 @@ module.exports = {
             styles(s){
                 const styles = {
                     root: {
-                        width: 500,
-                        maxWidth: 500,
+                        width: '100%',
+                        maxWidth: '100%',
+                        padding: 15,
+                    },
+                    title:{
+                        marginBottom: 15,
+                    },
+                    typeWrap: {
+                        margin: '15px 0',
+                        position: 'relative',
+                    },
+                    typeInfoIcon: {
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                    },
+                    tooltipLabel: {
+                        textTransform: 'capitalize',
+                        fontSize: 12,
+                        fontWeight: 400,
+                        color: this.colors.white
                     },
                     textField: {
                         marginTop: 0,
@@ -121,9 +143,9 @@ module.exports = {
             }, 
 
             handleCB(){
-                let {oldTitle, title, type, value, count} = this.state;
+                let {oldTitle, title, type, value, count, currentType} = this.state;
                 let needsCount = type === 'categoryList';
-                let needsValue = !!(['arrayElement', 'arraySubArray', 'category', 'categoriesArray', 'categoryList', 'dateFuture', 'datePast', 'fixedValue', ].indexOf(type) > -1);
+                let needsValue = currentType && currentType.type;
 
                 let hasTitle = title && title.length;
                 let hasValue = value && value.length;
@@ -158,16 +180,17 @@ module.exports = {
 
             renderTitle() {
                 return (
-                  <div style={{ margin: '15px 0' }}>
-                    <Input type={ 'text' }
-                           label={ core.translate('Title') }
-                           theme={ 'filled' }
-                           placeholder={ core.translate('inputCategoryTitle','Set category title...') }
-                           value={ this.state.title }
-                           autoFocus={true}
-                           onChange={ value => { this.handleChange('title', value) } }/>
-                  </div>
-                ) 
+                    <Input
+                        type={ 'text' }
+                        label={ core.translate('Title') }
+                        theme={ 'filled' }
+                        placeholder={ core.translate('inputCategoryTitle','Set category title...') }
+                        value={ this.state.title }
+                        autoFocus={true}
+                        onChange={ value => { this.handleChange('title', value) } }
+                        style={this.styles('title')}
+                    />
+                )
             },
 
             handleChange (stateName, value){
@@ -189,8 +212,8 @@ module.exports = {
             handleCategoriesOptions(currentType) { 
                 let categoriesOptions = undefined;
 
-                if (currentType && currentType.value && Array.isArray(currentType.value) ) {
-                    let keys = currentType.value.sort();
+                if (currentType && currentType.options ) {
+                    let keys = currentType.options.sort();
                     keys = keys.filter( key => key !== this.props.parentKey );
 
                     categoriesOptions = keys.map( op =>{ return { label : op, value: op } });
@@ -200,63 +223,109 @@ module.exports = {
             },
 
             renderType() { 
-              let currentInfo = Generator.getTypeInfo(this.state.type); 
-              const CLEAR = true;
-
-              return (
-                <div style={{ margin: '15px 0', position: 'relative' }}>
-                  <Input type={ 'autocomplete' } 
-                         theme={ 'filled' } 
-                         label={ core.translate('Type') } 
-                         value={ this.state.type }
-                         placeholder={ core.translate('inputCategoryType','Search for type...') }
-                         options={ this.state.typesOptions } 
-                         onChange={ (type)=>{this.handleTypeChange(type, CLEAR)} } />
-
-                    <Icon
-                        title={ this.renderTooltip(currentInfo) } 
-                        style={{ position: 'absolute', top: 0, right: 0 }}
-                        size={ 16 }
-                        color={this.colors.text}
-                    />
-
-                </div>
-              )                
-            },
-
-            renderTooltip(text){
-              return (
-                <Typography style={{ textTransform: 'capitalize', fontSize: 12, fontWeight: 400, color: this.colors.white }}>
-                    { text || core.translate('Select Type') }
-                </Typography>
-              )
-            },
-
-            renderValue() {
-                if (!this.state.currentType || !this.state.currentType.value) return null;
-
-                const getPlaceholder = () => {
-                  if (this.state.currentType.value && core.isString(this.state.currentType.value)) {
-                    return this.state.currentType.value;
-                  } else return core.translate('inputCategoryValue','Place value here...')
-                };
+                const CLEAR = true;
 
                 return (
-                  <div style={{ margin: '15px 0' }}>
-                    <Input  type={ this.state.currentType.type }
-                            theme={ 'outlined' } 
-                            // theme={ 'filled' } 
-                            label={ core.translate('Value') } 
-                            value={ this.state.value }
-                            placeholder={ getPlaceholder() }
-                            options={ this.state.categoriesOptions } 
-                            onChange={ v => { this.handleChange('value', v) } } />
-                  </div>
+                    <div style={this.styles('typeWrap')}>
+                        <Input 
+                            type={ 'autocomplete' } 
+                            theme={ 'filled' } 
+                            label={ core.translate('Type') } 
+                            value={ this.state.type }
+                            placeholder={ core.translate('inputCategoryType','Search for type...') }
+                            options={ this.state.typesOptions } 
+                            onChange={ (type)=>{this.handleTypeChange(type, CLEAR)} }
+                        />
+                        <Tooltip
+                            position={'bootom-left'}
+                            content={this.renderTooltip()}
+                            style={this.styles('typeInfoIcon')}
+                        >
+                            <Icon size={16} color={this.colors.text}/>
+                        </Tooltip>
+                    </div>
                 )
             },
 
-            renderCount() {
+            renderTooltip(){
+                let {type} = this.state;
+                let currentInfo = Generator.getTypeInfo(type);
+                return (
+                    <Label
+                        color={this.colors.white}
+                        transform={'lowercase'}
+                        label={ currentInfo || core.translate('Select Type') }
+                        size={12}
+                        weight={400}
+                    />
+                )
+            },
 
+            getPlaceholder(){
+                let { currentType } = this.state;
+
+                if (currentType.placeholder) {
+                    return currentType.placeholder;
+                  } else return core.translate('inputCategoryValue','Place value here...')
+            },
+
+            renderValueByType(){
+                let { currentType } = this.state;
+                if (!currentType || !currentType.type) return null;
+
+                switch (currentType.type) {
+                    case 'string':
+                    case 'number':
+                    case 'autocomplete': 
+                        return this.renderValue();
+
+                    case 'autocompleteArray':
+                    case 'array':
+                        return this.renderValueMultiple();
+
+                    default:
+                        break;
+                };
+
+                return(
+                   <Label label='missing type'/>
+                );
+            },
+
+            renderValueMultiple(){
+                let { currentType, value, categoriesOptions } = this.state;
+                
+                return (
+                  <div style={{ margin: '15px 0' }}>
+                    <Input  type={ currentType.type }
+                            theme={ 'outlined' }  
+                            label={ core.translate('Value') } 
+                            value={ value }
+                            placeholder={ this.getPlaceholder() }
+                            isMultipleValues={ true }
+                            options={ categoriesOptions } 
+                            onChange={ v => { this.handleChange('value', v) } } />
+                  </div>
+                );
+            },
+
+            renderValue() {
+                let { currentType, value, categoriesOptions } = this.state;
+
+                return (
+                  <div style={{ margin: '15px 0' }}>
+                    <Input  type={ currentType.type }
+                            theme={ 'outlined' }  
+                            label={ core.translate('Value') } 
+                            value={ value }
+                            placeholder={ this.getPlaceholder() }
+                            options={ categoriesOptions } 
+                            onChange={ v => { this.handleChange('value', v) } } />
+                  </div>
+                );
+            },
+
+            renderCount() {
               let { currentType } = this.state;
               if (!currentType || !currentType.count) return null;
               return (
@@ -275,7 +344,7 @@ module.exports = {
                     <Column id={'CategoryItemEditor'} style={this.styles('root')} >
                         { this.renderTitle() }
                         { this.renderType() }
-                        { this.renderValue() }
+                        { this.renderValueByType() }
                         { this.renderCount() }
                     </Column>
                 );

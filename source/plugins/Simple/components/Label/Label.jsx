@@ -15,6 +15,7 @@ module.exports = {
                 color: PropTypes.string,
                 size: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 weight: PropTypes.number,
+                transform: PropTypes.oneOf(['none', 'capitalize', 'uppercase', 'lowercase', 'initial', 'inherit']),
             },
 
             getDefaultProps(){
@@ -23,7 +24,8 @@ module.exports = {
                     weight: 500,
                     width: '100%',
                     label: 'label',
-                    color: core.theme('texts.default')
+                    color: core.theme('texts.default'),
+                    transform: 'none',
                 };
             },
             
@@ -50,13 +52,14 @@ module.exports = {
             },
 
             styles(s){
-                let { width, style, size, color, weight } = this.props;
+                let { width, style, size, color, weight, transform } = this.props;
 
                 const styles = {
                     label: {
                         margin: 0,
                         fontWeight: weight,
                         fontSize:size,
+                        textTransform: transform,
                         color: color,
                         width: width,
                         overflow: "hidden",

@@ -29,7 +29,11 @@ module.exports = {
 
             addData({id, data}){
                 if (!id) id = mainId;
-                seed.plugins.popovers.set(['popup', id, 'data'],data);
+                let popup = seed.plugins.popovers.get('popup');
+                if (!popup.hasOwnProperty(id)) {
+                    seed.plugins.popovers.set(['popup', id ], {});
+                }
+                seed.plugins.popovers.set(['popup', id, 'data'], data);
             },
 
             disableOkBtn(id){

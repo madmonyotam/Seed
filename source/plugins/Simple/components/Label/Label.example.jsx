@@ -17,6 +17,7 @@ module.exports = {
                     width: { type: 'default' },
                     label: { type: 'default' },
                     color: { type: 'default' },
+                    transform: { type: 'select', options: ['none', 'capitalize', 'uppercase', 'lowercase', 'initial', 'inherit'] },
                 }
             },
 
@@ -26,17 +27,17 @@ module.exports = {
             },
 
             getCode(){
-                let { size, weight, width, label, color } = this.state;
+                let { size, weight, width, label, color, transform } = this.state;
 
-                return (`
-<Row boxShadow={true} >
-    <Label size={${size}} weight={${weight}} width={${width}} label={${label}} color={${color}}/>
-</Row>
-                `)
+                return [
+                    `<Row boxShadow={true} >`,
+                    `    <Label size={${size}} weight={${weight}} width={${width}} label={${label}} color={${color}} transform={${transform}}/>`,
+                    `</Row>`,
+                ].join('\n');
             },
 
             render() {
-                let { size, weight, width, label, color } = this.state;
+                let { size, weight, width, label, color, transform } = this.state;
                 width = ExampleHelper.ifNumber_Convert(width);
                 size = ExampleHelper.ifNumber_Convert(size);
 
@@ -44,7 +45,7 @@ module.exports = {
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } >
 
                         <Row boxShadow={true} color={core.theme('backgrounds.light_gray')} >
-                            <Label size={size} weight={weight} width={width} label={label} color={color}/>
+                            <Label size={size} weight={weight} width={width} label={label} color={color} transform={transform}/>
                         </Row>
             
                     </SimpleExample>
