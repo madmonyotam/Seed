@@ -327,14 +327,16 @@ module.exports = {
                     seed.emit('Popup.close');
                 };
 
-                seed.emit('popup',{
-                    title: seed.translate('Add new item to category'),
-                    body: <CategoryItemEditor parentKey={this.parentKey}/>,
-                    bodyStyle: {minHeight: 'unset'},
-                    okButton: {
-                        btnTitle: seed.translate('Add'),
-                        btnFunc: change
-                   }
+                PopupHandler.open({
+                    parameters:{
+                        title: seed.translate('Add new item to category'),
+                        body: <CategoryItemEditor parentKey={this.parentKey}/>,
+                        bodyStyle: {minHeight: 'unset'},
+                        okButton: {
+                            btnTitle: seed.translate('Add'),
+                            btnFunc: change
+                        }
+                    }
                 });
             },
 

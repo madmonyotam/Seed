@@ -24,7 +24,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
         getDefaultProps() {
             return {
-                id: 'Popup',
+                id: 'mainPopup',
                 width: 800,
                 height: 500,
                 titleHeight: 50,
@@ -71,7 +71,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         styles(propName) {
             let {height, titleHeight} = this.props;
             let {modalStyle, bodyStyle} = this.state;
-            console.log({titleHeight});
+
             let styles = {
                 root: {
                     maxHeight: height,

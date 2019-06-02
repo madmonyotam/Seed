@@ -49,12 +49,15 @@ module.exports = {
                     `/>`,
                     ` `,
                     `/** at the caller*/`,
-                    `PopupHandler.open('ExamplePopup', {`,
-                    `    title: seed.translate('Popup Title'),`,
-                    `    body: <div> I am the popup body content</div>,`,
-                    `    okButton: {`,
-                    `        btnTitle: seed.translate('Ok'),`,
-                    `        btnFunc: ()=>{console.log('Ok')}`,
+                    `PopupHandler.open({`,
+                    `    id:'ExamplePopup',`,
+                    `    parameters: {`,
+                    `        title: seed.translate('Popup Title'),`,
+                    `        body: <div> I am the popup body content</div>,`,
+                    `        okButton: {`,
+                    `            btnTitle: seed.translate('Ok'),`,
+                    `            btnFunc: ()=>{console.log('Ok')}`,
+                    `        }`,
                     `    }`,
                     `});`,
                 ].join('\n');
@@ -62,13 +65,16 @@ module.exports = {
 
             handleOpen() {
                 let {id} = this.state;
-                PopupHandler.open(id, {
-                    title: seed.translate('Popup Title'),
-                    body: <div> I am the popup body content</div>,
-                    okButton: {
-                        btnTitle: seed.translate('Ok'),
-                        btnFunc: ()=>{console.log('Ok')}
-                   }
+                PopupHandler.open({
+                    id: id,
+                    parameters: {
+                        title: seed.translate('Popup Title'),
+                        body: <div> I am the popup body content</div>,
+                        okButton: {
+                            btnTitle: seed.translate('Ok'),
+                            btnFunc: ()=>{console.log('Ok')}
+                       }
+                    }
                 });
 
             },
