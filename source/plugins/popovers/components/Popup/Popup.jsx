@@ -10,6 +10,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         mixins: [ ComponentMixin ],
 
         propsTypes: {
+            id: PropTypes.string,
             titleHeight: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             footerHeight: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
@@ -18,10 +19,12 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             titleColor: PropTypes.string,
             paneColor: PropTypes.string,
             background: PropTypes.string,
+            buttonsBackground: PropTypes.string,
         },
 
         getDefaultProps() {
             return {
+                id: 'Popup',
                 width: 800,
                 height: 500,
                 titleHeight: 50,
@@ -30,6 +33,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                 titleColor: core.theme('backgrounds.primary'),
                 paneColor: core.theme('backgrounds.popupPane'),
                 background: core.theme('backgrounds.default'),
+                buttonsBackground: core.theme('backgrounds.default'),
             };
         },
 
@@ -65,14 +69,16 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         },
 
         styles(propName) {
-            let {height} = this.props;
+            let {height, titleHeight} = this.props;
             let {modalStyle, bodyStyle} = this.state;
+            console.log({titleHeight});
             let styles = {
                 root: {
                     maxHeight: height,
                     ...modalStyle
                 },
                 title: {
+                    minHeight: titleHeight,
                     justifyContent:'space-between',
                 },
                 titleLabel: {
@@ -96,18 +102,27 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                 return
             }
 
+            let {id} = this.props;
             let {title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, modalStyle } = popupData;
-            this.setState({ title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons , modalStyle, open: true });
+
+            if (popupData.id && popupData.id !== id) {
+                this.setState({ open: false });
+            } else {
+                this.setState({ title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons , modalStyle, open: true });
+            }
         },
 
-        handleClose() {
-            PopupHandler.clearData();
-            this.setState({ open: false, isLoading: false });
+        handleClose(paramsId) {
+            let {id} = this.props;
+            if (id === paramsId) {
+                PopupHandler.clearData(id);
+                this.setState({ open: false, isLoading: false });
+            }
         },
 
         renderTitle() {
             let {title} = this.state;
-            let {titleColor, titleLabelColor, titleHeight} = this.props;
+            let {titleColor, titleLabelColor, titleHeight, id} = this.props;
 
             return(
                 <Row color={titleColor} height={titleHeight} style={this.styles('title')}>
@@ -115,7 +130,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                     <IconButton 
                         iconSize={18}
                         iconColor={titleLabelColor}
-                        onClick={this.handleClose}
+                        onClick={()=>{this.handleClose(id)}}
                         background={titleColor}
                         icon={core.icons('genie.close')}
                     />
@@ -125,7 +140,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
         renderFooter() {
             let {btnTitle, btnFunc, buttons} = this.state;
-            let {footerHeight} = this.props;
+            let {footerHeight, id, buttonsBackground} = this.props;
 
             return (
                 <PopupButtons
@@ -133,8 +148,9 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                     okCB={btnFunc}
                     okDisabled={false}
                     okLoading={false}
-                    cancelCB={this.handleClose}
+                    cancelCB={()=>{this.handleClose(id)}}
                     children={buttons}
+                    background={buttonsBackground}
                     height={footerHeight}
                 />
             );
@@ -144,13 +160,13 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             let {width}  = (this.state && this.state.width) ? this.state : this.props;
             let {height} = (this.state && this.state.height) ? this.state : this.props;
             let {body} = this.state;
-            let {paneColor, background, titleHeight, footerHeight} = this.props;
+            let {paneColor, background, titleHeight, footerHeight, id} = this.props;
 
             let bodyHeight = height - titleHeight - footerHeight;
 
             return (
-                <Absolute id={'Popup'}>
-                    <Center color={paneColor} onClick={this.handleClose}>
+                <Absolute id={id}>
+                    <Center color={paneColor} onClick={()=>{this.handleClose(id)}}>
 
                         <Column 
                             width={width}

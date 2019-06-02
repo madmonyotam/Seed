@@ -5,24 +5,32 @@ module.exports = {
         var seed = this;
 
         return {
-            clearData(){
-                seed.plugins.popovers.set(['popup','data'],{});
+            clearData(id){
+                seed.plugins.popovers.set(['popup', id, 'data'],{});
             },
             
-            getData(){
-                return seed.plugins.popovers.get(['popup','data']);
+            getData(id){
+                return seed.plugins.popovers.get(['popup', id, 'data']);
             },
 
-            addData(data){
-                seed.plugins.popovers.set(['popup','data'],data);
+            open(id, params) {
+                seed.plugins.popovers.openPopup(id, params);
             },
 
-            disableOkBtn(){
-                seed.plugins.popovers.set(['popup','disable'],true);
+            close(id) {
+                seed.emit('PopupClose', id);
             },
 
-            enableOkBtn(){
-                seed.plugins.popovers.set(['popup','disable'],false);
+            addData(id, data){
+                seed.plugins.popovers.set(['popup', id, 'data'],data);
+            },
+
+            disableOkBtn(id){
+                seed.plugins.popovers.set(['popup', id, 'disable'],true);
+            },
+
+            enableOkBtn(id){
+                seed.plugins.popovers.set(['popup', id, 'disable'],false);
             },
         };
     }

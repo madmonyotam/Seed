@@ -15,6 +15,7 @@ get(Row, Button) {
             cancelCB: PropTypes.func,
             division: PropTypes.bool,
             children: PropTypes.object,
+            background: PropTypes.string,
             height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             style: PropTypes.object,
         },
@@ -27,8 +28,9 @@ get(Row, Button) {
                 okLoading: false,
                 cancelCB: ()=>{},
                 division: false,
-                height: 50,
                 children: null,
+                background: core.theme('backgrounds.default'),
+                height: 50,
                 style: {},
             };
         },
@@ -50,17 +52,16 @@ get(Row, Button) {
             this.colors = {
                 border: core.theme('borders.default'),
             };
-            this.backgrounds = {
-                default: core.theme('backgrounds.default'),
-            };
+            this.backgrounds = {};
             this.icons = {};
         },
 
         styles(propName) {
-            let {division, style} = this.props;
+            let {division, style, height} = this.props;
 
             let styles = {
                 root: {
+                    minHeight: height,
                     borderTop: (division) ? `1px solid ${this.colors.border}` : 'none',
                     ...style,
                 },
@@ -75,7 +76,7 @@ get(Row, Button) {
         },
 
         okButton() {
-            let {okLabel ,okDisabled ,okLoading ,okCB} = this.props;
+            let {okLabel ,okDisabled ,okLoading ,okCB, background} = this.props;
 
             if (!okLabel) return null;
 
@@ -84,7 +85,7 @@ get(Row, Button) {
             return (
                 <Button
                     variant={'flat'}
-                    backgroundColor={this.backgrounds.default}
+                    backgroundColor={background}
                     disabled={okDisabled}
                     isLoading={okLoading}
                     ripple={!okDisabled}
@@ -96,10 +97,10 @@ get(Row, Button) {
         },
 
         render() {
-            let {children, cancelCB, height} = this.props;
+            let {children, cancelCB, height, background} = this.props;
 
             return (
-                <Row id={'PopupButtons'} padding={this.dims.rowPadding} height={height} color={this.backgrounds.default} style={this.styles('root')}>
+                <Row id={'PopupButtons'} padding={this.dims.rowPadding} height={height} color={background} style={this.styles('root')}>
                     <Row id={'Left'} padding={0}>
                         {children}
                     </Row>
