@@ -4,10 +4,14 @@ dependencies: ['Layouts.Absolute', 'popovers.PopupHandler', 'popovers.PopupButto
 get(Absolute, PopupHandler, PopupButtons, Center, Label,
     IconButton, Column, Row) {
     var core = this;
-    var { React, PropTypes, ComponentMixin } = core.imports;
+    var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
     return {
-        mixins: [ ComponentMixin ],
+        mixins: [ ComponentMixin, Branch ],
+
+        cursors: {
+            popupTree: ['plugins','popovers','popup'],
+        },
 
         propsTypes: {
             id: PropTypes.string,
@@ -155,15 +159,18 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         },
 
         renderFooter() {
-            let {btnTitle, btnFunc, buttons} = this.state;
+            let {btnTitle, btnFunc, buttons, popupTree} = this.state;
             let {footerHeight, id, footerBackground} = this.props;
+
+            let disabledOk = (popupTree && popupTree[id]) ? popupTree[id].disabled : true;
+            let isLoading = (popupTree && popupTree[id]) ? popupTree[id].isLoading : false;
 
             return (
                 <PopupButtons
                     okLabel={btnTitle}
                     okCB={btnFunc}
-                    okDisabled={false}
-                    okLoading={false}
+                    okDisabled={disabledOk}
+                    okLoading={isLoading}
                     cancelCB={()=>{this.handleClose(id)}}
                     children={buttons}
                     background={footerBackground}

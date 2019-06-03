@@ -206,7 +206,7 @@ module.exports = {
                     const change = ()=>{
                         let data = PopupHandler.getData();
                         this.props.cb(data, 'edit');
-                        core.emit('Popup.close');
+                        PopupHandler.close();
                     };
     
                     PopupHandler.open({

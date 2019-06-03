@@ -92,7 +92,7 @@ module.exports = {
             },
 
             componentWillReceiveProps(nextProps) {
-              if (nextProps !== this.props) this.setRippleColor(nextProps)
+              if (nextProps !== this.props) this.setRippleColor(nextProps);
             },
 
             componentWillMount() {
@@ -116,7 +116,7 @@ module.exports = {
 
 
             styles(s) {
-              let { variant, active, backgroundColor, textColor, style, theme, ripple, round, height, width, padding, disabled } = this.props;
+              let { variant, active, backgroundColor, textColor, style, theme, ripple, round, height, width, padding, disabled, isLoading } = this.props;
               let isFocused = this.getIsFocused();
 
               let isOutlined = variant === 'outlined';
@@ -189,8 +189,9 @@ module.exports = {
                   borderRadius: round ? 4 : 0,
                   height: height,
                   minWidth: width,
+                  position: 'relative',
                   letterSpacing: '.025em',
-                  cursor: disabled ? 'default' : 'pointer',
+                  cursor: (disabled || isLoading) ? 'not-allowed' : 'pointer',
                   transition: 'background 0.15s ease-in-out, color 0.15s ease-in-out, border 0.15s ease-in-out',
                   display: 'flex',
                   alignItems: 'center',
@@ -236,7 +237,7 @@ module.exports = {
                 } else return { backgroundColor: units.hover[theme] }
               }
 
-              if (isFocused && !active && !disabled) {
+              if (isFocused && !active && !disabled && !isLoading) {
                 styles.root = {
                   ...styles.root,
                   ...focused() 
@@ -293,8 +294,8 @@ module.exports = {
             },
 
             render() {
-              let { title, disabled } = this.props;
-              let click = disabled ? ()=>{} : this.handleOnClick;
+              let { title, disabled, isLoading } = this.props;
+              let click = (disabled || isLoading) ? ()=>{} : this.handleOnClick;
 
               return (
                 <div style={ this.styles('root') } onMouseEnter={ this.onMouseEnter } onMouseLeave={ this.onMouseLeave } onClick={ click } title={title}> 

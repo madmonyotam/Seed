@@ -9,6 +9,8 @@ module.exports = {
         return {
             clearData(id){
                 if (!id) id = mainId;
+                this.disableOkButton(id);
+                this.okButtonStopLoad(id);
                 seed.plugins.popovers.set(['popup', id, 'data'],{});
             },
             
@@ -21,6 +23,9 @@ module.exports = {
                 let id = args && args.hasOwnProperty('id') ? args.id : mainId;
                 let parameters = args && args.hasOwnProperty('parameters') ? args.parameters : {};
                 if (!id) id = mainId;
+
+                this.disableOkButton(id);
+                this.okButtonStopLoad(id);
                 seed.plugins.popovers.openPopup(id, parameters);
             },
 
@@ -29,7 +34,7 @@ module.exports = {
                 seed.emit('PopupClose', id);
             },
 
-            addData(args){
+            addData(args) {
                 let id = args && args.hasOwnProperty('id') ? args.id : mainId;
                 let data = args && args.hasOwnProperty('data') ? args.data : {};
 
@@ -38,19 +43,28 @@ module.exports = {
                 if (!popup.hasOwnProperty(id)) {
                     seed.plugins.popovers.set(['popup', id ], {});
                 }
-                this.disableOkBtn(id);
 
                 seed.plugins.popovers.set(['popup', id, 'data'], data);
             },
 
-            disableOkBtn(id){
+            disableOkButton(id) {
                 if (!id) id = mainId;
-                seed.plugins.popovers.set(['popup', id, 'disable'],true);
+                seed.plugins.popovers.set(['popup', id, 'disabled'],true);
             },
 
-            enableOkBtn(id){
+            enableOkButton(id) {
                 if (!id) id = mainId;
-                seed.plugins.popovers.set(['popup', id, 'disable'],false);
+                seed.plugins.popovers.set(['popup', id, 'disabled'],false);
+            },
+
+            okButtonStartLoad(id) {
+                if (!id) id = mainId;
+                seed.plugins.popovers.set(['popup', id, 'isLoading'],true);
+            },
+
+            okButtonStopLoad(id) {
+                if (!id) id = mainId;
+                seed.plugins.popovers.set(['popup', id, 'isLoading'],false);
             },
         };
     }

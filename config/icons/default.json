@@ -29,7 +29,7 @@
   },
   "genie": {
     "clear": "clear",
-    "mongo": "files.upload",
+    "mongo": "cloud_upload",
     "save": "save",
     "generate": "play_arrow",
     "code": "code",

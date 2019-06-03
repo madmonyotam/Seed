@@ -80,7 +80,8 @@ get(Row, Button) {
 
             if (!okLabel) return null;
 
-            let click = okDisabled ? ()=>{} : okCB;
+            let click = okDisabled || okLoading ? ()=>{} : okCB;
+            let ripple = !(okDisabled || okLoading);
 
             return (
                 <Button
@@ -88,7 +89,7 @@ get(Row, Button) {
                     backgroundColor={background}
                     disabled={okDisabled}
                     isLoading={okLoading}
-                    ripple={!okDisabled}
+                    ripple={ripple}
                     onClick={click}
                 >
                     {okLabel}

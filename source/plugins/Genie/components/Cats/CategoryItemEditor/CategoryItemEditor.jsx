@@ -57,7 +57,7 @@ module.exports = {
             },
 
             componentWillUnmount() {
-                PopupHandler.disableOkBtn();
+                PopupHandler.disableOkButton();
             },
 
             componentWillReceiveProps (nextProps) {
@@ -153,26 +153,26 @@ module.exports = {
 
                 if (needsCount) {
                     if (!hasTitle || !hasValue || !hasCount)
-                        PopupHandler.disableOkBtn();
+                        PopupHandler.disableOkButton();
                     else {
                         PopupHandler.addData({data: {oldTitle, title, type, value, count}});
-                        PopupHandler.enableOkBtn();
+                        PopupHandler.enableOkButton();
                     }
                 }
                 else {
                     if (needsValue) {
                         if (!hasTitle || !hasValue)
-                            PopupHandler.disableOkBtn();
+                            PopupHandler.disableOkButton();
                         else {
                             PopupHandler.addData({data: {oldTitle, title, type, value}});
-                            PopupHandler.enableOkBtn();
+                            PopupHandler.enableOkButton();
                         }
                     } else {
                         if (!hasTitle)
-                            PopupHandler.disableOkBtn();
+                            PopupHandler.disableOkButton();
                         else {
                             PopupHandler.addData({data: {oldTitle, title, type}});
-                            PopupHandler.enableOkBtn();
+                            PopupHandler.enableOkButton();
                         }
                     }
                 }

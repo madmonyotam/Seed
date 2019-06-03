@@ -626,7 +626,7 @@ module.exports = {
             },
 
             getCategories(){
-              return core.tree.get(["plugins","Settings","config","genie"])
+                return core.tree.get(['plugins', 'access', 'genie'])
             },
 
             getSchemes() {

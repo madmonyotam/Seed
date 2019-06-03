@@ -11,10 +11,14 @@ module.exports = {
         // SimpleDropDown
         ) {
         var core = this;
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
         return {
-            mixins: [ ComponentMixin ],
+            mixins: [ ComponentMixin, Branch ],
+
+            cursors: {
+                genie: ['plugins', 'access', 'genie'],
+            },
 
             propsTypes: {
             },
@@ -38,7 +42,7 @@ module.exports = {
             },
 
             componentDidMount() {
-                PopupHandler.enableOkBtn();
+                PopupHandler.enableOkButton();
             },
 
             initUnits(){
@@ -59,10 +63,10 @@ module.exports = {
 
             checkValues(library, category){
                 if(isEmpty(library) || isEmpty(category)){
-                    return PopupHandler.disableOkBtn();
+                    return PopupHandler.disableOkButton();
                 }
                 
-                PopupHandler.enableOkBtn();
+                PopupHandler.enableOkButton();
                 PopupHandler.addData({library, category});
             },
             
@@ -82,7 +86,7 @@ module.exports = {
 
             createOptions(){
                 let options=[];
-                let all = seed.get('genie');
+                let all = this.cursor.genie.get();
                 let keys = Object.keys(all);
 
                 let libraries = keys.map( k => k.split(':')[0] );

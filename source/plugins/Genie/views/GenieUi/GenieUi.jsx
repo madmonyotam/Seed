@@ -16,6 +16,7 @@ module.exports = {
             cursors: {
                 currentLibrary: ['plugins','Genie','currentLibrary'],
                 currentCategory: ['plugins','Genie','currentCategory'],
+                originalData: ['plugins','Genie','data'],
                 data: ['plugins', 'access', 'genie'],
             },
 
@@ -27,7 +28,11 @@ module.exports = {
                 this.eventsHandler('on');
                 setTimeout(() => {
                     this.setCurrentLibrary();
+                    this.setCurrentCategory();
                 }, 150);
+                setTimeout(() => {
+                    this.updateOriginalData();
+                }, 250);
             },
 
             componentWillUnmount() {
@@ -108,6 +113,7 @@ module.exports = {
 
             eventsHandler(action) {
                 seed[action]('genieSave', this.handleSave);
+                seed[action]('genie_updateOriginalData', this.updateOriginalData);
 
                 let windowEvent = (action == 'on') ? 'addEventListener' : 'removeEventListener';
 
@@ -115,7 +121,8 @@ module.exports = {
             },
 
             handleSave() {
-                return core.emit('file:save', this.state.data);
+                let {data} = this.state;
+                seed.plugins.Settings.run('SaveSettings', { dir: 'genie', fileData: data });
             },
 
             handleKeypress(event) {
@@ -126,12 +133,24 @@ module.exports = {
                 }
             },
 
+            updateOriginalData() {
+                this.cursor.originalData.set(this.cursor.data.get());
+            },
+
             setCurrentLibrary() {
                 let libraries = this.getLibrariesLabels();
                 if (!libraries || !libraries.length) return null
 
                 this.cursor.currentLibrary.set(libraries[0]);
                 this.setState( (state, props)=>{ return {currentLibrary: libraries[0]} });
+            },
+
+            setCurrentCategory() {
+                let categories = this.getCategoriesLabels();
+                if (!categories || !categories.length) return null
+
+                this.cursor.currentCategory.set(categories[0]);
+                this.setState( (state, props)=>{ return {currentCategory: categories[0]} });
             },
 
             getLibrariesLabels() {
