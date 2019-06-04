@@ -143,7 +143,9 @@ module.exports = {
             },
 
             setParentKey() {
-                let parentKey = `${this.cursor.currentLibrary.get()}:${this.cursor.currentCategory.get()}`;
+                let { currentLibrary,currentCategory } = this.state;
+
+                let parentKey = `${currentLibrary}:${currentCategory}`;
                 this.setState(()=>{return {parentKey: parentKey}});
             },
 
@@ -159,11 +161,10 @@ module.exports = {
             },
 
             handleGenerate() {
-                let {counter, parentKey} = this.state;
+                let {counter, parentKey, genie} = this.state;
                 let {items} = this.props;
 
-                let genieData = this.cursor.genie.get();
-                let currentCategory = genieData[parentKey]
+                let currentCategory = genie[parentKey];
                 let model = currentCategory && currentCategory.items ? currentCategory.items : items;
                 let count = counter < this.units.maxCreate ? counter > this.units.minCreate ? counter : this.units.minCreate : this.units.maxCreate;
 
@@ -202,8 +203,8 @@ module.exports = {
             },
 
             handleUpdateTree( data, mode ) {
-                let {parentKey} = this.state;
-                let mock = this.serialize(this.cursor.genie.get());
+                let {parentKey, genie} = this.state;
+                let mock = this.serialize(genie);
 
                 let newData = {
                     type: data.type
@@ -297,7 +298,7 @@ module.exports = {
             },
 
             handleSaveToTree(model) {
-                let {parentKey} = this.state;
+                let {parentKey, genie} = this.state;
                 if (!model || isEmpty(model)) return null;
 
                 let isJSON = (model)=>{try {JSON.parse(model);} catch(e) {return false;}; return true;};
@@ -306,7 +307,7 @@ module.exports = {
                     model = JSON.parse(model);
                 }
 
-                let data = this.serialize(this.cursor.genie.get());
+                let data = this.serialize(genie);
                 data[parentKey] = model;
 
                 this.cursor.genie.set(data);
