@@ -26,13 +26,8 @@ module.exports = {
 
             componentDidMount() {
                 this.eventsHandler('on');
-                setTimeout(() => {
-                    this.setCurrentLibrary();
-                    this.setCurrentCategory();
-                }, 150);
-                setTimeout(() => {
-                    this.updateOriginalData();
-                }, 250);
+                this.setCurrentLibrary();
+                this.updateOriginalData();
             },
 
             componentWillUnmount() {
@@ -114,6 +109,9 @@ module.exports = {
             eventsHandler(action) {
                 seed[action]('genieSave', this.handleSave);
                 seed[action]('genie_updateOriginalData', this.updateOriginalData);
+                seed[action]('genie_setFirstCategory', this.setCurrentCategory);
+
+                this.cursor.currentLibrary[action]('update', this.setCurrentCategory);
 
                 let windowEvent = (action == 'on') ? 'addEventListener' : 'removeEventListener';
 
@@ -142,7 +140,6 @@ module.exports = {
                 if (!libraries || !libraries.length) return null
 
                 this.cursor.currentLibrary.set(libraries[0]);
-                this.setState( (state, props)=>{ return {currentLibrary: libraries[0]} });
             },
 
             setCurrentCategory() {
@@ -150,7 +147,6 @@ module.exports = {
                 if (!categories || !categories.length) return null
 
                 this.cursor.currentCategory.set(categories[0]);
-                this.setState( (state, props)=>{ return {currentCategory: categories[0]} });
             },
 
             getLibrariesLabels() {

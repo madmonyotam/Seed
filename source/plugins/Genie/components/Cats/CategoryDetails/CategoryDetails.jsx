@@ -53,10 +53,12 @@ module.exports = {
             },
 
             componentDidMount() {
-                setTimeout(() => {
-                    this.setParentKey();
-                    this.updateStateItems();
-                }, 200);
+                this.setParentKey();
+                this.updateStateItems();
+            },
+
+            componentWillReceiveProps(nextProps) {
+                this.setParentKey();
             },
 
             initUnits(){
@@ -143,9 +145,9 @@ module.exports = {
             },
 
             setParentKey() {
-                let { currentLibrary,currentCategory } = this.state;
-
+                let {currentLibrary, currentCategory} = this.state;
                 let parentKey = `${currentLibrary}:${currentCategory}`;
+
                 this.setState(()=>{return {parentKey: parentKey}});
             },
 
@@ -317,20 +319,26 @@ module.exports = {
             renderSaveToTreeButton() {
                 let {stateItems, genie, parentKey, originalData} = this.state;
 
-                if (originalData[parentKey] && genie[parentKey] && Object.is(originalData[parentKey], genie[parentKey] )) return null;
-
-                const click = (e)=>{
+                const handleStateItems = (stateItems) => {
                     let model = stateItems;
+
                     let isJSON = (model)=>{
                         try { JSON.parse(model); }
                         catch(e) { return false; };
                         return true;
                     };
-                    
+
                     if (typeof model === 'string' && isJSON(model)) {
-                        model = JSON.parse(model);
+                        return JSON.parse(model);
                     }
-                    
+
+                    return model;
+                };
+
+                if (originalData[parentKey] && genie[parentKey] && Object.is(originalData[parentKey], genie[parentKey] )) return null;
+
+                const click = (e)=>{
+                    let model = handleStateItems(stateItems);
                     this.handleSaveToTree(model);
                     seed.emit('genie_updateOriginalData');
                     seed.plugins.Settings.run('SaveSettings', { dir: 'genie', fileData: genie });
