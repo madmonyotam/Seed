@@ -14,6 +14,29 @@ module.exports = {
 
         let { React, PropTypes, ComponentMixin } = core.imports;
 
+        const units = {
+            colors: {
+                border: core.theme('borders.default'),
+                text: core.theme('texts.default'),
+            },
+            icons: {
+                threeDots: core.icons('general.more'),
+                clear: core.icons('genie.clear'),
+                search: core.icons('genie.search'),
+            },
+            backgrounds: {
+                default: core.theme('backgrounds.default'),
+            },
+            dims: {
+                fontSize: 13,
+                buttonIconSize: 27,
+                iconSize: 18,
+                iconsRow: 60,
+            },
+            transition: 0.3,
+            closeIconRowTransition: 0.5
+        };
+
         return {
             mixins: [ ComponentMixin ],
 
@@ -38,10 +61,6 @@ module.exports = {
                 };
             },
 
-            componentWillMount() {
-                this.initUnits();
-            },
-
             componentDidMount() {
                 this.eventsHandler('on');
             },
@@ -57,70 +76,46 @@ module.exports = {
                 core[action]('MenuTitleBar_closeSearch', this.handleCloseSearch);
             },
 
-            initUnits(){
-                this.colors = {
-                    border: core.theme('borders.default'),
-                    text: core.theme('texts.default'),
-                };
-                this.icons = {
-                    threeDots: core.icons('general.more'),
-                    clear: core.icons('genie.clear'),
-                    search: core.icons('genie.search'),
-                };
-                this.backgrounds = {
-                    default: core.theme('backgrounds.default'),
-                };
-                this.dims = {
-                    fontSize: 13,
-                    buttonIconSize: 27,
-                    iconSize: 18,
-                    iconsRow: 60,
-                };
-                this.units = {
-                    transition: 0.3,
-                    closeIconRowTransition: 0.5
-                };
-            },
 
             styles(s){
 
-                let iconsRowTransition = `width ${this.units.transition}s ${this.units.closeIconRowTransition}s ease-in-out, min-width ${this.units.transition}s ${this.units.closeIconRowTransition}s ease-in-out`;
+                let iconsRowTransition = `width ${units.transition}s ${units.closeIconRowTransition}s ease-in-out, min-width ${units.transition}s ${units.closeIconRowTransition}s ease-in-out`;
                 if (this.state.openSearch) {
-                    iconsRowTransition = `width ${this.units.transition}s ease-in-out, min-width ${this.units.transition}s ease-in-out`;
+                    iconsRowTransition = `width ${units.transition}s ease-in-out, min-width ${units.transition}s ease-in-out`;
                 }
 
                 const styles = {
                     root: {
                         position: 'relative',
-                        borderBottom: `1px solid ${this.colors.border}`,
+                        borderBottom: `1px solid ${units.colors.border}`,
                     },
                     search: {
-                        fontSize: this.dims.fontSize,
+                        fontSize: units.dims.fontSize,
                         width: '100%',
                         maxWidth: '100%',
                     },
                     iconsRow: {
-                        width:    this.state.openSearch ? 0 : this.dims.iconsRow,
-                        minWidth: this.state.openSearch ? 0 : this.dims.iconsRow,
+                        width:    this.state.openSearch ? 0 : units.dims.iconsRow,
+                        minWidth: this.state.openSearch ? 0 : units.dims.iconsRow,
                         padding: 0,
                         transition: iconsRowTransition,
                     },
                     button: {
-                        width: this.dims.buttonIconSize, 
-                        height: this.dims.buttonIconSize,
-                        color: this.colors.text,
+                        width: units.dims.buttonIconSize, 
+                        height: units.dims.buttonIconSize,
+                        color: units.colors.text,
                     },
                     searchInput: {
                         width: (this.state.openSearch) ? 230 : 0,
                         minWidth: (this.state.openSearch) ? 230 : 0,
-                        background: this.backgrounds.default,
-                        transition: `width ${this.units.transition}s ${this.units.transition}s ease-in-out, min-width ${this.units.transition}s ${this.units.transition}s ease-in-out`,
+                        background: units.backgrounds.default,
+                        transition: `width ${units.transition}s ${units.transition}s ease-in-out, min-width ${units.transition}s ${units.transition}s ease-in-out`,
                     },
                     Input: {
                          marginRight: 10,
                     },
                     input: {
-                        fontSize: this.dims.fontSize,
+                        fontSize: units.dims.fontSize,
                         width: 200,
                         padding: 0,
                     },
@@ -137,7 +132,7 @@ module.exports = {
                 this.props.searchCB('');
                 setTimeout(() => {
                     this.setState((s, p)=>{return { searchValue: '' }});
-                }, this.units.closeIconRowTransition * 1000);
+                }, units.closeIconRowTransition * 1000);
             },
 
             renderSearchInput() {
@@ -162,10 +157,10 @@ module.exports = {
                         <CloseIcon key={'CloseIcon'}
                             style={{ marginRight: 5 }}
                             hoverSize={ 5 }
-                            iconSize={this.dims.iconSize}
+                            iconSize={units.dims.iconSize}
                             onClick={this.handleCloseSearch}
                             title={core.translate('Clear')}
-                            icon={this.icons.clear}
+                            icon={units.icons.clear}
                         />
                     </Row>
                 )
@@ -181,15 +176,15 @@ module.exports = {
                 return (
                     <IconsRow style={this.styles('iconsRow')}>
                         <SearchIcon key={'SearchIcon'}
-                            iconSize={this.dims.iconSize}
+                            iconSize={units.dims.iconSize}
                             hoverSize={ 5 }
                             onClick={this.handleOpenSearch}
                             title={core.translate('Search')}
-                            icon={this.icons.search}
+                            icon={units.icons.search}
                         />
                         <MoreIcon key={'MoreIcon'}
-                            icon={this.icons.threeDots}
-                            iconSize={this.dims.iconSize}
+                            icon={units.icons.threeDots}
+                            iconSize={units.dims.iconSize}
                             menuItems={menuList}
                         />
                     </IconsRow>

@@ -13,14 +13,23 @@ module.exports = {
 
     get(Generator) {
         let core = this;
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var { React, PropTypes, ComponentMixin, Branch } = core.imports;
+
+        const units = {
+            dims: {},
+            colors: {},
+            units: {},
+        };
 
         return {
-            mixins: [ ComponentMixin ],
+            mixins: [ ComponentMixin, Branch ],
+
+            cursors: {
+                selected: ['plugins','Genie','selected'],
+            },
 
             propsTypes: {
                 data: PropTypes.object,
-                parentKey: PropTypes.string,
                 cb: PropTypes.func,
                 height:  PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             },
@@ -32,7 +41,6 @@ module.exports = {
             getDefaultProps(){
                 return {
                     data: {},
-                    parentKey: '',
                     height: '100%',
                     clearCode: false,
                     cb: ()=>{},
@@ -73,13 +81,6 @@ module.exports = {
                     //   exec: this.handleSave  //function to execute when keys are pressed.
                     // }
                 ]
-
-                this.dims = {
-                };
-                this.colors = {
-                };
-                this.units = {
-                };
             },
 
             styles(propName) {
@@ -115,6 +116,7 @@ module.exports = {
             },
 
             getAutoCompleteData() {
+                let {selected} = this.state;
                 let data = Generator.getSchemes();
 
                 let schemes = {};
@@ -130,7 +132,7 @@ module.exports = {
                     let value = schemes[actualType].value;
                     if (value && value instanceof Array && value.length ) {
                         let newValue = [];
-                            newValue = value.filter( sv => sv !== this.props.parentKey );
+                            newValue = value.filter( sv => sv !== selected );
                             newValue = newValue.filter(Boolean);
                             newValue.sort();
                         schemes[actualType].value = newValue;

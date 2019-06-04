@@ -1,5 +1,6 @@
 module.exports = {
-    currentCategory: '',
-    currentLibrary: '',
+    currentCategory: "",
+    currentLibrary: "",
+    selected: "",
     data: {}
 }

@@ -6,20 +6,34 @@ module.exports = {
         Tooltip, Label) {
 
         var core = this;
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var { React, PropTypes, ComponentMixin, Branch } = core.imports;
+
+        
+        const units = {
+            dims: {},
+            icons: {},
+            colors: {
+                border: core.theme('borders.default'),
+                white: core.theme('colors.white'),
+                text: core.theme('texts.default'),
+            },
+            backgrounds: {},
+        };
 
         return {
-            mixins: [ ComponentMixin ],
+            mixins: [ ComponentMixin, Branch ],
+            
+            cursors: {
+                selected: ['plugins','Genie','selected'],
+            },
 
             propsTypes: {
                 mode: PropTypes.string,
-                parentKey: PropTypes.string,
             },
 
             getDefaultProps(){
                 return {
                     mode: 'add',
-                    parentKey: '',
                 };
             },
 
@@ -47,10 +61,6 @@ module.exports = {
                 };
             },
 
-            componentWillMount () {
-                this.initUnits();
-            },
-
             componentDidMount() {
                 this.getData();
                 this.handleCategoriesOptions(this.state.currentType);
@@ -61,22 +71,6 @@ module.exports = {
             },
 
             componentWillReceiveProps (nextProps) {
-            },
-
-            initUnits(){
-                this.dims = {
-                    minTitleWidth: 100,
-                    padding: '10px 0px'
-                };
-                this.icons = {
-                };
-                this.colors = {
-                    border: core.theme('borders.default'),
-                    white: core.theme('colors.white'),
-                    text: core.theme('texts.default'),
-                };
-                this.backgrounds = {
-                };
             },
 
             styles(s){
@@ -102,7 +96,7 @@ module.exports = {
                         textTransform: 'capitalize',
                         fontSize: 12,
                         fontWeight: 400,
-                        color: this.colors.white
+                        color: units.colors.white
                     },
                     textField: {
                         marginTop: 0,
@@ -119,7 +113,7 @@ module.exports = {
                         border: 0,
                         width: "100%",
                         height: "100%",
-                        borderBottom: `1px solid ${this.colors.border}`
+                        borderBottom: `1px solid ${units.colors.border}`
                     },
                 }
                 return(styles[s]);
@@ -210,11 +204,12 @@ module.exports = {
             },
 
             handleCategoriesOptions(currentType) { 
+                let {selected} = this.state;
                 let categoriesOptions = undefined;
 
                 if (currentType && currentType.options ) {
                     let keys = currentType.options.sort();
-                    keys = keys.filter( key => key !== this.props.parentKey );
+                    keys = keys.filter( key => key !== selected );
 
                     categoriesOptions = keys.map( op =>{ return { label : op, value: op } });
                 }
@@ -241,7 +236,7 @@ module.exports = {
                             content={this.renderTooltip()}
                             style={this.styles('typeInfoIcon')}
                         >
-                            <Icon size={16} color={this.colors.text}/>
+                            <Icon size={16} color={units.colors.text}/>
                         </Tooltip>
                     </div>
                 )
@@ -252,7 +247,7 @@ module.exports = {
                 let currentInfo = Generator.getTypeInfo(type);
                 return (
                     <Label
-                        color={this.colors.white}
+                        color={units.colors.white}
                         transform={'lowercase'}
                         label={ currentInfo || core.translate('Select Type') }
                         size={12}

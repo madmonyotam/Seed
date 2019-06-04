@@ -37,15 +37,8 @@ module.exports = {
                 };
             },
 
-            componentWillMount () {
-                this.initUnits();
-            },
-
             componentDidMount() {
                 PopupHandler.enableOkButton();
-            },
-
-            initUnits(){
             },
 
             styles(s){

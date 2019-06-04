@@ -10,6 +10,16 @@ module.exports = {
 
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
+        const units = {
+            dims: {
+                menuWidth: 380,
+            },
+            colors: {
+                border: seed.theme('borders.default'),
+            },
+            transition: 0.2,
+        };
+
         return {
             mixins: [ ComponentMixin, Branch ],
             
@@ -17,11 +27,8 @@ module.exports = {
                 currentLibrary: ['plugins','Genie','currentLibrary'],
                 currentCategory: ['plugins','Genie','currentCategory'],
                 originalData: ['plugins','Genie','data'],
+                selected: ['plugins','Genie','selected'],
                 data: ['plugins', 'access', 'genie'],
-            },
-
-            componentWillMount() {
-                this.initUnits();
             },
 
             componentDidMount() {
@@ -42,19 +49,6 @@ module.exports = {
                 };
             },
 
-            initUnits() {
-                this.dims = {
-                    menuWidth: 380,
-                };
-                this.colors = {
-                    border: seed.theme('borders.default'),
-                };
-                this.units = {
-                    transition: 0.2,
-                };
-
-            },
-
             styles(propName) {
                 let {currentLibrary, openLibAdd} = this.state;
 
@@ -70,35 +64,35 @@ module.exports = {
                     lists: {
                         display: 'flex',
                         position: 'relative',
-                        width: noMenu ? 0 : this.dims.menuWidth,
-                        transition: `width ${this.units.transition}s ease-in-out, marginRight ${this.units.transition}s ease-in-out`,
+                        width: noMenu ? 0 : units.dims.menuWidth,
+                        transition: `width ${units.transition}s ease-in-out, marginRight ${units.transition}s ease-in-out`,
                         height: '100%',
                         overflow: 'hidden auto',
                         marginRight: noMenu ? 0 : 15,
                     },
                     menu: {
                         position: 'relative',
-                        width: this.dims.menuWidth,
-                        minWidth: this.dims.menuWidth,
+                        width: units.dims.menuWidth,
+                        minWidth: units.dims.menuWidth,
                     },
                     libraries: {
                         position: 'relative',
-                        width: this.dims.menuWidth / 2,
-                        minWidth: this.dims.menuWidth / 2,
+                        width: units.dims.menuWidth / 2,
+                        minWidth: units.dims.menuWidth / 2,
                         overflow: 'auto',
-                        borderRight: `1px solid ${this.colors.border}`,
+                        borderRight: `1px solid ${units.colors.border}`,
                     },
                     categories: {
                         position: 'relative',
-                        width: this.dims.menuWidth / 2,
-                        minWidth: this.dims.menuWidth / 2,
+                        width: units.dims.menuWidth / 2,
+                        minWidth: units.dims.menuWidth / 2,
                         overflow: 'auto',
                     },
                     openLibrary: {
                         position: 'relative',
                         flex: 1,
-                        width: noMenu ? '100%' : `calc(100% - ${this.dims.menuWidth}px)`,
-                        transition: `width ${this.units.transition}s ease-in-out`,
+                        width: noMenu ? '100%' : `calc(100% - ${units.dims.menuWidth}px)`,
+                        transition: `width ${units.transition}s ease-in-out`,
                         height: '100%',
                         marginLeft: 0
                     },
@@ -112,6 +106,7 @@ module.exports = {
                 seed[action]('genie_setFirstCategory', this.setCurrentCategory);
 
                 this.cursor.currentLibrary[action]('update', this.setCurrentCategory);
+                this.cursor.currentCategory[action]('update', this.setSelected);
 
                 let windowEvent = (action == 'on') ? 'addEventListener' : 'removeEventListener';
 
@@ -124,7 +119,6 @@ module.exports = {
             },
 
             handleKeypress(event) {
-                
                 if (event.code == 'KeyS' && event.composed && event.ctrlKey) {
                     event.preventDefault(); event.stopPropagation();
                     return this.handleSave();
@@ -147,6 +141,11 @@ module.exports = {
                 if (!categories || !categories.length) return null
 
                 this.cursor.currentCategory.set(categories[0]);
+            },
+
+            setSelected() {
+                let {currentLibrary, currentCategory} = this.state;
+                this.cursor.selected.set(`${currentLibrary}:${currentCategory}`);
             },
 
             getLibrariesLabels() {

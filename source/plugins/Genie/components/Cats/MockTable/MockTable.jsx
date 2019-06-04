@@ -14,29 +14,47 @@ module.exports = {
 
         var { React, PropTypes, ComponentMixin } = core.imports;
 
+        const units = {
+            dims: {
+                actionButtonIcon: 16,
+                tableCornerRadius: 2,
+                actionWidth: 55,
+                regularColumnWidth: 175,
+                defaultPageSize: 10,
+            },
+            dateFormat: core.general('dateFormatFull'),
+            icons: {
+                edit: core.icons('genie.edit'),
+                remove: core.icons('genie.remove'),
+            },
+            colors: {
+                border: core.theme('borders.default'),
+                text: core.theme('texts.default'),
+                disabled: core.theme('texts.disabled'),
+            },
+            backgrounds: {
+                white: core.theme('backgrounds.default'),
+                title: core.theme('genie.title_bg'),
+            },
+        };
+
         return {
             mixins: [ ComponentMixin ],
 
             propsTypes: {
-                items: PropTypes.object,
-                parentKey: PropTypes.string,
+                data: PropTypes.object,
                 cb: PropTypes.func,
             },
 
             getDefaultProps(){
                 return {
-                    items: {},
-                    parentKey: '',
+                    data: {},
                     cb: ()=>{},
                 };
             },
             
             getInitialState() {
                 return {};
-            },
-
-            componentWillMount () {
-                this.initUnits();
             },
 
             componentDidMount() {
@@ -46,30 +64,6 @@ module.exports = {
             },
 
             componentWillReceiveProps (nextProps) {
-            },
-
-            initUnits(){
-                this.dims = {
-                    actionButtonIcon: 16,
-                    tableCornerRadius: 2,
-                    actionWidth: 55,
-                    regularColumnWidth: 175,
-                    defaultPageSize: 10,
-                };
-                this.dateFormat = core.general('dateFormatFull');
-                this.icons = {
-                    edit: core.icons('genie.edit'),
-                    remove: core.icons('genie.remove'),
-                };
-                this.colors = {
-                    border: core.theme('borders.default'),
-                    text: core.theme('texts.default'),
-                    disabled: core.theme('texts.disabled'),
-                };
-                this.backgrounds = {
-                    white: core.theme('backgrounds.default'),
-                    title: core.theme('genie.title_bg'),
-                };
             },
 
             styles(s){
@@ -85,14 +79,14 @@ module.exports = {
                         minHeight: 20,
                         minWidth: 'fit-content',
                         maxWidth: 100,
-                        background: this.backgrounds.white,
-                        border: `1px solid ${this.colors.border}`,
+                        background: units.backgrounds.white,
+                        border: `1px solid ${units.colors.border}`,
                         borderRadius: 5,
                         padding: '0 7px',
                         margin: '0 2px 2px 0',
                     },
                     actionButton: {
-                        color: this.colors.text,
+                        color: units.colors.text,
                         margin: '0 7px'
                     },
                 }
@@ -100,7 +94,7 @@ module.exports = {
             },
 
             formatData() {
-                let data = this.props.items;
+                let data = this.props.data;
                 let newData = [];
 
                 for (const key in data) {
@@ -143,12 +137,12 @@ module.exports = {
                         <React.Fragment>
                             <Row padding={0} style={{justifyContent: "space-between",}}>
                                 <Label label={core.translate('From :')}/>
-                                <Label label={moment(value.from).format(this.dateFormat)}/>
+                                <Label label={moment(value.from).format(units.dateFormat)}/>
                             </Row>
                             <div style={{minWidth:40}} />
                             <Row padding={0} style={{justifyContent: "space-between",}}>
                                 <Label label={core.translate('To :')}/>
-                                <Label label={moment(value.to).format(this.dateFormat)}/>
+                                <Label label={moment(value.to).format(units.dateFormat)}/>
                             </Row>
                         </React.Fragment>
                     );
@@ -212,7 +206,7 @@ module.exports = {
                     PopupHandler.open({
                         parameters: {
                             title: core.translate('Edit category item'),
-                            body: <CategoryItemEditor mode={'edit'} parentKey={this.props.parentKey}/>,
+                            body: <CategoryItemEditor mode={'edit'}/>,
                             bodyStyle: {minHeight: 'unset'},
                             okButton: {
                                 btnTitle: core.translate('Save'),
@@ -226,15 +220,14 @@ module.exports = {
                     <Icon
                         title={core.translate('Edit Item')}
                         onClick={click}
-                        icon={this.icons.edit}
-                        size={this.dims.actionButtonIcon} 
-                        color={this.colors.text}
+                        icon={units.icons.edit}
+                        size={units.dims.actionButtonIcon} 
+                        color={units.colors.text}
                     />
                 );
             },
 
             renderRemoveButton(title) {
-                let {parentKey} = this.props;
 
                 const handleRemove = ()=>{
                     core.plugins.popovers.Caution(
@@ -250,8 +243,8 @@ module.exports = {
                     <Icon
                         onClick={ handleRemove }
                         title={ core.translate('Remove Item') }
-                        icon={ this.icons.remove }
-                        size={this.dims.actionButtonIcon}
+                        icon={ units.icons.remove }
+                        size={units.dims.actionButtonIcon}
                     />
                 );
             },

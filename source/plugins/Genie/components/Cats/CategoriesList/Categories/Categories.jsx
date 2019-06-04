@@ -18,23 +18,6 @@ module.exports = {
             }
         }
 
-        const style = {
-            root: {
-                display: 'flex',
-                position: 'relative',
-                flexDirection: 'column',
-                width: '100%',
-                height: '100%',
-                overflow: 'hidden',
-                boxShadow: "rgba(0, 0, 0, 0.2) 0px 1px 2px -1px"
-            },
-            mapWrapper: {
-                position: "relative",
-                width: "100%",
-                height: "100%",
-            }
-        }
-
         return {
             mixins: [ ComponentMixin, Branch ],
 
@@ -67,6 +50,27 @@ module.exports = {
             componentWillReceiveProps(nextProps) {
                 if (!seed.isUndefined(nextProps.addIsOpen)) this.setState({addIsOpen:nextProps.addIsOpen});
             },
+
+            styles(s) {
+                let styles = {
+                    root: {
+                        display: 'flex',
+                        position: 'relative',
+                        flexDirection: 'column',
+                        width: '100%',
+                        height: '100%',
+                        overflow: 'hidden',
+                        boxShadow: "rgba(0, 0, 0, 0.2) 0px 1px 2px -1px"
+                    },
+                    mapWrapper: {
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                    }
+                }
+                return(styles[s]);
+            },
+            
 
             getCategoriesLabels() {
                 let { currentLibrary, genie } = this.state;
@@ -251,9 +255,9 @@ module.exports = {
                 if(!currentLibrary) return null;
 
                 return (
-                    <div id={'Categories.root'} style={ style.root }>
+                    <div id={'Categories.root'} style={ this.styles('root') }>
                         {this.renderAdd()}
-                        <div style={ style.mapWrapper }>
+                        <div style={ this.styles('mapWrapper') }>
                             { this.handleMapCats() }
                         </div>
                     </div>

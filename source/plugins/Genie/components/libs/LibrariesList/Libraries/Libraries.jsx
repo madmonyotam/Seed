@@ -19,22 +19,6 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
         },
     };
 
-    const style = {
-        root: {
-            display: 'flex',
-            position: 'relative',
-            flexDirection: 'column',
-            width: '100%',
-            height: '100%',
-            overflow: 'hidden'
-        },
-        mapWrapper: {
-            position: "relative",
-            width: "100%",
-            height: "100%",
-        }
-    };
-
     return {
         mixins: [ ComponentMixin, Branch ],
 
@@ -72,6 +56,27 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
         componentWillReceiveProps(nextProps) {
             if (!seed.isUndefined(nextProps.addIsOpen)) this.setState({addIsOpen: nextProps.addIsOpen});
         },
+
+        styles(s) {
+            let styles = {
+                root: {
+                    display: 'flex',
+                    position: 'relative',
+                    flexDirection: 'column',
+                    width: '100%',
+                    height: '100%',
+                    overflow: 'hidden'
+                },
+                mapWrapper: {
+                    position: "relative",
+                    width: "100%",
+                    height: "100%",
+                }
+            }
+            
+            return(styles[s]);
+        },
+        
 
         getLibrariesLabels() {
             let { genie } = this.state;
@@ -328,9 +333,9 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
 
         render() {
             return (
-                <div id={'Libraries'} style={ style.root }>
+                <div id={'Libraries'} style={ this.styles('root') }>
                     {this.renderAdd()}
-                    <div style={ style.mapWrapper }>
+                    <div style={ this.styles('mapWrapper') }>
                         { this.handleMapLibs() }
                     </div>
                 </div>

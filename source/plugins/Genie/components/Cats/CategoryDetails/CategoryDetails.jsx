@@ -15,6 +15,44 @@ module.exports = {
         var seed = this;
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
+        const units = {
+            TABLE:  0,
+            CODE:   1,
+            CREATE: 2,
+
+            maxCreate: 50000,
+            minCreate: 1,
+            
+            colors: {
+                text: seed.theme('texts.default'),
+                generate: seed.theme('texts.primary'),
+                icon: seed.theme('texts.primary'),
+                border: seed.theme('borders.light'),
+                lib: seed.theme('Genie.lib_bg'),
+                cat: seed.theme('Genie.cat_bg')
+            },
+            backgrounds: {
+                default: seed.theme('backgrounds.default')
+            },
+            dims: {
+                mainHeight: 'calc(100% - 50px)',
+                mainWidth: '100%',
+                actionButtonIcon: 16,
+                createActionsInputWidth: 100,
+            },
+            icons: {
+                arrowUp: seed.icons('navigate.arrow_up'),
+                arrowDown: seed.icons('navigate.arrow_down'),
+                table: seed.icons('genie.table'),
+                code: seed.icons('genie.code'),
+                create: seed.icons('genie.create'),
+                mongo: seed.icons('genie.mongo'),
+                save: seed.icons('genie.save'),
+                generate: seed.icons('genie.generate'),
+                add: seed.icons('genie.add'),
+            },
+        };
+
         return {
             mixins: [ ComponentMixin, Branch ],
 
@@ -22,6 +60,7 @@ module.exports = {
                 currentLibrary: ['plugins','Genie','currentLibrary'],
                 currentCategory: ['plugins','Genie','currentCategory'],
                 originalData: ['plugins','Genie','data'],
+                selected: ['plugins','Genie','selected'],
                 genie: ['plugins', 'access', 'genie'],
             },
 
@@ -32,17 +71,13 @@ module.exports = {
             },
 
             getInitialState() {
-                this.TABLE = 0;
+                
                 return {
-                    mode: this.TABLE,
+                    mode: units.TABLE,
                     counter: 1,
                     stateItems: {},
                     codeData: {},
                };
-            },
-
-            componentWillMount () {
-                this.initUnits();
             },
 
             componentWillUnmount() {
@@ -53,51 +88,7 @@ module.exports = {
             },
 
             componentDidMount() {
-                this.setParentKey();
                 this.updateStateItems();
-            },
-
-            componentWillReceiveProps(nextProps) {
-                this.setParentKey();
-            },
-
-            initUnits(){
-                // this.TABLE - see getInitialState
-                this.CODE   = 1;
-                this.CREATE = 2;
-
-                this.units = {
-                    maxCreate: 50000,
-                    minCreate: 1,
-                };
-                this.colors = {
-                    text: seed.theme('texts.default'),
-                    generate: seed.theme('texts.primary'),
-                    icon: seed.theme('texts.primary'),
-                    border: seed.theme('borders.light'),
-                    lib: seed.theme('Genie.lib_bg'),
-                    cat: seed.theme('Genie.cat_bg')
-                };
-                this.backgrounds = {
-                    default: seed.theme('backgrounds.default')
-                };
-                this.dims = {
-                    mainHeight: 'calc(100% - 50px)',
-                    mainWidth: '100%',
-                    actionButtonIcon: 16,
-                    createActionsInputWidth: 100,
-                };
-                this.icons = {
-                    arrowUp: seed.icons('navigate.arrow_up'),
-                    arrowDown: seed.icons('navigate.arrow_down'),
-                    table: seed.icons('genie.table'),
-                    code: seed.icons('genie.code'),
-                    create: seed.icons('genie.create'),
-                    mongo: seed.icons('genie.mongo'),
-                    save: seed.icons('genie.save'),
-                    generate: seed.icons('genie.generate'),
-                    add: seed.icons('genie.add'),
-                };
             },
 
             styles(s){
@@ -110,7 +101,7 @@ module.exports = {
                         justifyContent: 'flex-end',
                     },
                     createActionsInput: {
-                        color: this.colors.text,
+                        color: units.colors.text,
                         margin: '0 10px'
                     },
                     actionButton: {
@@ -121,7 +112,7 @@ module.exports = {
                     },
                     button: {
                         margin: '0 10px',
-                        background: this.backgrounds.title,
+                        background: units.backgrounds.title,
                     },
                     welcome: {
                         display: 'flex',
@@ -131,8 +122,8 @@ module.exports = {
                         alignItems: "center",
                         flexDirection: "column",
                         zIndex: 2,
-                        background: this.colors.lib,
-                        color: this.colors.text,
+                        background: units.colors.lib,
+                        color: units.colors.text,
                         cursor: 'pointer',
                         userSelect: 'none', /* supported by Chrome and Opera */
                         WebkitUserSelect: 'none', /* Safari */
@@ -144,17 +135,10 @@ module.exports = {
                 return(styles[s]);
             },
 
-            setParentKey() {
-                let {currentLibrary, currentCategory} = this.state;
-                let parentKey = `${currentLibrary}:${currentCategory}`;
-
-                this.setState(()=>{return {parentKey: parentKey}});
-            },
-
             updateStateItems() {
-                let {mode, parentKey} = this.state;
+                let {mode} = this.state;
 
-                if (mode === this.CREATE) {
+                if (mode === units.CREATE) {
                     this.handleGenerate();
                     this.setState({stateItems:{}});
                 } else {
@@ -163,12 +147,12 @@ module.exports = {
             },
 
             handleGenerate() {
-                let {counter, parentKey, genie} = this.state;
+                let {counter, selected, genie} = this.state;
                 let {items} = this.props;
 
-                let currentCategory = genie[parentKey];
+                let currentCategory = genie[selected];
                 let model = currentCategory && currentCategory.items ? currentCategory.items : items;
-                let count = counter < this.units.maxCreate ? counter > this.units.minCreate ? counter : this.units.minCreate : this.units.maxCreate;
+                let count = counter < units.maxCreate ? counter > units.minCreate ? counter : units.minCreate : units.maxCreate;
 
                 let data = Generator.create({count, model}, true);
 
@@ -205,7 +189,7 @@ module.exports = {
             },
 
             handleUpdateTree( data, mode ) {
-                let {parentKey, genie} = this.state;
+                let {selected, genie} = this.state;
                 let mock = this.serialize(genie);
 
                 let newData = {
@@ -214,13 +198,13 @@ module.exports = {
                 if (data && data.value) newData.value = data.value;
                 if (data && data.count) newData.count = data.count;
 
-                if (mode === 'edit') delete mock[parentKey][data.oldTitle];
+                if (mode === 'edit') delete mock[selected][data.oldTitle];
                 
-                if (mode === 'remove') delete mock[parentKey][data];
-                else mock[parentKey][data.title] = newData;
+                if (mode === 'remove') delete mock[selected][data];
+                else mock[selected][data.title] = newData;
 
                 this.setState((state,p)=>{
-                    state.stateItems = mock[parentKey];
+                    state.stateItems = mock[selected];
                     return state;
                 });
 
@@ -234,27 +218,27 @@ module.exports = {
             handleActions() {
                 let {mode} = this.state;
                 switch (mode) {
-                    case this.CREATE:         return this.renderCreateActions();
-                    case this.CODE:           return this.renderSaveToTreeButton();
-                    case this.TABLE: default: return this.renderTableActions();
+                    case units.CREATE:         return this.renderCreateActions();
+                    case units.CODE:           return this.renderSaveToTreeButton();
+                    case units.TABLE: default: return this.renderTableActions();
                 }
             },
 
             renderCreateActions() {
-                let {parentKey, codeData, counter} = this.state;
+                let {selected, codeData, counter} = this.state;
                 const inputOnChange = (e)=>{
                     this.setState({counter: e.target.value});
                 };
 
                 const inputProps = {
                     type: 'number',
-                    max: this.units.maxCreate,
-                    min: this.units.minCreate,
+                    max: units.maxCreate,
+                    min: units.minCreate,
                     style: {textAlign: 'center'}
                 };
 
                 const saveMongo = (e)=>{
-                    this.handleSaveToMongo(e, parentKey, codeData);
+                    this.handleSaveToMongo(e, selected, codeData);
                 };
 
                 return (
@@ -262,22 +246,22 @@ module.exports = {
 
                         <IconButton key={'mongo'}
                                     hoverSize={ 5 }
-                                    iconSize={this.dims.actionButtonIcon}
+                                    iconSize={units.dims.actionButtonIcon}
                                     onClick={saveMongo}
                                     title={seed.translate('Upload to MongoDB')}
-                                    icon={this.icons.mongo} />
+                                    icon={units.icons.mongo} />
 
                         <FileDownloader
                             key={'download'}
                             content={codeData}
-                            fileName={parentKey}
+                            fileName={selected}
                             fileExtension={'json'} >
 
                             <IconButton key={'file'}
                                     hoverSize={ 5 }
-                                    iconSize={this.dims.actionButtonIcon}
+                                    iconSize={units.dims.actionButtonIcon}
                                     title={seed.translate('Save to file')}
-                                    icon={this.icons.save} />
+                                    icon={units.icons.save} />
 
                         </FileDownloader>
 
@@ -290,17 +274,17 @@ module.exports = {
 
                         <IconButton key={'generate'}
                                     hoverSize={ 5 }
-                                    iconSize={this.dims.actionButtonIcon}
+                                    iconSize={units.dims.actionButtonIcon}
                                     onClick={this.handleGenerate}
                                     title={seed.translate('Generate code')}
-                                    icon={this.icons.generate} />
+                                    icon={units.icons.generate} />
 
                     </React.Fragment>
                 );
             },
 
             handleSaveToTree(model) {
-                let {parentKey, genie} = this.state;
+                let {selected, genie} = this.state;
                 if (!model || isEmpty(model)) return null;
 
                 let isJSON = (model)=>{try {JSON.parse(model);} catch(e) {return false;}; return true;};
@@ -310,14 +294,14 @@ module.exports = {
                 }
 
                 let data = this.serialize(genie);
-                data[parentKey] = model;
+                data[selected] = model;
 
                 this.cursor.genie.set(data);
                 this.setState( { stateItems: {} } );
             },
 
             renderSaveToTreeButton() {
-                let {stateItems, genie, parentKey, originalData} = this.state;
+                let {stateItems, genie, selected, originalData} = this.state;
 
                 const handleStateItems = (stateItems) => {
                     let model = stateItems;
@@ -335,7 +319,7 @@ module.exports = {
                     return model;
                 };
 
-                if (originalData[parentKey] && genie[parentKey] && Object.is(originalData[parentKey], genie[parentKey] )) return null;
+                if (originalData[selected] && genie[selected] && Object.is(originalData[selected], genie[selected] )) return null;
 
                 const click = (e)=>{
                     let model = handleStateItems(stateItems);
@@ -347,15 +331,15 @@ module.exports = {
                 return (
                     <IconButton key={'SaveChanges'}
                                 hoverSize={ 5 }
-                                iconSize={this.dims.actionButtonIcon}
+                                iconSize={units.dims.actionButtonIcon}
                                 onClick={click}
                                 title={seed.translate('Save Changes')}
-                                icon={this.icons.save} />
+                                icon={units.icons.save} />
                 );
             },
 
             handleAddItem() {
-                let {parentKey} = this.state;
+
                 const change = ()=>{
                     let data = PopupHandler.getData();
 
@@ -368,7 +352,7 @@ module.exports = {
                 PopupHandler.open({
                     parameters:{
                         title: seed.translate('Add new item to category'),
-                        body: <CategoryItemEditor parentKey={parentKey}/>,
+                        body: <CategoryItemEditor/>,
                         okButton: {
                             btnTitle: seed.translate('Add'),
                             btnFunc: change
@@ -384,10 +368,10 @@ module.exports = {
                         <IconButton 
                             key={'addItem'}
                             hoverSize={5}
-                            iconSize={this.dims.actionButtonIcon}
+                            iconSize={units.dims.actionButtonIcon}
                             onClick={this.handleAddItem}
                             title={seed.translate('Add Item')}
-                            icon={this.icons.add}
+                            icon={units.icons.add}
                         />
                         {this.renderSaveToTreeButton()}
                     </React.Fragment>
@@ -396,23 +380,23 @@ module.exports = {
 
             renderViewButton() {
                 let {mode, stateItems} = this.state;
-                let showIcon = [ this.icons.table, this.icons.code, this.icons.create ][mode];
+                let showIcon = [ units.icons.table, units.icons.code, units.icons.create ][mode];
                 let modeTitle = [ 'Table', 'Code', 'Create' ][mode];
                 const click = (value)=>{
                     this.handleSaveToTree(stateItems);
                     this.safeState({mode: value});
-                    if (value === this.CREATE) { this.handleGenerate(); }
+                    if (value === units.CREATE) { this.handleGenerate(); }
                 };
                 const items = [
                     {
-                        text: 'Table', value: this.TABLE, iconProps: {icon: this.icons.table},
-                        onClick: ()=>{ click(this.TABLE); }
+                        text: 'Table', value: units.TABLE, iconProps: {icon: units.icons.table},
+                        onClick: ()=>{ click(units.TABLE); }
                     }, {
-                        text: 'Code', value: this.CODE, iconProps: {icon: this.icons.code},
-                        onClick: ()=>{ click(this.CODE); }
+                        text: 'Code', value: units.CODE, iconProps: {icon: units.icons.code},
+                        onClick: ()=>{ click(units.CODE); }
                     }, {
-                        text: 'Create', value: this.CREATE, iconProps: {icon: this.icons.create},
-                        onClick: ()=>{ click(this.CREATE); }
+                        text: 'Create', value: units.CREATE, iconProps: {icon: units.icons.create},
+                        onClick: ()=>{ click(units.CREATE); }
                     },
                 ];
                 let title = `${seed.translate('View Mode')}: ${seed.translate(modeTitle)}`;
@@ -423,7 +407,7 @@ module.exports = {
                         iconSize={14}
                         dropDown={true}
                         icon={showIcon}
-                        iconColor={this.colors.icon}
+                        iconColor={units.colors.icon}
                         menuTitle={title}
                         selected={mode}
                         menuItems={items}
@@ -442,7 +426,7 @@ module.exports = {
                 let title = `${cat} at ${lib}`;
 
                 return (
-                    <Row color={this.backgrounds.default} style={this.styles('titleRow')}>
+                    <Row color={units.backgrounds.default} style={this.styles('titleRow')}>
                         <Row padding={0} width={'50%'}>
                             <Label label={title} width={'fit-content'} />
                             <Badge size={1} count={badge} />
@@ -456,19 +440,19 @@ module.exports = {
             },
 
             renderBody() {
-                let {mode, codeData, parentKey} = this.state;
+                let {mode, codeData, selected} = this.state;
                 let {items} = this.props;
 
                 switch (mode) {
-                    case this.CREATE:
-                        return (<MockEditor data={codeData} parentKey={parentKey}/>);
+                    case units.CREATE:
+                        return (<MockEditor data={codeData}/>);
 
-                    case this.CODE:
-                        return (<MockEditor data={items}    parentKey={parentKey} cb={this.handleUpdateItems}/>);
+                    case units.CODE:
+                        return (<MockEditor data={items}  cb={this.handleUpdateItems}/>);
 
-                    case this.TABLE:
+                    case units.TABLE:
                     default:
-                        return (<MockTable  items={items}   parentKey={parentKey} cb={this.handleUpdateTree}/>);
+                        return (<MockTable  data={items} cb={this.handleUpdateTree}/>);
                 };
             },
 
@@ -494,7 +478,7 @@ module.exports = {
                         text={ seed.translate('add category') }
                         icon={ seed.icons('genie.add') }
                         color={ seed.theme('texts.default') }
-                        background= { this.colors.cat }
+                        background= { units.colors.cat }
                         size={6}
                     />
                 );
@@ -507,7 +491,7 @@ module.exports = {
                         text={ seed.translate('Add Item') }
                         icon={ seed.icons('genie.add') }
                         color={ seed.theme('texts.default') }
-                        background= { this.backgrounds.default }
+                        background= { units.backgrounds.default }
                         size={6}
                     />
                 );
@@ -524,20 +508,20 @@ module.exports = {
 
             render() {
                 let {items, currentLibrary, currentCategory} = this.props;
-                let {parentKey} = this.state;
+                let {selected} = this.state;
 
                 if (isEmpty(items) && isEmpty(currentLibrary) && isEmpty(currentCategory)) return this.addLibrary();
                 if (isEmpty(items) && isEmpty(currentCategory)) return this.addCategory();
                 if (isEmpty(items)) return this.addItem();
 
                 return (
-                    <Column id={'CategoryDetails'} width={this.dims.mainWidth} style={this.styles('root')}>
+                    <Column id={'CategoryDetails'} width={units.dims.mainWidth} style={this.styles('root')}>
                         {this.renderTitle()}
-                        <Column width={'100%'} height={this.dims.mainHeight} >
+                        <Column width={'100%'} height={units.dims.mainHeight} >
                             { this.renderBody() }
                         </Column>
                         <Drawer size={'calc(100% - 50px)'} offset={50} drawerId={'GenieCategoryDetails'}>
-                            <CategoryItemEditor parentKey={parentKey}/>
+                            <CategoryItemEditor selected={selected}/>
                         </Drawer>
                     </Column>
                 )

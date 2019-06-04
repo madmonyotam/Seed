@@ -13,6 +13,12 @@ module.exports = {
 
         var { React, PropTypes, ComponentMixin } = core.imports;
 
+        const units = {
+          colors: {
+            emptyColor: core.theme('buttons.grey')
+          }
+        };
+
         return {
             mixins: [ ComponentMixin ],
 
@@ -25,22 +31,12 @@ module.exports = {
                 fileName: ''
               };
             },
-            
-            componentWillMount() {
-              this.initUnits()
-            },
-            
-            initUnits(){
-              this.colors = {
-                emptyColor: core.theme('buttons.grey')
-              }
-            },
 
             styles(propName) {
               let styles = {
                 root: { height: 150, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', paddingBottom: '50px' },
-                emptySpaces: { color: this.colors.emptyColor, fontSize: 11, marginTop: 10 },
-                icon: { fontSize: 16, color: this.colors.emptyColor }
+                emptySpaces: { color: units.colors.emptyColor, fontSize: 11, marginTop: 10 },
+                icon: { fontSize: 16, color: units.colors.emptyColor }
               }
               return styles[propName]
             },
