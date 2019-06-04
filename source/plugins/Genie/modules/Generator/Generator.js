@@ -2,25 +2,24 @@ import faker from 'faker';
 import moment from 'moment';
 import { isEmpty } from 'lodash';
 
-
-// types:
-
-// 'number',
-// 'string',
-// 'numberRange',
-// 'dateRange',
-// 'autocomplete',
-// 'autocompleteArray',
-// 'boolean',
-// 'array',
+/** TYPES
+ *    number
+ *    string
+ *    numberRange
+ *    dateRange
+ *    autocomplete
+ *    autocompleteArray
+ *    boolean
+ *    array
+ */
 
 module.exports = {
     dependencies: [],
 
     get() {
-        var core = this;
+        var seed = this;
 
-        function _create( params, clean ) {
+        function _create( params, clean = false ) {
 
             let count = params.count ? params.count : 10;
             let model = params.model ? params.model : defaultModel;
@@ -67,7 +66,7 @@ module.exports = {
         };
 
         function getCategoriesKeys() {
-          let cats = core.tree.get(["plugins", "access", "genie"]);
+          let cats = seed.tree.get(['plugins', 'access', 'genie']);
           let keys = Object.keys(cats);
           return keys
         };
@@ -91,7 +90,7 @@ module.exports = {
                 info: "Random element from a given array",
                 scheme: {
                   type: 'array',
-                  placeholder: core.translate('enter multiplay values')
+                  placeholder: seed.translate('enter multiplay values')
                 },
                 generate: (element)=>{
                     return faker.random.arrayElement( element.value );
@@ -101,7 +100,7 @@ module.exports = {
                 info: "Random element from a given array as one item array",
                 scheme: {
                     type: 'array',
-                    placeholder: core.translate('enter multiplay values')
+                    placeholder: seed.translate('enter multiplay values')
                 },
                 generate: (element)=>{
                     return [faker.random.arrayElement( element.value )];
@@ -130,13 +129,14 @@ module.exports = {
                 scheme: {
                   type: 'autocomplete',
                   options: getCategoriesKeys(),
-                  placeholder: core.translate('choose category from list')
+                  placeholder: seed.translate('choose category from list')
                 },
                 generate: (element)=>{
                     let newObject = {};
 
-                    let dataFromFile = { ...core.tree.get(["plugins","Settings","config","mockGenerator"]) };
-                    const item = dataFromFile[element.value];
+                    let mock = seed.tree.get(['plugins', 'access', 'genie']);
+
+                    const item = mock[element.value];
 
                     for (const key in item) {
                         if (item[key].hasOwnProperty('type')) {
@@ -154,13 +154,13 @@ module.exports = {
                 scheme: {
                     type: 'autocompleteArray',
                     options: getCategoriesKeys(),
-                    placeholder: core.translate('choose categories from list') 
+                    placeholder: seed.translate('choose categories from list') 
                 },
                 generate: (element)=>{
                     let newArray = [];
 
                     element.value.forEach((el) => {
-                        newArray.push( _create({count:1, model: core.mockGen(el)}, true ) );
+                        newArray.push( _create({count:1, model: seed.get('genie', el)}, true ) );
                     });
                     
                     return newArray;
@@ -180,7 +180,7 @@ module.exports = {
                 scheme: {
                     type: 'autocomplete',
                     options: getCategoriesKeys(),
-                    placeholder: core.translate('choose category from list'),
+                    placeholder: seed.translate('choose category from list'),
                     count: true
                 },
                 generate: (element)=>{
@@ -192,7 +192,7 @@ module.exports = {
     
                     for (let i = 0; i < count; i++) {
                         let listObject = {}
-                        let dataFromFile = { ...core.tree.get(["plugins","Settings","config","mockGenerator"]) };
+                        let dataFromFile = seed.tree.get(['plugins', 'access', 'genie']);
                         const item = dataFromFile[element.value];
 
                         for (const key in item) {
@@ -363,7 +363,7 @@ module.exports = {
                 info: "Returns same given value",
                 scheme: {
                     type: 'string',
-                    placeholder: core.translate('fixedValue') 
+                    placeholder: seed.translate('fixedValue') 
                 },
                 generate: (element)=>{
                     return element.value;
@@ -382,7 +382,7 @@ module.exports = {
                 info:"Random image with optional given size. Ex: 640x480 ",
                 scheme: {
                     type: 'string',
-                    placeholder: core.translate('size: 640x480') 
+                    placeholder: seed.translate('size: 640x480') 
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -394,7 +394,7 @@ module.exports = {
                 info:"Random business image with optional given size. Ex: 640x480 ",
                 scheme: {
                     type: 'string',
-                    placeholder: core.translate('size: 640x480') 
+                    placeholder: seed.translate('size: 640x480') 
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -478,7 +478,7 @@ module.exports = {
                 info: "Random number with max value",
                 scheme: {
                     type: 'number',
-                    placeholder: core.translate('max')  
+                    placeholder: seed.translate('max')  
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -489,7 +489,7 @@ module.exports = {
                 info: "Random number starting from value",
                 scheme: {
                     type: 'number',
-                    placeholder: core.translate('min')  
+                    placeholder: seed.translate('min')  
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -504,11 +504,11 @@ module.exports = {
                     value: {
                         min: {
                             type: 'number',
-                            placeholder: core.translate('min') 
+                            placeholder: seed.translate('min') 
                         },
                         max: {
                             type: 'number',
-                            placeholder: core.translate('max') 
+                            placeholder: seed.translate('max') 
                         }
                     }
                 },
@@ -533,7 +533,7 @@ module.exports = {
                 info: "Zero or a random number under max value",
                 scheme: {
                     type: 'number',
-                    placeholder: core.translate('max')  
+                    placeholder: seed.translate('max')  
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -550,7 +550,7 @@ module.exports = {
                 info:"Returns a number based on a mask using # for replace, ex: $#.###,##",
                 scheme: {
                     type: 'numberMask',
-                    placeholder: core.translate('$#.###,##')  
+                    placeholder: seed.translate('$#.###,##')  
                 },
                 generate: (element)=>{
                     return faker.helpers.replaceSymbolWithNumber( value );
@@ -571,7 +571,7 @@ module.exports = {
                 info: "Sentence with specific number of words",
                 scheme: {
                     type: 'number',
-                    placeholder: core.translate('number of words')                      
+                    placeholder: seed.translate('number of words')                      
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -583,7 +583,7 @@ module.exports = {
                 info: "Text with specific number of lines",
                 scheme: {
                     type: 'number',
-                    placeholder: core.translate('number of lines')
+                    placeholder: seed.translate('number of lines')
                 },
                 generate: (element)=>{
                     let {value} = element;
@@ -626,7 +626,7 @@ module.exports = {
             },
 
             getCategories(){
-                return core.tree.get(['plugins', 'access', 'genie'])
+                return seed.tree.get(['plugins', 'access', 'genie']);
             },
 
             getSchemes() {

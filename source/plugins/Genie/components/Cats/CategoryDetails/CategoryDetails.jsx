@@ -406,6 +406,7 @@ module.exports = {
             renderTableActions() {
                 return (
                     <React.Fragment>
+                        {this.renderSaveToTreeButton()}
                         <IconButton 
                             key={'addItem'}
                             hoverSize={5}
@@ -414,7 +415,6 @@ module.exports = {
                             title={seed.translate('Add Item')}
                             icon={units.icons.add}
                         />
-                        {this.renderSaveToTreeButton()}
                     </React.Fragment>
                 );
             },
@@ -473,6 +473,7 @@ module.exports = {
                             <Badge size={1} count={badge} />
                         </Row>
                         <Row padding={0} width={'50%'} style={this.styles('actions')}>
+                            {this.handleActions()}
                             <IconButton 
                                 key={'editCategory'}
                                 hoverSize={5}
@@ -481,7 +482,6 @@ module.exports = {
                                 title={seed.translate('Edit Category')}
                                 icon={units.icons.edit}
                             />
-                            {this.handleActions()}
                             {this.renderViewButton()}
                         </Row>
                     </Row>
