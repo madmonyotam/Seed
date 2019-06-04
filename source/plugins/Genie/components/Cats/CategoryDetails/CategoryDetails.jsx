@@ -1,4 +1,3 @@
-import {Input} from '@material-ui/core';
 import {isEmpty} from 'lodash';
 
 module.exports = {
@@ -6,12 +5,14 @@ module.exports = {
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
         'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Inputs.IconButton',
-        'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Genie.CategoryEditModal'
+        'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Genie.CategoryMoveRename',
+        'Inputs.Input'
      ],
 
         get( Column, Row, Label, Badge, IconMenu,
-        Generator, MockEditor, MockTable, MongoHandler, IconButton,
-        FileDownloader, PopupHandler, CategoryItemEditor, NoResults, CategoryEditModal
+            Generator, MockEditor, MockTable, MongoHandler, IconButton,
+            FileDownloader, PopupHandler, CategoryItemEditor, NoResults, CategoryMoveRename,
+            Input
         ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
@@ -103,8 +104,12 @@ module.exports = {
                         justifyContent: 'flex-end',
                     },
                     createActionsInput: {
-                        color: units.colors.text,
-                        margin: '0 10px'
+                        maxWidth: 75,
+                        height: 25,
+                    },
+                    createActionsInput_input: {
+                        height: 25,
+                        textAlign: 'center'
                     },
                     actionButton: {
                         margin: '0 10px'
@@ -228,16 +233,7 @@ module.exports = {
 
             renderCreateActions() {
                 let {selected, codeData, counter} = this.state;
-                const inputOnChange = (e)=>{
-                    this.setState({counter: e.target.value});
-                };
-
-                const inputProps = {
-                    type: 'number',
-                    max: units.maxCreate,
-                    min: units.minCreate,
-                    style: {textAlign: 'center'}
-                };
+                const inputOnChange = (counter)=>{ this.setState({counter}) };
 
                 const saveMongo = (e)=>{
                     this.handleSaveToMongo(e, selected, codeData);
@@ -269,9 +265,16 @@ module.exports = {
 
                         <Input
                             value={counter}
+                            label={null}
                             onChange={inputOnChange}
+                            theme={'outlined'}
+                            type={'number'}
                             style={this.styles('createActionsInput')}
-                            inputProps={inputProps}
+                            inputStyle={this.styles('createActionsInput_input')}
+                            inputProps={{
+                                max: units.maxCreate,
+                                min: units.minCreate,
+                            }}
                         />
 
                         <IconButton key={'generate'}
@@ -303,7 +306,7 @@ module.exports = {
             },
 
             renderSaveToTreeButton() {
-                let {stateItems, genie, selected, originalData} = this.state;
+                let {stateItems, genie, selected, originalData, mode} = this.state;
 
                 const handleStateItems = (stateItems) => {
                     let model = stateItems;
@@ -322,6 +325,11 @@ module.exports = {
                 };
 
                 if (originalData[selected] && genie[selected] && Object.is(originalData[selected], genie[selected] )) return null;
+
+                if ( mode == units.CODE ) {
+                    console.log(11);
+                    if (originalData[selected] && !!stateItems && Object.is(originalData[selected], JSON.parse(stateItems) )) return null;
+                }
 
                 const click = (e)=>{
                     let model = handleStateItems(stateItems);
@@ -355,6 +363,7 @@ module.exports = {
                     parameters:{
                         title: seed.translate('Add new item to category'),
                         body: <CategoryItemEditor/>,
+                        height: 330,
                         okButton: {
                             btnTitle: seed.translate('Add'),
                             btnFunc: change
@@ -392,7 +401,7 @@ module.exports = {
                 PopupHandler.open({
                     parameters:{
                         title: seed.translate('Rename / Move current category'),
-                        body: <CategoryEditModal/>,
+                        body: <CategoryMoveRename/>,
                         height: 100,
                         width: 500,
                         okButton: {
@@ -423,11 +432,13 @@ module.exports = {
                 let {mode, stateItems} = this.state;
                 let showIcon = [ units.icons.table, units.icons.code, units.icons.create ][mode];
                 let modeTitle = [ 'Table', 'Code', 'Create' ][mode];
+
                 const click = (value)=>{
                     this.handleSaveToTree(stateItems);
                     this.safeState({mode: value});
                     if (value === units.CREATE) { this.handleGenerate(); }
                 };
+
                 const items = [
                     {
                         text: 'Table', value: units.TABLE, iconProps: {icon: units.icons.table},

@@ -6,7 +6,7 @@ module.exports = {
     ],
 
     components: [
-        require('./components/Cats/CategoryEditModal'),
+        require('./components/Cats/CategoryMoveRename'),
         require('./components/Cats/CategoryItemEditor'),
         require('./components/Cats/CategoriesList/Categories'),
         require('./components/Cats/CategoriesList/CategoryItem'),

@@ -107,12 +107,28 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
             let {id} = this.props;
             let {title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, modalStyle, width, height } = params;
+            console.log({params});
 
             if (params.id && params.id !== id) {
                 this.setState({ open: false });
             } else {
-                this.setState(()=>{
-                    return { title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, width, height, modalStyle, open: true }
+                this.setState((state, props)=>{
+                    state = {
+                        ...state,
+                        title: title,
+                        body: body,
+                        bodyStyle: bodyStyle,
+                        btnTitle: btnTitle,
+                        btnFunc: btnFunc,
+                        showButtons: showButtons,
+                        buttons: buttons,
+                        modalStyle: modalStyle,
+                        open: true
+                    };
+                    state.width = (!!width) ? width : props.width;
+                    state.height = (!!height) ? height : props.height;
+
+                    return state;
                 });
             }
         },

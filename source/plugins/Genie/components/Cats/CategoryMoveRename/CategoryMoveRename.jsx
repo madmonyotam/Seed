@@ -2,8 +2,6 @@ import { TextField } from '@material-ui/core';
 import { isEmpty, uniq } from 'lodash';
 
 module.exports = {
-    name: 'CategoryEditModal',
-    description: 'This is an CategoryEditModal',
     dependencies: ['popovers.PopupHandler','Simple.Label','Layouts.Center', 'Layouts.Column','Layouts.Row','Inputs.Input'],
     get(PopupHandler, Label, Center, Column, Row, Input) {
         var core = this;

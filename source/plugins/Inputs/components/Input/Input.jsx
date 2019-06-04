@@ -42,6 +42,7 @@ module.exports = {
               type: PropTypes.string,
               openOnFocus: PropTypes.bool,
               isMultipleValues: PropTypes.bool,
+              inputProps: PropTypes.object,
               suggest: PropTypes.bool, // if TRUE will filter the list 
               theme: PropTypes.oneOf([ 'default', 'outlined', 'filled' ]),
             },
@@ -60,6 +61,7 @@ module.exports = {
                 label: 'label',
                 openOnFocus: false,
                 isMultipleValues: false,
+                inputProps: {},
                 suggest: true,
                 placeholder: 'placeholder'
               };
@@ -111,7 +113,7 @@ module.exports = {
 
             styles(s) {
               let isFocused = this.getIsFocused();
-              let { theme, inputStyle, labelStyle } = this.props;
+              let { theme, style, inputStyle, labelStyle } = this.props;
               let isFilled = theme === 'filled';
               let isOutlined = theme === 'outlined';
 
@@ -134,6 +136,13 @@ module.exports = {
               }
 
               let styles = { 
+                root: {
+                  width: '100%',
+                  position: 'relative',
+                  height: 'auto',
+                  ...style
+                },
+
                 input: {
                     width: '100%',
                     fontStyle: this.state.value ? 'normal' : 'italic',
@@ -406,7 +415,7 @@ module.exports = {
             },
 
             renderInput(type, downshiftProps){
-              let { openOnFocus, placeholder } = this.props;
+              let { openOnFocus, placeholder, inputProps } = this.props;
               let { value, uniqueName } = this.state;
               let getInputProps = undefined; 
               let clearSelection = undefined; 
@@ -447,6 +456,7 @@ module.exports = {
                           placeholder={ placeholder }
 
                           { ...setprops() }
+                          {...inputProps}
 
                           onFocus={ e => { this.setState({ focused: uniqueName, isDownShiftOpen: openOnFocus && isAuotocomplete ? true : false }) } }
                           onBlur={ e => { this.setState({ focused: null, isDownShiftOpen: false }) } } />
@@ -464,7 +474,7 @@ module.exports = {
               let {onKeyDown} = this.props;
 
                 return (
-                    <div id={'SimpleInput.root'}  style={{ width: '100%', position: 'relative', height: 'auto' }} onKeyDown={onKeyDown}> 
+                    <div id={'Input'}  style={this.styles('root')} onKeyDown={onKeyDown}> 
                       { this.renderLabel(this.props.label) }  
                       { this.renderInputs(this.props.type) }
                     </div>

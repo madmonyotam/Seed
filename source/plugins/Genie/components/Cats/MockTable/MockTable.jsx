@@ -207,7 +207,7 @@ module.exports = {
                         parameters: {
                             title: core.translate('Edit category item'),
                             body: <CategoryItemEditor mode={'edit'}/>,
-                            bodyStyle: {minHeight: 'unset'},
+                            height: 330,
                             okButton: {
                                 btnTitle: core.translate('Save'),
                                 btnFunc: change
