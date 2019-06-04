@@ -6,11 +6,12 @@ module.exports = {
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
         'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Inputs.IconButton',
-        'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Simple.Drawer' ],
+        'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Genie.CategoryEditModal'
+     ],
 
         get( Column, Row, Label, Badge, IconMenu,
         Generator, MockEditor, MockTable, MongoHandler, IconButton,
-        FileDownloader, PopupHandler, CategoryItemEditor, NoResults,Drawer
+        FileDownloader, PopupHandler, CategoryItemEditor, NoResults, CategoryEditModal
         ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
@@ -50,6 +51,7 @@ module.exports = {
                 save: seed.icons('genie.save'),
                 generate: seed.icons('genie.generate'),
                 add: seed.icons('genie.add'),
+                edit: seed.icons('genie.edit'),
             },
         };
 
@@ -361,10 +363,49 @@ module.exports = {
                 });
             },
 
+            handleEditMoveCategory() {
+                const change = ()=>{
+                    let {selected, genie} = this.state;
+                    let mock = this.serialize(genie);
+                    let data = PopupHandler.getData();
+
+                    let mockData = mock[selected];
+                    let newSelect = `${data.library}:${data.category}`;
+
+                    if (selected !== newSelect) {
+                        delete mock[selected];
+                        mock[newSelect] = mockData;
+
+                        this.cursor.genie.set(mock);
+                        this.cursor.currentLibrary.set(data.library);
+                        setTimeout(() => {
+                            this.cursor.currentCategory.set(data.category);
+                            this.cursor.selected.set(newSelect);
+                        }, 200);
+                    }
+
+                    PopupHandler.close();
+                };
+
+                PopupHandler.addData();
+
+                PopupHandler.open({
+                    parameters:{
+                        title: seed.translate('Rename / Move current category'),
+                        body: <CategoryEditModal/>,
+                        height: 100,
+                        width: 500,
+                        okButton: {
+                            btnTitle: seed.translate('Save'),
+                            btnFunc: change
+                        }
+                    }
+                });
+            },
+
             renderTableActions() {
                 return (
                     <React.Fragment>
-
                         <IconButton 
                             key={'addItem'}
                             hoverSize={5}
@@ -432,6 +473,14 @@ module.exports = {
                             <Badge size={1} count={badge} />
                         </Row>
                         <Row padding={0} width={'50%'} style={this.styles('actions')}>
+                            <IconButton 
+                                key={'editCategory'}
+                                hoverSize={5}
+                                iconSize={units.dims.actionButtonIcon}
+                                onClick={this.handleEditMoveCategory}
+                                title={seed.translate('Edit Category')}
+                                icon={units.icons.edit}
+                            />
                             {this.handleActions()}
                             {this.renderViewButton()}
                         </Row>
@@ -440,7 +489,7 @@ module.exports = {
             },
 
             renderBody() {
-                let {mode, codeData, selected} = this.state;
+                let {mode, codeData} = this.state;
                 let {items} = this.props;
 
                 switch (mode) {
@@ -448,7 +497,7 @@ module.exports = {
                         return (<MockEditor data={codeData}/>);
 
                     case units.CODE:
-                        return (<MockEditor data={items}  cb={this.handleUpdateItems}/>);
+                        return (<MockEditor data={items} cb={this.handleUpdateItems}/>);
 
                     case units.TABLE:
                     default:
@@ -497,15 +546,6 @@ module.exports = {
                 );
             },
 
-            toggleDrawer(){
-                let { open } = this.state;  
-
-                if (open) seed.emit('closeSimpleDrawer',{id:'GenieCategoryDetails'});
-                else      seed.emit('openSimpleDrawer',{id:'GenieCategoryDetails'});
-          
-                this.setState((state, props)=>{return {open: !state.open}});
-            },
-
             render() {
                 let {items, currentLibrary, currentCategory} = this.props;
                 let {selected} = this.state;
@@ -520,9 +560,6 @@ module.exports = {
                         <Column width={'100%'} height={units.dims.mainHeight} >
                             { this.renderBody() }
                         </Column>
-                        <Drawer size={'calc(100% - 50px)'} offset={50} drawerId={'GenieCategoryDetails'}>
-                            <CategoryItemEditor selected={selected}/>
-                        </Drawer>
                     </Column>
                 )
             } 

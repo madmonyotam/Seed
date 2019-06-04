@@ -227,6 +227,7 @@ module.exports = {
                             theme={ 'filled' } 
                             label={ core.translate('Type') } 
                             value={ this.state.type }
+                            openOnFocus={ true }
                             placeholder={ core.translate('inputCategoryType','Search for type...') }
                             options={ this.state.typesOptions } 
                             onChange={ (type)=>{this.handleTypeChange(type, CLEAR)} }
@@ -297,6 +298,7 @@ module.exports = {
                             label={ core.translate('Value') } 
                             value={ value }
                             placeholder={ this.getPlaceholder() }
+                            openOnFocus={ true }
                             isMultipleValues={ true }
                             options={ categoriesOptions } 
                             onChange={ v => { this.handleChange('value', v) } } />
@@ -314,6 +316,7 @@ module.exports = {
                             label={ core.translate('Value') } 
                             value={ value }
                             placeholder={ this.getPlaceholder() }
+                            openOnFocus={ true }
                             options={ categoriesOptions } 
                             onChange={ v => { this.handleChange('value', v) } } />
                   </div>

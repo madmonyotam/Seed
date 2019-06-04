@@ -30,10 +30,10 @@ module.exports = {
             },
 
             openPopup(id, parameters) {
-                let {title, body, bodyStyle, okButton, buttons, modalStyle} = parameters;
+                let {title, body, bodyStyle, okButton, buttons, modalStyle, width, height} = parameters;
                 let {btnTitle, btnFunc} = okButton;
 
-                seed.emit('Popup', {id, title, body, bodyStyle, btnTitle, btnFunc, buttons, modalStyle});
+                seed.emit('Popup', {id, title, body, bodyStyle, btnTitle, btnFunc, buttons, width, height, modalStyle});
             },
 
             Caution(text,title,func) {

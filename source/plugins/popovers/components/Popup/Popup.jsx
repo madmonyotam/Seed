@@ -44,8 +44,8 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         getInitialState() {
             return {
                 open: false,
-                width: undefined,
-                height: undefined,
+                width: this.props.width,
+                height: this.props.height,
                 btnTitle: core.translate('Save'),
                 btnFunc: ()=>{},
             };
@@ -62,8 +62,6 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         componentWillUnmount() {
             this.eventsHandler('off');
         },
-
-        componentWillReceiveProps(nextProps) {},
 
         initUnits(){
             this.dims = {
@@ -108,12 +106,14 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             }
 
             let {id} = this.props;
-            let {title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, modalStyle } = params;
+            let {title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, modalStyle, width, height } = params;
 
             if (params.id && params.id !== id) {
                 this.setState({ open: false });
             } else {
-                this.setState({ title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons , modalStyle, open: true });
+                this.setState(()=>{
+                    return { title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, width, height, modalStyle, open: true }
+                });
             }
         },
 
@@ -126,7 +126,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         },
 
         handleBodyHeight() {
-            let {height} = (this.state && this.state.height) ? this.state : this.props;
+            let {height} = this.state;
             let {titleHeight, footerHeight, id} = this.props;
             let localHeight = height;
 
@@ -146,7 +146,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
             return(
                 <Row color={titleColor} height={titleHeight} style={this.styles('title')}>
-                    <Label labe={title} color={titleLabelColor} transform={'uppercase'}/>
+                    <Label label={title} color={titleLabelColor} transform={'uppercase'}/>
                     <IconButton 
                         iconSize={18}
                         iconColor={titleLabelColor}
@@ -180,8 +180,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         },
 
         renderOpen() {
-            let {width}  = (this.state && this.state.width) ? this.state : this.props;
-            let {body} = this.state;
+            let {width, body} = this.state;
             let {backdropColor, background, titleHeight, footerHeight, id} = this.props;
 
             let bodyHeight = this.handleBodyHeight()

@@ -4,12 +4,8 @@ import { isEmpty, uniq } from 'lodash';
 module.exports = {
     name: 'CategoryEditModal',
     description: 'This is an CategoryEditModal',
-    dependencies: ['popovers.PopupHandler','Simple.Label','Layouts.Column','Layouts.Row',
-    // 'Simple.SimpleDropDown'
-    ],
-    get(PopupHandler, Label, Column, Row, 
-        // SimpleDropDown
-        ) {
+    dependencies: ['popovers.PopupHandler','Simple.Label','Layouts.Center', 'Layouts.Column','Layouts.Row','Inputs.Input'],
+    get(PopupHandler, Label, Center, Column, Row, Input) {
         var core = this;
         var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
@@ -17,6 +13,8 @@ module.exports = {
             mixins: [ ComponentMixin, Branch ],
 
             cursors: {
+                currentLibrary: ['plugins','Genie','currentLibrary'],
+                currentCategory: ['plugins','Genie','currentCategory'],
                 genie: ['plugins', 'access', 'genie'],
             },
 
@@ -29,16 +27,15 @@ module.exports = {
             },
             
             getInitialState() {
-                let data = PopupHandler.getData();
-
                 return {
-                    category: data.category,
-                    library: data.library
+                    library: '',
+                    category: '',
                 };
             },
 
             componentDidMount() {
                 PopupHandler.enableOkButton();
+                this.initState();
             },
 
             styles(s){
@@ -54,94 +51,123 @@ module.exports = {
                 return(styles[s]);
             },
 
-            checkValues(library, category){
+            initState() {
+                this.setState((state, props)=>{
+                    let library = state.currentLibrary;
+                    let category = state.currentCategory;
+                    return {library, category}
+                });
+            },
+
+            checkValues(){
+                let {library, category} = this.state;
                 if(isEmpty(library) || isEmpty(category)){
                     return PopupHandler.disableOkButton();
                 }
                 
                 PopupHandler.enableOkButton();
-                PopupHandler.addData({library, category});
+                PopupHandler.addData({
+                    data: {library, category}
+                });
             },
             
-            handleCategoryChange(event){
-                let { library } = this.state;
-                let value = event.target.value;
-
-                this.setState({category: value},this.checkValues(library, value));
+            handleChange(value, field){
+                this.setState((state, props)=>{
+                    state[field] = value;
+                    return state;
+                }, this.checkValues);
             },
 
-            
-            handleLibraryChange(value){
-                let { category } = this.state;
-
-                this.setState({library: value},this.checkValues(value,category));
-            },
-
-            createOptions(){
+            librariesOptions(){
                 let options=[];
-                let all = this.cursor.genie.get();
-                let keys = Object.keys(all);
+                let {genie} = this.state;
+                let keys = Object.keys(genie);
 
                 let libraries = keys.map( k => k.split(':')[0] );
                     libraries = uniq(libraries);
                     libraries.sort();
 
-
                 libraries.map((lib)=>{
-                    options.push({ key:lib, title:lib});
+                    options.push({
+                        label: lib,
+                        value: lib,
+                    });
+                })
+
+                return options;
+            },
+
+            categoriesOptions(){
+                let options=[];
+                let {genie, library} = this.state;
+                let keys = Object.keys(genie);
+
+                let categories = keys.map( k => {
+                    let [lib, cat] = k.split(':');
+                    if (lib === library) return cat;
+                })
+                categories = categories.filter(Boolean);
+                categories.sort();
+
+                categories.map((category)=>{
+                    options.push({
+                        label: category,
+                        value: category,
+                    });
                 })
 
                 return options;
             },
             
-            renderLibrariesDropDown(){
+            renderLibrary(){
                 let { library } = this.state;
-                let options = this.createOptions();
-                return null;
-                // return(
-                //     <SimpleDropDown
-                //         selected={ library }
-                //         style={{ width: '100%' }}
-                //         onSelect={ this.handleLibraryChange }
-                //         buttonStyle={ this.styles('sortText') }
-                //         options={ options } />
-                // )
+                let options = this.librariesOptions();
+
+                return (
+                    <Row>
+                        <Label label={ core.translate('Library: ') } size={13} weight={500} width={150}/>
+                        <Input 
+                            type={ 'autocomplete' }
+                            label={null}
+                            value={ library }
+                            openOnFocus={ true }
+                            placeholder={ core.translate('Select a Library') }
+                            options={ options }
+                            onChange={ (value)=>{this.handleChange(value, 'library')} }
+                        />
+                    </Row>
+                )
             },
                 
-            handleTextFieldProps() {
+            renderCategory() {
                 let { category } = this.state;
-                return {
-                    id: 'edit_library',
-                    value: category,
-                    onChange: this.handleCategoryChange,
-                    InputProps: {
-                        disableUnderline: true,
-                        fontSize: 12
-                    },
-                    fullWidth: true,
-                    autoComplete: 'off',
-                    style: this.styles('textField'),
-                    margin: "normal",
-                    type: 'text' ,
-                    autoFocus: true
-                };
+                let options = this.categoriesOptions();
+
+                return (
+                    <Row>
+                        <Label label={ core.translate('Category: ') } size={13} weight={500} width={150}/>
+                        <Input 
+                            type={ 'autocomplete' }
+                            label={null}
+                            value={ category }
+                            openOnFocus={ true }
+                            placeholder={ core.translate('Select a Category') }
+                            options={ options }
+                            onChange={ (value)=>{this.handleChange(value, 'category')} }
+                        />
+                    </Row>
+                );
             },
 
             render() {
 
                 return (
-                    <Column width={'100%'}>
-
-                        <Row>
-                            <Label label={ core.translate('Library: ') } size={16} weight={500} width={150}/>
-                            { this.renderLibrariesDropDown() }
-                        </Row>
-                        <Row>
-                            <Label label={ core.translate('Category: ') } size={16} weight={500} width={150}/>
-                            <TextField  {...this.handleTextFieldProps() } />
-                        </Row>
-
-                    </Column>
+                    <Center width={'100%'} height={'100%'}>
+                        <Column width={'100%'} height={'fit-content'}>
+                            {this.renderLibrary()}
+                            {this.renderCategory()}
+                        </Column>
+                    </Center>
                 )
             } 
 
