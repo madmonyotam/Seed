@@ -6,9 +6,9 @@ import {isEmpty} from 'lodash';
 module.exports = {
     name: 'MockTable',
     dependencies: [ 'Layouts.Row', 'Simple.Label', 'popovers.PopupHandler', 'Genie.CategoryItemEditor',
-                    'Simple.Icon'],
+                    'Inputs.IconButton'],
     get(Row, Label, PopupHandler, CategoryItemEditor,
-        Icon) {
+        IconButton) {
         
         var core = this;
 
@@ -217,13 +217,11 @@ module.exports = {
                 };
 
                 return (
-                    <Icon
-                        title={core.translate('Edit Item')}
-                        onClick={click}
-                        icon={units.icons.edit}
-                        size={units.dims.actionButtonIcon} 
-                        color={units.colors.text}
-                    />
+                    <IconButton    
+                        onClick={ click }
+                        icon={ units.icons.edit } 
+                        iconSize= { units.dims.actionButtonIcon }
+                        background= 'transparent' />
                 );
             },
 
@@ -240,12 +238,11 @@ module.exports = {
                 };
 
                 return(
-                    <Icon
+                    <IconButton    
                         onClick={ handleRemove }
-                        title={ core.translate('Remove Item') }
-                        icon={ units.icons.remove }
-                        size={units.dims.actionButtonIcon}
-                    />
+                        icon={ units.icons.remove } 
+                        iconSize= { units.dims.actionButtonIcon }
+                        background= 'transparent' />
                 );
             },
 
