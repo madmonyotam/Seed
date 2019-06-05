@@ -38,6 +38,11 @@ module.exports = {
 
             styles(s){
                 const styles = {
+                    inner: {
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-evenly',
+                    },
                     textField: {
                         marginTop: 0,
                         marginBottom: 0
@@ -123,11 +128,12 @@ module.exports = {
 
                 return (
                     <Row>
-                        <Label label={ core.translate('Library: ') } size={13} weight={500} width={150}/>
+                        <Label label={ core.translate('Library: ') } size={13} weight={500} width={100}/>
                         <Input 
                             type={ 'autocomplete' }
                             label={null}
                             value={ library }
+                            theme={ 'outlined' }
                             openOnFocus={ true }
                             placeholder={ core.translate('Select a Library') }
                             options={ options }
@@ -143,11 +149,12 @@ module.exports = {
 
                 return (
                     <Row>
-                        <Label label={ core.translate('Category: ') } size={13} weight={500} width={150}/>
+                        <Label label={ core.translate('Category: ') } size={13} weight={500} width={100}/>
                         <Input 
                             type={ 'autocomplete' }
                             label={null}
                             value={ category }
+                            theme={ 'outlined' }
                             openOnFocus={ true }
                             placeholder={ core.translate('Select a Category') }
                             options={ options }
@@ -161,7 +168,7 @@ module.exports = {
 
                 return (
                     <Center width={'100%'} height={'100%'}>
-                        <Column width={'100%'} height={'fit-content'}>
+                        <Column width={'100%'} style={this.styles('inner')}>
                             {this.renderLibrary()}
                             {this.renderCategory()}
                         </Column>

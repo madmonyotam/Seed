@@ -107,7 +107,6 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
             let {id} = this.props;
             let {title, body, bodyStyle, btnTitle, btnFunc, showButtons, buttons, modalStyle, width, height } = params;
-            console.log({params});
 
             if (params.id && params.id !== id) {
                 this.setState({ open: false });

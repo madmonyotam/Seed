@@ -38,7 +38,7 @@ module.exports = {
             },
 
             getInitialState() {
-                let types = Generator.getTypes(); 
+                let types = Generator.getTypes();
                 let mapedTypes = types.map((type)=>{
                     return { 
                         label: type, 
@@ -194,13 +194,16 @@ module.exports = {
             },
 
             handleTypeChange(type, CLEAR=false) {
-              let currentType = Generator.getTypeScheme(type); 
-              this.handleChange('type', type); 
+                let currentType = Generator.getTypeScheme(type); 
+                this.handleChange('type', type);
 
-              this.handleCategoriesOptions(currentType);
+                this.handleCategoriesOptions(currentType);
 
-              if (CLEAR) this.setState({currentType, value: '', count: null});
-              else this.setState({currentType});
+                if (CLEAR) {
+                    this.setState({currentType, value: '', count: null});
+                } else {
+                    this.setState({currentType});
+                }
             },
 
             handleCategoriesOptions(currentType) { 
@@ -301,7 +304,8 @@ module.exports = {
                             openOnFocus={ true }
                             isMultipleValues={ true }
                             options={ categoriesOptions } 
-                            onChange={ v => { this.handleChange('value', v) } } />
+                            handleKeyDown={ values => { this.handleChange('value', values) }  }
+                    />
                   </div>
                 );
             },

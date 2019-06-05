@@ -77,36 +77,41 @@ module.exports = {
               };
             },
 
-            componentWillMount() {
-                // this.initialUnits();
-            },
-
             componentDidMount() {
-                this.inputRef = React.createRef();
-                if (this.props.options) this.setState({ options: this.props.options })
-                if (this.props.value !== '' ) this.setState({ value: this.props.value }) 
+              this.inputRef = React.createRef();
+
+              this.setState((state, props)=>{
+                if (props.options)
+                  state.options = props.options;
+
+                if (props.value !== '' )
+                  state.value = props.value;
+
+                return state
+              });
             },
 
             componentWillReceiveProps(nextProps) {
-              if (nextProps.options && nextProps.options !== this.props.options) {
-                this.setState({ options: nextProps.options })
-              }
-              if (nextProps.value && nextProps.value !== this.props.value && nextProps.value !== '') {
+              let {options, value} = this.props;
+
+              if (nextProps.options && nextProps.options !== options)
+                this.setState({ options: nextProps.options });
+
+              if (nextProps.value && nextProps.value !== value && nextProps.value !== '')
                 this.setState({ value: nextProps.value });
-              } else if (nextProps.value == '' ) {
+              else if (nextProps.value == '' )
                 this.setState({ value: '' });
-              }
             },
 
             getIsFocused(){
-              return this.state.focused === this.state.uniqueName;
+              let {focused, uniqueName} = this.state
+              return (focused === uniqueName);
             },
 
-            getInpoutWidth(){
-              if (this.inputRef && this.inputRef.current) {
-                if(this.inputRef.current.id === 'downshift-autocomplete-input'){
-                  return this.inputRef.current.offsetWidth;
-                }
+            getInpoutWidth() {
+
+              if (this.inputRef && this.inputRef.current && this.inputRef.current.id === 'downshift-autocomplete-input'){
+                return this.inputRef.current.offsetWidth;
               }
               return 500
             },
@@ -235,18 +240,19 @@ module.exports = {
             },
 
             handleOnChange(value) {
-                this.setState((s,p)=>{return{ value }});
-                if (this.props.onChange) {
-                  this.props.onChange(value)
-                }
+              let {onChange} = this.props;
+              this.setState({ value });
+
+              if (onChange) onChange(value);
             },
 
             handleClearInput(e){
-              this.setState({ value: '', }, ()=>{
-                  if (this.props.onClear) {
-                      this.props.onClear(e)
-                  }
-              })
+              this.setState( (state, props)=>{
+                  state.value = '';
+                  if (props.onClear) props.onClear(e);
+
+                  return state;
+              });
             }, 
 
             handleKeyDown(e){
@@ -259,7 +265,11 @@ module.exports = {
                   return;
 
                 } else if (e.keyCode === 13)  {
-                  if (isMultipleValues) this.setState({ multiValues: [ ...multiValues, value ] }, this.handleClearInput)
+                  if (isMultipleValues) {
+                    let values = [ ...multiValues, value ];
+                    this.setState({ multiValues: values }, this.handleClearInput);
+                    if (handleKeyDown) handleKeyDown(values)
+                  }
                   else if (handleKeyDown) handleKeyDown(value) 
                 } 
               }

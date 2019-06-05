@@ -372,7 +372,7 @@ module.exports = {
                 });
             },
 
-            handleEditMoveCategory() {
+            handleMoveRenameCategory() {
                 const change = ()=>{
                     let {selected, genie} = this.state;
                     let mock = this.serialize(genie);
@@ -402,7 +402,7 @@ module.exports = {
                     parameters:{
                         title: seed.translate('Rename / Move current category'),
                         body: <CategoryMoveRename/>,
-                        height: 100,
+                        height: 200,
                         width: 500,
                         okButton: {
                             btnTitle: seed.translate('Save'),
@@ -489,7 +489,7 @@ module.exports = {
                                 key={'editCategory'}
                                 hoverSize={5}
                                 iconSize={units.dims.actionButtonIcon}
-                                onClick={this.handleEditMoveCategory}
+                                onClick={this.handleMoveRenameCategory}
                                 title={seed.translate('Edit Category')}
                                 icon={units.icons.edit}
                             />
