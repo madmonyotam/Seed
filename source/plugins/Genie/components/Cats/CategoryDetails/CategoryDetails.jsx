@@ -6,13 +6,13 @@ module.exports = {
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
         'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Inputs.IconButton',
         'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Genie.CategoryMoveRename',
-        'Inputs.Input'
+        'Inputs.Input', 'Decorators.Margin'
      ],
 
         get( Column, Row, Label, Badge, IconMenu,
             Generator, MockEditor, MockTable, MongoHandler, IconButton,
             FileDownloader, PopupHandler, CategoryItemEditor, NoResults, CategoryMoveRename,
-            Input
+            Input, Margin
         ) {
         var seed = this;
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
@@ -240,51 +240,57 @@ module.exports = {
                 };
 
                 return (
-                    <React.Fragment>
+                    <Row padding={0} style={{justifyContent: 'flex-end'}}>
+                        <Margin right={10}>
+                        {/* <IconButton
+                                key={'mongo'}
+                                hoverSize={ 5 }
+                                iconSize={units.dims.actionButtonIcon}
+                                onClick={saveMongo}
+                                title={seed.translate('Upload to MongoDB')}
+                                icon={units.icons.mongo}
+                            />*/}
 
-                        <IconButton key={'mongo'}
-                                    hoverSize={ 5 }
-                                    iconSize={units.dims.actionButtonIcon}
-                                    onClick={saveMongo}
-                                    title={seed.translate('Upload to MongoDB')}
-                                    icon={units.icons.mongo} />
-
-                        <FileDownloader
-                            key={'download'}
-                            content={codeData}
-                            fileName={selected}
-                            fileExtension={'json'} >
-
-                            <IconButton key={'file'}
+                            <FileDownloader
+                                key={'download'}
+                                content={codeData}
+                                fileName={selected}
+                                fileExtension={'json'}
+                            >
+                                <IconButton
+                                    key={'file'}
                                     hoverSize={ 5 }
                                     iconSize={units.dims.actionButtonIcon}
                                     title={seed.translate('Save to file')}
-                                    icon={units.icons.save} />
+                                    icon={units.icons.save}
+                                />
+                            </FileDownloader>
 
-                        </FileDownloader>
+                            <Input
+                                value={counter}
+                                label={null}
+                                onChange={inputOnChange}
+                                theme={'outlined'}
+                                type={'number'}
+                                style={this.styles('createActionsInput')}
+                                inputStyle={this.styles('createActionsInput_input')}
+                                inputProps={{
+                                    max: units.maxCreate,
+                                    min: units.minCreate,
+                                }}
+                            />
 
-                        <Input
-                            value={counter}
-                            label={null}
-                            onChange={inputOnChange}
-                            theme={'outlined'}
-                            type={'number'}
-                            style={this.styles('createActionsInput')}
-                            inputStyle={this.styles('createActionsInput_input')}
-                            inputProps={{
-                                max: units.maxCreate,
-                                min: units.minCreate,
-                            }}
-                        />
+                            <IconButton 
+                                key={'generate'}
+                                hoverSize={ 5 }
+                                iconSize={units.dims.actionButtonIcon}
+                                onClick={this.handleGenerate}
+                                title={seed.translate('Generate code')}
+                                icon={units.icons.generate}
+                            />
+                        </Margin>
 
-                        <IconButton key={'generate'}
-                                    hoverSize={ 5 }
-                                    iconSize={units.dims.actionButtonIcon}
-                                    onClick={this.handleGenerate}
-                                    title={seed.translate('Generate code')}
-                                    icon={units.icons.generate} />
-
-                    </React.Fragment>
+                    </Row>
                 );
             },
 
@@ -335,7 +341,7 @@ module.exports = {
                     let model = handleStateItems(stateItems);
                     this.handleSaveToTree(model);
                     seed.emit('genie_updateOriginalData');
-                    seed.plugins.Settings.run('SaveSettings', { dir: 'genie', fileData: genie });
+                    seed.plugins.Settings.run('SaveSettings', { dir: 'genie', fileData: genie, notify: true });
                 };
 
                 return (

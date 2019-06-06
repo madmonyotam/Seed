@@ -1,7 +1,7 @@
 
 module.exports = {
-dependencies: ['Inputs.Button', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Simple.Icon'],
-get(Button, SimpleExample, ExampleHelper, Icon) {
+dependencies: ['Inputs.Button', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
+get(Button, SimpleExample, ExampleHelper) {
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports;
 

@@ -35,6 +35,7 @@ module.exports = {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+                        alignContent: "center",
                         width:width,
                         height:height,
                         background: color,

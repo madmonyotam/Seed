@@ -4,6 +4,8 @@ module.exports = {
     components: [
         require('./components/Ripple'),
         require('./components/Tooltip'),
+        require('./components/Margin'),
+        require('./components/Padding'),
         require('./components/Popover'),
         require('./components/FileDownloader'),
     ],
