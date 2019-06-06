@@ -57,7 +57,7 @@ module.exports = {
 
             render() {
                 let { icon, iconSize, iconColor, background, menuTitle, dropDown } = this.state;
-                let size = ExampleHelper.ifNumber_Convert(iconSize);
+                iconSize = ExampleHelper.ifNumber_Convert(iconSize);
 
                 const items = [
                     { text: 'Table', value: 'Table', iconProps: {icon: core.icons('genie.table')}, onClick: ()=>{ this.print('table'); } },
@@ -70,7 +70,7 @@ module.exports = {
 
                         <IconMenu
                             icon={ icon }
-                            iconSize={ size }
+                            iconSize={ iconSize }
                             menuTitle={ menuTitle }
                             menuItems={ items }
                             dropDown={ dropDown }

@@ -1,7 +1,7 @@
 
 module.exports = {
-    dependencies: ['Layouts.Column', 'Examples.SimpleExample','Decorators.Popover', 'Inputs.Button'],
-    get(Column, SimpleExample, Popover, Button) {
+    dependencies: ['Layouts.Column', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Decorators.Popover', 'Inputs.Button'],
+    get(Column, SimpleExample, ExampleHelper, Popover, Button) {
 
         var core = this;
 
@@ -16,6 +16,7 @@ module.exports = {
                     theme: { type: 'select', options: ['dark', 'light']},
                     animation: { type: 'select', options: ['pop', 'slide']},
                     elevation: { type: 'select', options: [ 1,2,3,4,5,6,7,8,9,10 ]},
+                    padding: { type: 'number' },
                     width: { type: 'number' },
                     height: { type: 'number' },
                     offsetX: { type: 'number' },
@@ -31,34 +32,38 @@ module.exports = {
             }, 
 
             getCode(){
-                let { elevation, position, theme, offsetX, offsetY, interactive, backdrop, animation } = this.state;
+                let { elevation, position, padding, theme, offsetX, offsetY, interactive, backdrop, animation } = this.state;
 
-                return (`
-<Popover anchorEl={ anchorEl } 
-         position={'${position}'}
-         theme={'${theme}'} 
-         animation={'${animation}'} 
-         elevation={${elevation}}
-         offsetX={${offsetX}}
-         offsetY={${offsetY}} 
-         interactive={${interactive}} 
-         backdrop={${backdrop}} 
-         onClose={ e => { this.setState({ anchorEl: undefined }) } }>
-</Popover>
-<Button theme={ 'primary' } variant={ 'filled' } onClick={ e => { this.setState({ anchorEl: e.currentTarget }) } }>
-    Click Me
-</Button>
-                `)
+                return [
+                  `<Popover  anchorEl={ anchorEl }`,
+                  `          position={ ${position} }`,
+                  `          theme={ ${theme} }`,
+                  `          animation={ ${animation} }`,
+                  `          backdrop={ ${backdrop} }`,
+                  `          elevation={ ${elevation} }`,
+                  `          padding={ ${padding} }`,
+                  `          offsetX={ ${offsetX} }`,
+                  `          offsetY={ ${offsetY} }`,
+                  `          interactive={ ${interactive} }`,
+                  `          onClose={ e => { this.setState({ anchorEl: undefined }) } } >`,
+                  `  { this.renderContent() }`,
+                  `</Popover>`,
+                 ` `,
+                  `<Button onClick={ e => { this.setState({ anchorEl: e.currentTarget }) } } theme={ 'primary' } variant={ 'raised' } >`,
+                  `  { core.translate('Click Me') }`,
+                  `</Button>`,
+                ].join('\n');
             }, 
 
             renderContentState(){
-              let { position, theme, elevation, offsetX, offsetY, interactive, backdrop, animation } = this.state;
+              let { position, theme, elevation, offsetX, offsetY, padding, interactive, backdrop, animation } = this.state;
 
               return (
                 <Column style={{ width: '100%' }}>
                   <div> { core.translate('Position') } : { position } </div>
                   <div> { core.translate('Theme') } : { theme } </div>
                   <div> { core.translate('Animation') } : { animation } </div>
+                  <div> { core.translate('Padding') } : { padding } </div>
                   <div> { core.translate('Offset X') } : { offsetX } </div>
                   <div> { core.translate('Offset Y') } : { offsetY } </div>
                   <div> { core.translate('Elevation') } : { elevation } </div>
@@ -69,7 +74,14 @@ module.exports = {
             },
 
             render() {
-                let { position, theme, elevation, offsetX, offsetY, backdrop, anchorEl, width, height, interactive, animation } = this.state;
+                let { position, theme, elevation, padding, offsetX, offsetY, backdrop, anchorEl, width, height, interactive, animation } = this.state;
+                elevation = ExampleHelper.ifNumber_Convert(elevation);
+                width = ExampleHelper.ifNumber_Convert(width);
+                height = ExampleHelper.ifNumber_Convert(height);
+                padding = ExampleHelper.ifNumber_Convert(padding);
+                offsetX = ExampleHelper.ifNumber_Convert(offsetX);
+                offsetY = ExampleHelper.ifNumber_Convert(offsetY);
+
                 return (
                     <SimpleExample  context={this} 
                                     code={ this.getCode() } 
@@ -82,11 +94,12 @@ module.exports = {
                                 theme={ theme } 
                                 animation={ animation } 
                                 backdrop={ backdrop } 
-                                elevation={ Number(elevation) } 
-                                width={ Number(width) }
-                                height={ Number(height) }
-                                offsetX={ Number(offsetX) }
-                                offsetY={ Number(offsetY) } 
+                                elevation={ elevation } 
+                                width={ width }
+                                height={ height }
+                                padding={ padding }
+                                offsetX={ offsetX }
+                                offsetY={ offsetY } 
                                 interactive={ interactive } 
                                 onClose={ e => { this.setState({ anchorEl: undefined }) } } >
                         { this.renderContentState() }

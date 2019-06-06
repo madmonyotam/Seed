@@ -1,9 +1,9 @@
-import { MenuList, Popover, MenuItem  } from '@material-ui/core/';
+import { MenuList, MenuItem  } from '@material-ui/core/';
 import {isEmpty} from 'lodash';
 
 module.exports = {
-dependencies: ['Simple.Label', 'Layouts.Row', 'Layouts.Center', 'Simple.Icon', 'Layouts.Divider', 'Inputs.IconButton','Inputs.Button'],
-get( Label, Row, Center, Icon, Divider, IconButton, Button) {
+dependencies: ['Simple.Label', 'Layouts.Row', 'Layouts.Center', 'Simple.Icon', 'Inputs.IconButton', 'Inputs.Button', 'Decorators.Popover'],
+get( Label, Row, Center, Icon, IconButton, Button, Popover) {
 
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports;
@@ -37,14 +37,6 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
             background: PropTypes.string,
             active: PropTypes.bool,
             dropDown: PropTypes.bool,
-            anchorOrigin: PropTypes.shape({
-                vertical: PropTypes.oneOf(['bottom', 'top']),
-                horizontal: PropTypes.oneOf(['right', 'left']),
-            }),
-            transformOrigin: PropTypes.shape({
-                vertical: PropTypes.oneOf(['bottom', 'top']),
-                horizontal: PropTypes.oneOf(['right', 'left']),
-            }),
         },
 
         getDefaultProps() {
@@ -67,8 +59,6 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
                 background: core.theme('backgrounds.default'),
                 active: false,
                 dropDown: false,
-                anchorOrigin:{ vertical: 'bottom', horizontal: 'right' },
-                transformOrigin:{ vertical: 'top', horizontal: 'right' },
             }
         },
 
@@ -99,7 +89,7 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
 
 
         styles(s) {
-            let {style, menuStyle, menuWidth, menuItemStyle, background,
+            let {style, menuStyle, menuItemStyle, background,
                 iconStyle, iconSize, iconButtonStyle, active, iconColor} = this.props;
 
             let menuItem = {
@@ -117,7 +107,6 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
                     ...style
                 },
                 menu: {
-                    width: menuWidth,
                     ...menuStyle
                 },
                 menuList:{
@@ -195,7 +184,7 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
         handleClose(e){
             this.prevent(e)
             this.setState({ anchorEl: null })
-          },
+        },
 
         renderIconButton() {
             let {icon, iconSize, active, iconColor, dropDown, background} = this.props;
@@ -204,7 +193,7 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
             if (dropDown) {
                 return (
                     <Button 
-                    padding={0}
+                        padding={0}
                         onClick={this.handleOpen}
                         background={background}
                         width={'fit-content'}
@@ -293,10 +282,8 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
         },
 
         renderPopper() {
-            let {anchorOrigin, transformOrigin, menuItems} = this.props;
+            let {menuItems, menuWidth} = this.props;
             let {anchorEl} = this.state;
-
-            let open = Boolean(anchorEl);
 
             const renderMenuTitle = ()=>{
                 let {menuTitle} = this.props;
@@ -324,13 +311,13 @@ get( Label, Row, Center, Icon, Divider, IconButton, Button) {
 
             return (
                 <Popover
-                    id="simple-popper"
-                    open={open}
                     anchorEl={anchorEl}
                     onClose={this.handleClose}
-                    PaperProps={{ elevation: 6, style: this.styles('menu') }}
-                    anchorOrigin={ anchorOrigin }
-                    transformOrigin={ transformOrigin }
+                    elevation={6}
+                    padding={0}
+                    theme={'light'}
+                    width={menuWidth}
+                    style={this.styles('menu')}
                 >
 
                     { renderMenuTitle() }

@@ -39,6 +39,7 @@ module.exports = {
               offsetY: PropTypes.number,
               elevation: PropTypes.oneOf([1,2,3,4,5,6,7,8,9,10]),
               interactive: PropTypes.bool,
+              padding: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
               backdrop: PropTypes.bool,
             },
 
@@ -54,6 +55,7 @@ module.exports = {
                 width: 150,
                 height: undefined,
                 interactive: false,
+                padding: 15,
                 backdrop: false
               };
             },
@@ -109,7 +111,7 @@ module.exports = {
             },
 
             styles(s){
-              let { style, theme, width, height, elevation, backdrop  } = this.props;
+              let { style, theme, width, height, padding, elevation, backdrop  } = this.props;
               let { showTp, visible } = this.state;
               let isDark = theme === 'dark'; 
 
@@ -146,7 +148,7 @@ module.exports = {
                 inner: {
                   height: height || 'auto',
                   width: width || this.defaultWidth || '100%',
-                  padding: 15,
+                  padding: padding,
                   boxShadow: elevationsBoxShadows[elevation],
                   borderRadius: 3,
                   fontSize: 12,
