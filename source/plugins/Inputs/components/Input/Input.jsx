@@ -79,28 +79,21 @@ module.exports = {
 
             componentDidMount() {
               this.inputRef = React.createRef();
-
-              this.setState((state, props)=>{
-                if (props.options)
-                  state.options = props.options;
-
-                if (props.value !== '' )
-                  state.value = props.value;
-
-                return state
-              });
+              if (this.props.options) this.setState({ options: this.props.options })
+              if (this.props.value !== '') this.setState({ value: this.props.value })
             },
 
             componentWillReceiveProps(nextProps) {
               let {options, value} = this.props;
 
-              if (nextProps.options && nextProps.options !== options)
+              if (nextProps.options && nextProps.options !== options) {
                 this.setState({ options: nextProps.options });
+              }
 
-              if (nextProps.value && nextProps.value !== value && nextProps.value !== '')
+              if (nextProps.value && nextProps.value !== value && nextProps.value !== '') {
                 this.setState({ value: nextProps.value });
-              else if (nextProps.value == '' )
-                this.setState({ value: '' });
+              } 
+              else if (nextProps.value == '' ) this.setState({ value: '' });
             },
 
             getIsFocused(){
@@ -108,7 +101,7 @@ module.exports = {
               return (focused === uniqueName);
             },
 
-            getInpoutWidth() {
+            getInputWidth() {
 
               if (this.inputRef && this.inputRef.current && this.inputRef.current.id === 'downshift-autocomplete-input'){
                 return this.inputRef.current.offsetWidth;
@@ -174,7 +167,7 @@ module.exports = {
 
                 downshiftList: {
                     position:'fixed', 
-                    width: this.getInpoutWidth() || 500, 
+                    width: this.getInputWidth() || 500, 
                     maxHeight: 215,
                     zIndex: 1,
                     padding: '5px 0',
@@ -434,7 +427,7 @@ module.exports = {
               if (downshiftProps) {
                 getInputProps = downshiftProps.getInputProps;
                 clearSelection = downshiftProps.clearSelection;
-              }
+              } 
 
               const setprops = () => {
                 if (getInputProps) {
@@ -466,7 +459,7 @@ module.exports = {
                           placeholder={ placeholder }
 
                           { ...setprops() }
-                          {...inputProps}
+                          { ...inputProps }
 
                           onFocus={ e => { this.setState({ focused: uniqueName, isDownShiftOpen: openOnFocus && isAuotocomplete ? true : false }) } }
                           onBlur={ e => { this.setState({ focused: null, isDownShiftOpen: false }) } } />
