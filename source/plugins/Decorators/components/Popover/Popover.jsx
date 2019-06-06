@@ -74,6 +74,7 @@ module.exports = {
 
             componentWillReceiveProps(nextProps) { 
               if (nextProps.anchorEl ) this.setState({ anchorEl: nextProps.anchorEl }, this.handleShow)
+              else this.setState({ anchorEl: null })
               if (nextProps.children != this.props.children || this.props.position !== nextProps.position ) this.calcPosition();
             },
 
@@ -263,7 +264,8 @@ module.exports = {
             },
 
             handleHide(e){ 
-              if (!e || core.isUndefined(e) || this.state.disableEvents) return;
+              let { disableEvents, anchorEl } = this.state;
+              if ((!e || core.isUndefined(e) || disableEvents) && anchorEl) return;
               let { onClose } = this.props;
               this.safeState({ 
                 showTp: false, 

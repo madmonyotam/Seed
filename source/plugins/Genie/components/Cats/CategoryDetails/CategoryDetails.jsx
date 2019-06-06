@@ -219,7 +219,12 @@ module.exports = {
             },
 
             handleUpdateItems(data) {
+                let {selected, genie} = this.state;
+                let mock = this.serialize(genie);
+                    mock[selected] = data;
+
                 this.setState({stateItems: data});
+                this.cursor.genie.set(mock);
             },
 
             handleActions() {
@@ -331,11 +336,6 @@ module.exports = {
                 };
 
                 if (originalData[selected] && genie[selected] && Object.is(originalData[selected], genie[selected] )) return null;
-
-                if ( mode == units.CODE ) {
-                    console.log(11);
-                    if (originalData[selected] && !!stateItems && Object.is(originalData[selected], JSON.parse(stateItems) )) return null;
-                }
 
                 const click = (e)=>{
                     let model = handleStateItems(stateItems);

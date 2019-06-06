@@ -109,7 +109,11 @@ module.exports = {
 
             handleEditorChange(newValue){
                 const parentUpdate = (data)=>{
-                  if (this.props.cb) this.props.cb(data);
+                  if (this.props.cb) {
+                      try {
+                        this.props.cb(JSON.parse(data));
+                      } catch (error) {}
+                  }
                 };
 
                 this.setState({ data: newValue }, parentUpdate.bind(this, newValue));
