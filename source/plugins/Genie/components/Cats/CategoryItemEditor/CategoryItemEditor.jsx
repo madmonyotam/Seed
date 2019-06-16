@@ -188,6 +188,7 @@ module.exports = {
             },
 
             handleChange (stateName, value){
+                console.log(value);
               let newState = {...this.state};
               newState[stateName] = value;
               this.setState(newState, this.handleCB);
@@ -279,6 +280,7 @@ module.exports = {
                         return this.renderValue();
 
                     case 'autocompleteArray':
+                        return this.renderAutocompleteArray();
                     case 'array':
                         return this.renderValueMultiple();
 
@@ -292,7 +294,7 @@ module.exports = {
             },
 
             renderValueMultiple(){
-                let { currentType, value, categoriesOptions } = this.state;
+                let { currentType, value } = this.state;
                 
                 return (
                   <div style={{ margin: '15px 0' }}>
@@ -303,8 +305,26 @@ module.exports = {
                             placeholder={ this.getPlaceholder() }
                             openOnFocus={ true }
                             isMultipleValues={ true }
+                            handleKeyDown={ v => { this.handleChange('value', v) }  }
+                    />
+                  </div>
+                );
+            },
+
+            renderAutocompleteArray(){
+                let { value, categoriesOptions } = this.state;
+                
+                return (
+                  <div style={{ margin: '15px 0' }}>
+                    <Input  type={ 'autocomplete' }
+                            theme={ 'outlined' }  
+                            label={ core.translate('Value') } 
+                            value={ value }
+                            placeholder={ this.getPlaceholder() }
+                            openOnFocus={ true }
+                            isMultipleValues={ true }
                             options={ categoriesOptions } 
-                            handleKeyDown={ values => { this.handleChange('value', values) }  }
+                            onChange={ v => { this.handleChange('value', v) }  }
                     />
                   </div>
                 );

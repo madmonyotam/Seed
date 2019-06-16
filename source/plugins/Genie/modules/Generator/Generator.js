@@ -123,7 +123,7 @@ module.exports = {
                             let newArray = [];
         
                             element.value.forEach((el) => {
-                                newArray.push( _create({count:1, model: seed.get('genie', el)}, true ) );
+                                newArray.push( this.create({count:1, model: seed.get('genie', el)}, true ) );
                             });
                             
                             return newArray;

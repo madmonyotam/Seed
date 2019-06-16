@@ -233,10 +233,14 @@ module.exports = {
             },
 
             handleOnChange(value) {
-              let {onChange} = this.props;
+              let {onChange,isMultipleValues} = this.props;
+              let { multiValues } = this.state;
               this.setState({ value });
 
-              if (onChange) onChange(value);
+              if (isMultipleValues) {
+                let values = [ ...multiValues, value ];
+                if (onChange) onChange(values);
+              } else if (onChange) onChange(value);
             },
 
             handleClearInput(e){
