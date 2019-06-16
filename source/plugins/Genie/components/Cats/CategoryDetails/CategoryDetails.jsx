@@ -50,6 +50,7 @@ module.exports = {
                 create: seed.icons('genie.create'),
                 mongo: seed.icons('genie.mongo'),
                 save: seed.icons('genie.save'),
+                download: seed.icons('genie.download'),
                 generate: seed.icons('genie.generate'),
                 add: seed.icons('genie.add'),
                 edit: seed.icons('genie.edit'),
@@ -267,7 +268,7 @@ module.exports = {
                                     hoverSize={ 5 }
                                     iconSize={units.dims.actionButtonIcon}
                                     title={seed.translate('Save to file')}
-                                    icon={units.icons.save}
+                                    icon={units.icons.download}
                                 />
                             </FileDownloader>
 

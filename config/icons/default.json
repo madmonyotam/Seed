@@ -32,6 +32,7 @@
     "mongo": "cloud_upload",
     "save": "save",
     "generate": "play_arrow",
+    "download": "fas fa-download",
     "code": "code",
     "create": "settings",
     "add": "add",
