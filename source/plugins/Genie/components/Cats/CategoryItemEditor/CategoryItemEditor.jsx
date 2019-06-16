@@ -188,7 +188,6 @@ module.exports = {
             },
 
             handleChange (stateName, value){
-                console.log(value);
               let newState = {...this.state};
               newState[stateName] = value;
               this.setState(newState, this.handleCB);

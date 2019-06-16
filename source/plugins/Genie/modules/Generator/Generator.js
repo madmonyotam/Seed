@@ -130,6 +130,22 @@ module.exports = {
                         }
                     },
 
+                    oneOfCategories: {
+                        info: "one category from categories list",
+                        scheme: {
+                            type: 'autocompleteArray',
+                            options: this.getCategoriesKeys(),
+                            placeholder: seed.translate('choose categories from list') 
+                        },
+                        generate: (element)=>{
+                            let length =  element.value.length;
+                            let index = Math.floor(Math.random() * length); 
+                            let item = this.create({count:1, model: seed.get('genie', element.value[index])}, true )
+
+                            return item;
+                        }
+                    },
+
                     categoryEmpty: {
                         info: 'Empty object',
                         scheme: {
