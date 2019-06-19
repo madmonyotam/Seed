@@ -204,8 +204,9 @@ module.exports = {
                         this.handleCloseAdd();
                         break;
                     case 13: // Enter
-                        if (addValue.trim().length) {
-                            this.handleAdd(addValue);
+                        let value = addValue.trim();
+                        if (value.length) {
+                            this.handleAdd(value);
                             this.handleCloseAdd();
                         }
                         break;
