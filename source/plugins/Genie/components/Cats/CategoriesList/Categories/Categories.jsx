@@ -31,9 +31,11 @@ module.exports = {
             },
             backgrounds: {
                 default: seed.theme('backgrounds.default'),
+                category: seed.theme('genie.cat_bg')
             },
             icons: {
-                clear: seed.icons('genie.clear')
+                clear: seed.icons('genie.clear'),
+                addCat: seed.icons('genie.addCategory')
             }
         }
 
@@ -220,9 +222,9 @@ module.exports = {
                     <NoResults
                         onClick = { this.add }
                         text={ '' }
-                        icon={ seed.icons('genie.addCategory') }
-                        color={ seed.theme('texts.default') }
-                        background= { seed.theme('Genie.cat_bg') }
+                        icon={ units.icons.addCat }
+                        color={ units.colors.text }
+                        background= { units.backgrounds.category }
                         size={6}
                     />
                 );
@@ -252,7 +254,7 @@ module.exports = {
                 let rowStyle = { minHeight: 40, paddingRight: 5 }
                 return (
                     <Row height={40} color={units.backgrounds.default} boxShadow={true} style={rowStyle} >
-                        <Input id={'addCategoriesInputId'}
+                        <Input id={'addCategoryInputId'}
                             label={''}
                             inputStyle={inputStyle}
                             autoFocus={ true }

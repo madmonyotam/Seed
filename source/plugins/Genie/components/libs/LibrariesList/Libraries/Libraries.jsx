@@ -30,10 +30,12 @@ get(
             text: seed.theme('texts.default')
         },
         backgrounds: {
-            default: seed.theme('backgrounds.default')
+            default: seed.theme('backgrounds.default'),
+            library: seed.theme('genie.lib_bg')
         },
         icons: {
-            clear: seed.icons('genie.clear')
+            clear: seed.icons('genie.clear'),
+            addLibrary: seed.icons('genie.addLibrary')
         },
     };
 
@@ -299,9 +301,9 @@ get(
                 <NoResults
                     onClick = { this.add }
                     text={ '' }
-                    icon={ seed.icons('genie.addLibrary') }
-                    color={ seed.theme('texts.default') }
-                    background= { seed.theme('Genie.lib_bg') }
+                    icon={ units.icons.addLibrary }
+                    color={ units.colors.text }
+                    background= { units.backgrounds.library }
                     size={6}
                 />
             );
@@ -334,6 +336,7 @@ get(
             return (
                 <Row height={ 40 } color={units.backgrounds.default} boxShadow={true} style={rowStyle} >
                     <Input
+                        id={'addLibraryInputId'}
                         label={''}
                         inputStyle={inputStyle}
                         autoFocus={ true }
@@ -342,7 +345,7 @@ get(
                     />
                     <IconButton    
                         onClick={ this.handleCloseAdd }
-                        icon={units.icons.clear} 
+                        icon={ units.icons.clear }
                         hoverSize= { 5 }
                         iconSize= { 16 }
                         background= 'transparent' />

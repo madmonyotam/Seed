@@ -193,11 +193,24 @@ module.exports = {
                 this.setState({query: str});
             },
 
+            handleToggleAddLib() {
+                let {openLibAdd} = this.state;
+                return openLibAdd ? this.handleCloseAdd() : this.handleAddLib();
+            },
+            handleToggleAddCat() {
+                let {openCatAdd} = this.state;
+                return openCatAdd ? this.handleCloseAdd() : this.handleAddCat();
+            },
+
             handleAddLib() {
                 this.setState({
                     openLibAdd: true,
                     openCatAdd: false,
                 });
+                setTimeout(() => {
+                    let addInput = document.getElementById('addLibraryInputId');
+                    addInput.focus();
+                }, 250);
             },
 
             handleAddCat() {
@@ -223,7 +236,7 @@ module.exports = {
                     <Paper id={'Lists'} elevation={ 2 } style={ this.styles('lists') }>
                         <Column id={'Menu'} style={ this.styles('menu') } >
 
-                            <MenuTitleBar addLib={this.handleAddLib} addCat={this.handleAddCat} searchCB={(str)=>{this.handleSearch(str)}} />
+                            <MenuTitleBar addLib={this.handleToggleAddLib} addCat={this.handleToggleAddCat} searchCB={(str)=>{this.handleSearch(str)}} />
 
                             <Row padding={0} height={'calc(100% - 50px)'}>
                                 <Libraries  searchValue={query} addIsOpen={openLibAdd} closeAdd={this.handleCloseAdd} />

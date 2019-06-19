@@ -41,6 +41,7 @@ module.exports = {
               options: PropTypes.array,
               placeholder: PropTypes.string,
               type: PropTypes.string,
+              autoFocus: PropTypes.bool,
               openOnFocus: PropTypes.bool,
               isMultipleValues: PropTypes.bool,
               inputProps: PropTypes.object,
@@ -61,6 +62,7 @@ module.exports = {
                 type: 'text',
                 value: '',
                 label: 'label',
+                autoFocus: false,
                 openOnFocus: false,
                 isMultipleValues: false,
                 inputProps: {},
@@ -83,6 +85,7 @@ module.exports = {
               this.inputRef = React.createRef();
               if (this.props.options) this.setState({ options: this.props.options })
               if (this.props.value !== '') this.setState({ value: this.props.value })
+              if (this.props.autoFocus) this.setFocus();
             },
 
             componentWillReceiveProps(nextProps) {
@@ -96,6 +99,15 @@ module.exports = {
                 this.setState({ value: nextProps.value });
               } 
               else if (nextProps.value == '' ) this.setState({ value: '' });
+
+            },
+
+            setFocus() {
+              setTimeout(() => {
+                if (this.inputRef && this.inputRef.current && this.inputRef.current.focus) {
+                  this.inputRef.current.focus();
+                }
+              }, 100);
             },
 
             getIsFocused(){
