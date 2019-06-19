@@ -35,6 +35,7 @@ module.exports = {
               handleKeyDown: PropTypes.func,
               style: PropTypes.object,
               inputStyle: PropTypes.object,
+              id: PropTypes.string,
               labelStyle: PropTypes.object,
               label: PropTypes.string,
               options: PropTypes.array,
@@ -52,6 +53,7 @@ module.exports = {
                 onChange: (e, newValue) => { /* do something with the event and new value  */ },
                 handleKeyDown: undefined,
                 style: {},
+                id: 'Input',
                 inputStyle: {},
                 labelStyle: {},
                 options: [],
@@ -478,10 +480,10 @@ module.exports = {
             },
 
             render() {
-              let {onKeyDown} = this.props;
+              let {onKeyDown, id} = this.props;
 
                 return (
-                    <div id={'Input'}  style={this.styles('root')} onKeyDown={onKeyDown}> 
+                    <div id={id} style={this.styles('root')} onKeyDown={onKeyDown}> 
                       { this.renderLabel(this.props.label) }  
                       { this.renderInputs(this.props.type) }
                     </div>

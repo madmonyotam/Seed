@@ -201,9 +201,26 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             let bodyHeight = this.handleBodyHeight()
             let popupHeight = bodyHeight + titleHeight + footerHeight;
 
+            const stopPropagation = (e) => {
+                e.stopPropagation();
+            };
+
+            const setClose = (e) => {
+                this.setState({allowClose: true});
+            }
+
+            const doClose = (e)=>{
+                if (!!this.state.allowClose) this.handleClose(id);
+            }
+
+            const cancelClose = (e) => {
+                stopPropagation(e);
+                this.setState({allowClose: false});
+            }
+
             return (
                 <Absolute id={id}>
-                    <Center color={backdropColor} onClick={()=>{this.handleClose(id)}}>
+                    <Center color={backdropColor} onMouseDown={setClose} onMouseUp={doClose}>
 
                         <Column 
                             width={width}
@@ -211,7 +228,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                             boxShadow={true}
                             color={background}
                             style={this.styles('root')}
-                            onClick={(e)=>{e.stopPropagation()}}
+                            onMouseUp={cancelClose} onMouseDown={stopPropagation} onClick={stopPropagation}
                         >
                             {this.renderTitle()}
                             <Column width={width} 

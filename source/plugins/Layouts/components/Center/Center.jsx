@@ -36,22 +36,21 @@ module.exports = {
                         alignItems: "center",
                         justifyContent: "center",
                         alignContent: "center",
-                        width:width,
-                        height:height,
+                        width: width,
+                        height: height,
                         background: color,
                         ...style
                     },
-                
                 }
                 
                 return(styles[s]);
             },
 
             render() {
-                let { children, onClick } = this.props
+                let { children, ...props } = this.props;
 
                 return (
-                    <div style={this.styles('center')} onClick={ onClick }>
+                    <div { ...props } style={this.styles('center')}>
                         { children }
                     </div>
                 )

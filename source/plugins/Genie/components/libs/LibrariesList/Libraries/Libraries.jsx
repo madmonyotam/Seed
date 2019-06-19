@@ -1,8 +1,26 @@
 import { uniq, isEmpty } from 'lodash';
 
 module.exports = {
-dependencies: ['Simple.NoResults', 'Genie.LibraryItem', 'Inputs.IconButton', 'Layouts.Row', 'Inputs.Input'],
-get(NoResults, LibraryItem, IconButton, Row, Input) {
+dependencies: [
+    'Simple.NoResults',
+    'Genie.LibraryItem',
+    'Inputs.IconButton',
+    'Layouts.Row',
+    'Inputs.Input',
+    'Layouts.Center',
+    'Inputs.Button',
+    'Simple.Icon',
+],
+get(
+    NoResults,
+    LibraryItem,
+    IconButton,
+    Row,
+    Input,
+    Center,
+    Button,
+    Icon,
+) {
     var seed = this;
     var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
@@ -71,6 +89,7 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
                     position: "relative",
                     width: "100%",
                     height: "100%",
+                    overflow: 'auto'
                 }
             }
             
@@ -280,7 +299,7 @@ get(NoResults, LibraryItem, IconButton, Row, Input) {
                 <NoResults
                     onClick = { this.add }
                     text={ '' }
-                    icon={ seed.icons('genie.add') }
+                    icon={ seed.icons('genie.addLibrary') }
                     color={ seed.theme('texts.default') }
                     background= { seed.theme('Genie.lib_bg') }
                     size={6}

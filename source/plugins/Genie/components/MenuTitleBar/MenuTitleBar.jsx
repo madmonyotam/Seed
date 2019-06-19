@@ -1,18 +1,18 @@
 module.exports = {
     name: 'MenuTitleBar',
     description: 'This is an example of a component',
-    dependencies: [ 'Layouts.Row', 'Inputs.IconMenu', 'Inputs.IconButton', 'Simple.Label', 'Inputs.Input'],
-    get(Row, IconMenu, IconButton, Label, Input) {
-        let core = this;
+    dependencies: [ 'Layouts.Row', 'Inputs.IconButton', 'Simple.Label', 'Inputs.Input'],
+    get(Row, IconButton, Label, Input) {
+        const core = this;
         
-        let SearchIcon = IconButton;
-        let CloseIcon = IconButton;
-        let MoreIcon = IconMenu;
+        const AddIcon = IconButton;
+        const SearchIcon = IconButton;
+        const CloseIcon = IconButton;
 
-        let MenuTitleBar = Row;
-        let IconsRow = Row;
+        const MenuTitleBar = Row;
+        const IconsRow = Row;
 
-        let { React, PropTypes, ComponentMixin } = core.imports;
+        const { React, PropTypes, ComponentMixin } = core.imports;
 
         const units = {
             colors: {
@@ -23,6 +23,8 @@ module.exports = {
                 threeDots: core.icons('general.more'),
                 clear: core.icons('genie.clear'),
                 search: core.icons('genie.search'),
+                addLib: core.icons('genie.addLibrary'),
+                addCat: core.icons('genie.addCategory'),
             },
             backgrounds: {
                 default: core.theme('backgrounds.default'),
@@ -31,7 +33,8 @@ module.exports = {
                 fontSize: 13,
                 buttonIconSize: 27,
                 iconSize: 18,
-                iconsRow: 60,
+                iconsRow: 90,
+                searchRow: 240,
             },
             transition: 0.3,
             closeIconRowTransition: 0.5
@@ -106,8 +109,8 @@ module.exports = {
                         color: units.colors.text,
                     },
                     searchInput: {
-                        width: (this.state.openSearch) ? 230 : 0,
-                        minWidth: (this.state.openSearch) ? 230 : 0,
+                        width: (this.state.openSearch) ? units.dims.searchRow : 0,
+                        minWidth: (this.state.openSearch) ? units.dims.searchRow : 0,
                         background: units.backgrounds.default,
                         transition: `width ${units.transition}s ${units.transition}s ease-in-out, min-width ${units.transition}s ${units.transition}s ease-in-out`,
                     },
@@ -167,11 +170,6 @@ module.exports = {
             },
 
             renderIcons() {
-                const menuList = [
-                    { text: core.translate('Add Library'),  value: 'addLibrary',  onClick: this.props.addLib },
-                    { text: core.translate('Add Category'), value: 'addCategory', onClick: this.props.addCat },
-                ];
-
 
                 return (
                     <IconsRow style={this.styles('iconsRow')}>
@@ -182,10 +180,19 @@ module.exports = {
                             title={core.translate('Search')}
                             icon={units.icons.search}
                         />
-                        <MoreIcon key={'MoreIcon'}
-                            icon={units.icons.threeDots}
+                        <AddIcon key={'AddLibrary'}
                             iconSize={units.dims.iconSize}
-                            menuItems={menuList}
+                            hoverSize={ 5 }
+                            onClick={this.props.addLib}
+                            title={core.translate('AddLibrary')}
+                            icon={units.icons.addLib}
+                        />
+                        <AddIcon key={'AddCategory'}
+                            iconSize={units.dims.iconSize}
+                            hoverSize={ 5 }
+                            onClick={this.props.addCat}
+                            title={core.translate('AddCategory')}
+                            icon={units.icons.addCat}
                         />
                     </IconsRow>
                 )

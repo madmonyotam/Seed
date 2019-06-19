@@ -167,35 +167,6 @@ module.exports = {
                 this.setState({codeData: data, counter: count});
             },
 
-            handleSaveToMongo(event, saveKey, data){
-                if (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-
-                const cb = (res) => {
-                    if (res.success) {
-                        setTimeout( MongoHandler.disconnect , 500 );
-                        let notify = {
-                            text: 'Saved to MongoDB Successfully!',
-                            alertKind: 'success'
-                        }
-                        seed.emit('notify', notify);
-                    }
-                }
-                let collectionName = seed.getCurrentUser().tenantId
-
-                let saveItem = {
-                    'key': saveKey.toLowerCase() ,
-                    'data': data.res,
-                    'total-results': data.res.length
-                }
-
-                let currentUser = seed.getCurrentUser();
-                let dbName = currentUser ? currentUser.tenantId : undefined
-                MongoHandler.automate(dbName, collectionName, saveItem, cb);
-            },
-
             handleUpdateTree( data, mode ) {
                 let {selected, genie} = this.state;
                 let mock = this.serialize(genie);
@@ -241,22 +212,9 @@ module.exports = {
                 let {selected, codeData, counter} = this.state;
                 const inputOnChange = (counter)=>{ this.setState({counter}) };
 
-                const saveMongo = (e)=>{
-                    this.handleSaveToMongo(e, selected, codeData);
-                };
-
                 return (
                     <Row padding={0} style={{justifyContent: 'flex-end'}}>
                         <Margin right={10}>
-                        {/* <IconButton
-                                key={'mongo'}
-                                hoverSize={ 5 }
-                                iconSize={units.dims.actionButtonIcon}
-                                onClick={saveMongo}
-                                title={seed.translate('Upload to MongoDB')}
-                                icon={units.icons.mongo}
-                            />*/}
-
                             <FileDownloader
                                 key={'download'}
                                 content={codeData}
@@ -528,7 +486,7 @@ module.exports = {
                 return (
                     <div  onClick = { addLib } style={this.styles('welcome')}>
                         <Row width={'fit-contant'}>
-                            <Label size={40} label={seed.translate('Welcome to  genie')} style={{textTransform: 'uppercase' }}/>
+                            <Label size={40} label={seed.translate('Welcome to genie')} style={{textTransform: 'uppercase' }}/>
                         </Row>
                         <Row width={'fit-contant'} height={100}>
                             <Label size={20} label={seed.translate('Click here to start')}/>
@@ -543,7 +501,7 @@ module.exports = {
                     <NoResults
                         onClick = { addCat }
                         text={ seed.translate('add category') }
-                        icon={ seed.icons('genie.add') }
+                        icon={ seed.icons('genie.addCategory') }
                         color={ seed.theme('texts.default') }
                         background= { units.colors.cat }
                         size={6}

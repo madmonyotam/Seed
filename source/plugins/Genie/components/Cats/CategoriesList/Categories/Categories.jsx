@@ -1,8 +1,27 @@
 import { uniq, isEmpty } from 'lodash';
 
 module.exports = {
-    dependencies: [ 'Simple.NoResults', 'Genie.CategoryItem', 'Inputs.IconButton', 'Layouts.Row', 'Inputs.Input' ],
-    get( NoResults, CategoryItem, IconButton, Row, Input ) {
+    dependencies: [
+        'Simple.NoResults',
+        'Genie.CategoryItem',
+        'Inputs.IconButton',
+        'Layouts.Row',
+        'Inputs.Input',
+        'Layouts.Center',
+        'Inputs.Button',
+        'Simple.Icon',
+    ],
+    get(
+        NoResults,
+        CategoryItem,
+        IconButton,
+        Row,
+        Input,
+        Center,
+        Button,
+        Icon,
+    ) {
+
         var seed = this;
         var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
 
@@ -65,7 +84,8 @@ module.exports = {
                     mapWrapper: {
                         position: "relative",
                         width: "100%",
-                        height: "100%",
+                        height: '100%',
+                        overflow: 'auto'
                     }
                 }
                 return(styles[s]);
@@ -191,8 +211,8 @@ module.exports = {
                 return;
             },
 
-            add(){
-                this.setState({addIsOpen:true});
+            add() {
+                this.setState({addIsOpen: true});
             },
 
             renderNoResults() {
@@ -200,7 +220,7 @@ module.exports = {
                     <NoResults
                         onClick = { this.add }
                         text={ '' }
-                        icon={ seed.icons('genie.add') }
+                        icon={ seed.icons('genie.addCategory') }
                         color={ seed.theme('texts.default') }
                         background= { seed.theme('Genie.cat_bg') }
                         size={6}
@@ -227,20 +247,19 @@ module.exports = {
             renderAdd() {
                 let {addIsOpen} = this.state;
                 if (!addIsOpen) return null;
-    
-                let inputStyle = { height:28, paddingLeft: 2 }
-                let rowStyle = { paddingRight: 5 }
-    
+
+                let inputStyle = { height: 28, paddingLeft: 2 }
+                let rowStyle = { minHeight: 40, paddingRight: 5 }
                 return (
                     <Row height={40} color={units.backgrounds.default} boxShadow={true} style={rowStyle} >
-                        <Input
+                        <Input id={'addCategoriesInputId'}
                             label={''}
                             inputStyle={inputStyle}
                             autoFocus={ true }
                             onKeyDown={ this.handleAddKeyDown }
                             placeholder={ seed.translate('Add Category') }
                         />
-                        <IconButton    
+                        <IconButton
                             onClick={ this.handleCloseAdd }
                             icon={units.icons.clear} 
                             hoverSize= { 5 }

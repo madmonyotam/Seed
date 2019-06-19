@@ -36,6 +36,8 @@
     "code": "code",
     "create": "settings",
     "add": "add",
+    "addCategory": "playlist_add",
+    "addLibrary": "create_new_folder",
     "table": "view_comfy",
     "upload": "publish",
     "edit": "edit",
