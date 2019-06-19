@@ -146,6 +146,21 @@ module.exports = {
       })
     };
 
+    function getFilesPromises(path,dirs) {
+      let promises = [];
+      for (var currentDir in dirs) {
+          let filePath = path+currentDir;
+
+          promises.push(
+            new Promise ( (resolve, reject) => {
+              getFile(currentDir, filePath, resolve);
+            })
+          )
+      }
+
+      return promises;
+    };
+
     function readFile(key, filePath, resolve){
       
       var files = [], extracted, modified = false, fileName = path.basename(filePath);
@@ -164,16 +179,9 @@ module.exports = {
     };
 
     start(configPath, (dirs)=>{
-      var filePath, promises = [], filePromises = [];
-      for (var idx in dirs) {
-          filePath = configPath+idx;
 
-          promises.push(
-            new Promise ( (resolve, reject) => {
-              getFile(idx, filePath, resolve);
-            })
-          )
-      }
+      var filePromises = [];
+      let promises =  getFilesPromises(configPath,dirs);
 
       Promise.all(promises).then( results => {
         var filePath, idx;
