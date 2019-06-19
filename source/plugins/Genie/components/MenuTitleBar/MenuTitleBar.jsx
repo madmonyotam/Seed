@@ -149,6 +149,7 @@ module.exports = {
                 return(
                     <Row padding={0} style={this.styles('searchInput')}>
                         <Input
+                            id={'GenieMenuTitleSearch'}
                             label={null}
                             style={this.styles('Input')}
                             inputStyle={this.styles('input')}

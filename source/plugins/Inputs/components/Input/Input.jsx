@@ -83,9 +83,8 @@ module.exports = {
 
             componentDidMount() {
               this.inputRef = React.createRef();
-              if (this.props.options) this.setState({ options: this.props.options })
-              if (this.props.value !== '') this.setState({ value: this.props.value })
-              if (this.props.autoFocus) this.setFocus();
+              if (this.props.options) this.setState({ options: this.props.options });
+              if (this.props.value !== '') this.setState({ value: this.props.value });
             },
 
             componentWillReceiveProps(nextProps) {
@@ -100,14 +99,6 @@ module.exports = {
               } 
               else if (nextProps.value == '' ) this.setState({ value: '' });
 
-            },
-
-            setFocus() {
-              setTimeout(() => {
-                if (this.inputRef && this.inputRef.current && this.inputRef.current.focus) {
-                  this.inputRef.current.focus();
-                }
-              }, 100);
             },
 
             getIsFocused(){
@@ -436,7 +427,7 @@ module.exports = {
             },
 
             renderInput(type, downshiftProps){
-              let { openOnFocus, placeholder, inputProps } = this.props;
+              let { openOnFocus, placeholder, inputProps, autoFocus } = this.props;
               let { value, uniqueName } = this.state;
               let getInputProps = undefined; 
               let clearSelection = undefined; 
@@ -471,7 +462,8 @@ module.exports = {
                           type={ isAuotocomplete ? 'text' : type }
                           name={ uniqueName }
                           ref={ this.inputRef }
-                          value={ value } 
+                          value={ value }
+                          autoFocus={autoFocus}
                           onKeyDown={ this.handleKeyDown }
                           style={ this.styles('input') }
                           placeholder={ placeholder }

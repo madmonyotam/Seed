@@ -7,9 +7,6 @@ dependencies: [
     'Inputs.IconButton',
     'Layouts.Row',
     'Inputs.Input',
-    'Layouts.Center',
-    'Inputs.Button',
-    'Simple.Icon',
 ],
 get(
     NoResults,
@@ -17,9 +14,6 @@ get(
     IconButton,
     Row,
     Input,
-    Center,
-    Button,
-    Icon,
 ) {
     var seed = this;
     var { React, PropTypes, ComponentMixin, Branch } = seed.imports;

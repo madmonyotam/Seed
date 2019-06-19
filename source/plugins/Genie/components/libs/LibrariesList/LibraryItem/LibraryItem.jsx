@@ -195,8 +195,12 @@ module.exports = {
                 this.setState({ editable: null, newValue: itemValue });
             },
 
-            handleShowButtons(){
+            handleShowButtons(e){
+                let el = e.currentTarget;
                 this.setState({ showRowIcons: true, hover: true });
+                if ( !!el ) {
+                    el.addEventListener('mouseleave', this.handleHideButtons );
+                }
             },
 
             handleHideButtons(){
@@ -303,7 +307,6 @@ module.exports = {
                         onClick={ this.selectCB }
                         disableRipple={ true }
                         onMouseEnter={ this.handleShowButtons }
-                        onMouseLeave={ this.handleHideButtons }
                     >
 
                         { this.renderItemValue() }
