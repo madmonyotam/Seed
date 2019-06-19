@@ -39,7 +39,7 @@ module.exports = {
             },
 
             componentDidMount() {
-                this.eventsHandler('on');
+                this.eventsHandler('on');          
             },
 
             componentWillUnmount() {

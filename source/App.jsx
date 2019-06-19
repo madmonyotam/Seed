@@ -9,13 +9,15 @@ Seed.getInitialFiles( (DefaultFiles) => {
         
     loadUiPlugins();
 
-    Seed.require(['Project.Root'],
-            (Root) => {
-                let root = getRootWithRouter(Root);
-                ReactDom.render( root, document.getElementById('app') );
-            })
+    Seed.require(['Project.Root'], (Root) => {
 
+            let root = getRootWithRouter(Root);
+            ReactDom.render( root, document.getElementById('app') );
+    })
+
+    Seed.plugins.Settings.setProjects( );        
 });
+
 
 
 function loadUiPlugins() {
@@ -49,5 +51,12 @@ function getRootWithRouter(Root) {
         </HashRouter>
     )
 }
+
+// seed.request.post('/selectServerConfig', { 
+//     configPath: serverConfig.projects[0].root, 
+//     configName: serverConfig.projects[0].name 
+//   }).then( ({ response, results, error }) => {
+//     console.log(response);
+//   })
 
 
