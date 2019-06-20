@@ -11,7 +11,7 @@ module.exports = {
 
         return {
             mixins: [ ComponentMixin, Branch ],
-            
+
             cursors: {
               menu: ['plugins', 'access', 'config'],
               projects: ['plugins', 'Settings', 'projects'],
@@ -19,24 +19,24 @@ module.exports = {
               // TODO: CHECK FOR TREE MIS-BINDINGS
             },
 
-            getInitialState() { 
+            getInitialState() {
               return {
                 routes: []
-              } 
+              }
             },
 
             componentWillMount () {
             },
 
-            componentDidMount() {  
+            componentDidMount() {
               let { menu } = this.state;
               let { match } = this.props; // match.path  = parent route path
               if (menu) {
-                this.buildRoutes(menu,match) 
+                this.buildRoutes(menu,match)
               }
 
             },
-            buildRoutes(menu,match){ 
+            buildRoutes(menu,match){
 
               let menuKeys = Object.keys(menu)
               let routes = menuKeys.map((routeKey)=>{
@@ -53,16 +53,16 @@ module.exports = {
               })
             },
 
-            componentWillUnmount() { 
+            componentWillUnmount() {
             },
 
-            componentWillReceiveProps(nextProps) {  
+            componentWillReceiveProps(nextProps) {
               let { menu } = this.state;
               let { match } = this.props;
 
               if(nextProps.match !== match) this.buildRoutes(menu,nextProps.match);
-            }, 
-            
+            },
+
             getCurrentRoute(routes){
               let afterHash = location.hash.split('#')[1];
               let found  = find(routes, { path: afterHash })
@@ -71,16 +71,16 @@ module.exports = {
 
             styles(propName) {
               let styles = {
-                root: { 
-                  height: '100%', 
-                  width: '100%', 
-                  display: 'flex', 
-                  
-                }, 
+                root: {
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+
+                },
               }
               return styles[propName]
-            },  
-            
+            },
+
             ComponentRender(routeName){
               let { menu, activeRoute } = this.state;
               // console.log(1, menu)
@@ -96,27 +96,27 @@ module.exports = {
             },
 
             renderRouteComponent(route, key){
-              return <Route key={ key } 
-                            path={ route.path } 
-                            component={ this.ComponentRender.bind(this, route.key) } /> 
+              return <Route key={ key }
+                            path={ route.path }
+                            component={ this.ComponentRender.bind(this, route.key) } />
             },
 
-            render() { 
-              let { routes, activeRoute, projects, currentPath } = this.state;  
+            render() {
+              let { routes, activeRoute, projects, currentPath } = this.state;
               return (
 
-                  <div id={'Settings_Root'} style={ this.styles('root') }> 
-                    
-                    <RoutesMenu routes={ routes } 
-                                onRouteChange={ this.onRouteChange } 
+                  <div id={'Settings_Root'} style={ this.styles('root') }>
+
+                    <RoutesMenu routes={ routes }
+                                onRouteChange={ this.onRouteChange }
                                 activeRoute={ activeRoute } />
-                    
+
                     <Switch>
                       { routes.map(this.renderRouteComponent) }
                     </Switch>
 
                     { activeRoute  ? <FloatingMenu parentKey={ activeRoute.key } projects={ projects } currentPath={ currentPath } /> : null }
-                      
+
                   </div>
               )
 

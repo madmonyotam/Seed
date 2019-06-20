@@ -149,7 +149,7 @@ module.exports = {
                 configName: project.name
               })
               .then(()=>{
-                this.setProjectsMenu(project.root, this.props.projects)
+                location.reload()
               })
               .catch( console.error )
             },
