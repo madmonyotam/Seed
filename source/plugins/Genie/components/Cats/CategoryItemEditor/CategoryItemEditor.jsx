@@ -43,9 +43,17 @@ module.exports = {
                     return { 
                         label: type, 
                         value: type, 
-                        info: Generator.getTypeInfo(type)
+                        info: Generator.getTypeInfo(type),
+                        group: Generator.getTypeGroup(type),
                     }
                 });
+                let groups = Generator.getGroups();
+                let mapedGroups = groups.map((group)=>{
+                    return {
+                        label: group, 
+                        value: group,
+                    }
+                })
 
                 return {
                     oldTitle: '',
@@ -54,7 +62,10 @@ module.exports = {
                     type: '',
                     inputValue: '',
                     value: '',
+                    allTypesOptions: mapedTypes,
                     typesOptions: mapedTypes,
+                    groupOptions: mapedGroups,
+                    currentGroup: '',
                     count: null,
                     currentType: null,
                     categoriesOptions: undefined,
@@ -86,6 +97,13 @@ module.exports = {
                     typeWrap: {
                         margin: '15px 0',
                         position: 'relative',
+                        width: '70%',
+                    },
+                    groupWrap: {
+                        margin: '15px 0',
+                        position: 'relative',
+                        width: '30%',
+                        paddingLeft: 15,
                     },
                     typeInfoIcon: {
                         position: 'absolute',
@@ -208,6 +226,19 @@ module.exports = {
                 }
             },
 
+            handleGroupChange(group){
+                let typesOptions = [...this.state.typesOptions]
+                this.setState({currentGroup: group},()=>{
+                    let filterOptions = typesOptions.filter((item,idx)=>{
+                        return item.group===group
+                    })
+
+                    if(group!=='') this.setState({typesOptions: filterOptions})
+                    else this.setState({typesOptions: this.state.allTypesOptions})
+                });
+
+            },
+
             handleCategoriesOptions(currentType) { 
                 let {selected} = this.state;
                 let categoriesOptions = undefined;
@@ -244,6 +275,32 @@ module.exports = {
                         >
                             <Icon size={16} color={units.colors.text}/>
                         </Tooltip>
+                    </div>
+                )
+            },
+
+            handleOnFocus(){
+                // *** under construction *** //
+
+                // let {currentGroup} = this.state;
+                // console.log('this.state :', this.state);
+                // if(currentGroup!=='') this.setState({currentGroup:'',currentType: ''})
+            },
+
+            renderGroup(){
+                return(
+                    <div style={this.styles('groupWrap')}>
+                        <Input 
+                            type={ 'autocomplete' } 
+                            theme={ 'filled' } 
+                            label={ core.translate('Group') } 
+                            value={ this.state.currentGroup }
+                            openOnFocus={ true }
+                            placeholder={ core.translate('inputCategoryGroup','Search for group...') }
+                            options={ this.state.groupOptions } 
+                            onChange={ (group)=>{this.handleGroupChange(group)} }
+                            onFocus={ this.handleOnFocus }
+                        />
                     </div>
                 )
             },
@@ -366,7 +423,10 @@ module.exports = {
                 return (
                     <Column id={'CategoryItemEditor'} style={this.styles('root')} >
                         { this.renderTitle() }
-                        { this.renderType() }
+                        <div style={{display:'flex'}}>
+                            { this.renderType() }
+                            { this.renderGroup() }
+                        </div>
                         { this.renderValueByType() }
                         { this.renderCount() }
                     </Column>

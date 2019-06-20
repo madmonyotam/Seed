@@ -32,6 +32,7 @@ module.exports = {
 
             propsTypes: {
               onChange: PropTypes.func,
+              onFocus: PropTypes.func,
               handleKeyDown: PropTypes.func,
               style: PropTypes.object,
               inputStyle: PropTypes.object,
@@ -246,6 +247,16 @@ module.exports = {
                 let values = [ ...multiValues, value ];
                 if (onChange) onChange(values);
               } else if (onChange) onChange(value);
+            },
+
+            handleOnFocus(uniqueName,openOnFocus,isAuotocomplete){
+              let {onFocus} = this.props;
+              if(onFocus) onFocus();
+
+              this.setState({ 
+                focused: uniqueName, 
+                isDownShiftOpen: openOnFocus && isAuotocomplete ? true : false 
+              }) 
             },
 
             handleClearInput(e){
@@ -471,7 +482,7 @@ module.exports = {
                           { ...setprops() }
                           { ...inputProps }
 
-                          onFocus={ e => { this.setState({ focused: uniqueName, isDownShiftOpen: openOnFocus && isAuotocomplete ? true : false }) } }
+                          onFocus={ (e) => { this.handleOnFocus(uniqueName,openOnFocus,isAuotocomplete) } }
                           onBlur={ e => { this.setState({ focused: null, isDownShiftOpen: false }) } } />
                 </React.Fragment>
 

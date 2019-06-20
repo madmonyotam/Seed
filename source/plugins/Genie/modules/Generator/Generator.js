@@ -24,60 +24,542 @@ module.exports = {
             name: { type: 'fullName' }
         };
 
+        const staticDataAndArraysTypes = {
+            false : {
+                info:"false",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return false;
+                },
+                group: 'dataAndArrays',
+            },
+            fixedValue : {
+                info: "Returns same given value",
+                scheme: {
+                    type: 'string',
+                    placeholder: seed.translate('fixedValue') 
+                },
+                generate: (element)=>{
+                    return element.value;
+                },
+                group: 'dataAndArrays',
+            },
+            id : {
+                info: "Random uuid code",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.random.uuid();
+                },
+                group: 'dataAndArrays',
+            },
+            nullValue : {
+                info: "nullValue",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return null;
+                },
+                group: 'dataAndArrays',
+            },
+            arrayEmpty : {
+                info: 'Array without values',
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return [];
+                },
+                group: 'dataAndArrays',
+            },
+            boolean : {
+                info: "Random boolean value",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.random.boolean();
+                },
+                group: 'dataAndArrays',
+            },
+            arrayElement : {
+                info: "Random element from a given array",
+                scheme: {
+                    type: 'array',
+                    placeholder: seed.translate('enter multiplay values')
+                },
+                generate: (element)=>{
+                    return faker.random.arrayElement( element.value );
+                },
+                group: 'dataAndArrays',
+            },
+            arraySubArray : {
+                info: "Random element from a given array as one item array",
+                scheme: {
+                    type: 'array',
+                    placeholder: seed.translate('enter multiplay values')
+                },
+                generate: (element)=>{
+                    return [faker.random.arrayElement( element.value )];
+                },
+                group: 'dataAndArrays',
+            },
+            categoryEmpty : {
+                info: 'Empty object',
+                scheme: {
+                    type: null, 
+                },
+                generate: (element)=>{
+                    return {};
+                },
+                group: 'dataAndArrays',
+            },
+        };
+
+        const staticNameTypes = {
+            nameFirst : {
+                info: "Random first name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.name.firstName();
+                },
+                group: 'names',
+            },
+            nameFull : {
+                info: "Random name and lastname",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return `${faker.name.firstName()} ${faker.name.lastName()}`;
+                },
+                group: 'names',
+            },
+            nameLast : {
+                info: "Random lastname",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.name.lastName();
+                },
+                group: 'names',
+            },
+        };
+
+        const staticWebTypes = {
+            userName : {
+                info: "User name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.userName();
+                },
+                group: 'web',
+            },
+            url : {
+                info: "URL address",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.url();
+                },
+                group: 'web',
+            },
+            ip : {
+                info: "Ipv4 address",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.ip();
+                },
+                group: 'web',
+            },
+            ipv6 : {
+                info: "Ipv6 address",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.ipv6();
+                },
+                group: 'web',
+            },
+            domain : {
+                info: "A random domain",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.domainName();
+                },
+                group: 'web',
+            },
+            email : {
+                info:"Email address from 'example' domain",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.exampleEmail();
+                },
+                group: 'web',
+            },
+        };
+
+        const staticTimeTypes = {
+            date : {
+                info: "Today's date in a mask. ex. `DD-MM-YYYY`",
+                scheme: {
+                    type: 'string',
+                    placeholder: 'DD-MM-YYYY' 
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    
+                    let hasMask = value && value.length;
+                    let valueMask = (hasMask) ? value : null;
+                    
+                    return moment().format(valueMask);
+                },
+                group: 'time',
+            },
+            dateBetween : {
+                info: "Returns date between two given dates based in a optional date mask",
+                scheme: {
+                    type: 'dateRange',
+                    value: {          
+                        from: "dateString",
+                        to: "dateString",
+                        mask: 'dateMask'
+                    }
+                },
+                generate: (element)=>{
+                    let {value} = element;
+
+                    let hasFrom = value && value.from && value.from.length;
+                    let hasTo   = value && value.to   && value.to.length;
+                    let hasMask = value && value.mask && value.mask.length;
+
+                    let valueFrom = (hasFrom) ? value.from : null;
+                    let valueTo   = (hasTo)   ? value.to   : null;
+                    let valueMask = (hasMask) ? value.mask : null;
+
+                    return moment(faker.date.between( valueFrom, valueTo )).format(valueMask);
+                },
+                group: 'time',
+            },
+            dateFuture : {
+                info: "Returns a future date string based in a optional date mask",
+                scheme: {
+                    type: 'dateMask', // Not an required field
+                    placeholder: 'DD-MM-YYYY',
+                },
+                generate: (element)=>{
+                    let dateformat = (element && element.value && element.value.trim().length ) ? element.value : null;
+                    return moment(faker.date.future()).format(dateformat);
+                },
+                group: 'time',
+            },
+            datePast : {
+                info: "Returns a past date string based in a optional date mask",
+                scheme: {
+                    type: 'dateMask', // Not an required field
+                    placeholder: 'DD-MM-YYYY',
+                },
+                generate: (element)=>{
+                    let dateformat = (element && element.value && element.value.trim().length ) ? element.value : null;
+                    return moment(faker.date.past( 50 )).format(dateformat);
+                },
+                group: 'time',
+            },
+            dateRange : {
+                info: "Returns date range object between two given dates based in a optional date mask",
+                scheme: {
+                    type: 'dateRange',
+                    value: {
+                        from: "dateString",
+                        to: "dateString",
+                        mask: 'dateMask',
+                    }
+                },
+                generate: (element)=>{
+                    let {value} = element;
+
+                    let hasFrom = value && value.from && value.from.length;
+                    let hasTo   = value && value.to   && value.to.length;
+                    let hasMask = value && value.mask && value.mask.length;
+
+                    let valueFrom = (hasFrom) ? value.from : null;
+                    let valueTo   = (hasTo)   ? value.to   : null;
+                    let valueMask = (hasMask) ? value.mask : null;
+
+                    let dateOne = moment(faker.date.between( valueFrom, valueTo ));
+                    let dateTwo = moment(faker.date.between( valueFrom, valueTo ));
+                    
+                    let from, to;
+
+                    if ( dateOne.isBefore( dateTwo ) ) {
+                        from = dateOne;
+                        to = dateTwo;
+                    } else {
+                        from = dateTwo;
+                        to = dateOne;
+                    }
+
+                    return { from: from.format(valueMask), to: to.format(valueMask) }
+                },
+                group: 'time',
+            },
+        };
+
+        const staticTextTypes = {
+            word : {
+                info: "Single word",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.random.word();
+                },
+                group: 'text',
+            },
+            sentence : {
+                info: "Sentence with specific number of words",
+                scheme: {
+                    type: 'number',
+                    placeholder: seed.translate('number of words')                      
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    let words = ( value && value > 0 ) ? value : null;
+                    return faker.lorem.sentence( words );
+                },
+                group: 'text',
+            },
+            textLines : {
+                info: "Text with specific number of lines",
+                scheme: {
+                    type: 'number',
+                    placeholder: seed.translate('number of lines')
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    let lines = ( value && value > 0 ) ? value : null;
+                    return faker.lorem.lines( lines );
+                },
+                group: 'text',
+            },
+            paragraph : {
+                info: "Random paragraph text with optional number of sentences",
+                scheme: {
+                    type: null 
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    let sentences = ( value && value > 0 ) ? value : null;
+                    return faker.lorem.paragraph( sentences );
+                },
+                group: 'text',
+            }
+        };
+
+        const staticNumberTypes = {
+            number : {
+                info: "Random number",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.random.number();
+                },
+                group: 'number',
+            },
+            numberMax : {
+                info: "Random number with max value",
+                scheme: {
+                    type: 'number',
+                    placeholder: seed.translate('max')  
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    return faker.random.number({max: value});
+                },
+                group: 'number',
+            },
+            numberMin : {
+                info: "Random number starting from value",
+                scheme: {
+                    type: 'number',
+                    placeholder: seed.translate('min')  
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    return faker.random.number({min: value});
+                },
+                group: 'number',
+            },
+            numberBetween : {
+                info: "Random number starting at min, <= max. Ex: 'min:2,max:5' ",
+                scheme: {
+                    type: 'numberRange',
+                    value: {
+                        min: {
+                            type: 'number',
+                            placeholder: seed.translate('min') 
+                        },
+                        max: {
+                            type: 'number',
+                            placeholder: seed.translate('max') 
+                        }
+                    }
+                },
+                generate: (element)=>{
+                    let {value} = element;
+
+                    let hasMin = value && value.min && value.min >= 0;
+                    let hasMax = value && value.max && value.max > 0;
+
+                    let min = (hasMin) ? value.min : 0;
+                    let max = (hasMax) ? value.max : 10;
+
+                    min = Number(min);
+                    max = Number(max);
+
+                    if ( max <= min ) max = min + 1;
+
+                    return Math.floor(Math.random() * (max-min+1) ) + Number(min);
+                },
+                group: 'number',
+            },
+
+            numberZeroMax : {
+                info: "Zero or a random number under max value",
+                scheme: {
+                    type: 'number',
+                    placeholder: seed.translate('max')  
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    let max = value || 10;
+
+                    let getRadom = faker.random.boolean();
+                    if ( getRadom )
+                        return faker.random.number({min:1, max});
+
+                    return 0;
+                },
+                group: 'number',
+            },
+            numberMask : {
+                info:"Returns a number based on a mask using # for replace, ex: $#.###,##",
+                scheme: {
+                    type: 'numberMask',
+                    placeholder: seed.translate('$#.###,##')  
+                },
+                generate: (element)=>{
+                    return faker.helpers.replaceSymbolWithNumber( value );
+                },
+                group: 'number',
+            },
+        };
+        
+        const staticMediaTypes = {
+            avatar : {
+                info: "Random avatar image",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.image.avatar();
+                },
+                group: 'media',
+            },
+            image : {
+                info:"Random image with optional given size. Ex: 640x480 ",
+                scheme: {
+                    type: 'string',
+                    placeholder: seed.translate('size: 640x480') 
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    let [w,h] = ( value && value.length ) ? value.split('x') : [null, null];
+                    return faker.image.image(w,h);
+                },
+                group: 'media',
+            },
+            imageBusiness : {
+                info:"Random business image with optional given size. Ex: 640x480 ",
+                scheme: {
+                    type: 'string',
+                    placeholder: seed.translate('size: 640x480') 
+                },
+                generate: (element)=>{
+                    let {value} = element;
+                    let [w,h] = ( value && value.length ) ? value.split('x') : [null, null];
+                    return faker.image.business(w,h);
+                },
+                group: 'media',
+            },
+            color : {
+                info: "Color hex code",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.color();
+                },
+                group: 'media',
+            },
+        };
+
+        const staticWorkTypes = {
+            company : {
+                info: "Random company name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.company.companyName();
+                },
+                group: 'work',
+            },
+            jobTitle : {
+                info: "Random job title",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.name.jobTitle();
+                },
+                group: 'work',
+            },
+        };
+
+        const staticLocationTypes = {
+            country : {
+                info: "Random country name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.address.country();
+                },
+                group: 'location',
+            },
+        };
+
         return {
             createTypes(){
-                const avatar = {
-                    info: "Random avatar image",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.image.avatar();
-                    }
-                }
-
-                const arrayElement = {
-                    info: "Random element from a given array",
-                    scheme: {
-                        type: 'array',
-                        placeholder: seed.translate('enter multiplay values')
-                    },
-                    generate: (element)=>{
-                        return faker.random.arrayElement( element.value );
-                    }
-                }
-
-                const arraySubArray = {
-                    info: "Random element from a given array as one item array",
-                    scheme: {
-                        type: 'array',
-                        placeholder: seed.translate('enter multiplay values')
-                    },
-                    generate: (element)=>{
-                        return [faker.random.arrayElement( element.value )];
-                    }
-                }
-
-                const arrayEmpty = {
-                    info: 'Array without values',
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return [];
-                    }
-                }
-
-                const boolean = {
-                    info: "Random boolean value",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.random.boolean();
-                    }
-                }
-
                 const category = {
                     info: "A single category object",
                     scheme: {
@@ -100,7 +582,8 @@ module.exports = {
                         }
     
                         return newObject;
-                    }
+                    },
+                    group: 'custom',
                 }
 
                 const categoriesArray = {
@@ -118,7 +601,8 @@ module.exports = {
                         });
                         
                         return newArray;
-                    }
+                    },
+                    group: 'custom',
                 }
 
                 const oneOfCategories = {
@@ -134,17 +618,8 @@ module.exports = {
                         let item = this.create({count:1, model: seed.get('genie', element.value[index])}, true )
 
                         return item;
-                    }
-                }
-
-                const categoryEmpty = {
-                    info: 'Empty object',
-                    scheme: {
-                        type: null, 
                     },
-                    generate: (element)=>{
-                        return {};
-                    }
+                    group: 'custom',
                 }
 
                 const categoryList = {
@@ -173,500 +648,25 @@ module.exports = {
                             list.push( listObject );
                         }
                         return list;
-                    }
-                }
-
-                const company = {
-                    info: "Random company name",
-                    scheme: {
-                        type: null
                     },
-                    generate: (element)=>{
-                        return faker.company.companyName();
-                    }
-                }
-
-                const color = {
-                    info: "Color hex code",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.internet.color();
-                    }
-                }
-
-                const country = {
-                    info: "Random country name",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.address.country();
-                    }
-                }
-
-                const date = {
-                    info: "Today's date in a mask. ex. `DD-MM-YYYY`",
-                    scheme: {
-                        type: 'string',
-                        placeholder: 'DD-MM-YYYY' 
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        
-                        let hasMask = value && value.length;
-                        let valueMask = (hasMask) ? value : null;
-                        
-                        return moment().format(valueMask);
-                    }
-                }
-
-                const dateBetween = {
-                    info: "Returns date between two given dates based in a optional date mask",
-                    scheme: {
-                        type: 'dateRange',
-                        value: {          
-                            from: "dateString",
-                            to: "dateString",
-                            mask: 'dateMask'
-                        }
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-    
-                        let hasFrom = value && value.from && value.from.length;
-                        let hasTo   = value && value.to   && value.to.length;
-                        let hasMask = value && value.mask && value.mask.length;
-    
-                        let valueFrom = (hasFrom) ? value.from : null;
-                        let valueTo   = (hasTo)   ? value.to   : null;
-                        let valueMask = (hasMask) ? value.mask : null;
-    
-                        return moment(faker.date.between( valueFrom, valueTo )).format(valueMask);
-                    }
-                }
-
-                const dateFuture = {
-                    info: "Returns a future date string based in a optional date mask",
-                    scheme: {
-                        type: 'dateMask', // Not an required field
-                        placeholder: 'DD-MM-YYYY',
-                    },
-                    generate: (element)=>{
-                        let dateformat = (element && element.value && element.value.trim().length ) ? element.value : null;
-                        return moment(faker.date.future()).format(dateformat);
-                    }
-                }
-
-                const datePast = {
-                    info: "Returns a past date string based in a optional date mask",
-                    scheme: {
-                        type: 'dateMask', // Not an required field
-                        placeholder: 'DD-MM-YYYY',
-                    },
-                    generate: (element)=>{
-                        let dateformat = (element && element.value && element.value.trim().length ) ? element.value : null;
-                        return moment(faker.date.past( 50 )).format(dateformat);
-                    }
-                }
-
-                const dateRange = {
-                    info: "Returns date range object between two given dates based in a optional date mask",
-                    scheme: {
-                        type: 'dateRange',
-                        value: {
-                            from: "dateString",
-                            to: "dateString",
-                            mask: 'dateMask',
-                        }
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-
-                        let hasFrom = value && value.from && value.from.length;
-                        let hasTo   = value && value.to   && value.to.length;
-                        let hasMask = value && value.mask && value.mask.length;
-
-                        let valueFrom = (hasFrom) ? value.from : null;
-                        let valueTo   = (hasTo)   ? value.to   : null;
-                        let valueMask = (hasMask) ? value.mask : null;
-
-                        let dateOne = moment(faker.date.between( valueFrom, valueTo ));
-                        let dateTwo = moment(faker.date.between( valueFrom, valueTo ));
-                        
-                        let from, to;
-
-                        if ( dateOne.isBefore( dateTwo ) ) {
-                            from = dateOne;
-                            to = dateTwo;
-                        } else {
-                            from = dateTwo;
-                            to = dateOne;
-                        }
-
-                        return { from: from.format(valueMask), to: to.format(valueMask) }
-                    }
-                }
-
-                const domain = {
-                    info: "A random domain",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.internet.domainName();
-                    }
-                }
-
-                const email = {
-                    info:"Email address from 'example' domain",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.internet.exampleEmail();
-                    }
-                }
-
-                const _false = {
-                    info:"false",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return false;
-                    }
-                }
-
-                const fixedValue = {
-                    info: "Returns same given value",
-                    scheme: {
-                        type: 'string',
-                        placeholder: seed.translate('fixedValue') 
-                    },
-                    generate: (element)=>{
-                        return element.value;
-                    }
-                }
-
-                const id = {
-                    info: "Random uuid code",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.random.uuid();
-                    }
-                }
-
-                const image = {
-                    info:"Random image with optional given size. Ex: 640x480 ",
-                    scheme: {
-                        type: 'string',
-                        placeholder: seed.translate('size: 640x480') 
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        let [w,h] = ( value && value.length ) ? value.split('x') : [null, null];
-                        return faker.image.image(w,h);
-                    }
-                }
-
-                const imageBusiness = {
-                    info:"Random business image with optional given size. Ex: 640x480 ",
-                    scheme: {
-                        type: 'string',
-                        placeholder: seed.translate('size: 640x480') 
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        let [w,h] = ( value && value.length ) ? value.split('x') : [null, null];
-                        return faker.image.business(w,h);
-                    }
-                }
-
-                const ip = {
-                    info: "Ipv4 address",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.internet.ip();
-                    }
-                }
-
-                const ipv6 = {
-                    info: "Ipv6 address",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.internet.ipv6();
-                    }
-                }
-
-                const jobTitle = {
-                    info: "Random job title",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.name.jobTitle();
-                    }
-                }
-
-                const nameFirst = {
-                    info: "Random first name",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.name.firstName();
-                    }
-                }
-
-                const nameFull = {
-                    info: "Random name and lastname",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return `${faker.name.firstName()} ${faker.name.lastName()}`;
-                    }
-                }
-
-                const nameLast = {
-                    info: "Random lastname",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.name.lastName();
-                    }
-                }
-
-                const number = {
-                    info: "Random number",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.random.number();
-                    }
-                }
-
-                const nullValue = {
-                    info: "nullValue",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return null;
-                    }
-                }
-
-                const numberMax = {
-                    info: "Random number with max value",
-                    scheme: {
-                        type: 'number',
-                        placeholder: seed.translate('max')  
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        return faker.random.number({max: value});
-                    }
-                }
-
-                const numberMin = {
-                    info: "Random number starting from value",
-                    scheme: {
-                        type: 'number',
-                        placeholder: seed.translate('min')  
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        return faker.random.number({min: value});
-                    }
-                }
-
-                const numberBetween = {
-                    info: "Random number starting at min, <= max. Ex: 'min:2,max:5' ",
-                    scheme: {
-                        type: 'numberRange',
-                        value: {
-                            min: {
-                                type: 'number',
-                                placeholder: seed.translate('min') 
-                            },
-                            max: {
-                                type: 'number',
-                                placeholder: seed.translate('max') 
-                            }
-                        }
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-
-                        let hasMin = value && value.min && value.min >= 0;
-                        let hasMax = value && value.max && value.max > 0;
-
-                        let min = (hasMin) ? value.min : 0;
-                        let max = (hasMax) ? value.max : 10;
-
-                        min = Number(min);
-                        max = Number(max);
-
-                        if ( max <= min ) max = min + 1;
-
-                        return Math.floor(Math.random() * (max-min+1) ) + Number(min);
-                    }
-                }
-
-                const numberZeroMax = {
-                    info: "Zero or a random number under max value",
-                    scheme: {
-                        type: 'number',
-                        placeholder: seed.translate('max')  
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        let max = value || 10;
-    
-                        let getRadom = faker.random.boolean();
-                        if ( getRadom )
-                            return faker.random.number({min:1, max});
-    
-                        return 0;
-                    }
-                }
-
-                const numberMask = {
-                    info:"Returns a number based on a mask using # for replace, ex: $#.###,##",
-                    scheme: {
-                        type: 'numberMask',
-                        placeholder: seed.translate('$#.###,##')  
-                    },
-                    generate: (element)=>{
-                        return faker.helpers.replaceSymbolWithNumber( value );
-                    }
-                }
-
-                const paragraph = {
-                    info: "Random paragraph text with optional number of sentences",
-                    scheme: {
-                        type: null 
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        let sentences = ( value && value > 0 ) ? value : null;
-                        return faker.lorem.paragraph( sentences );
-                    }
-                }
-
-                const sentence = {
-                    info: "Sentence with specific number of words",
-                    scheme: {
-                        type: 'number',
-                        placeholder: seed.translate('number of words')                      
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        let words = ( value && value > 0 ) ? value : null;
-                        return faker.lorem.sentence( words );
-                    }
-                }
-
-                const textLines = {
-                    info: "Text with specific number of lines",
-                    scheme: {
-                        type: 'number',
-                        placeholder: seed.translate('number of lines')
-                    },
-                    generate: (element)=>{
-                        let {value} = element;
-                        let lines = ( value && value > 0 ) ? value : null;
-                        return faker.lorem.lines( lines );
-                    }
-                }
-
-                const url = {
-                    info: "URL address",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.internet.url();
-                    }
-                }
-
-                const userName = {
-                    info: "User name",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.internet.userName();
-                    }
-                }
-
-                const word = {
-                    info: "Single word",
-                    scheme: {
-                        type: null
-                    },
-                    generate: (element)=>{
-                        return faker.random.word();
-                    }
+                    group: 'custom',
                 }
 
                 const types = {
-                    avatar,
-                    arrayElement,
-                    arraySubArray,
-                    arrayEmpty,
-                    boolean,
+                    ...staticDataAndArraysTypes,
+                    ...staticLocationTypes,
+                    ...staticMediaTypes,
+                    ...staticNameTypes,
+                    ...staticNumberTypes,
+                    ...staticTextTypes,
+                    ...staticTimeTypes,
+                    ...staticWebTypes,
+                    ...staticWorkTypes,
                     category,
                     categoriesArray,
                     oneOfCategories,
-                    categoryEmpty,
                     categoryList,
-                    company,
-                    color,
-                    country,
-                    date,
-                    dateBetween,
-                    dateFuture,
-                    datePast,
-                    dateRange,
-                    domain,
-                    email,
-                    false: _false,
-                    fixedValue,
-                    id,
-                    image,
-                    imageBusiness,
-                    ip,
-                    ipv6,
-                    jobTitle,
-                    nameFirst,
-                    nameFull,
-                    nameLast,
-                    number,
-                    nullValue,
-                    numberMax,
-                    numberMin,
-                    numberBetween,
-                    numberZeroMax,
-                    numberMask,
-                    paragraph,
-                    sentence,
-                    textLines,
-                    url,
-                    userName,
-                    word,
                 }
-
                 return types;
             },
 
@@ -695,6 +695,9 @@ module.exports = {
                     case 'getTypeInfo': {
                         return ( types[type] && types[type].info ) ? types[type].info : undefined;
                     }
+                    case 'getTypeGroup': {
+                        return ( types[type] && types[type].group ) ? types[type].group : undefined;
+                    }
                     case 'generate': {
                         return types[type].generate();
                     }
@@ -709,6 +712,25 @@ module.exports = {
 
             getTypes() {
               return this.types({action: 'getTypes'});
+            },
+
+            getTypeGroup( type ) {
+              return this.types({action: 'getTypeGroup', type: type});
+            },
+
+            getGroups() {
+                return [
+                    'dataAndArrays',
+                    'names',
+                    'web',
+                    'time',
+                    'text',
+                    'number',
+                    'media',
+                    'work',
+                    'location',
+                    'custom',
+                ]
             },
 
             getCategories(){
