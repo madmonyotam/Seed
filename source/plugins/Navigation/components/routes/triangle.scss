@@ -1,4 +1,5 @@
 $bgColor : #ffffff;
+$opacityBg : rgba(255,255,255, 0.65); 
 
 .selected_triangle {
     width: 0;
@@ -7,5 +8,16 @@ $bgColor : #ffffff;
     border-width: 10px 10px 10px 0;
     border-color: transparent $bgColor transparent transparent;
     position: absolute;
-    right: 0px;
+    right: -15px;
+}
+
+.route_row {
+  overflow: visible !important;
+  border-bottom: 1px solid transparent;
+  transition: border .05s ease-in-out;
+  &:not(.active) {
+    &:hover {
+      border-bottom: 1px solid $opacityBg;
+    }
+  }
 }

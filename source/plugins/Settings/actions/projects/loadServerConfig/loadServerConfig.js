@@ -26,7 +26,7 @@ module.exports = {
             }
             else if (results && results.success) {
               
-              let { data } = results, projects = [];
+              let { data, successPath } = results, projects = [];
               for (let key in data.projects) {
                 if (key.toLowerCase() !== 'default') {
                   projects.push({
@@ -36,7 +36,8 @@ module.exports = {
                   })
                 }
               } 
-              promise.resolve({ projects, data })
+              let projectPath = successPath;
+              promise.resolve({ projects, data, projectPath })
             }
           });
         };

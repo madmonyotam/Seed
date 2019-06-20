@@ -15,7 +15,8 @@ Seed.getInitialFiles( (DefaultFiles) => {
             ReactDom.render( root, document.getElementById('app') );
     })
 
-    Seed.plugins.Settings.setProjects( );        
+    Seed.plugins.Settings.setProjects( DefaultFiles );    
+
 });
 
 
@@ -23,20 +24,20 @@ Seed.getInitialFiles( (DefaultFiles) => {
 function loadUiPlugins() {
 
     Seed.CreatePlugins([
-        require('./plugins/translate'), 
-        require('./plugins/Layouts'),
-        require('./plugins/Simple'),
-        require('./plugins/popovers'),
+        require('./plugins/Attributers'),
+        require('./plugins/Calendar'),
+        require('./plugins/Decorators'),
         require('./plugins/Examples'),
-        require('./plugins/mongo'),
-        require('./plugins/Inputs'),
-        require('./plugins/Navigation'),
         require('./plugins/Genie'),
+        require('./plugins/Inputs'),
+        require('./plugins/Layouts'),
+        require('./plugins/mongo'),
+        require('./plugins/Navigation'),
+        require('./plugins/popovers'),
         require('./plugins/Project'),
         require('./plugins/Settings'),
-        require('./plugins/Decorators'),
-        require('./plugins/Calendar'),
-    
+        require('./plugins/Simple'),
+        require('./plugins/translate'),
     ]);
 }
 

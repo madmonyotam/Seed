@@ -70,7 +70,8 @@ module.exports = {
             res.status(200).send({ 
               success: true, 
               data: required,
-              msg: 'Server Config Loaded'
+              msg: 'Server Config Loaded',
+              successPath: this.path
             })
           } else res.status(400).send({ success: false, data: null })
         });
