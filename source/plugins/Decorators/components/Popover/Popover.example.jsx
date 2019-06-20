@@ -21,6 +21,7 @@ module.exports = {
                     height: { type: 'number' },
                     offsetX: { type: 'number' },
                     offsetY: { type: 'number' },
+                    delay: { type: 'number' },
                     interactive: { type: 'boolean', group: 'initial' },
                     backdrop: { type: 'boolean', group: 'initial' },
                 }
@@ -32,18 +33,19 @@ module.exports = {
             }, 
 
             getCode(){
-                let { elevation, position, padding, theme, offsetX, offsetY, interactive, backdrop, animation } = this.state;
+                let { elevation, position, padding, theme, offsetX, offsetY, delay, interactive, backdrop, animation } = this.state;
 
                 return [
                   `<Popover  anchorEl={ anchorEl }`,
-                  `          position={ ${position} }`,
-                  `          theme={ ${theme} }`,
-                  `          animation={ ${animation} }`,
+                  `          position={ '${position}' }`,
+                  `          theme={ '${theme}' }`,
+                  `          animation={ '${animation}' }`,
                   `          backdrop={ ${backdrop} }`,
-                  `          elevation={ ${elevation} }`,
-                  `          padding={ ${padding} }`,
-                  `          offsetX={ ${offsetX} }`,
-                  `          offsetY={ ${offsetY} }`,
+                  `          elevation={ '${elevation}' }`,
+                  `          padding={ '${padding}' }`,
+                  `          offsetX={ '${offsetX}' }`,
+                  `          offsetY={ '${offsetY}' }`,
+                  `          delay={ '${delay}' }`,
                   `          interactive={ ${interactive} }`,
                   `          onClose={ e => { this.setState({ anchorEl: undefined }) } } >`,
                   `  { this.renderContent() }`,
@@ -56,7 +58,7 @@ module.exports = {
             }, 
 
             renderContentState(){
-              let { position, theme, elevation, offsetX, offsetY, padding, interactive, backdrop, animation } = this.state;
+              let { position, theme, elevation, offsetX, offsetY, padding, delay, interactive, backdrop, animation } = this.state;
 
               return (
                 <Column style={{ width: '100%' }}>
@@ -67,6 +69,7 @@ module.exports = {
                   <div> { core.translate('Offset X') } : { offsetX } </div>
                   <div> { core.translate('Offset Y') } : { offsetY } </div>
                   <div> { core.translate('Elevation') } : { elevation } </div>
+                  <div> { core.translate('Delay') } : { delay } </div>
                   <div> { core.translate('Interactive') } : { interactive.toString() } </div>
                   <div> { core.translate('Backdrop') } : { backdrop.toString() } </div>
                 </Column>
@@ -74,13 +77,14 @@ module.exports = {
             },
 
             render() {
-                let { position, theme, elevation, padding, offsetX, offsetY, backdrop, anchorEl, width, height, interactive, animation } = this.state;
+                let { position, theme, elevation, padding, offsetX, offsetY, delay, backdrop, anchorEl, width, height, interactive, animation } = this.state;
                 elevation = ExampleHelper.ifNumber_Convert(elevation);
                 width = ExampleHelper.ifNumber_Convert(width);
                 height = ExampleHelper.ifNumber_Convert(height);
                 padding = ExampleHelper.ifNumber_Convert(padding);
                 offsetX = ExampleHelper.ifNumber_Convert(offsetX);
                 offsetY = ExampleHelper.ifNumber_Convert(offsetY);
+                delay = ExampleHelper.ifNumber_Convert(delay);
 
                 return (
                     <SimpleExample  context={this} 
@@ -98,6 +102,7 @@ module.exports = {
                                 width={ width }
                                 height={ height }
                                 padding={ padding }
+                                delay={ delay }
                                 offsetX={ offsetX }
                                 offsetY={ offsetY } 
                                 interactive={ interactive } 

@@ -15,6 +15,7 @@ module.exports = {
 
     components: [
       require('./components/menus/floating'), 
+      require('./components/menus/item'), 
     ],
     views: [
       require('./views/root'), 
@@ -32,7 +33,7 @@ module.exports = {
               .then( (serverConfig) => {
                 seed.tree.set(['plugins', 'access', 'serverConfig'], serverConfig.data); 
                 seed.plugins.Settings.set(['projects'], serverConfig.projects);
-                console.log('1: ',serverConfig);
+                // console.log('1: ',serverConfig);
               //  seed.emit('app:ready')
               })
         }

@@ -236,7 +236,7 @@ module.exports = {
                     <Paper id={'Lists'} elevation={ 2 } style={ this.styles('lists') }>
                         <Column id={'Menu'} style={ this.styles('menu') } >
 
-                            <MenuTitleBar addLib={this.handleToggleAddLib} addCat={this.handleToggleAddCat} searchCB={(str)=>{this.handleSearch(str)}} />
+                            <MenuTitleBar addLib={this.handleToggleAddLib} addCat={this.handleToggleAddCat} closeAdd={this.handleCloseAdd} searchCB={(str)=>{this.handleSearch(str)}} />
 
                             <Row padding={0} height={'calc(100% - 50px)'}>
                                 <Libraries  searchValue={query} addIsOpen={openLibAdd} closeAdd={this.handleCloseAdd} />

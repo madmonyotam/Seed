@@ -189,7 +189,9 @@ module.exports = {
 
             handleChange (stateName, value){
               let newState = {...this.state};
-              newState[stateName] = value;
+              let newValue = ( value && typeof value == 'string' && value.length) ? value.trim() : value;
+
+              newState[stateName] = newValue;
               this.setState(newState, this.handleCB);
             },
 

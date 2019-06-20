@@ -7,9 +7,6 @@ dependencies: [
     'Inputs.IconButton',
     'Layouts.Row',
     'Inputs.Input',
-    'Layouts.Center',
-    'Inputs.Button',
-    'Simple.Icon',
 ],
 get(
     NoResults,
@@ -17,9 +14,6 @@ get(
     IconButton,
     Row,
     Input,
-    Center,
-    Button,
-    Icon,
 ) {
     var seed = this;
     var { React, PropTypes, ComponentMixin, Branch } = seed.imports;
@@ -283,8 +277,9 @@ get(
                     this.handleCloseAdd();
                     break;
                 case 13: // Enter
-                    if (addValue.trim().length) {
-                        this.handleAdd(addValue);
+                    let value = addValue.trim();
+                    if (value.length) {
+                        this.handleAdd(value);
                         this.handleCloseAdd();
                     }
                     break;

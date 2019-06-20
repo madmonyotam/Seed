@@ -22,39 +22,40 @@ get() {
         right: 0,
         bottom: 0,
         left: 0,
+        decorator: true
       };
     },
 
-    render() {
-      let {children, all, top, right, bottom, left} = this.props;
+    createElement(child, key){
+      let {all, top, right, bottom, left} = this.props;
 
-      let kids = children
+      let margin = (!!all) ? all : `${top}px ${right}px ${bottom}px ${left}px`;
 
-      return React.Children.map(kids,
-        (child, key) => {
-          let margin = (!!all) ? all : `${top}px ${right}px ${bottom}px ${left}px`;
+      return React.cloneElement(child, {
+        key: key,
+        style: {...child.props.style, margin: margin}
+      })
+    },
 
-          if (child.type.displayName.toLowerCase() == 'margin') {
-            return React.cloneElement(
-              child,
-              { key: key },
-              React.Children.map(child.props.children,
-                (cChild, key) => {
-                  return React.cloneElement(cChild, {
-                    key: key,
-                    style: {...cChild.props.style, padding: padding}
-                  })
-                }
-              )
-            )
-          }
+    mapChildren(children){
 
-          return React.cloneElement(child, {
-            key: key,
-            style: {...child.props.style, margin: margin}
-          })
+      return React.Children.map(children,(child, key) => {
+        if (child.props.decorator) {
+          return React.cloneElement(
+            child,
+            { key: key },
+            this.mapChildren(child.props.children)
+          )
         }
-      );
+
+        return this.createElement(child,key);
+      })
+    },
+
+    render() {
+      let {children} = this.props;
+
+      return this.mapChildren(children);
     }
   }
 }}

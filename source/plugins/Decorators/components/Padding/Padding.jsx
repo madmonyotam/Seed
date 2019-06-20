@@ -22,6 +22,7 @@ get() {
         right: 0,
         bottom: 0,
         left: 0,
+        decorator: true
       };
     },
 
@@ -32,7 +33,7 @@ get() {
         (child, key) => {
           let padding = (!!all) ? all : `${top}px ${right}px ${bottom}px ${left}px`;
 
-          if (child.type.displayName.toLowerCase() == 'margin') {
+          if (child.props.decorator) {
             return React.cloneElement(
               child,
               { key: key },

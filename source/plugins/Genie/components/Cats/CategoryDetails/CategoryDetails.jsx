@@ -53,6 +53,7 @@ module.exports = {
                 download: seed.icons('genie.download'),
                 generate: seed.icons('genie.generate'),
                 add: seed.icons('genie.add'),
+                addCategory: seed.icons('genie.addCategory'),
                 edit: seed.icons('genie.edit'),
             },
         };
@@ -389,6 +390,14 @@ module.exports = {
                             title={seed.translate('Add Item')}
                             icon={units.icons.add}
                         />
+                        <IconButton 
+                            key={'editCategory'}
+                            hoverSize={5}
+                            iconSize={units.dims.actionButtonIcon}
+                            onClick={this.handleMoveRenameCategory}
+                            title={seed.translate('Edit Category')}
+                            icon={units.icons.edit}
+                        />
                     </React.Fragment>
                 );
             },
@@ -450,14 +459,6 @@ module.exports = {
                         </Row>
                         <Row padding={0} width={'50%'} style={this.styles('actions')}>
                             {this.handleActions()}
-                            <IconButton 
-                                key={'editCategory'}
-                                hoverSize={5}
-                                iconSize={units.dims.actionButtonIcon}
-                                onClick={this.handleMoveRenameCategory}
-                                title={seed.translate('Edit Category')}
-                                icon={units.icons.edit}
-                            />
                             {this.renderViewButton()}
                         </Row>
                     </Row>
@@ -499,11 +500,11 @@ module.exports = {
                 let {addCat} = this.props;
                 return (
                     <NoResults
-                        onClick = { addCat }
+                        onClick={ addCat }
                         text={ seed.translate('add category') }
-                        icon={ seed.icons('genie.addCategory') }
-                        color={ seed.theme('texts.default') }
-                        background= { units.colors.cat }
+                        icon={ units.icons.addCategory }
+                        color={ units.colors.text }
+                        background={ units.colors.cat }
                         size={6}
                     />
                 );

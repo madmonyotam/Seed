@@ -35,6 +35,7 @@ module.exports = {
               anchorEl: PropTypes.object, // any DOM event - e.currentTarget
               width: PropTypes.number,
               height: PropTypes.number,
+              delay: PropTypes.number,
               offsetX: PropTypes.number,
               offsetY: PropTypes.number,
               elevation: PropTypes.oneOf([1,2,3,4,5,6,7,8,9,10]),
@@ -56,7 +57,8 @@ module.exports = {
                 height: undefined,
                 interactive: false,
                 padding: 15,
-                backdrop: false
+                backdrop: false,
+                delay: 250
               };
             },
 
@@ -73,6 +75,7 @@ module.exports = {
             }, 
 
             componentWillReceiveProps(nextProps) { 
+              if (nextProps.anchorEl === this.props.anchorEl) return;
               if (nextProps.anchorEl ) this.setState({ anchorEl: nextProps.anchorEl }, this.handleShow)
               else this.setState({ anchorEl: null })
               if (nextProps.children != this.props.children || this.props.position !== nextProps.position ) this.calcPosition();
@@ -112,7 +115,7 @@ module.exports = {
             },
 
             styles(s){
-              let { style, theme, width, height, padding, elevation, backdrop  } = this.props;
+              let { style, theme, width, height, padding, elevation, backdrop, delay  } = this.props;
               let { showTp, visible } = this.state;
               let isDark = theme === 'dark'; 
 
@@ -139,7 +142,7 @@ module.exports = {
                 },
                 container: {
                   opacity: showTp ? 1 : 0,
-                  transition: `opacity 0.25s linear`,
+                  transition: `opacity ${delay}ms linear`,
                   width: 'fit-content',
                   height: 'fit-content',
                   position: 'fixed',
@@ -157,7 +160,7 @@ module.exports = {
                   // transformOrigin: oppo[position],
                   // transform: showTp ? 'translateY(0)' : 'translateY(5%)',
                   // transform: showTp ? 'scale(1)' : 'scale(1.1)',
-                  transition: `transform 0.10s linear 0.05s`,
+                  transition: `transform ${delay-100}ms linear 0.05s`,
 
                   ...isDark ? darkStyle : lightStyle
                 },

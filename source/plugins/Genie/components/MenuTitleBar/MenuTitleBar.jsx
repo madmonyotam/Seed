@@ -34,7 +34,7 @@ module.exports = {
                 buttonIconSize: 27,
                 iconSize: 18,
                 iconsRow: 90,
-                searchRow: 240,
+                searchRow: 250,
             },
             transition: 0.3,
             closeIconRowTransition: 0.5
@@ -47,6 +47,7 @@ module.exports = {
                 searchCB: PropTypes.func,
                 addLib: PropTypes.func,
                 addCat: PropTypes.func,
+                closeAdd: PropTypes.func,
             },
 
             getDefaultProps(){
@@ -54,6 +55,7 @@ module.exports = {
                     searchCB: ()=>{},
                     addLib: ()=>{},
                     addCat: ()=>{},
+                    closeAdd: ()=>{},
                 };
             },
 
@@ -115,7 +117,7 @@ module.exports = {
                         transition: `width ${units.transition}s ${units.transition}s ease-in-out, min-width ${units.transition}s ${units.transition}s ease-in-out`,
                     },
                     Input: {
-                         marginRight: 10,
+                         marginRight: 7,
                     },
                     input: {
                         fontSize: units.dims.fontSize,
@@ -127,28 +129,38 @@ module.exports = {
             },
 
             handleOpenSearch() {
-                this.setState((s, p)=>{return { openSearch: true }})
+                this.setState({ openSearch: true });
+                this.props.closeAdd();
             },
 
             handleCloseSearch() {
-                this.setState((s, p)=>{return { openSearch: false}});
+                let time = units.closeIconRowTransition * 1000;
+
+                this.setState({ openSearch: false});
                 this.props.searchCB('');
+
                 setTimeout(() => {
-                    this.setState((s, p)=>{return { searchValue: '' }});
-                }, units.closeIconRowTransition * 1000);
+                    this.setState({ searchValue: '' });
+                }, time);
             },
 
             renderSearchInput() {
                 let {searchValue} = this.state;
 
                 const handleChange = searchValue => {
-                    this.setState((s, p)=>{return{searchValue}});
+                    this.setState({searchValue});
                     this.props.searchCB(searchValue);
                 };
+
+                let i = units.dims.iconSize;
+                let closeStyle = { marginRight: 7 };
+                let close = core.translate('Clear');
+                let closeIcon = units.icons.clear;
                 
                 return(
                     <Row padding={0} style={this.styles('searchInput')}>
                         <Input
+                            id={'GenieMenuTitleSearch'}
                             label={null}
                             style={this.styles('Input')}
                             inputStyle={this.styles('input')}
@@ -157,43 +169,18 @@ module.exports = {
                             autoFocus={true}
                             placeholder={core.translate('Search')}
                         />
-                        <CloseIcon key={'CloseIcon'}
-                            style={{ marginRight: 5 }}
-                            hoverSize={ 5 }
-                            iconSize={units.dims.iconSize}
-                            onClick={this.handleCloseSearch}
-                            title={core.translate('Clear')}
-                            icon={units.icons.clear}
-                        />
+                        <CloseIcon key={'CloseIcon'} iconSize={i} hoverSize={5} onClick={this.handleCloseSearch} title={close} icon={closeIcon} style={closeStyle}/>
                     </Row>
                 )
             },
 
             renderIcons() {
-
+                let i = units.dims.iconSize;
                 return (
                     <IconsRow style={this.styles('iconsRow')}>
-                        <SearchIcon key={'SearchIcon'}
-                            iconSize={units.dims.iconSize}
-                            hoverSize={ 5 }
-                            onClick={this.handleOpenSearch}
-                            title={core.translate('Search')}
-                            icon={units.icons.search}
-                        />
-                        <AddIcon key={'AddLibrary'}
-                            iconSize={units.dims.iconSize}
-                            hoverSize={ 5 }
-                            onClick={this.props.addLib}
-                            title={core.translate('AddLibrary')}
-                            icon={units.icons.addLib}
-                        />
-                        <AddIcon key={'AddCategory'}
-                            iconSize={units.dims.iconSize}
-                            hoverSize={ 5 }
-                            onClick={this.props.addCat}
-                            title={core.translate('AddCategory')}
-                            icon={units.icons.addCat}
-                        />
+                        <AddIcon    key={'AddLibrary'}  iconSize={i} hoverSize={5} onClick={this.props.addLib}     title={core.translate('AddLibrary')}  icon={units.icons.addLib}/>
+                        <AddIcon    key={'AddCategory'} iconSize={i} hoverSize={5} onClick={this.props.addCat}     title={core.translate('AddCategory')} icon={units.icons.addCat}/>
+                        <SearchIcon key={'SearchIcon'}  iconSize={i} hoverSize={5} onClick={this.handleOpenSearch} title={core.translate('Search')}      icon={units.icons.search}/>
                     </IconsRow>
                 )
             },
@@ -201,9 +188,7 @@ module.exports = {
             render() {
                 return (
                     <MenuTitleBar id={'MenuTitleBar'} style={this.styles('root')} padding={0}>
-                        <Row>
-                            <Label label={core.translate('Menu')} style={{textTransform: 'uppercase'}} />
-                        </Row>
+                        <Row><Label label={core.translate('Menu')} transform={'uppercase'} /></Row>
                         {this.renderSearchInput()}
                         {this.renderIcons()}
                     </MenuTitleBar>
