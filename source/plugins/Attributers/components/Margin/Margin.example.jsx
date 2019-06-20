@@ -1,7 +1,7 @@
 
 module.exports = {
-    dependencies: ['Decorators.Margin','Inputs.Button', 'Layouts.Center', 'Layouts.Divider', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
-    get(Margin, Button, Center, Divider, SimpleExample, ExampleHelper) {
+    dependencies: ['Attributers.Margin','Inputs.Button', 'Layouts.Center', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
+    get(Margin, Button, Center, SimpleExample, ExampleHelper) {
 
         var seed = this;
 

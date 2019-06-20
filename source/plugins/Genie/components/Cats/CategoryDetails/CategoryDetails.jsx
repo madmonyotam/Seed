@@ -5,8 +5,8 @@ module.exports = {
     description: 'This is an example of a component',
     dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
         'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Inputs.IconButton',
-        'Decorators.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Genie.CategoryMoveRename',
-        'Inputs.Input', 'Decorators.Margin'
+        'Attributers.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Genie.CategoryMoveRename',
+        'Inputs.Input', 'Attributers.Margin'
      ],
 
         get( Column, Row, Label, Badge, IconMenu,
