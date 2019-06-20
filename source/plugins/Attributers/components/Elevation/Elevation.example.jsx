@@ -28,7 +28,7 @@ module.exports = {
                     `<Center width={280} height={280} color={'#ddd'} style={{flexWrap:'wrap'}}>`,
                     `    <Elevation level={${level}} color={${color}}>`,
                     `        <Margin all={15}>`,
-                    `            <Elevation level={-2} color={'#6d3f75'}>`,
+                    `            <Elevation level={-3} color={'#6d3f75'}>`,
                     `                <Button theme={'default' } variant={'raised' } > Button 01 </Button>`,
                     `            </Elevation>`,
                     `            <Button theme={'default'  } variant={'outlined'}> Button 02 </Button>`,
@@ -42,7 +42,6 @@ module.exports = {
 
             render() {
                 let { level, color } = this.state; 
-                level = ExampleHelper.ifNumber_Convert(level);
 
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } style={{ position:'relative' , display: 'flex', flexDirection: 'column'}}>
@@ -50,7 +49,7 @@ module.exports = {
                         <Center width={280} height={280} color={'#ddd'} style={{flexWrap:'wrap'}}>
                             <Elevation level={level} color={color}>
                                 <Margin all={15}>
-                                    <Elevation level={-2} color={'#6d3f75'}>
+                                    <Elevation level={-3} color={'#6d3f75'}>
                                         <Button theme={'default' } variant={'raised' } > Button 01 </Button>
                                     </Elevation>
                                     <Button theme={'default'  } variant={'outlined'}> Button 02 </Button>
