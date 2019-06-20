@@ -44,7 +44,7 @@ module.exports = {
                   height: '100%',
                   alignItems: 'flex-start',
                   justifyContent: 'flex-start',
-                  padding: '0 0 0 5px',
+                  padding: '0 15px',
                   transition: 'all .25s ease-out',
                   background: units.colors.blue015,
                   minWidth: 185,
@@ -64,7 +64,7 @@ module.exports = {
 
               return (
                 <Link key={ key } to={ path } style={{ textDecoration: 'unset' }}>
-                  <Row boxShadow={ false } onClick={ e => { this.handlRouteChange(route) } }>
+                  <Row boxShadow={ false } onClick={ e => { this.handlRouteChange(route) } } className={ `route_row  ${  isActive ? ' active' : '' }` }>
                     <Label size={13} weight={500} width={'100%'} color={ units.colors.white } label={ core.translate(label).toUpperCase() } />
                     <Triangle active={ isActive } />
                   </Row>

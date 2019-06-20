@@ -9,7 +9,8 @@ module.exports = {
         
         var units = { 
           colors: { 
-            hovered: core.theme('backgrounds.disabled')
+            hovered: core.theme('backgrounds.disabled'),
+            border: core.theme('borders.default')
           },
         } 
 
@@ -22,7 +23,8 @@ module.exports = {
               iconStyle: PropTypes.object, 
               label: PropTypes.string, 
               labelColor: PropTypes.string,
-              labelStyle: PropTypes.object, 
+              labelStyle: PropTypes.object,
+              divider: PropTypes.bool,
               padding: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number
@@ -41,7 +43,7 @@ module.exports = {
                 return {
                   iconPosition: 'left', 
                   iconSize: 16, 
-                  padding: '0 10px', 
+                  padding: '5px 10px', 
                   height: 30, 
                   label: core.translate('menu item'), 
                 };
@@ -94,9 +96,13 @@ module.exports = {
                 padding, 
                 label, 
                 labelColor, 
-                labelStyle, 
+                labelStyle,
+                divider, 
+                style,
                 ...props } = this.props;
-              
+              if (divider) {
+                return <Row height={ 1 } style={{ margin:'5px 0',borderBottom: `1px solid ${units.colors.border}`, ...style }} padding={ 0 } ></Row>
+              }
               return (
                 <Row  height={ height } 
                       style={ this.styles('item') } 
@@ -105,7 +111,7 @@ module.exports = {
                       onMouseEnter={ this.onMouseEnter }
                       onMouseLeave={ this.onMouseLeave }
                       { ...props }>
-                  { icon && iconPosition === 'left' ? <Icon size={ iconSize } icon={ icon }  color={ iconColor } style={ iconStyle } /> : null }
+                  { icon && iconPosition === 'left' ? <Icon size={ iconSize } icon={ icon } color={ iconColor } style={ iconStyle } /> : null }
                   <Label label={ label } color={ labelColor } style={ labelStyle }/>
                   { icon && iconPosition === 'right' ? <Icon size={ iconSize } icon={ icon } color={ iconColor } style={ iconStyle } /> : null }
                 </Row>

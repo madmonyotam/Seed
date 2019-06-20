@@ -15,7 +15,8 @@ Seed.getInitialFiles( (DefaultFiles) => {
             ReactDom.render( root, document.getElementById('app') );
     })
 
-    Seed.plugins.Settings.setProjects( );        
+    Seed.plugins.Settings.setProjects( DefaultFiles );    
+
 });
 
 

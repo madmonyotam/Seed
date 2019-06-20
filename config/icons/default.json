@@ -3,16 +3,17 @@
     "db": "layers",
     "power":"power",
     "power_off":"power_off",
-    "refresh": "sync" 
+    "refresh": "sync"
   },
   "files":{
     "edit": "edit",
     "copy": "file_copy",
-    "file": "insert_drive_file"
+    "file": "insert_drive_file",
+    "project": "device_hub"
   },
   "general": {
     "info": "info",
-    "save":"save",  
+    "save":"save",
     "menu": "menu",
     "more": "more_vert",
     "more_horiz": "more_horiz",

@@ -14,6 +14,8 @@ module.exports = {
             
             cursors: {
               menu: ['plugins', 'access', 'config'],
+              projects: ['plugins', 'Settings', 'projects'],
+              currentPath: ['plugins', 'Settings', 'currentProjectPath']
               // TODO: CHECK FOR TREE MIS-BINDINGS
             },
 
@@ -100,8 +102,7 @@ module.exports = {
             },
 
             render() { 
-              let { routes, activeRoute } = this.state; 
-              // console.debug('activeRoute => ', activeRoute);
+              let { routes, activeRoute, projects, currentPath } = this.state;  
               return (
 
                   <div id={'Settings_Root'} style={ this.styles('root') }> 
@@ -114,7 +115,7 @@ module.exports = {
                       { routes.map(this.renderRouteComponent) }
                     </Switch>
 
-                    { activeRoute  ? <FloatingMenu parentKey={ activeRoute.key } /> : null }
+                    { activeRoute  ? <FloatingMenu parentKey={ activeRoute.key } projects={ projects } currentPath={ currentPath } /> : null }
                       
                   </div>
               )
