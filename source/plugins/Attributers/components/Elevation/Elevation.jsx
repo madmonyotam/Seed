@@ -5,7 +5,7 @@ get(Composer) {
     const { React, PropTypes, ComponentMixin } = seed.imports;
 
     const units = {
-        levelLimit: 25,
+        levelLimit: 20,
         colors: {
             shadow: seed.theme('backgrounds.shadow')
         }
@@ -26,26 +26,28 @@ get(Composer) {
         createElement(child){
             let {level, color} = this.props;
 
-            level = (level <= units.levelLimit ) ? level : units.levelLimit;
+            level = (Math.abs(level) <= units.levelLimit ) ? level : (level / Math.abs(level)) * units.levelLimit;
 
             let boxShadow = []
-            if (level > 0)
-                boxShadow = [
-                    `0px 0px 1px ${color}`,
-                    `0px 0px 1px ${color}`,
-                    `-${level/10}px ${level/10}px ${level /2}px ${color}`,
-                    `${level/2}px ${level/2}px ${level /2 }px ${color}`,
-                    `${level/2}px ${level/2}px ${level}px ${color}`,
-                ];
-            else if (level < 0)
-                boxShadow = [
-                    `inset 0px 0px 1px ${color}`,
-                    `inset 0px 0px 1px ${color}`,
-                    `inset -${(-level)/10}px ${(-level)/10}px ${(-level) /2}px ${color}`,
-                    `inset ${(-level)/2}px ${(-level)/2}px ${(-level) /2 }px ${color}`,
-                    `inset ${(-level)/2}px ${(-level)/2}px ${(-level)}px ${color}`,
-                ];
 
+            if (level > 0) {
+                boxShadow = [
+                    `0px 0px 1px ${color}`,
+                    `0px 0px 1px ${color}`,
+                    `-${level/10}px ${level/10}px ${level}px ${color}`,
+                    `-${level/2}px ${level}px ${level }px ${color}`,
+                    `${level/2}px ${level}px ${level * 2}px ${color}`,
+                ];
+            } else if (level < 0) {
+                let negLevel = Math.abs(level);
+                boxShadow = [
+                    `inset 0px 0px 1px ${color}`,
+                    `inset 0px 0px 1px ${color}`,
+                    `inset -${negLevel/10}px ${negLevel/10}px ${negLevel}px ${color}`,
+                    `inset -${negLevel/2}px ${negLevel}px ${negLevel}px ${color}`,
+                    `inset ${negLevel/2}px ${negLevel}px ${negLevel * 2}px ${color}`,
+                ];
+            }
             boxShadow = boxShadow.join(', ');
 
             if (child.props.style && child.props.style.boxShadow) {
