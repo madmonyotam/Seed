@@ -3,6 +3,7 @@ module.exports = {
 
     components: [
         require('./components/Composer'),
+        require('./components/Elevation'),
         require('./components/FileDownloader'),
         require('./components/Margin'),
         require('./components/Padding'),

@@ -12,6 +12,7 @@
         "blue065": "#e7eff385",
         "blue070": "#F3FAFD",
         "grey025": "#607D8B",
+        "grey040": "#909090",
         "grey050": "#a0a0a0",
         "grey070": "#D8D8D8",
         "grey080": "#EDEDED",
@@ -41,6 +42,7 @@
         "default": "colors.white",
         "primary": "colors.blue010",
         "secondary": "colors.blue050",
+        "shadow": "colors.grey040",
         "disabled": "colors.grey070",
         "popupPane": "colors.black070"
     },
