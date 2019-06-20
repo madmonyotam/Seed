@@ -228,7 +228,11 @@ module.exports = {
 
             handleGroupChange(group){
                 let typesOptions = [...this.state.typesOptions]
-                this.setState({currentGroup: group},()=>{
+                this.setState({
+                    currentGroup: group,
+                    currentType:null,
+                    type:''
+                },()=>{
                     let filterOptions = typesOptions.filter((item,idx)=>{
                         return item.group===group
                     })
@@ -280,11 +284,11 @@ module.exports = {
             },
 
             handleOnFocus(){
-                // *** under construction *** //
-
-                // let {currentGroup} = this.state;
-                // console.log('this.state :', this.state);
-                // if(currentGroup!=='') this.setState({currentGroup:'',currentType: ''})
+                let {currentGroup} = this.state;
+                if(currentGroup!=='') {
+                    this.setState({type: '',currentType:null})
+                    this.handleGroupChange('')
+                }
             },
 
             renderGroup(){
