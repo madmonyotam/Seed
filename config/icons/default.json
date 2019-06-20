@@ -15,6 +15,7 @@
     "save":"save",  
     "menu": "menu",
     "more": "more_vert",
+    "more_horiz": "more_horiz",
     "folder": "folder",
     "addFolder": "create_new_folder",
     "folderShared": "folder_shared",

@@ -9,7 +9,7 @@ module.exports = {
 
         var core = this; 
         var { React, PropTypes } = core.imports;
-
+        var { Fragment } = React;
         var units = { 
           colors: {
             default: core.theme('colors.default'),
@@ -249,7 +249,8 @@ module.exports = {
               return <MenuItem key={ key } 
                         label={ item.title } 
                         icon={ core.icons('files.file') }
-                        labelStyle={{ marginLeft: 15 }} 
+                        padding={ '0px 10px 0px 15px' }
+                        labelStyle={{ marginLeft: 5 }} 
                         onClick={ e => { this.load(item) } }/>   
                 
             }, 
@@ -259,7 +260,10 @@ module.exports = {
             },
 
             closeMenu(){
-              this.setState({ anchorEl: undefined })
+              this.closeSubMenu();
+              setTimeout(() => {
+                this.setState({ anchorEl: undefined })
+              }, 50);
             },
 
             renderContent(){
@@ -298,7 +302,7 @@ module.exports = {
                     maxHeight: "100%", 
                     overflow: "auto", 
                     opacity: realShow ? 1 : 0, 
-                    transform: realShow ? 'translateX(0)' : 'translateX(-25px)',
+                    transform: realShow ? 'translateX(0)' : 'translateX(25px)',
                     transition: 'all 0.05s ease-in'  
                   }}>
                     { subMenuItems.map(this.renderSubItem) }
@@ -307,9 +311,17 @@ module.exports = {
               )
             },
 
+            closeSubMenu(){
+              this.setState({ 
+                showSub: null, 
+                subTitle: null, 
+                realShow: false 
+              })
+            },
+
             handelSubMenu(e, param){
               let { showSub } = this.state;
-              if (showSub) this.setState({ showSub: null, subTitle: null, realShow: false })
+              if (showSub) this.closeSubMenu()
               else if (param) {
                 let { key, title } = param;
                 this.setState({ showSub: key, subTitle: title, first: true }, ()=>{
@@ -328,15 +340,24 @@ module.exports = {
                   <Button theme={ 'primary' }
                           variant={ 'raised' }  
                           disabled={ false } 
-                          isLoading={ false }
-                          width={ expanded ? 280 : 70 }
+                          isLoading={ loading }
+                          height={ 32 }
+                          width={ expanded ? 280 : 32 }
                           onClick={ this.expandMenu }
                           style={{
-                            paddingLeft: expanded ? 5 : 0,
+                            width: 32,
+                            borderRadius: expanded ? 2 : '50%',
                             justifyContent: expanded ? 'flex-start' : 'center',
                             transition: 'all 0.15s ease-in-out',
                           }}  >
-                    Menu
+                    { 
+                      expanded ? 
+                        <Fragment>
+                          <Icon size={ 16 } color={ units.colors.white } icon={ core.icons('general.more') } style={{ marginRight: 5 }} /> 
+                          { core.translate('Menu') } 
+                        </Fragment>
+                        : <Icon size={ 16 } color={ units.colors.white } icon={ core.icons('general.more_horiz') } /> 
+                    }
                   </Button>
                   <Popover  anchorEl={ anchorEl }
                             width={ 280 }

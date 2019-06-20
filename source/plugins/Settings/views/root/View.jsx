@@ -83,7 +83,7 @@ module.exports = {
               let { menu, activeRoute } = this.state;
               // console.log(1, menu)
               return (
-                <div style={{ height: 'calc(100% - 20px)', width: '100%', padding: '0 0 2px 5px' }}>
+                <div style={{ height: 'calc(100% - 0px)', width: '100%', padding: '0 0 2px 5px' }}>
                   <CodeEditor data={ menu[routeName] } parentKey={ activeRoute.key } userID={ uniqueId('user_id_')  } />
                 </div>
               )
