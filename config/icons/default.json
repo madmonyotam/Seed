@@ -7,7 +7,8 @@
   },
   "files":{
     "edit": "edit",
-    "copy": "file_copy"
+    "copy": "file_copy",
+    "file": "insert_drive_file"
   },
   "general": {
     "info": "info",

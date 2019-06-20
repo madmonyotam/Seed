@@ -170,7 +170,7 @@ module.exports = {
                         wrapEnabled={ true }
                         fontSize={ this.props.fontSize }
                         debounceChangePeriod={ 150 }
-                        value={ data != null ? `${data}` : '' }
+                        value={ data ? `${data}` : '' }
                         editorProps={{ $blockScrolling: Infinity }}
                         onChange={ this.handleEditorChange }
                         commands={ keyBindings }

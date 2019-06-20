@@ -15,6 +15,7 @@ module.exports = {
 
     components: [
       require('./components/menus/floating'), 
+      require('./components/menus/item'), 
     ],
     views: [
       require('./views/root'), 

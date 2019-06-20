@@ -27,7 +27,7 @@ module.exports = {
                 if (notify) core.emit('notify',notification);
 
                 // core.plugins.Settings.set(['config', dir], fileData);
-                core.tree.set(['plugins', 'access', dir], fileData);
+                core.tree.set(['plugins', 'access', 'config', dir], fileData);
                 core.tree.commit();
                 promise.resolve(results.success);
 

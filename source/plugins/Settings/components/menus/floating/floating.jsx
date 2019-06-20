@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-var tinycolor = require('tinycolor2');
-import moment from 'moment'; 
+// import { Link } from 'react-router-dom';
+// var tinycolor = require('tinycolor2');
+// import moment from 'moment'; 
 import { find } from 'lodash';
 module.exports = {
     name: 'FloatingMenu',
-    dependencies: ['Simple.Loader', 'Decorators.Tooltip', 'Inputs.Button', 'Inputs.Switch', 'Simple.Icon'],
-    get(Loader, Tooltip, Button, Switch, Icon) {
+    dependencies: ['Simple.Loader', 'Settings.MenuItem', 'Layouts.Row', 'Simple.Label', 'Decorators.Tooltip', 'Decorators.Popover', 'Inputs.Button', 'Inputs.Switch', 'Simple.Icon'],
+    get(Loader, MenuItem, Row, Label, Tooltip, Popover, Button, Switch, Icon) {
 
         var core = this; 
         var { React, PropTypes } = core.imports;
@@ -32,11 +32,11 @@ module.exports = {
 
           
         } 
+
         return {
 
             propsTypes: {
-                handleViews: PropTypes.func.isRequired,
-                activeView:  PropTypes.string,
+                parentKey:  PropTypes.string,
             },
 
             getDefaultProps() {
@@ -54,8 +54,8 @@ module.exports = {
             },
 
             componentDidMount() {
-              core.on('file:save', this.save)
-              this.setMenuItems([
+              core.on('file:save', this.save);
+              this.menuItems = [
                 {
                   title: core.translate('Save'),
                   icon: core.icons('general.save'),
@@ -67,15 +67,24 @@ module.exports = {
                   icon: core.icons('general.upload'),
                   subItems: true,
                   key: 'load',
-                  onClick: this.load
+                  onClick: e => { this.handelSubMenu(e, { key: 'load', title: core.translate('Load') }) }
+                  // onClick: this.load
                 },
                 {
                   title: core.translate('Restore'),
                   icon: core.icons('notify.error'),
                   onClick: this.restore
                 }
-              ])
+              ]
+              this.setMenuItems(this.props.parentKey, this.menuItems)
             },            
+
+            componentWillReceiveProps(nextProps) {
+              if (nextProps.parentKey !== this.props.parentKey) {
+                this.setMenuItems(nextProps.parentKey, this.menuItems)
+              }
+            },
+            
 
             componentWillMount() { 
               core.off('file:save', this.save)
@@ -92,17 +101,12 @@ module.exports = {
                 button: { ...flex, justifyContent:'center' },
                 
                 root: {
-                  backgroundColor: units.colors.dark,
-                  padding: '0 10px',
                   position:'absolute',
-                  right: 0,
-                  left: 0,
-                  bottom: 0,
-                  height: 22,
+                  right: 25,
+                  bottom: 25,
                   zIndex: 5,
                   ...flex,
                   // flexDirection: 'column',
-                  justifyContent: 'space-between'
                 },
 
                 menu: {
@@ -136,14 +140,15 @@ module.exports = {
               return(styles[s]);
             },  
 
-            setMenuItems(items){
-              let dir = this.props.parentKey;
+            setMenuItems(dir = this.props.parentKey, items){
               let { fileMenu } = core.plugins.access.get();
+              // console.debug('fileMenu[dir] => ', fileMenu[dir]);
+              let subItems = fileMenu[dir];
               let dev = items.map(item => {
                 if (item.subItems && item.key == 'load') {
                   return {
                     ...item,
-                    subItems: fileMenu[dir]
+                    subItems: subItems.map(item => { return { ...item, title: item.fileName } }),
                   }
                 }
                 return item;
@@ -159,21 +164,13 @@ module.exports = {
               return { dir, fileData };
             },
 
-            load(e, data) {
-              // let { activeTab } = this.state;
-              // let { fileName } = data;
-              /** 
-              TODO: add some sugar, spice and everything nice!
-                    add other logic once we have simple file menu
-              **/
+            load(item) {
+              console.log('load -', item, this.props.parentKey)
               this.setState({ loading: true })
-
-              let { menuItems } = this.state;
-              let item = find(menuItems, { key: 'load' }) 
-              let loadItem = item.subItems[0];
-              let fileName = loadItem.fileName;
-              let dir = loadItem.key; 
-              // console.debug('loadItem => ', fileName, dir);
+ 
+              let fileName = item.fileName;
+              let dir = this.props.parentKey; 
+              
 
               core.plugins.Settings.run('LoadFile', { fileName, dir })
                   .then((newFile)=>{
@@ -182,16 +179,13 @@ module.exports = {
 
                     this.setState({ loading: false })
 
-                    // let data = {
-                    //   fileData: newFile,
-                    //   dir: activeTab.key,
-                    //   notify: false
-                    // }
-                    // core.plugins.Settings.run('saveSettings', data);
-                  });
-              /*
-
-              },*/
+                    let data = {
+                      fileData: newFile,
+                      dir: dir,
+                      notify: true
+                    }
+                    core.plugins.Settings.run('SaveSettings', data);
+                  }); 
             },
 
             restore(e) {
@@ -218,7 +212,7 @@ module.exports = {
 
             save(e, data){
               /** 
-              TODO: add some sugar, spice and everything nice!
+              TODO:  
                     add better module for saving instances.
                     menu, code , keyboards
               **/ 
@@ -242,43 +236,149 @@ module.exports = {
 
             renderItem(item, key) {
               if (!item) return null; 
-               
-              return (
-                <React.Fragment key={ key }>
-                  <Tooltip style={ this.styles('item') } content={ this.renderTP(item)  } position={ 'top' } onClick={ item.onClick } > 
-                    <Icon color={ units.colors.white } icon={ item.icon } size={ 14 } />
-                  </Tooltip>
-                </React.Fragment>
-
-              )  
+              return <MenuItem key={ key } 
+                              icon={ item.icon } 
+                              iconColor={ units.colors.primary } 
+                              label={ item.title } 
+                              labelStyle={{ marginLeft: 15 }} 
+                              onClick={ item.onClick } />
             }, 
 
-            render() {
-              let { menuItems, loading, useMongo } = this.state;
+            renderSubItem(item, key) {
+              if (!item) return null; 
+              return <MenuItem key={ key } 
+                        label={ item.title } 
+                        icon={ core.icons('files.file') }
+                        labelStyle={{ marginLeft: 15 }} 
+                        onClick={ e => { this.load(item) } }/>   
+                
+            }, 
+
+            expandMenu(e){
+              this.setState({ anchorEl: e.currentTarget })
+            },
+
+            closeMenu(){
+              this.setState({ anchorEl: undefined })
+            },
+
+            renderContent(){
+              let { menuItems, showSub } = this.state;
+              if (showSub) return null;
+              return (
+                <div style={{ width: '100%', height: 210 }}> 
+                  { menuItems.map(this.renderItem) }
+                </div>
+              )
+            },
+
+            getSubMenuItems(subKey){
+              let { menuItems } = this.state; 
+              let found = find(menuItems, { key: subKey });
+              if (found && found.subItems) return found.subItems
+              else return []
+            },
+            
+
+            renderSubMenu (){
+              let { showSub, subTitle, realShow } = this.state; 
+
+              if (!showSub) return null
+              let subMenuItems = this.getSubMenuItems(showSub) 
 
               return (
-                <div style={ this.styles('root') }  >
-                     
-                  <div style={ this.styles('menu') }> 
-                    { menuItems.map(this.renderItem) }
+                <div style={{ width: '100%', height: 230 }}> 
+
+                  <Row height={ 30 } style={{ cursor: 'pointer', backgroundColor: 'white' }} padding={ '0 10px' } onClick={ this.handelSubMenu }>
+                    <Icon size={ 16 } icon={ core.icons('navigate.left') } />
+                    <Label label={ subTitle } />
+                  </Row>
+                  <div style={{ 
+                    height: "calc(100% - 40px)", 
+                    maxHeight: "100%", 
+                    overflow: "auto", 
+                    opacity: realShow ? 1 : 0, 
+                    transform: realShow ? 'translateX(0)' : 'translateX(-25px)',
+                    transition: 'all 0.05s ease-in'  
+                  }}>
+                    { subMenuItems.map(this.renderSubItem) }
                   </div>
-
-                  {/* <div style={{ ...this.styles('menu'), color: units.colors.white, fontSize: 12 }}>
-                    <span> File System </span>
-                    <Switch size={ 1.2 } checked={ useMongo } style={{ margin: '0 15px' }} />
-                    <span> Mongo </span>
-                  </div> */}
-                   
-                  <div style={ this.styles('info') } >
-                    
-                    <Tooltip style={ this.styles('item') } content={ moment().format('LLLL') } position={ 'bottom' }>
-                      <Icon color={ units.colors.white } icon={ core.icons('general.clock') }  size={ 14 } />
-                    </Tooltip>
-                    <Loader size={ 15 } color={ units.colors.white } show={ loading } /> 
-                  </div> 
-
                 </div>
-              );
+              )
+            },
+
+            handelSubMenu(e, param){
+              let { showSub } = this.state;
+              if (showSub) this.setState({ showSub: null, subTitle: null, realShow: false })
+              else if (param) {
+                let { key, title } = param;
+                this.setState({ showSub: key, subTitle: title, first: true }, ()=>{
+                  setTimeout(() => {
+                    this.setState({ realShow: true })
+                  }, 150);
+                })
+              }
+            },
+
+            render() {
+              let { menuItems, loading, useMongo, showSub, first, anchorEl } = this.state;
+              let expanded = Boolean(anchorEl)
+              return (
+                <div style={ this.styles('root') }>
+                  <Button theme={ 'primary' }
+                          variant={ 'raised' }  
+                          disabled={ false } 
+                          isLoading={ false }
+                          width={ expanded ? 280 : 70 }
+                          onClick={ this.expandMenu }
+                          style={{
+                            paddingLeft: expanded ? 5 : 0,
+                            justifyContent: expanded ? 'flex-start' : 'center',
+                            transition: 'all 0.15s ease-in-out',
+                          }}  >
+                    Menu
+                  </Button>
+                  <Popover  anchorEl={ anchorEl }
+                            width={ 280 }
+                            delay={ 250 }
+                            position={ 'top' }
+                            theme={ 'light' }
+                            backdrop={ false }
+                            elevation={ 4 }
+                            padding={ showSub ? 0 : '20px 0 0' }
+                            offsetX={ first ? 0 : 5 }
+                            offsetY={ 15 }
+                            interactive={ false }
+                            onClose={ this.closeMenu } >
+                    { this.renderContent() }
+                    { this.renderSubMenu() }
+                  </Popover>
+                  
+                </div>
+              )
+              // return (
+              //   <div style={ this.styles('root') }  >
+                     
+              //     <div style={ this.styles('menu') }> 
+              //       { menuItems.map(this.renderItem) }
+              //     </div>
+
+              //     {/* <div style={{ ...this.styles('menu'), color: units.colors.white, fontSize: 12 }}>
+              //       <span> File System </span>
+              //       <Switch size={ 1.2 } checked={ useMongo } style={{ margin: '0 15px' }} />
+              //       <span> Mongo </span>
+              //     </div> */}
+                   
+              //     <div style={ this.styles('info') } >
+                    
+              //       <Tooltip style={ this.styles('item') } content={ moment().format('LLLL') } position={ 'bottom' }>
+              //         <Icon color={ units.colors.white } icon={ core.icons('general.clock') }  size={ 14 } />
+              //       </Tooltip>
+              //       <Loader size={ 15 } color={ units.colors.white } show={ loading } /> 
+              //     </div> 
+
+              //   </div>
+              // );
             }
         };
     }
