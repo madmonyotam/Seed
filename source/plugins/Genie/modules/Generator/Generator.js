@@ -556,6 +556,16 @@ module.exports = {
                 },
                 group: 'location',
             },
+            city : {
+                info: "Random city name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.address.city();
+                },
+                group: 'location',
+            },
         };
 
         return {
