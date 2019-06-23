@@ -37,18 +37,19 @@ module.exports = {
 
       var options = {
 
-        setProjects: ( DefaultFiles ) => {
-          console.debug({ DefaultFiles })
+        setProjects: ( DefaultFiles, callback ) => {
           seed.plugins.Settings.run('loadServerConfig')
               .then( (serverConfig) => {
 
                 seed.tree.set(['plugins', 'access', 'serverConfig'], serverConfig.data);
                 seed.plugins.Settings.set(['projects'], serverConfig.projects);
                 // console.log('1: ',serverConfig);
-                
+
                 if (serverConfig.projectPath) {
                   seed.plugins.Settings.set(['currentProjectPath'], serverConfig.projectPath);
-                }
+                  if (callback) callback()
+                } else if (callback) callback()
+
               //  seed.emit('app:ready')
               })
         },

@@ -113,12 +113,11 @@ module.exports = {
 
             componentWillUnmount() {
               core.off('file:save', this.save);
-              console.log(11-666)
             },
 
             setProjectsMenu(currentPath, projects){
               let { menuItems } = this.state;
-              console.debug({currentPath, projects, menuItems});
+              // console.debug({currentPath, projects, menuItems});
               let dev = menuItems.map(item => {
                 if (item.subItems && item.key == 'projects') {
                   let subItems = projects.map(proj => {
@@ -355,7 +354,7 @@ module.exports = {
             getSubMenuItems(subKey){
               let { menuItems } = this.state;
               let found = find(menuItems, { key: subKey });
-              console.debug('[found] ', found)
+              // console.debug('[found] ', found)
               if (found && found.subItems) return found.subItems
               else return undefined
             },
