@@ -42,6 +42,7 @@ module.exports = {
               interactive: PropTypes.bool,
               padding: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
               backdrop: PropTypes.bool,
+              center: PropTypes.bool,
             },
 
             getDefaultProps(){
@@ -58,6 +59,7 @@ module.exports = {
                 interactive: false,
                 padding: 15,
                 backdrop: false,
+                center: false,
                 delay: 250
               };
             },
@@ -176,7 +178,7 @@ module.exports = {
             },
 
             calcPosition(){
-              let { offsetX, offsetY, width } = this.props;
+              let { offsetX, offsetY, width, center } = this.props;
               let ttNode = ReactDOM.findDOMNode(this.tooltipRef);
               if (!this.anchorEl || !ttNode) return;
               let hoverRect = this.anchorEl.getBoundingClientRect();
@@ -232,9 +234,19 @@ module.exports = {
                 }
                 if (position === 'left' || position === 'right' ) {
                   this.measure['top'] = hoverRect.top + offsetY;
+                  
+                  if (center) {
+                    this.measure['top'] = (hoverRect.top + offsetY) - (ttRect.height/2);
+                  }
+
                 }
                 else if (position === 'bottom' || position === 'top' ) {
                   this.measure['left'] = hrLeft + offsetX;
+                  
+                  if (center) {
+                    this.measure['left'] = (hrLeft + offsetX) - (hoverRect.width/2);
+                  }
+                  
                 }
 
                 setMeasures(position, ()=>{
@@ -327,6 +339,7 @@ module.exports = {
                 backdrop,
                 animation,
                 padding,
+                center,
                 ...props } = this.props 
 
               return (

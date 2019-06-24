@@ -24,6 +24,7 @@ module.exports = {
                     delay: { type: 'number' },
                     interactive: { type: 'boolean', group: 'initial' },
                     backdrop: { type: 'boolean', group: 'initial' },
+                    center: { type: 'boolean', group: 'initial' },
                 }
             },
 
@@ -33,7 +34,7 @@ module.exports = {
             }, 
 
             getCode(){
-                let { elevation, position, padding, theme, offsetX, offsetY, delay, interactive, backdrop, animation } = this.state;
+                let { elevation, center, position, padding, theme, offsetX, offsetY, delay, interactive, backdrop, animation } = this.state;
                 
                 return (`
 <Popover anchorEl={ anchorEl } 
@@ -47,6 +48,7 @@ module.exports = {
          delay={${delay}} 
          interactive={${interactive}} 
          backdrop={${backdrop}} 
+         center={${center}} 
          onClose={ e => { this.setState({ anchorEl: undefined }) } }>
 </Popover>
 <Button theme={ 'primary' } variant={ 'filled' } onClick={ e => { this.setState({ anchorEl: e.currentTarget }) } }>
@@ -56,7 +58,7 @@ module.exports = {
             }, 
 
             renderContentState(){
-              let { position, theme, elevation, offsetX, offsetY, padding, delay, interactive, backdrop, animation } = this.state;
+              let { position, theme, elevation, offsetX, offsetY, padding, delay, interactive, backdrop, animation, center } = this.state;
 
               return (
                 <Column style={{ width: '100%' }}>
@@ -70,12 +72,13 @@ module.exports = {
                   <div> { core.translate('Delay') } : { delay } </div>
                   <div> { core.translate('Interactive') } : { interactive.toString() } </div>
                   <div> { core.translate('Backdrop') } : { backdrop.toString() } </div>
+                  <div> { core.translate('Center') } : { center.toString() } </div>
                 </Column>
               )
             },
 
             render() {
-                let { position, theme, elevation, padding, offsetX, offsetY, delay, backdrop, anchorEl, width, height, interactive, animation } = this.state;
+                let { position, theme, elevation, padding, offsetX, offsetY, delay, backdrop, anchorEl, width, height, interactive, animation, center } = this.state;
                 elevation = ExampleHelper.ifNumber_Convert(elevation);
                 width = ExampleHelper.ifNumber_Convert(width);
                 height = ExampleHelper.ifNumber_Convert(height);
@@ -104,6 +107,7 @@ module.exports = {
                                 offsetX={ offsetX }
                                 offsetY={ offsetY } 
                                 interactive={ interactive } 
+                                center={ center } 
                                 onClose={ e => { this.setState({ anchorEl: undefined }) } } >
                         { this.renderContentState() }
                       </Popover>

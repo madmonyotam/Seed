@@ -59,7 +59,9 @@ module.exports = {
 
               let translate = {
                 load: core.translate('Load'),
-                projects: core.translate('Projects')
+                add: core.translate('Add'),
+                projects: core.translate('Projects'),
+
               }
               this.menuItems = [
                 {
@@ -68,6 +70,15 @@ module.exports = {
                   subItems: true,
                   key: 'projects',
                   onClick: e => { this.handelSubMenu(e, { key: 'projects', title: translate.projects }) }
+                },
+
+                { divider: true },
+                {
+                  title: translate.add,
+                  icon: core.icons('general.addFolder'),
+                  subItems: true,
+                  key: 'add',
+                  onClick: e => { console.log('add') }
                 },
 
                 { divider: true },
