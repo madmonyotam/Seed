@@ -1,7 +1,7 @@
 module.exports = {
     name: "ControlWrapper",
     description: 'control wrapper is a basic layout for controlers in examples tab to control props from the ui',
-    dependencies: ['Inputs.Switch', 'Inputs.Input' ,'Simple.Label','Layouts.Row','Layouts.Column','Simple.Helper'],
+    dependencies: ['Buttons.Switch', 'Inputs.Input' ,'Simple.Label','Layouts.Row','Layouts.Column','Simple.Helper'],
     get(Switch, Input, Label, Row, Column, Helper) {
 
         var core = this;

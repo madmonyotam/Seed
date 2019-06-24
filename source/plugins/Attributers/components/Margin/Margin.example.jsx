@@ -1,6 +1,6 @@
 
 module.exports = {
-    dependencies: ['Attributers.Margin','Inputs.Button', 'Layouts.Center', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
+    dependencies: ['Attributers.Margin','Buttons.Button', 'Layouts.Center', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
     get(Margin, Button, Center, SimpleExample, ExampleHelper) {
 
         var seed = this;

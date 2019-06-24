@@ -1,6 +1,6 @@
 
 module.exports = {
-    dependencies: ['Layouts.Column', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Decorators.Popover', 'Inputs.Button'],
+    dependencies: ['Layouts.Column', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Decorators.Popover', 'Buttons.Button'],
     get(Column, SimpleExample, ExampleHelper, Popover, Button) {
 
         var core = this;

@@ -4,11 +4,11 @@ module.exports = {
     dependencies: [
         'Simple.NoResults',
         'Genie.CategoryItem',
-        'Inputs.IconButton',
+        'Buttons.IconButton',
         'Layouts.Row',
         'Inputs.Input',
         'Layouts.Center',
-        'Inputs.Button',
+        'Buttons.Button',
         'Simple.Icon',
     ],
     get(

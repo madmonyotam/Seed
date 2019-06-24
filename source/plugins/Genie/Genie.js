@@ -6,11 +6,11 @@ module.exports = {
     ],
 
     components: [
-        require('./components/Cats/CategoryMoveRename'),
-        require('./components/Cats/CategoryItemEditor'),
         require('./components/Cats/CategoriesList/Categories'),
         require('./components/Cats/CategoriesList/CategoryItem'),
         require('./components/Cats/CategoryDetails'),
+        require('./components/Cats/CategoryItemEditor'),
+        require('./components/Cats/CategoryMoveRename'),
         require('./components/Cats/MockTable'),
 
         require('./components/Libs/LibrariesList/Libraries'),
@@ -23,7 +23,6 @@ module.exports = {
 
     modules: [
         require('./modules/HelpersCentral/Helpers'),
-
         require('./modules/Generator'),
     ],
 

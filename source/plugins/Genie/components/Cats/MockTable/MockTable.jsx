@@ -6,7 +6,7 @@ import {isEmpty} from 'lodash';
 module.exports = {
     name: 'MockTable',
     dependencies: [ 'Layouts.Row', 'Simple.Label', 'popovers.PopupHandler', 'Genie.CategoryItemEditor',
-                    'Inputs.IconButton'],
+                    'Buttons.IconButton'],
     get(Row, Label, PopupHandler, CategoryItemEditor,
         IconButton) {
         

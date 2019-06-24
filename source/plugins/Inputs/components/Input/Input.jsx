@@ -7,7 +7,7 @@ module.exports = {
     name: 'Input',
     description: '',
     propTypes: {},
-    dependencies: ['Inputs.Chip'/*,'Simple.SimpleScroller'*/],
+    dependencies: ['Simple.Chip'/*,'Simple.SimpleScroller'*/],
     get(Chip/*Scroller*/) {
 
         var core = this;

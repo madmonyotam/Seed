@@ -2,7 +2,7 @@ import moment from 'moment';
 window.moment = moment;
 module.exports = {
   
-  dependencies: [ 'Layouts.Center', 'Decorators.Tooltip', 'Inputs.Button'],    
+  dependencies: [ 'Layouts.Center', 'Decorators.Tooltip', 'Buttons.Button'],    
 
   get(Center, Tooltip, Button) {
 

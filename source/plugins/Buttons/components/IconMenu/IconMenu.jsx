@@ -2,7 +2,7 @@ import { MenuList, MenuItem  } from '@material-ui/core/';
 import {isEmpty} from 'lodash';
 
 module.exports = {
-dependencies: ['Simple.Label', 'Layouts.Row', 'Layouts.Center', 'Simple.Icon', 'Inputs.IconButton', 'Inputs.Button', 'Decorators.Popover'],
+dependencies: ['Simple.Label', 'Layouts.Row', 'Layouts.Center', 'Simple.Icon', 'Buttons.IconButton', 'Buttons.Button', 'Decorators.Popover'],
 get( Label, Row, Center, Icon, IconButton, Button, Popover) {
 
     var core = this;

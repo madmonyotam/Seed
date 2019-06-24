@@ -4,7 +4,7 @@
 import { find } from 'lodash';
 module.exports = {
     name: 'FloatingMenu',
-    dependencies: ['Simple.Loader', 'Settings.MenuItem', 'Layouts.Row', 'Simple.Label', 'Decorators.Tooltip', 'Decorators.Popover', 'Inputs.Button', 'Inputs.Switch', 'Simple.Icon'],
+    dependencies: ['Simple.Loader', 'Settings.MenuItem', 'Layouts.Row', 'Simple.Label', 'Decorators.Tooltip', 'Decorators.Popover', 'Buttons.Button', 'Buttons.Switch', 'Simple.Icon'],
     get(Loader, MenuItem, Row, Label, Tooltip, Popover, Button, Switch, Icon) {
 
         var core = this;

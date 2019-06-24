@@ -2,17 +2,17 @@ module.exports = {
     name: 'Project',
     tree: require('./tree.js'),
     actions: [
-        require('./actions/getLanguage'),
         require('./actions/getDataEx'),
-    ],
-    modules: [
-        require('./modules/dataModels/DataModelsEntry'),
-        require('./modules/dataModels/constructors/Basic'),
-        require('./modules/dataModels/constructors/ExtandBasic'),
-
+        require('./actions/getLanguage'),
     ],
     components: [
         require('./components/Component'),
+    ],
+    modules: [
+        require('./modules/dataModels/constructors/Basic'),
+        require('./modules/dataModels/constructors/ExtandBasic'),
+        require('./modules/dataModels/DataModelsEntry'),
+
     ],
     views: [
         require('./views/Root'),

@@ -1,6 +1,6 @@
 module.exports = {
     name: 'Chip',
-    dependencies: ['Inputs.Button', 'Simple.Icon'],
+    dependencies: ['Buttons.Button', 'Simple.Icon'],
     get(Button, Icon) {
         
         var core = this;

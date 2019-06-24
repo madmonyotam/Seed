@@ -1,5 +1,5 @@
 module.exports = {
-    dependencies: ['Layouts.Row','Layouts.Column','Layouts.Center','Inputs.Button'],    
+    dependencies: ['Layouts.Row','Layouts.Column','Layouts.Center','Buttons.Button'],    
     get(Row, Column, Center, Button) {
         
         var core = this;

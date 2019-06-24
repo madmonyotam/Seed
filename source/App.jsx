@@ -60,6 +60,7 @@ function loadUiPlugins() {
 
     Seed.CreatePlugins([
         require('./plugins/Attributers'),
+        require('./plugins/Buttons'),
         require('./plugins/Calendar'),
         require('./plugins/Decorators'),
         require('./plugins/Examples'),

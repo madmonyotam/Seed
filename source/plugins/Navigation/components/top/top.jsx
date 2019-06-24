@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 module.exports = {
     name: 'Top',
-    dependencies: ['Simple.Label', 'Inputs.Button', 'Decorators.Tooltip'],
+    dependencies: ['Simple.Label', 'Buttons.Button', 'Decorators.Tooltip'],
     get(Label, Button, Tooltip) {
 
         var core = this;

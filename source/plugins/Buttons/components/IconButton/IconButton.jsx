@@ -1,7 +1,7 @@
 import tinycolor from 'tinycolor2';
 
 module.exports = {
-dependencies: ['Simple.Icon', 'Inputs.Button'],
+dependencies: ['Simple.Icon', 'Buttons.Button'],
 get(Icon, Button) {
 
     var core = this;

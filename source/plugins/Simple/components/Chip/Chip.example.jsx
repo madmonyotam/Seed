@@ -1,6 +1,6 @@
 
 module.exports = {
-dependencies: ['Inputs.Chip', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Simple.Icon'],
+dependencies: ['Simple.Chip', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Simple.Icon'],
 get(Chip, SimpleExample, ExampleHelper, Icon) {
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports;

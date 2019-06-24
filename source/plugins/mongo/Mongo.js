@@ -2,13 +2,13 @@ module.exports = {
     name: 'Mongo',
     tree: require('./tree.js'),
     actions: [
-      require('./actions/connect'),
-      require('./actions/disconnect'),
-      require('./actions/is_connected'),
-      require('./actions/create_collection'),
-      require('./actions/get_collections'),
-      require('./actions/add'),
-      require('./actions/find'),
+        require('./actions/add'),
+        require('./actions/connect'),
+        require('./actions/create_collection'),
+        require('./actions/disconnect'),
+        require('./actions/find'),
+        require('./actions/get_collections'),
+        require('./actions/is_connected'),
     ],
 
     components: [

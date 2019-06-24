@@ -11,13 +11,13 @@ module.exports = {
         require('./modules/ExampleHelper'),   
     ],
     components: [
-        require('./components/ExampleWrapper'),
-        require('./components/ControlWrapper'),
-        require('./components/ComponentWrapper'),
-        require('./components/SimpleExample'),
         require('./components/CodeSnippet'),
-        require('./components/SimpleToggle'),
+        require('./components/ComponentWrapper'),
+        require('./components/ControlWrapper'),
         require('./components/ExampleMenuItem'),
+        require('./components/ExampleWrapper'),
+        require('./components/SimpleExample'),
+        require('./components/SimpleToggle'),
     ],
 
     views: [

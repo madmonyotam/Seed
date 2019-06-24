@@ -1,5 +1,5 @@
 module.exports = {
-dependencies: ['Layouts.Row', 'Inputs.Button'],
+dependencies: ['Layouts.Row', 'Buttons.Button'],
 get(Row, Button) {
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports;

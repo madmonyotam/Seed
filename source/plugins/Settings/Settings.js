@@ -2,24 +2,24 @@ module.exports = {
     name: 'Settings',
     tree: require('./tree.js'),
     actions: [
+      require('./actions/load/file'),
+      require('./actions/projects/loadServerConfig'),
+      require('./actions/projects/selectServerConfig'),
       require('./actions/save/file'),
       require('./actions/save/settings'),
-      require('./actions/load/file'),
-      require('./actions/projects/selectServerConfig'),
-      require('./actions/projects/loadServerConfig'),
     ],
-
-    // modules: [
-    //     // require('./modules/...')
-    // ],
-
     components: [
       require('./components/menus/floating'),
       require('./components/menus/item'),
     ],
-    views: [
-      require('./views/root'),
-      require('./views/editors/code.editor'),
+    
+    // modules: [
+      //     // require('./modules/...')
+      // ],
+      
+      views: [
+        require('./views/editors/code.editor'),
+        require('./views/root'),
     ],
 
     extend : {

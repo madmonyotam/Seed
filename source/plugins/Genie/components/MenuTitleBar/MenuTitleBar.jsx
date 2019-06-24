@@ -1,7 +1,7 @@
 module.exports = {
     name: 'MenuTitleBar',
     description: 'This is an example of a component',
-    dependencies: [ 'Layouts.Row', 'Inputs.IconButton', 'Simple.Label', 'Inputs.Input'],
+    dependencies: [ 'Layouts.Row', 'Buttons.IconButton', 'Simple.Label', 'Inputs.Input'],
     get(Row, IconButton, Label, Input) {
         const core = this;
         

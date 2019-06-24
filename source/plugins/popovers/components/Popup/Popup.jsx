@@ -1,6 +1,6 @@
 module.exports = {
 dependencies: ['Layouts.Absolute', 'popovers.PopupHandler', 'popovers.PopupButtons', 'Layouts.Center', 'Simple.Label',
-                'Inputs.IconButton', 'Layouts.Column', 'Layouts.Row'],
+                'Buttons.IconButton', 'Layouts.Column', 'Layouts.Row'],
 get(Absolute, PopupHandler, PopupButtons, Center, Label,
     IconButton, Column, Row) {
     var core = this;

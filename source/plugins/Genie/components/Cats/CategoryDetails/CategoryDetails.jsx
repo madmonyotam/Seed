@@ -3,8 +3,8 @@ import {isEmpty} from 'lodash';
 module.exports = {
     name: 'CategoryDetails',
     description: 'This is an example of a component',
-    dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Inputs.IconMenu',
-        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Inputs.IconButton',
+    dependencies: [ 'Layouts.Column', 'Layouts.Row', 'Simple.Label', 'Simple.Badge', 'Buttons.IconMenu',
+        'Genie.Generator', 'Genie.MockEditor', 'Genie.MockTable', 'Mongo.Handler', 'Buttons.IconButton',
         'Attributers.FileDownloader', 'popovers.PopupHandler', 'Genie.CategoryItemEditor', 'Simple.NoResults', 'Genie.CategoryMoveRename',
         'Inputs.Input', 'Attributers.Margin'
      ],

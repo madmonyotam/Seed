@@ -3,7 +3,7 @@ import { MenuItem, ClickAwayListener, Input } from '@material-ui/core/';
 module.exports = {
     name: "CategoryItem",
 
-    dependencies: ['Inputs.IconButton','Simple.Label'],
+    dependencies: ['Buttons.IconButton','Simple.Label'],
     get(IconButton, Label) {
 
         var seed = this;

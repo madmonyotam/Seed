@@ -4,7 +4,7 @@ module.exports = {
 dependencies: [
     'Simple.NoResults',
     'Genie.LibraryItem',
-    'Inputs.IconButton',
+    'Buttons.IconButton',
     'Layouts.Row',
     'Inputs.Input',
 ],
