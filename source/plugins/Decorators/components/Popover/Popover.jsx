@@ -326,6 +326,7 @@ module.exports = {
                 interactive,
                 backdrop,
                 animation,
+                padding,
                 ...props } = this.props 
 
               return (

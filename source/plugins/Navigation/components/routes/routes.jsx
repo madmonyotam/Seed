@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core'
 import { Link } from "react-router-dom";
 
 require('./triangle.scss')
@@ -59,6 +58,7 @@ module.exports = {
             },
 
             renderLink(route, key){
+              if (!route) return;
               let { path, label } = route;
               let isActive = route === this.props.activeRoute;
 

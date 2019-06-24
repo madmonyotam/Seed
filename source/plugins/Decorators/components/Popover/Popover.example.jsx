@@ -34,27 +34,25 @@ module.exports = {
 
             getCode(){
                 let { elevation, position, padding, theme, offsetX, offsetY, delay, interactive, backdrop, animation } = this.state;
-
-                return [
-                  `<Popover  anchorEl={ anchorEl }`,
-                  `          position={ '${position}' }`,
-                  `          theme={ '${theme}' }`,
-                  `          animation={ '${animation}' }`,
-                  `          backdrop={ ${backdrop} }`,
-                  `          elevation={ '${elevation}' }`,
-                  `          padding={ '${padding}' }`,
-                  `          offsetX={ '${offsetX}' }`,
-                  `          offsetY={ '${offsetY}' }`,
-                  `          delay={ '${delay}' }`,
-                  `          interactive={ ${interactive} }`,
-                  `          onClose={ e => { this.setState({ anchorEl: undefined }) } } >`,
-                  `  { this.renderContent() }`,
-                  `</Popover>`,
-                 ` `,
-                  `<Button onClick={ e => { this.setState({ anchorEl: e.currentTarget }) } } theme={ 'primary' } variant={ 'raised' } >`,
-                  `  { core.translate('Click Me') }`,
-                  `</Button>`,
-                ].join('\n');
+                
+                return (`
+<Popover anchorEl={ anchorEl } 
+         position={'${position}'}
+         theme={'${theme}'} 
+         animation={'${animation}'} 
+         elevation={${elevation}}
+         offsetX={${offsetX}}
+         offsetY={${offsetY}} 
+         padding={${padding}} 
+         delay={${delay}} 
+         interactive={${interactive}} 
+         backdrop={${backdrop}} 
+         onClose={ e => { this.setState({ anchorEl: undefined }) } }>
+</Popover>
+<Button theme={ 'primary' } variant={ 'filled' } onClick={ e => { this.setState({ anchorEl: e.currentTarget }) } }>
+    Click Me
+</Button>
+                `)
             }, 
 
             renderContentState(){

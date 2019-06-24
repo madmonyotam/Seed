@@ -14,12 +14,12 @@ module.exports = {
     ],
     
     // modules: [
-      //     // require('./modules/...')
-      // ],
+    //   require('./modules/...')
+    // ],
       
-      views: [
-        require('./views/editors/code.editor'),
-        require('./views/root'),
+    views: [
+      require('./views/editors/code.editor'),
+      require('./views/root'),
     ],
 
     extend : {

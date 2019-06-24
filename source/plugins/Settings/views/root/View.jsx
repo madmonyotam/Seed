@@ -1,4 +1,10 @@
-import { Route, Link, Switch } from "react-router-dom";
+import { Route,  Switch } from "react-router-dom";
+import { createHashHistory } from "history";
+
+const history = createHashHistory({
+  hashType: 'slash' // the default
+});
+
 import { find , uniqueId } from 'lodash';
 module.exports = {
     name: "View",
@@ -40,13 +46,16 @@ module.exports = {
 
               let menuKeys = Object.keys(menu)
               let routes = menuKeys.map((routeKey)=>{
-                return {
-                  path: `${ match.path }/${ routeKey }`,
-                  label: routeKey,
-                  view: undefined,
-                  key: routeKey,
+                if (routeKey !== 'genie') {
+                  return {
+                    path: `${ match.path }/${ routeKey }`,
+                    label: routeKey,
+                    view: undefined,
+                    key: routeKey,
+                  }
                 }
-              })
+              });
+
               this.setState({
                 routes: routes,
                 activeRoute: this.getCurrentRoute(routes)
@@ -65,8 +74,16 @@ module.exports = {
 
             getCurrentRoute(routes){
               let afterHash = location.hash.split('#')[1];
-              let found  = find(routes, { path: afterHash })
+              let found  = find(routes, { path: afterHash });
+              if (!found) {
+                this.setDefaultRoute(routes[0])
+                return routes[0];
+              }
               return found
+            },
+
+            setDefaultRoute(defaultRoute){ 
+              history.push(defaultRoute.path)
             },
 
             styles(propName) {
@@ -83,7 +100,6 @@ module.exports = {
 
             ComponentRender(routeName){
               let { menu, activeRoute } = this.state;
-              // console.log(1, menu)
               return (
                 <div style={{ height: 'calc(100% - 0px)', width: '100%', padding: '0 0 2px 5px' }}>
                   <CodeEditor data={ menu[routeName] } parentKey={ activeRoute.key } userID={ uniqueId('user_id_')  } />
@@ -91,11 +107,12 @@ module.exports = {
               )
             },
 
-            onRouteChange(route){ ;
+            onRouteChange(route){
               this.setState({ activeRoute: route });
             },
 
             renderRouteComponent(route, key){
+              if (!route) return;
               return <Route key={ key }
                             path={ route.path }
                             component={ this.ComponentRender.bind(this, route.key) } />
@@ -111,7 +128,7 @@ module.exports = {
                                 onRouteChange={ this.onRouteChange }
                                 activeRoute={ activeRoute } />
 
-                    <Switch>
+                    <Switch >
                       { routes.map(this.renderRouteComponent) }
                     </Switch>
 
