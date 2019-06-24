@@ -70,7 +70,7 @@ function loadUiPlugins() {
         require('./plugins/Layouts'),
         require('./plugins/mongo'),
         require('./plugins/Navigation'),
-        require('./plugins/popovers'),
+        require('./plugins/Popovers'),
         require('./plugins/Settings'),
         require('./plugins/Simple'),
         require('./plugins/translate'),

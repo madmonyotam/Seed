@@ -5,7 +5,7 @@ import {isEmpty} from 'lodash';
 
 module.exports = {
     name: 'MockTable',
-    dependencies: [ 'Layouts.Row', 'Simple.Label', 'popovers.PopupHandler', 'Genie.CategoryItemEditor',
+    dependencies: [ 'Layouts.Row', 'Simple.Label', 'Popovers.PopupHandler', 'Genie.CategoryItemEditor',
                     'Buttons.IconButton'],
     get(Row, Label, PopupHandler, CategoryItemEditor,
         IconButton) {
@@ -228,7 +228,7 @@ module.exports = {
             renderRemoveButton(title) {
 
                 const handleRemove = ()=>{
-                    core.plugins.popovers.Caution(
+                    core.plugins.Popovers.Caution(
                         core.translate('Do you want to remove this item'),
                         core.translate('Remove Category Item'),
                         ( sure )=>{

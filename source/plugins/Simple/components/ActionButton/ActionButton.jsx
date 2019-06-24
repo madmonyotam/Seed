@@ -76,7 +76,7 @@ module.exports = {
                     return
                 }
 
-                core.plugins.popovers.Caution(text,title,(sure)=>{
+                core.plugins.Popovers.Caution(text,title,(sure)=>{
                     if(!sure){
                         cb(false);
                         return;

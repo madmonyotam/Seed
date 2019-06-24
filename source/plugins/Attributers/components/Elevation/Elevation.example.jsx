@@ -12,17 +12,17 @@ module.exports = {
 
             propScheme(){ 
                 return {
-                    level: { type: 'number' },
+                    level: { type: 'select', options: [ 0, 1, 2, 3, 4, 5, 6, 7 ]},
                     color: { type: 'string' },
                     play: { type: 'boolean' },
-                    playRithm: { type: 'number' },
+                    playRythm: { type: 'number' },
                 }
             },
 
             getInitialState() {
                 let defaultProps = Elevation.getDefaultProps();
                 defaultProps.play = false;
-                defaultProps.playRithm = 200;
+                defaultProps.playRythm = 200;
                 defaultProps.up = true;
                 return defaultProps;
             },
@@ -33,7 +33,7 @@ module.exports = {
                     `<Center width={280} height={280} color={'#ddd'} style={{flexWrap:'wrap'}}>`,
                     `    <Elevation level={${level}} color={${color}}>`,
                     `        <Margin all={15}>`,
-                    `            <Elevation level={-3} color={'#6d3f75'}>`,
+                    `            <Elevation level={7} color={'#6d3f75'}>`,
                     `                <Button theme={'default' } variant={'raised' } > Button 01 </Button>`,
                     `            </Elevation>`,
                     `            <Button theme={'default'  } variant={'outlined'}> Button 02 </Button>`,
@@ -46,18 +46,20 @@ module.exports = {
             },
 
             animate() {
-                let {play, playRithm} = this.state;
+                let {play, playRythm} = this.state;
+                const levelLimit = 7;
                 if (play) {
                     setTimeout(() => {
                         this.setState((state, props)=>{
                             let level = state.level;
                             let up = state.up;
                             level = (state.up) ? level + 1 : level - 1;
-                            if (Math.abs(level) > 25) level = 0;
-                            if (Math.abs(level) == 25) up = !up;
+                            if (0 > level || level > levelLimit) level = 0;
+                            if (level == levelLimit) up = false;
+                            if (level == 0) up = true;
                             return {level, up}
                         });
-                    }, playRithm);
+                    }, playRythm);
                 }
             },
 
@@ -71,7 +73,7 @@ module.exports = {
                         <Center width={280} height={280} color={'#ddd'} style={{flexWrap:'wrap'}}>
                             <Elevation level={level} color={color}>
                                 <Margin all={15}>
-                                    <Elevation level={-3} color={'#6d3f75'}>
+                                    <Elevation level={7} color={'#6d3f75'}>
                                         <Button theme={'default' } variant={'raised' } > Button 01 </Button>
                                     </Elevation>
                                     <Button theme={'default'  } variant={'outlined'}> Button 02 </Button>

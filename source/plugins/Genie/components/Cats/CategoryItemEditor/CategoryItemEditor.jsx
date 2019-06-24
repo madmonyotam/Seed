@@ -1,6 +1,6 @@
 module.exports = {
     name: 'CategoryItemEditor',
-    dependencies: [ 'Simple.Icon', 'Layouts.Column', 'popovers.PopupHandler', 'Inputs.Input','Genie.Generator',
+    dependencies: [ 'Simple.Icon', 'Layouts.Column', 'Popovers.PopupHandler', 'Inputs.Input','Genie.Generator',
                     'Decorators.Tooltip', 'Simple.Label'],
     get(Icon, Column, PopupHandler, Input, Generator,
         Tooltip, Label) {

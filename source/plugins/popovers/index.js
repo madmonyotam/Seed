@@ -1,9 +1,9 @@
 
-module.exports = require('./popovers.js');
+module.exports = require('./Popovers.js');
 
 if(module.hot) {
-    module.hot.accept('./popovers.js', function() {
-        var plugin =  require('./popovers.js');
+    module.hot.accept('./Popovers.js', function() {
+        var plugin =  require('./Popovers.js');
         core.reloadPlugin(plugin);
     });
 }

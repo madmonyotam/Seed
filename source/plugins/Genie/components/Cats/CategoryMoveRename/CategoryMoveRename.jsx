@@ -2,7 +2,7 @@ import { TextField } from '@material-ui/core';
 import { isEmpty, uniq } from 'lodash';
 
 module.exports = {
-    dependencies: ['popovers.PopupHandler','Simple.Label','Layouts.Center', 'Layouts.Column','Layouts.Row','Inputs.Input'],
+    dependencies: ['Popovers.PopupHandler','Simple.Label','Layouts.Center', 'Layouts.Column','Layouts.Row','Inputs.Input'],
     get(PopupHandler, Label, Center, Column, Row, Input) {
         var core = this;
         var { React, PropTypes, ComponentMixin, Branch } = core.imports;

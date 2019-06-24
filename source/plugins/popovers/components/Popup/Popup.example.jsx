@@ -1,6 +1,6 @@
 
 module.exports = {
-    dependencies: ['popovers.Popup', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Buttons.Button', 'popovers.PopupHandler'],
+    dependencies: ['Popovers.Popup', 'Examples.SimpleExample', 'Examples.ExampleHelper', 'Buttons.Button', 'Popovers.PopupHandler'],
     get(Popup, SimpleExample, ExampleHelper, Button, PopupHandler) {
 
         var core = this;

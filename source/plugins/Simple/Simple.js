@@ -7,7 +7,6 @@ module.exports = {
         require('./components/ActionButton'),
         require('./components/Badge'),
         require('./components/Chip'),
-        require('./components/Drawer'),
         require('./components/ExpandingPanel'),
         require('./components/Icon'),
         require('./components/IconPopover'),

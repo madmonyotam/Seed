@@ -226,7 +226,7 @@ get(
             let text = seed.translate('Do you want to remove the library', 'Do you want to remove the ${libraryName} library', {libraryName: value});
             let head = seed.translate('Remove Library');
 
-            seed.plugins.popovers.Caution( text, head,
+            seed.plugins.Popovers.Caution( text, head,
                 ( sure )=>{ return (sure) ? this.handleLibraryRemove(value): null; }
             )
         },

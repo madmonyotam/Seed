@@ -10,9 +10,9 @@ module.exports = {
     dependencies: [
       'Navigation.MainRouter',
       'Navigation.Top',
-      'popovers.Notify',
-      'popovers.Caution',
-      'popovers.Popup',
+      'Popovers.Notify',
+      'Popovers.Caution',
+      'Popovers.Popup',
       'Simple.Loader',
     ],
     get(MainRouter, Navigation, Notify, Caution, Popup, Loader) {
@@ -81,11 +81,11 @@ module.exports = {
             },
 
             addNotification({text, alertKind}){
-                core.plugins.popovers.addNotify(text, alertKind);
+                core.plugins.Popovers.addNotify(text, alertKind);
             },
 
             addPopup(data){
-                core.plugins.popovers.openPopup(data);
+                core.plugins.Popovers.openPopup(data);
             },
 
             styles(s) {

@@ -156,7 +156,7 @@ module.exports = {
                 let text = seed.translate(`Are you sure that do you want to remove the "${value}" category from "${currentLibrary}" library`);
                 let head = seed.translate(`Remove "${value}" category`);
                 
-                seed.plugins.popovers.Caution( text, head,
+                seed.plugins.Popovers.Caution( text, head,
                     ( sure )=>{
                         if ( sure ) {
                             

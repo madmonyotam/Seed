@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'popovers',
+    name: 'Popovers',
     tree: require('./tree.js'),
     actions: [],
     modules: [
@@ -7,6 +7,7 @@ module.exports = {
     ],
     components: [
         require('./components/Caution'),
+        require('./components/Drawer'),
         require('./components/Notify'),
         require('./components/Popup'),
         require('./components/Popup/PopupButtons'),

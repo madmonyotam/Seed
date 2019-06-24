@@ -11,12 +11,12 @@ module.exports = {
                 if (!id) id = mainId;
                 this.disableOkButton(id);
                 this.okButtonStopLoad(id);
-                seed.plugins.popovers.set(['popup', id, 'data'],{});
+                seed.plugins.Popovers.set(['popup', id, 'data'],{});
             },
             
             getData(id){
                 if (!id) id = mainId;
-                return seed.plugins.popovers.get(['popup', id, 'data']);
+                return seed.plugins.Popovers.get(['popup', id, 'data']);
             },
 
             open(args) {
@@ -26,7 +26,7 @@ module.exports = {
 
                 this.disableOkButton(id);
                 this.okButtonStopLoad(id);
-                seed.plugins.popovers.openPopup(id, parameters);
+                seed.plugins.Popovers.openPopup(id, parameters);
             },
 
             close(id) {
@@ -38,33 +38,33 @@ module.exports = {
                 let id = args && args.hasOwnProperty('id') ? args.id : mainId;
                 let data = args && args.hasOwnProperty('data') ? args.data : {};
 
-                let popup = seed.plugins.popovers.get('popup');
+                let popup = seed.plugins.Popovers.get('popup');
 
                 if (!popup.hasOwnProperty(id)) {
-                    seed.plugins.popovers.set(['popup', id ], {});
+                    seed.plugins.Popovers.set(['popup', id ], {});
                 }
 
-                seed.plugins.popovers.set(['popup', id, 'data'], data);
+                seed.plugins.Popovers.set(['popup', id, 'data'], data);
             },
 
             disableOkButton(id) {
                 if (!id) id = mainId;
-                seed.plugins.popovers.set(['popup', id, 'disabled'],true);
+                seed.plugins.Popovers.set(['popup', id, 'disabled'],true);
             },
 
             enableOkButton(id) {
                 if (!id) id = mainId;
-                seed.plugins.popovers.set(['popup', id, 'disabled'],false);
+                seed.plugins.Popovers.set(['popup', id, 'disabled'],false);
             },
 
             okButtonStartLoad(id) {
                 if (!id) id = mainId;
-                seed.plugins.popovers.set(['popup', id, 'isLoading'],true);
+                seed.plugins.Popovers.set(['popup', id, 'isLoading'],true);
             },
 
             okButtonStopLoad(id) {
                 if (!id) id = mainId;
-                seed.plugins.popovers.set(['popup', id, 'isLoading'],false);
+                seed.plugins.Popovers.set(['popup', id, 'isLoading'],false);
             },
         };
     }

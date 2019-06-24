@@ -1,5 +1,5 @@
 module.exports = {
-dependencies: ['Layouts.Absolute', 'popovers.PopupHandler', 'popovers.PopupButtons', 'Layouts.Center', 'Simple.Label',
+dependencies: ['Layouts.Absolute', 'Popovers.PopupHandler', 'Popovers.PopupButtons', 'Layouts.Center', 'Simple.Label',
                 'Buttons.IconButton', 'Layouts.Column', 'Layouts.Row'],
 get(Absolute, PopupHandler, PopupButtons, Center, Label,
     IconButton, Column, Row) {
@@ -10,7 +10,7 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         mixins: [ ComponentMixin, Branch ],
 
         cursors: {
-            popupTree: ['plugins','popovers','popup'],
+            popupTree: ['plugins','Popovers','popup'],
         },
 
         propsTypes: {
