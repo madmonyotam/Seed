@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-import Seed from 'simple-seed';
+var Seed = require('./DeepSeed');
+
 import { HashRouter , Route } from "react-router-dom";
 // const path = require('path')
 Seed.getInitialFiles( (DefaultFiles) => {

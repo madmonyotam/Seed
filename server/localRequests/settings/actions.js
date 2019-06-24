@@ -11,6 +11,11 @@ module.exports = {
   save: (req, res, configPath) => {
 
     let jsonFile = `${configPath}/${req.body.dir}/modified.json`;
+    let currentFolder = `${configPath}/${req.body.dir}/`;
+    if (!fs.existsSync(currentFolder)){
+        fs.mkdirSync(currentFolder);
+        jsonFile = `${configPath}/${req.body.dir}/default.json`;
+    }
 
     fs.writeFile(jsonFile, req.body.fileData, encoding, (err) => {
         if (err) {
@@ -113,7 +118,7 @@ module.exports = {
         }
       })
       .on('error', (err, item) => {
-        createDefaultConfigFolder(callback);
+        //  createDefaultConfigFolder(callback);
         // res.status(400).send({ success: false, msg: err.message });
       })
       .on('end', () => {
