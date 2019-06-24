@@ -118,6 +118,16 @@ module.exports = {
                 },
                 group: 'dataAndArrays',
             },
+            fileExt : {
+                info: "Random file extenstion",
+                scheme: {
+                    type: null,
+                },
+                generate: (element)=>{
+                    return faker.system.commonFileExt();
+                },
+                group: 'dataAndArrays',
+            },
         };
 
         const staticNameTypes = {
@@ -211,6 +221,26 @@ module.exports = {
                 },
                 generate: (element)=>{
                     return faker.internet.exampleEmail();
+                },
+                group: 'web',
+            },
+            userAgent : {
+                info:"random user agent",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.userAgent();
+                },
+                group: 'web',
+            },
+            protocol : {
+                info:"random protocol",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.internet.protocol();
                 },
                 group: 'web',
             },
@@ -319,6 +349,26 @@ module.exports = {
                     return { from: from.format(valueMask), to: to.format(valueMask) }
                 },
                 group: 'time',
+            },
+            month : {
+                info: "Random month name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.date.month();
+                },
+                group: 'date',
+            },
+            weekday : {
+                info: "Random weekday name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.date.weekday();
+                },
+                group: 'date',
             },
         };
 
@@ -566,6 +616,100 @@ module.exports = {
                 },
                 group: 'location',
             },
+            zipCode : {
+                info: "Random zipCode",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.address.zipCode();
+                },
+                group: 'location',
+            },
+            streetName : {
+                info: "Random street name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.address.streetName();
+                },
+                group: 'location',
+            },
+            latitude : {
+                info: "Random latitude",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.address.latitude();
+                },
+                group: 'location',
+            },
+            longitude : {
+                info: "Random longitude",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.address.longitude();
+                },
+                group: 'location',
+            },
+        };
+
+        const staticFinanceTypes = {
+            account : {
+                info: "Random account",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.finance.account();
+                },
+                group: 'finance',
+            },
+            accountName : {
+                info: "Random account name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.finance.accountName();
+                },
+                group: 'finance',
+            },
+            currencyCode : {
+                info: "Random currency code",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.finance.currencyCode();
+                },
+                group: 'finance',
+            },
+            currencyName : {
+                info: "Random currency name",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.finance.currencyName();
+                },
+                group: 'finance',
+            },
+            currencySymbol : {
+                info: "Random currency symbol",
+                scheme: {
+                    type: null
+                },
+                generate: (element)=>{
+                    return faker.finance.currencySymbol();
+                },
+                group: 'finance',
+            },
+            
         };
 
         return {
@@ -672,6 +816,7 @@ module.exports = {
                     ...staticTimeTypes,
                     ...staticWebTypes,
                     ...staticWorkTypes,
+                    ...staticFinanceTypes,
                     category,
                     categoriesArray,
                     oneOfCategories,
