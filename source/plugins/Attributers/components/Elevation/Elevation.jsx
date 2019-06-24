@@ -41,54 +41,34 @@ get(Composer) {
 
             let boxShadow = shadow[level];
 
-            if (child.props.style && child.props.style.shadow) {
-                boxShadow = `${child.props.style.boxShadow}, ${shadow[level]}`;
-            }
-
             return React.cloneElement(child, { style: {...child.props.style, boxShadow} });
         },
 
         getColors() {
             let {color} = this.props;
 
-            const isRGB  = color.startsWith('rgb(');
-            const isRGBA = color.startsWith('rgba(');
-            const isHSL  = color.startsWith('hsl(');
-            const isHSLA = color.startsWith('hsla(');
-            const isHEX  = color.startsWith('#');
+            let computedColor = this.getHexColor(color)
 
-            // EXAMPLES
-            // rgb(208, 138, 11)
-            // rgba(208, 138, 11, 0.9)
-            // hsl(206, 99%, 31%)
-            // hsla(296, 99%, 31%, 0.8)
-            // #50d25acc
+            let c0 = computedColor.slice(1,3);
+            let c1 = computedColor.slice(3,5);
+            let c2 = computedColor.slice(5,7);
 
-            if (isRGB || isRGBA || isHSL || isHSLA) {
-                let pre = (isHSL || isHSLA) ? 'hsla' : 'rgba';
-                let c = (isRGB || isHSL) ? color.slice(4, -1) : color.slice(5, -1);
-                c = c.split(',');
-
-                return {
-                    shadow12: `${pre}(${c[0]}, ${c[1]}, ${c[2]}, 0.12 )`,
-                    shadow14: `${pre}(${c[0]}, ${c[1]}, ${c[2]}, 0.14 )`,
-                    shadow20: `${pre}(${c[0]}, ${c[1]}, ${c[2]}, 0.20 )`,
-                }
-
-            } else if(isHEX) {
-                let c0 = color.slice(1,3);
-                let c1 = color.slice(3,5);
-                let c2 = color.slice(5,7);
-
-                return {
-                    shadow12: `#${c0}${c1}${c2}1f`,
-                    shadow14: `#${c0}${c1}${c2}24`,
-                    shadow20: `#${c0}${c1}${c2}33`,
-                }
+            return {
+                shadow12: `#${c0}${c1}${c2}1f`,
+                shadow14: `#${c0}${c1}${c2}24`,
+                shadow20: `#${c0}${c1}${c2}33`,
             }
+        },
 
-            return { shadow12: '#0000001f', shadow14: '#00000024', shadow20: '#00000033' }
+        getHexColor(colorStr) {
+            let a = document.createElement('div');
+                a.style.color = colorStr;
 
+            let colors = window.getComputedStyle( document.body.appendChild(a) ).color.match(/\d+/g).map( (a) => { return parseInt(a,10); });
+
+            document.body.removeChild(a);
+
+            return (colors.length >= 3) ? '#' + (((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1)) : false;
         },
 
         render() {

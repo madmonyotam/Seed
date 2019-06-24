@@ -1,7 +1,10 @@
 
 module.exports = {
-    dependencies: ['Attributers.Elevation', 'Attributers.Margin','Buttons.Button', 'Layouts.Center', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
-    get(Elevation, Margin, Button, Center, SimpleExample, ExampleHelper) {
+    dependencies: [
+        'Attributers.Elevation', 'Attributers.Margin', 'Buttons.Button', 'Layouts.Center', 'Layouts.Row',
+        'Simple.Label', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
+    get(Elevation, Margin, Button, Center, Row,
+        Label, SimpleExample, ExampleHelper) {
 
         var seed = this;
 
@@ -70,17 +73,45 @@ module.exports = {
                 return (
                     <SimpleExample context={this} code={ this.getCode() } scheme={ this.propScheme() } style={{ position:'relative' , display: 'flex', flexDirection: 'column'}}>
 
-                        <Center width={280} height={280} color={'#ddd'} style={{flexWrap:'wrap'}}>
-                            <Elevation level={level} color={color}>
-                                <Margin all={15}>
-                                    <Elevation level={7} color={'#6d3f75'}>
-                                        <Button theme={'default' } variant={'raised' } > Button 01 </Button>
-                                    </Elevation>
-                                    <Button theme={'default'  } variant={'outlined'}> Button 02 </Button>
-                                    <Button theme={'default'  } variant={'flat'    }> Button 03 </Button>
+                        <Row height={90}>
+                            <Margin all={10}>
+                                <Elevation level={level} color={color}>
+                                    <Button theme={'default'  } variant={'outlined'}> Button 01 </Button>
+                                    <Button theme={'default'  } variant={'flat'    }> Button 02 </Button>
+                                    <Button theme={'default'  } variant={'raised'  }> Button 03 </Button>
                                     <Button theme={'primary'  } variant={'raised'  }> Button 04 </Button>
-                                </Margin>
-                            </Elevation>
+                                    <Button theme={'secondary'} variant={'raised'  }> Button 05 </Button>
+                                    <div style={{backgroundColor: 'purple', width: 25, height: 25, borderRadius: '50%'}} />
+                                </Elevation>
+                            </Margin>
+                        </Row>
+
+                        <Elevation level={level} color={color}>
+                            <Row>
+                                <Label label={'Non dolorum et nemo et quibusdam nisi quisquam error. Laboriosam veniam in similique tempora praesentium est. Tempora omnis itaque repudiandae cumque dolores non eum. Perferendis assumenda est autem consequatur soluta. Esse quia maiores aut ut soluta omnis nulla fugit.'}/>
+                            </Row>
+                        </Elevation>
+
+                        <Center>
+                            <Margin all={10}>
+                                <Elevation level={level} color={color}>
+                                    <Center height={100} width={100} color={'#ddd'}>
+                                        <span>{seed.translate('Elevation')}</span>
+                                    </Center>
+                                </Elevation>
+
+                                <Elevation level={level} color={color}>
+                                    <Center height={200} width={200} color={'#ddd'} >
+                                        <span>{seed.translate('Elevation')}</span>
+                                    </Center>
+                                </Elevation>
+
+                                <Elevation level={level} color={color}>
+                                    <Center height={300} width={300} color={'#ddd'} >
+                                        <span>{seed.translate('Elevation')}</span>
+                                    </Center>
+                                </Elevation>
+                            </Margin>
                         </Center>
 
                     </SimpleExample>

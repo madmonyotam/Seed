@@ -42,7 +42,7 @@
         "default": "colors.white",
         "primary": "colors.blue010",
         "secondary": "colors.blue050",
-        "shadow": "colors.grey040",
+        "shadow": "colors.black",
         "disabled": "colors.grey070",
         "popupPane": "colors.black070"
     },

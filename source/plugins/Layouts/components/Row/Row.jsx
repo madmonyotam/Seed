@@ -47,7 +47,7 @@ module.exports = {
                         flexDirection: 'row',
                         overflow: 'hidden',
                         alignItems: 'center',
-                        boxShadow: boxShadow ? units.boxShadow : 'unset',
+                        boxShadow: boxShadow ? units.boxShadow : '',
                         padding: padding,
                         position: 'relative',
                         background: color,
