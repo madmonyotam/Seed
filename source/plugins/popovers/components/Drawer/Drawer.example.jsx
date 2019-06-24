@@ -11,15 +11,14 @@ module.exports = {
         return {
             mixins: [ ComponentMixin ],
 
-            propScheme(){          
+            propScheme(){
                 return {
                     initialSize:{ type: 'number', group: 'initial' },
                     size: { type: 'number', group: 'initial' },
                     offset: { type: 'number' },
                     openFrom: { type: 'select', options: [ 'top', 'bottom', 'left', 'right' ] },
                     transition: { type: 'number' },
-                    isLocked: { type: 'boolean' },
-                };       
+                };
             },
 
             getInitialState() {
@@ -37,7 +36,7 @@ module.exports = {
             initUnits(){
                 this.icons={
                     info: core.icons('general.info'),
-                    folder:core.icons('general.folder'),  
+                    folder:core.icons('general.folder'),
                     menu: core.icons('general.menu'),
                     more: core.icons('general.more'),
                 }
@@ -67,9 +66,8 @@ module.exports = {
                     `<Drawer initialSize={${initialSize}}`,
                     `    size={${size}}`,
                     `    offset={${offset}}`,
-                    `    openFrom={${openFrom}}`,
+                    `    openFrom={'${openFrom}'}`,
                     `    transition={${transition}}`,
-                    // `    isLocked={${isLocked}}`,
                     `/>`,
                 ].join('\n')
             },
@@ -114,7 +112,7 @@ module.exports = {
             },
 
             render() {
-                let { initialSize, size, offset, openFrom, transition, isLocked, open } = this.state;
+                let { initialSize, size, offset, openFrom, transition, open } = this.state;
                 size = ExampleHelper.ifNumber_Convert(size);
                 offset = ExampleHelper.ifNumber_Convert(offset);
                 initialSize = ExampleHelper.ifNumber_Convert(initialSize);
@@ -130,7 +128,6 @@ module.exports = {
                                 offset={offset}
                                 openFrom={openFrom}
                                 transition={transition}
-                                // isLocked={isLocked}
                                 drawerId={'simple'}>
 
                                 { this.renderRows() }

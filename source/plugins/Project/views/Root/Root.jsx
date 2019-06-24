@@ -8,17 +8,16 @@ module.exports = {
         currentUser :['currentUser']
     },
     dependencies: [
-      'Navigation.MainRouter',
-      'Navigation.Top',
-      'Popovers.Notify',
-      'Popovers.Caution',
-      'Popovers.Popup',
+      'Navigation.MainRouter', 'Navigation.Top', 'Popovers.Notify', 'Popovers.Caution', 'Popovers.Popup',
       'Simple.Loader',
     ],
-    get(MainRouter, Navigation, Notify, Caution, Popup, Loader) {
+    get(
+        MainRouter, Navigation, Notify, Caution, Popup,
+        Loader
+    ) {
 
-        var core = this;
-        var { React, PropTypes, ComponentMixin } = core.imports;
+        var seed = this;
+        var { React, PropTypes, ComponentMixin } = seed.imports;
 
         return {
             mixins: [ ComponentMixin, root ],
@@ -51,8 +50,7 @@ module.exports = {
             },
 
             eventsHandler(action) {
-                core[action]('notify', this.addNotification);
-                core[action]('popup', this.addPopup);
+                seed[action]('popup', this.addPopup);
             },
 
             start() {
@@ -65,11 +63,11 @@ module.exports = {
 
             getLanguage() {
                 const start = ()=>{ this.setState( {start:true} )};
-                core.plugins.Project.run('getLanguage').then(start).catch(start);
+                seed.plugins.Project.run('getLanguage').then(start).catch(start);
             },
 
             getDataExample(){
-            //     core.plugins.Project.run('getDataEx').then((modifyData)=>{
+            //     seed.plugins.Project.run('getDataEx').then((modifyData)=>{
             //   //       console.log('modifyData--> ',modifyData);
             //       }).catch( ()=>{
             //   //       console.log('2--> ',2);
@@ -80,12 +78,8 @@ module.exports = {
               this.setState({ activeView: route })
             },
 
-            addNotification({text, alertKind}){
-                core.plugins.Popovers.addNotify(text, alertKind);
-            },
-
             addPopup(data){
-                core.plugins.Popovers.openPopup(data);
+                seed.plugins.Popovers.openPopup(data);
             },
 
             styles(s) {

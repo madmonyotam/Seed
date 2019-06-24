@@ -2,28 +2,32 @@ var NotificationSystem = require('react-notification-system');
 import { Icon } from '@material-ui/core';
 
 module.exports = {
-    name: "Notify",
-    description: '',
-    propTypes: {
-        // name: 'string',
-    },
     dependencies: [],    
     get() {
         
-        var core = this;
+        const seed = this;
 
-        var { React, PropTypes } = core.imports;
+        const { React, PropTypes } = seed.imports;
 
         return {
             propsTypes: {
-                position: PropTypes.string,
+                position: PropTypes.oneOf([
+                    'topLeft',
+                    'topCenter',
+                    'topRight',
+                    'bottomRight',
+                    'bottomCenter',
+                    'bottomLeft',
+                ]),
                 autoDismiss: PropTypes.number,
+                distance: PropTypes.number,
             },
 
             getDefaultProps(){
                 return {
-                    position: 'bl',  // tr (top right), tl (top left), tc (top center), br (bottom right), bl (bottom left), bc (bottom center)
-                    autoDismiss: 4
+                    position: 'bottomLeft',
+                    autoDismiss: 4,
+                    distance: 10,
                 };
             },
 
@@ -31,15 +35,16 @@ module.exports = {
 
                 return {
                     error: null,
+                    distance: 10,
                 };
             },
 
             componentDidMount() {
-                core.on('addNotify',this.addNotification)
+                seed.on('notify',this.addNotification)
             },
 
             componentWillUnmount() {
-                core.off('addNotify')
+                seed.off('notify')
             },
 
             componentDidCatch(err){
@@ -77,6 +82,17 @@ module.exports = {
                 return(styles[s]);
             },
 
+            getPosition(position) {
+                switch (position) {
+                    case 'topLeft'     : return 'tl';
+                    case 'topCenter'   : return 'tc';
+                    case 'topRight'    : return 'tr';
+                    case 'bottomRight' : return 'br';
+                    case 'bottomCenter': return 'bc';
+                    case 'bottomLeft'  : default : return 'bl';
+                }
+            },
+
             getColor(alertKind){
                 switch (alertKind) {  
                     case 'error':
@@ -93,13 +109,13 @@ module.exports = {
             getIcon(alertKind){
                 switch (alertKind) {  
                     case 'error':
-                        return(core.icons('notify.error'));
+                        return(seed.icons('notify.error'));
                     case 'success':
-                        return(core.icons('notify.success'));
+                        return(seed.icons('notify.success'));
                     case 'warning':
-                        return(core.icons('notify.warning'));
+                        return(seed.icons('notify.warning'));
                     case 'info':
-                        return(core.icons('notify.info'));
+                        return(seed.icons('notify.info'));
                 }
             },
 
@@ -119,24 +135,28 @@ module.exports = {
                 )
             },
 
-            addNotification({text, alertKind}){  //success, error, warning and info
-                let {position, autoDismiss} = this.props;
+            addNotification({text, alertKind, position, autoDismiss}){
+                let pos = position || this.props.position;
+                let aut = autoDismiss || this.props.autoDismiss;
 
                 this.refs.notificationSystem.addNotification({
-                  position: position,
-                  message: this.renderMessage(alertKind,text),
-                  level: alertKind,  
-                  autoDismiss: autoDismiss
+                  position: this.getPosition(pos),
+                  message: this.renderMessage(alertKind, text),
+                  level: alertKind,
+                  autoDismiss: aut
                 });
             },
 
             getNotificationsStyle(){
+                let {distance} = this.props;
                 return {
                     Containers: {
-                      bl: {
-                        bottom: '10px',
-                        left: '10px',
-                      },
+                      tr: { top:    `${distance}px`, right: `${distance}px` },
+                      tc: { top:    `${distance}px`                         },
+                      tl: { top:    `${distance}px`, left:  `${distance}px` },
+                      br: { bottom: `${distance}px`, right: `${distance}px` },
+                      bc: { bottom: `${distance}px`                         },
+                      bl: { bottom: `${distance}px`, left:  `${distance}px` },
                     },
                     Title: {
                       DefaultStyle: { // Applied to every notification, regardless of the notification level
@@ -182,7 +202,7 @@ module.exports = {
                             fontWeight:'400',
                             fontFamily: 'Roboto, sans-serif',
                             fontSize: 14,
-                            height: 60,  
+                            height: 60,
                             overflowWrap: 'break-word',
                             wordWrap: 'break-word',
                             overflow: 'hidden' ,
@@ -213,7 +233,7 @@ module.exports = {
                     <NotificationSystem ref="notificationSystem" style={this.getNotificationsStyle()} />
                 )
 
-            }            
+            }
         }
     }
 }

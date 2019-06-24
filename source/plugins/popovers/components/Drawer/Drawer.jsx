@@ -1,5 +1,5 @@
 module.exports = {
-    dependencies: [],    
+    dependencies: [],
     get() {
         
         var core = this;
@@ -110,7 +110,6 @@ module.exports = {
                              transition: `height ${transition}s linear`,
                         }
                 }
-
             },
 
             openSimpleDrawer({id}){

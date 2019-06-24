@@ -2,9 +2,9 @@
 module.exports = {
     dependencies: [
         'Attributers.Elevation', 'Attributers.Margin', 'Buttons.Button', 'Layouts.Center', 'Layouts.Row',
-        'Simple.Label', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
+        'Simple.Label', 'Buttons.IconButton', 'Examples.SimpleExample', 'Examples.ExampleHelper'],
     get(Elevation, Margin, Button, Center, Row,
-        Label, SimpleExample, ExampleHelper) {
+        Label, IconButton, SimpleExample, ExampleHelper) {
 
         var seed = this;
 
@@ -78,10 +78,9 @@ module.exports = {
                                 <Elevation level={level} color={color}>
                                     <Button theme={'default'  } variant={'outlined'}> Button 01 </Button>
                                     <Button theme={'default'  } variant={'flat'    }> Button 02 </Button>
-                                    <Button theme={'default'  } variant={'raised'  }> Button 03 </Button>
-                                    <Button theme={'primary'  } variant={'raised'  }> Button 04 </Button>
-                                    <Button theme={'secondary'} variant={'raised'  }> Button 05 </Button>
-                                    <div style={{backgroundColor: 'purple', width: 25, height: 25, borderRadius: '50%'}} />
+                                    <Button theme={'primary'  } variant={'raised'  }> Button 05 </Button>
+                                    <Button theme={'secondary'} variant={'raised'  }> Button 06 </Button>
+                                    <IconButton/>
                                 </Elevation>
                             </Margin>
                         </Row>

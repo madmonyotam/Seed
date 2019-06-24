@@ -25,11 +25,6 @@ module.exports = {
         var seed = definition;
 
         var notifications = {
-
-            addNotify(text,alertKind) {
-                seed.emit('addNotify',{text,alertKind});
-            },
-
             openPopup(id, parameters) {
                 let {title, body, bodyStyle, okButton, buttons, modalStyle, width, height} = parameters;
                 let {btnTitle, btnFunc} = okButton;
