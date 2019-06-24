@@ -124,7 +124,7 @@ module.exports = {
                 return(
                     <Column width={260} boxShadow={true}>
                         {
-                            _.map(menuList, this.renderPanel)
+                            menuList.map(this.renderPanel)
                         }
                     </Column>
                 )

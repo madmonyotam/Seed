@@ -81,11 +81,54 @@ module.exports = {
                   isDownShiftOpen: false
               };
             },
+            
+            componentWillMount() {
+              this.scrollElement = undefined;
+              this.element = undefined;
+            },
+            
 
             componentDidMount() {
               this.inputRef = React.createRef();
               if (this.props.options) this.setState({ options: this.props.options });
               if (this.props.value !== '') this.setState({ value: this.props.value });
+              
+              setTimeout(() => {
+                if (this.inputRef && this.inputRef.current && this.inputRef.current.id === 'downshift-autocomplete-input'){
+                  this.element = this.inputRef.current;
+                  this.scrollElement = this.getScrollParent(this.element);
+                  this.scrollElement.addEventListener('scroll', this.handleBlur)
+                }                
+              }, 150);
+            },
+            
+            componentWillUnmount() {
+              if (this.scrollElement && this.scrollElement !== undefined) {
+                this.scrollElement.removeEventListener('scroll', this.handleBlur);
+                this.scrollElement = undefined;
+                this.element = undefined;
+              }
+            },
+
+            handleBlur(){
+              setTimeout(() => {
+                this.element.blur()
+                return;
+              }, 150);
+            },
+            
+            getScrollParent(node) {
+              const isElement = node instanceof HTMLElement;
+              const overflowY = isElement && window.getComputedStyle(node).overflowY;
+              const isScrollable = overflowY !== 'visible' && overflowY !== 'hidden';
+
+              if (!node) {
+                return null;
+              } else if (isScrollable && node.scrollHeight >= node.clientHeight) {
+                return node;
+              }
+
+              return this.getScrollParent(node.parentNode) || document.body;
             },
 
             componentWillReceiveProps(nextProps) {
@@ -113,6 +156,16 @@ module.exports = {
                 return this.inputRef.current.offsetWidth;
               }
               return 500
+            },
+            getInputBounds(direction) {
+              if (this.inputRef && this.inputRef.current && this.inputRef.current.id === 'downshift-autocomplete-input'){
+
+                // return this.inputRef.current.offsetWidth;
+                let rect = this.inputRef.current.getBoundingClientRect();
+                if (direction) return rect[direction] + rect.height;
+                else return rect;
+              }
+              // return 500
             },
 
             styles(s) {
@@ -173,14 +226,15 @@ module.exports = {
 
                 downshiftList: {
                     position:'fixed', 
-                    width: this.getInputWidth() || 500, 
+                    width: this.getInputWidth() || 500,
+                    top: this.getInputBounds('top') || 'unset', 
                     maxHeight: 215,
                     zIndex: 1,
                     padding: '5px 0',
                     overflow: 'auto', // TODO: change after simple scroller import
                     background: units.colors.white,
-                    boxShadow: ' 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16)',
-                    borderRadius: 3,
+                    boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16)',
+                    borderRadius: 2,
                     listStyleType: 'none',
                     marginTop: 10
                 },
