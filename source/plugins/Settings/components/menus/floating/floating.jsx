@@ -17,7 +17,8 @@ module.exports = {
             primary: core.theme('colors.primary'),
             white: core.theme('colors.white'),
             icon: core.theme('buttons.primary'),
-            dark: core.theme('colors.dark')
+            dark: core.theme('colors.dark'),
+            active: core.theme('notify.success')
           },
           texts: {
             secondary: core.theme('texts.secondary'),
@@ -30,6 +31,9 @@ module.exports = {
             height: core.dim('nav.top.height')
           },
           boxShadow: `4px -4px 10px -10px rgba(0,0,0,0.12), 4px -10px 16px -12px rgba(0,0,0,0.16)`,
+          icons: {
+            active: core.icons('notify.success')
+          }
 
 
         }
@@ -60,7 +64,9 @@ module.exports = {
               let translate = {
                 load: core.translate('Load'),
                 add: core.translate('Add'),
+                project: core.translate('Project'),
                 projects: core.translate('Projects'),
+                library: core.translate('Library')
 
               }
               this.menuItems = [
@@ -76,9 +82,90 @@ module.exports = {
                 {
                   title: translate.add,
                   icon: core.icons('general.addFolder'),
-                  subItems: true,
+                  subItems: [{
+                    title: translate.library,
+                    icon: core.icons('files.file'),
+                    onClick: () => {
+                      // TODO: add library logic here
+                      /**
+                       *
+                       *   handleAddNewCategory(){
+                            let { catNameToSave, activeTab } = this.state;
+
+                            let catName = catNameToSave && catNameToSave.length ? catNameToSave.trim() : null;
+                            if (catName) {
+                              catName = Helpers.makeCamelCase(catName);
+
+                              let activeTabData = activeTab.data;
+                              let newData = { ...activeTabData, [ catName ]: {} }
+
+                              let data = {
+                                fileData: newData,
+                                dir: activeTab.key,
+                                notify: false
+                              }
+
+                              core.plugins.Settings.run('saveSettings', data)
+                                  .then(()=>{
+                                      core.emit('Popup.close');
+                                  });
+
+                            } else {
+                              let notify = {
+                                  title: 'Category Name Error ',
+                                  text: 'Invalid category name',
+                                  alertKind: 'error'
+                              }
+                              core.emit('notify',notify);
+                              return;
+                            }
+                          },
+                       *
+                       */
+                       console.log(`
+                         /**
+                          *
+                          *   handleAddNewCategory(){
+                               let { catNameToSave, activeTab } = this.state;
+
+                               let catName = catNameToSave && catNameToSave.length ? catNameToSave.trim() : null;
+                               if (catName) {
+                                 catName = Helpers.makeCamelCase(catName);
+
+                                 let activeTabData = activeTab.data;
+                                 let newData = { ...activeTabData, [ catName ]: {} }
+
+                                 let data = {
+                                   fileData: newData,
+                                   dir: activeTab.key,
+                                   notify: false
+                                 }
+
+                                 core.plugins.Settings.run('saveSettings', data)
+                                     .then(()=>{
+                                         core.emit('Popup.close');
+                                     });
+
+                               } else {
+                                 let notify = {
+                                     title: 'Category Name Error ',
+                                     text: 'Invalid category name',
+                                     alertKind: 'error'
+                                 }
+                                 core.emit('notify',notify);
+                                 return;
+                               }
+                             },
+                          *
+                          */`)
+                    }
+                  },{
+                    title: translate.project,
+                    icon: core.icons('files.project'),
+                    onClick: () => {  }
+                  }],
                   key: 'add',
-                  onClick: e => { console.log('add') }
+                  onClick: e => { this.handelSubMenu(e, { key: 'add', title: translate.add }) }
                 },
 
                 { divider: true },
@@ -319,25 +406,36 @@ module.exports = {
             renderItem(item, key) {
               if (!item) return null;
               else if (item.divider) return <MenuItem key={ key } divider />
-              return <MenuItem key={ key }
-                              icon={ item.icon }
-                              iconColor={ units.colors.icon }
-                              label={ item.title }
-                              labelStyle={{ marginLeft: 15 }}
-                              onClick={ item.onClick } />
+              return (
+                  <MenuItem key={ key }
+                            icon={ item.icon }
+                            iconColor={ units.colors.icon }
+                            label={ item.title }
+                            hasChildren={ item.subItems && item.subItems.length }
+                            labelStyle={{ marginLeft: 15 }}
+                            onClick={ item.onClick } />
+              )
             },
 
             renderSubItem(item, key) {
               if (!item) return null;
               else if (item.divider) return <MenuItem key={ key } divider />
-              return <MenuItem key={ key }
-                        label={ item.title }
-                        iconSize={ 14 }
-                        iconColor={ units.colors.icon }
-                        icon={ item.icon || core.icons('files.file') }
-                        padding={ '0px 10px 0px 15px' }
-                        labelStyle={{ marginLeft: 5 }}
-                        onClick={ item.onClick || console.warn('Missing sub item click function!') }/>
+              return (
+                <div key={ key } style={{ display: 'flex', alignItems: 'center' }}>
+
+                  <MenuItem key={ key }
+                            label={ item.title }
+                            iconSize={ 14 }
+                            iconColor={ units.colors.icon }
+                            icon={ item.icon || core.icons('files.file') }
+                            padding={ '0px 10px 0px 15px' }
+                            labelStyle={{ marginLeft: 5 }}
+                            onClick={ item.onClick || console.warn('Missing sub item click function!') }/>
+
+                  { item.isActive ? <Icon size={ 16 } color={ units.colors.active } style={{ position: 'absolute', right: 5 }} icon={ units.icons.active } /> : null  }
+
+                </div>
+              )
 
             },
 

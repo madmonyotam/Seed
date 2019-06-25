@@ -24,6 +24,7 @@ module.exports = {
               label: PropTypes.string, 
               labelColor: PropTypes.string,
               labelStyle: PropTypes.object,
+              hasChildren: PropTypes.bool,
               divider: PropTypes.bool,
               padding: PropTypes.oneOfType([
                 PropTypes.string,
@@ -43,6 +44,7 @@ module.exports = {
                 return {
                   iconPosition: 'left', 
                   iconSize: 16, 
+                  hasChildren: false,
                   padding: '5px 10px', 
                   height: 30, 
                   label: core.translate('menu item'), 
@@ -99,6 +101,7 @@ module.exports = {
                 labelStyle,
                 divider, 
                 style,
+                hasChildren,
                 ...props } = this.props;
               if (divider) {
                 return <Row height={ 1 } style={{ margin:'5px 0',borderBottom: `1px solid ${units.colors.border}`, ...style }} padding={ 0 } ></Row>
@@ -114,6 +117,8 @@ module.exports = {
                   { icon && iconPosition === 'left' ? <Icon size={ iconSize } icon={ icon } color={ iconColor } style={ iconStyle } /> : null }
                   <Label label={ label } color={ labelColor } style={ labelStyle }/>
                   { icon && iconPosition === 'right' ? <Icon size={ iconSize } icon={ icon } color={ iconColor } style={ iconStyle } /> : null }
+                  
+                  { hasChildren ? <Icon size={ 16 } icon={ core.icons('navigate.right') }  /> : null }
                 </Row>
               ) 
             }
