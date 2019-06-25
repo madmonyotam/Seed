@@ -10,7 +10,7 @@ module.exports = {
         return {
             mixins: [ ComponentMixin ], 
 
-            propScheme(){ // TODO:  
+            propScheme(){
                 return {
                     titleHeight: {type: 'string'},
                     footerHeight: {type: 'string'},
@@ -25,7 +25,7 @@ module.exports = {
             },
 
             getInitialState() {
-                let defaultProps = Popup.getDefaultProps(); 
+                let defaultProps = Popup.getDefaultProps();
                     defaultProps.id = 'ExamplePopup';
                 return defaultProps;
             },
@@ -34,23 +34,23 @@ module.exports = {
                 let { titleHeight, footerHeight, width, height, titleLabelColor, titleColor, backdropColor, background, footerBackground } = this.state;
 
                 return [
-                    `/** at main render */`,
+                    `/** at outer render */`,
                     `<Popup`,
                     `    id={'ExamplePopup'}`,
                     `    titleHeight={${titleHeight}}`,
                     `    footerHeight={${footerHeight}}`,
                     `    width={${width}}`,
                     `    height={${height}} // the minimum height is 50px`,
-                    `    titleLabelColor={${titleLabelColor}}`,
-                    `    titleColor={${titleColor}}`,
-                    `    backdropColor={${backdropColor}}`,
-                    `    background={${background}}`,
-                    `    footerBackground={${footerBackground}}`,
+                    `    titleLabelColor={'${titleLabelColor}'}`,
+                    `    titleColor={'${titleColor}'}`,
+                    `    backdropColor={'${backdropColor}'}`,
+                    `    background={'${background}'}`,
+                    `    footerBackground={'${footerBackground}'}`,
                     `/>`,
                     ` `,
-                    `/** at the caller*/`,
+                    `/** at the caller */`,
                     `PopupHandler.open({`,
-                    `    id:'ExamplePopup',`,
+                    `    id:'ExamplePopup', // FOR USING THE MAIN POPUP, REMOVE THIS LINE`,
                     `    parameters: {`,
                     `        title: seed.translate('Popup Title'),`,
                     `        body: <div> I am the popup body content</div>,`,
@@ -91,8 +91,8 @@ module.exports = {
                         context={this} 
                         code={ this.getCode() } 
                         scheme={ this.propScheme() } 
-                        exampleHeight={ '70%' }
-                        codeHeight={ '30%' }
+                        exampleHeight={ '65%' }
+                        codeHeight={ '35%' }
                     >
                         
                         <Button onClick={this.handleOpen}> Open </Button>
