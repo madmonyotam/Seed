@@ -35,9 +35,10 @@ module.exports = {
             },
             
             getInitialState() {
+                let { defaultDate } = this.props;
                 return {
                     picker: DAY,
-                    currentDate: moment().format()
+                    currentDate: defaultDate || moment().format()
                 };
             }, 
  
@@ -62,19 +63,21 @@ module.exports = {
             },
 
             handleYearChange(newDate) {
-              let { onDaySelect } = this.props; 
+              let { onDaySelect,ignoreYearChange } = this.props; 
               let currentDate = moment([newDate.year, newDate.month, 1]).format();
               this.setState({ currentDate: currentDate })
+              if(ignoreYearChange) return;
               onDaySelect(currentDate)
 
             },
 
             handleMonthChange(month){
               let { currentDate } = this.state;
-              let { onDaySelect } = this.props; 
+              let { onDaySelect,ignoreMonthChange } = this.props; 
               let year = moment(currentDate).year();
               let newDate = moment([year, month.key-1, 1]).format();
               this.setState({ currentDate: newDate }, this.handleToggleView)
+              if(ignoreMonthChange) return;
               onDaySelect(newDate)
 
             },
@@ -103,8 +106,16 @@ module.exports = {
             },
 
             renderWeeks(){
-              let { firstDayInWeek } = this.props;
-              return <DaySelect firstDayInWeek={firstDayInWeek} currentDate={ this.state.currentDate } onSelect={ this.handleDayChange }/>
+              let { firstDayInWeek, startDate, onHoverDate, hoverDate } = this.props;
+              return (
+                <DaySelect 
+                    onHoverDate={onHoverDate} 
+                    hoverDate={hoverDate} 
+                    startDate={startDate} 
+                    firstDayInWeek={firstDayInWeek} 
+                    currentDate={ this.state.currentDate } 
+                    onSelect={ this.handleDayChange }/>
+              )
             },
 
             renderMainCont(){
