@@ -6,6 +6,7 @@ class SimplePlugin {
 
         plugin.name = definition.name;
         plugin.tree = definition.tree;
+        plugin.enrichConfig(definition.config)
 
         plugin.modules = {};
         plugin.views = {};
@@ -18,8 +19,7 @@ class SimplePlugin {
         plugin.setModules(definition.views,'views'); 
         plugin.setModules(definition.components,'components'); 
         plugin.setModules(definition.examples,'examples'); 
-
-
+  
         plugin.pluginInit(seed,definition);
     }
 
@@ -28,6 +28,13 @@ class SimplePlugin {
 
         if (definition.init) { definition.init(seed,(extendObject)=>{ plugin.extendsPlugin(plugin,extendObject) }) }
         if (plugin.tree) { plugin.extendsTree(seed) }
+    }
+
+    enrichConfig(config){
+        let plugin = this;
+        if(config){
+            plugin.seed.enrichConfig(config);
+        }
     }
 
     extendsPlugin(plugin,extendObject){

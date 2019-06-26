@@ -2,12 +2,6 @@ import { uniqueId } from 'lodash';
 var tinycolor = require('tinycolor2');
 window.tinycolor = tinycolor;
 
-const colorTheme =  { 
-  default: '#D8D8D8',
-  primary: '#6B7ADD',
-  secondary: '#DD6A6A',
-}
-
 module.exports = {
     name: 'Button',
     description: '',
@@ -16,8 +10,9 @@ module.exports = {
     get(Ripple, Loader) {
 
         var core = this;
-
         var { React, PropTypes, ComponentMixin } = core.imports;
+
+        const colorTheme = core.theme('buttons');
 
         var units = {
           text: {
