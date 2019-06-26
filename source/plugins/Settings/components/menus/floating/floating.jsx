@@ -109,45 +109,6 @@ module.exports = {
                     title: translate.library,
                     icon: units.icons.file,
                     onClick: this.handleOpenLibraryPopup
-
-                      // TODO: add library logic here
-                      /**
-                        () => {
-                       *
-                       *   handleAddNewCategory(){
-                            let { catNameToSave, activeTab } = this.state;
-
-                            let catName = catNameToSave && catNameToSave.length ? catNameToSave.trim() : null;
-                            if (catName) {
-                              catName = Helpers.makeCamelCase(catName);
-
-                              let activeTabData = activeTab.data;
-                              let newData = { ...activeTabData, [ catName ]: {} }
-
-                              let data = {
-                                fileData: newData,
-                                dir: activeTab.key,
-                                notify: false
-                              }
-
-                              core.plugins.Settings.run('saveSettings', data)
-                                  .then(()=>{
-                                      core.emit('Popup.close');
-                                  });
-
-                            } else {
-                              let notify = {
-                                  title: 'Category Name Error ',
-                                  text: 'Invalid category name',
-                                  alertKind: 'error'
-                              }
-                              core.emit('notify',notify);
-                              return;
-                            }
-                          },
-                       *
-                       }
-                       */
                   },{
                     title: translate.project,
                     icon: units.icons.project,
@@ -446,7 +407,7 @@ module.exports = {
                             icon={ item.icon || units.icons.file }
                             rowPadding={ '0px 10px 0px 15px' }
                             labelStyle={{ marginLeft: 5 }}
-                            onClick={ item.onClick || console.warn('Missing sub item click function!') }/>
+                            onClick={ item.onClick || undefined }/>
 
                   { item.isActive ? <Icon size={ 16 } color={ units.colors.active } style={{ position: 'absolute', right: 5 }} icon={ units.icons.active } /> : null  }
 
@@ -525,13 +486,26 @@ module.exports = {
               }
             },
 
-            closeLibraryPopup(){
-              console.log('Done < clicked')
-              PopupHandler.close('ExamplePopup2')
+            saveLibraryName(){
+              let dir = PopupHandler.getData('addlibrarypopup');
+              let name = dir.split(' ').join('_');
+              
+              this.setState({ loading: true })
+              let params = {
+                fileData: {},
+                dir: name,
+                notify: true
+              }
+              core.plugins.Settings.run('SaveSettings', params)
+                  .then( () => {
+                    core.emit('reload:settings');
+                    this.setState({ loading: false })
+                    PopupHandler.close('addlibrarypopup')
+                  })
+              
             },
 
             handleOpenLibraryPopup(e){
-              PopupHandler.enableOkButton();
               PopupHandler.open({
                 id: 'addlibrarypopup',
                 parameters: {
@@ -539,7 +513,7 @@ module.exports = {
                     body: <LibraryPopup />,
                     okButton: {
                         btnTitle: seed.translate('Done'),
-                        btnFunc: this.closeLibraryPopup
+                        btnFunc: this.saveLibraryName
                     }
                 }
               });
