@@ -119,7 +119,7 @@ module.exports = {
                             
                             
                             />
-                            {/* { this.renderButtons() } */}
+                            { this.renderButtons() }
                     </div>
 
                 )
