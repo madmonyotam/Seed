@@ -34,7 +34,7 @@ module.exports = {
                 let { level, color } = this.state; 
                 return [
                     `<Center width={280} height={280} color={'#ddd'} style={{flexWrap:'wrap'}}>`,
-                    `    <Elevation level={${level}} color={${color}}>`,
+                    `    <Elevation level={${level}} color={'${color}'}>`,
                     `        <Margin all={15}>`,
                     `            <Elevation level={7} color={'#6d3f75'}>`,
                     `                <Button theme={'default' } variant={'raised' } > Button 01 </Button>`,
