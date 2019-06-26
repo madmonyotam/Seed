@@ -8,6 +8,7 @@
         "secondary": "#2979ff",
         "primary": "#01579b",
         "boxShadow": "#cacaca",
+        "purple10": "#6b7add80",
         "blue055": "#e7eff3bf",
         "blue065": "#e7eff385",
         "blue070": "#F3FAFD",
@@ -24,7 +25,8 @@
     "calendar": {
         "text": "colors.dark",
         "textSelected": "colors.white",
-        "textOutOfMonth": "colors.grey050"
+        "textOutOfMonth": "colors.grey050",
+        "rangeHover": "colors.purple10"
     },
     "examples": {
         "mainBackground": "colors.grey090",

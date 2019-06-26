@@ -27,12 +27,10 @@ module.exports = {
 <DatePicker
     onDatesSelect={this.handleDates}
     isRange={${this.state.isRange}}
-    onSelectedRange={this.handleSelectedRange}>
 
     <Button>Click Me To Open Date Picker</Button>
 
 </DatePicker>
-
                 `)
             },
 

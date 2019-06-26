@@ -13,6 +13,7 @@ module.exports = {
         text: core.theme('calendar.text'),
         textSelected: core.theme('calendar.textSelected'),
         textOutOfMonth: core.theme('calendar.textOutOfMonth'),
+        calendarRange: core.theme('calendar.rangeHover'),
       }
     }
 
@@ -49,6 +50,12 @@ module.exports = {
         return moment(day).isSame(current, 'day')
       },
 
+      isStart(){
+        let {startDate} = this.props;
+        let day = this.getDay();
+        return moment(startDate).isSame(day, 'day')
+      },
+
       handleOnMouseEnter(){
         let {onHoverDate} = this.props;
         if(onHoverDate) {
@@ -71,21 +78,21 @@ module.exports = {
         let day = this.getDay();
         let disabled = this.getDisabled()
         let formatted = day.format('DD'); 
-        let textColor = this.isCurrent() ? units.colors.textSelected : units.colors.text; 
+        let textColor = this.isCurrent() || this.isStart() ? units.colors.textSelected : units.colors.text; 
         textColor = disabled ? units.colors.textOutOfMonth : textColor; 
         let isInRange = this.isInRange();
 
         return (
           <Center>
             <Button variant={ 'flat' } 
-                    theme={ this.isCurrent() ? 'primary' : 'default' }
+                    theme={ this.isCurrent() || this.isStart() ? 'primary' : 'default' }
                     round={ false } 
                     textColor={ textColor }
                     width={ '100%' } 
                     height={ '100%' } 
                     onClick={ e => { onSelect(dayDate) } }
                     onMouseEnter={ this.handleOnMouseEnter }
-                    backgroundColor={ isInRange? '#DD6A6A' : null }
+                    backgroundColor={ isInRange? units.colors.calendarRange : null }
                     > 
 
               { formatted }

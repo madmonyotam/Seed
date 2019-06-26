@@ -13,12 +13,12 @@ module.exports = {
             mixins: [ ComponentMixin ],
 
             propsTypes: {
-                gap: PropTypes.object,
+                isRange: PropTypes.bool,
             },
 
             getDefaultProps(){
                 return {
-                    gap: {}
+                    isRange: false,
                 };
             },
             
@@ -70,14 +70,14 @@ module.exports = {
                             this.setState({ startDate: date, endDate: startDate},()=>{
                                 if(onDatesSelect && this.state.endDate && this.state.startDate) {
                                     onDatesSelect({ startDate: this.state.startDate, endDate: this.state.endDate })
-                                    this.handleClose()
+                                    // this.handleClose()
                                 }
                             })
                         } else {
                             this.setState({ endDate: date },()=>{
                                 if(onDatesSelect && this.state.endDate && this.state.startDate) {
                                     onDatesSelect({ startDate: this.state.startDate, endDate: this.state.endDate })
-                                    this.handleClose()
+                                    // this.handleClose()
                                 }
                             })
 
@@ -91,24 +91,37 @@ module.exports = {
                 if(startDate!=='') this.setState({hoverDate})
             },
 
+            renderButtons(){
+                return(
+                    <div>
+                        <span>ok</span>
+                        <span>cancel</span>
+                    </div>
+                )
+            },
+
             renderContent(){
                 let {startDate,hoverDate} = this.state;
                 return(
-                    <Calendar 
-                        onDaySelect={this.handleSelectDate} 
-                        dayCellRender={ this.renderDayCell } 
-                    
-                        ignoreYearChange={true}
-                        ignoreMonthChange={true}
-
-                        startDate={startDate}
-                        hoverDate={hoverDate}
-                        onHoverDate={this.handleOnHoverDate}
-
-                        defaultDate={moment().subtract(7, 'days')} 
+                    <div>
+                        <Calendar 
+                            onDaySelect={this.handleSelectDate} 
+                            dayCellRender={ this.renderDayCell } 
                         
-                        
-                        />
+                            ignoreYearChange={true}
+                            ignoreMonthChange={true}
+
+                            startDate={startDate}
+                            hoverDate={hoverDate}
+                            onHoverDate={this.handleOnHoverDate}
+
+                            defaultDate={moment().subtract(7, 'days')} 
+                            
+                            
+                            />
+                            {/* { this.renderButtons() } */}
+                    </div>
+
                 )
             },
 
@@ -121,6 +134,7 @@ module.exports = {
 
                         <Popover  anchorEl={ anchorEl }
                                 position={ 'bottom' }
+                                center={true}
                                 theme={ 'light' }
                                 animation={ 'pop' }
                                 backdrop={ true }
