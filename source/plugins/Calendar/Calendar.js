@@ -13,6 +13,16 @@ module.exports = {
         require('./components/DatePicker'),
     ],
 
+    config: {
+        theme: {
+            calendar: {
+                "text": "colors.dark",
+                "textSelected": "colors.white",
+                "textOutOfMonth": "colors.grey050"
+            }
+        }
+    },
+
     extend: {},
 
     init(def, done){

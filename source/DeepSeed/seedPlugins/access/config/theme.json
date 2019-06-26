@@ -21,11 +21,6 @@
         "blue015": "#01579B",
         "blue050": "#54A9DD"
     },
-    "calendar": {
-        "text": "colors.dark",
-        "textSelected": "colors.white",
-        "textOutOfMonth": "colors.grey050"
-    },
     "examples": {
         "mainBackground": "colors.grey090",
         "codeBackground": "colors.dark",
