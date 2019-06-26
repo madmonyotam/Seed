@@ -3,8 +3,8 @@ import { Fragment, Children } from 'react';
 import { isEmpty as _isEmpty } from 'lodash';
 
 module.exports = {
-    dependencies: ['Decorators.Popover','Inputs.Button','Layouts.Column','Calendar.Calendar'],    
-    get(Popover,Button,Column,Calendar) {
+    dependencies: ['Decorators.Popover','Calendar.Calendar'],    
+    get(Popover,Calendar) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
