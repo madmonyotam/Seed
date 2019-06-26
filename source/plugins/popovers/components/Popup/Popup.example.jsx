@@ -13,7 +13,6 @@ module.exports = {
             propScheme(){
                 return {
                     titleHeight: {type: 'string'},
-                    footerHeight: {type: 'string'},
                     width: {type: 'string'},
                     height: {type: 'string'},
                     titleLabelColor: {type: 'string'},
@@ -31,14 +30,13 @@ module.exports = {
             },
 
             getCode(){
-                let { titleHeight, footerHeight, width, height, titleLabelColor, titleColor, backdropColor, background, footerBackground } = this.state;
+                let { titleHeight, width, height, titleLabelColor, titleColor, backdropColor, background, footerBackground } = this.state;
 
                 return [
                     `/** at outer render */`,
                     `<Popup`,
                     `    id={'ExamplePopup'}`,
                     `    titleHeight={${titleHeight}} // the minimum height is 25px`,
-                    `    footerHeight={${footerHeight}} // the minimum height is 35px`,
                     `    width={${width}} // the minimum width is 250px`,
                     `    height={${height}} // the minimum height is 50px`,
                     `    titleLabelColor={'${titleLabelColor}'}`,
@@ -80,9 +78,8 @@ module.exports = {
             },
 
             render() {
-                let { titleHeight, footerHeight, width, height, titleLabelColor, titleColor, backdropColor, background, footerBackground, id } = this.state;
+                let { titleHeight, width, height, titleLabelColor, titleColor, backdropColor, background, footerBackground, id } = this.state;
                 titleHeight = ExampleHelper.ifNumber_Convert(titleHeight);
-                footerHeight = ExampleHelper.ifNumber_Convert(footerHeight);
                 width = ExampleHelper.ifNumber_Convert(width);
                 height = ExampleHelper.ifNumber_Convert(height);
 
@@ -100,7 +97,6 @@ module.exports = {
                         <Popup
                             id={id}
                             titleHeight={ titleHeight }
-                            footerHeight={ footerHeight }
                             width={ width }
                             height={ height }
                             titleLabelColor={ titleLabelColor }
