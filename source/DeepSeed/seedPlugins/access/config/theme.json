@@ -21,11 +21,6 @@
         "blue015": "#01579B",
         "blue050": "#54A9DD"
     },
-    "examples": {
-        "mainBackground": "colors.grey090",
-        "codeBackground": "colors.dark",
-        "codeColor": "colors.white"
-    },
     "texts": {
         "default":"colors.dark",
         "alternate":"colors.white",
@@ -48,14 +43,6 @@
     },
     "borders": {
         "default":"colors.grey070"
-    },
-    "genie":{
-        "white_bg": "colors.white",
-        "title_bg": "colors.grey080",
-        "lib_bg": "colors.blue055",
-        "cat_bg":"colors.blue065",
-        "button_text": "colors.black",
-        "hover": "colors.blue070"
     },
     "notify": {
         "success": "#56b631",

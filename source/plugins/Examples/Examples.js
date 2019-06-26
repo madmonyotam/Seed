@@ -24,6 +24,16 @@ module.exports = {
         require('./views/examples'),
     ],
 
+    config: {
+        theme: {
+            examples: {
+                "mainBackground": "colors.grey090",
+                "codeBackground": "colors.dark",
+                "codeColor": "colors.white"
+            }
+        }
+    },
+    
     extend: {
 
         getExamples(){

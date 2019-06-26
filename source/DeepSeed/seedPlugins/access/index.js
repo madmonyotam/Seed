@@ -45,7 +45,9 @@ module.exports = {
 
         setSystemDefaultConfig(next){
             let systemConfig = require('./config');
-            addToConfig(this,systemConfig);
+            for (let x in systemConfig) { 
+                seed.plugins.access.set(['system',x], systemConfig[x]); 
+            };
             setTimeout(next);
         },
         
@@ -62,7 +64,9 @@ module.exports = {
         setConfiguration(config) {
 
             if (config) { 
-              addToConfig(this,config) 
+              for (let x in config) { 
+                    seed.plugins.access.set([x], config[x]); 
+              };
               this.plugins.access.set('config', config); 
             }
         },
@@ -99,12 +103,6 @@ function mergeDeep(target, source) {
     }
 
     return innerTarget;
-}
-
-function addToConfig(seed,config) {
-    for (let x in config) { 
-        seed.plugins.access.set(['system',x], config[x]); 
-    };
 }
 
 function get(seed, type, path) {
