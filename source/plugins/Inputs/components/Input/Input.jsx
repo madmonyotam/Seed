@@ -157,9 +157,9 @@ module.exports = {
               }
               return 500
             },
+
             getInputBounds(direction) {
               if (this.inputRef && this.inputRef.current && this.inputRef.current.id === 'downshift-autocomplete-input'){
-
                 // return this.inputRef.current.offsetWidth;
                 let rect = this.inputRef.current.getBoundingClientRect();
                 if (direction) return rect[direction] + rect.height;
@@ -301,6 +301,7 @@ module.exports = {
                 let values = [ ...multiValues, value ];
                 if (onChange) onChange(values);
               } else if (onChange) onChange(value);
+
             },
 
             handleOnFocus(uniqueName,openOnFocus,isAuotocomplete){
@@ -347,8 +348,7 @@ module.exports = {
             handleDownShiftSelect(selection){
               let { isMultipleValues } = this.props;
               let { multiValues } = this.state;
-              
-              if (selection && selection.value) {
+              if (selection && selection.hasOwnProperty('value') && (typeof selection.value !== undefined || typeof selection.value !== null)) {
                 this.setState({ isDownShiftOpen: false, focused: null });
                 if (this.inputRef && this.inputRef.current) this.inputRef.current.blur()
                 this.handleOnChange(selection.value)
@@ -367,7 +367,7 @@ module.exports = {
               let { suggest, isMultipleValues } = this.props;
               let filteredOptions = [ ...options ];
               if (suggest) {
-                filteredOptions = filteredOptions.filter( item => !inputValue || item.value.toLowerCase().includes(inputValue.toLowerCase()));
+                filteredOptions = filteredOptions.filter( item => core.isUndefined(inputValue) || item.value.toLowerCase().includes(inputValue.toLowerCase()));
               }
               if (isMultipleValues) { 
                 filteredOptions = filteredOptions.filter( item =>  multiValues.indexOf(item.value) < 0 )
@@ -379,7 +379,8 @@ module.exports = {
               
               let isSelected = isEqual(selectedItem, item) || selectedItem === item;
               let isHighlighted = highlightedIndex === index;
-              let isActive = isSelected || isHighlighted
+              let isActive = isSelected || isHighlighted;
+
               const style = () => { 
                 return {
                   ...this.styles('downshiftItem'),
@@ -392,10 +393,10 @@ module.exports = {
               return (
                       <li {
                           ...getItemProps({
-                            key: item.value,
-                            index,
-                            item,
-                            style: style() ,
+                              key: item.value,
+                              index,
+                              item,
+                              style: style() ,
                           }) } >
 
                         <Typography style={ this.styles('suggestion') }>{item.value}</Typography>
@@ -451,7 +452,12 @@ module.exports = {
             },
 
             renderInputs(type) {
-              
+              const itemToString = (item) => {
+                if ( item && item.hasOwnProperty('value') && !core.isUndefined(item.value)) {
+                  return item.value;
+                } return ''
+
+              }
               switch (type.toLowerCase()) {
                 case 'autocomplete':
                   return (
@@ -459,7 +465,7 @@ module.exports = {
                                isOpen={ this.state.isDownShiftOpen }
                                selectedItem ={ { value: this.state.value, label: this.state.value } }
                                onChange={ this.handleDownShiftSelect }
-                               itemToString={ item => ( item ? item.value : '') } >
+                               itemToString={ itemToString } >
                       { this.renderDownShift } 
                     </Downshift>
                   );
@@ -519,7 +525,6 @@ module.exports = {
                   })
                 } else return { onChange: e => { this.handleOnChange(e.target.value) } }
               } 
-              // console.log('value -> ',value);
               return (
                 <React.Fragment>
                   { this.renderChips() }

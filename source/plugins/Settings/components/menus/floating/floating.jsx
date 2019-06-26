@@ -586,7 +586,7 @@ module.exports = {
 
                   </Popover>
 
-                  <Popup id={ 'addlibrarypopup' } isAbsolute={ false }/>
+                  <Popup id={ 'addlibrarypopup' } isAbsolute={ false } titleHeight={ 35 } footerHeight={ 35 }/>
                 </div>
               )
             }

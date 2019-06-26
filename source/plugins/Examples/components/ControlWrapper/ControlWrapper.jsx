@@ -7,7 +7,9 @@ module.exports = {
         var core = this;
 
         var { React, PropTypes, ComponentMixin } = core.imports;
-
+        const units = {
+          background: core.theme('colors.white')
+        }
         return {
             mixins: [ ComponentMixin ],
 
@@ -24,22 +26,13 @@ module.exports = {
                 return {
                     scheme: {}
                 };
-            },
-
-            componentWillMount () {
-                this.initUnits();
-            },
-
-            initUnits(){
-                this.borderColor =  core.theme('colors.borderDark');
-                this.background = core.theme('backgrounds.white');
-            },
+            }, 
 
             styles(s){
 
                 const styles = {
                     root: {
-                        background: this.background,
+                        background: units.background,
                         margin: 10,
                         borderRadius: 4,
                     },
