@@ -27,18 +27,18 @@ module.exports = {
             getCode(){
                 let { fileName, disabled } = this.state;
 
-                return (`
-<FileDownloader content={test}
-                disabled={ ${disabled} }
-                fileName={${fileName}}
-                fileExtension={'json'}>
-    
-    <Button theme={ 'primary' } variant={ 'raised' }>
-        {core.translate('download')}
-    </Button>
-
-</FileDownloader>
-                `)
+                return [
+                    `<FileDownloader content={test}`,
+                    `                disabled={ ${disabled} }`,
+                    `                fileName={'${fileName}'}`,
+                    `                fileExtension={'json'}>`,
+                    ``,
+                    `    <Button theme={ 'primary' } variant={ 'raised' }>`,
+                    `        {core.translate('download')}`,
+                    `    </Button>`,
+                    ``,
+                    `</FileDownloader>`,
+                ].join(',');
             },
 
             render() {
