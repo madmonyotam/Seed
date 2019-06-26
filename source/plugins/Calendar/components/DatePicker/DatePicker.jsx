@@ -3,8 +3,8 @@ import { Fragment, Children } from 'react';
 import { isEmpty as _isEmpty } from 'lodash';
 
 module.exports = {
-    dependencies: ['Decorators.Popover','Calendar.Calendar'],    
-    get(Popover,Calendar) {
+    dependencies: ['Decorators.Popover','Calendar.Calendar','Buttons.Button'],    
+    get(Popover,Calendar,Button) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -34,7 +34,11 @@ module.exports = {
             styles(s){
 
                 const styles = {
-
+                    buttonsCont: {
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        padding: 10,
+                    },
                 }
                 
                 return(styles[s]);
@@ -53,9 +57,10 @@ module.exports = {
                 })
             },
 
-            handleSelectDate(date){
+            handleSelectDate(date,isOnClick){
+                if(!isOnClick) return
                 let {onDatesSelect,isRange} = this.props;
-                let {startDate} = this.state;
+                let {startDate,endDate} = this.state;
 
                 
                 if(!isRange) {
@@ -65,23 +70,10 @@ module.exports = {
                 } else {
                     if(startDate===''){
                         this.setState({ startDate: date })
-                    } else {
-                        if( moment(date).isBefore(startDate) ) {
-                            this.setState({ startDate: date, endDate: startDate},()=>{
-                                if(onDatesSelect && this.state.endDate && this.state.startDate) {
-                                    onDatesSelect({ startDate: this.state.startDate, endDate: this.state.endDate })
-                                    // this.handleClose()
-                                }
-                            })
-                        } else {
-                            this.setState({ endDate: date },()=>{
-                                if(onDatesSelect && this.state.endDate && this.state.startDate) {
-                                    onDatesSelect({ startDate: this.state.startDate, endDate: this.state.endDate })
-                                    // this.handleClose()
-                                }
-                            })
-
-                        }
+                    } else if(startDate!=='' && endDate!==''){
+                        this.setState({ startDate: date, endDate: ''})
+                    } else if(startDate!=='' && endDate===''){
+                        this.setState({endDate:date})
                     }
                 }
             },
@@ -91,17 +83,33 @@ module.exports = {
                 if(startDate!=='') this.setState({hoverDate})
             },
 
+            handleClear(){
+                this.setState({ 
+                    startDate: '',
+                    hoverDate: '',
+                    endDate: '',
+                })
+            },
+
+            handleSave(){
+                let {onDatesSelect} = this.props;
+                if(onDatesSelect) onDatesSelect({ startDate: this.state.startDate, endDate: this.state.endDate })
+                this.handleClose()
+            },
+
             renderButtons(){
                 return(
-                    <div>
-                        <span>ok</span>
-                        <span>cancel</span>
+                    <div style={this.styles('buttonsCont')}>
+                        <Button style={{marginLeft:10}} onClick={ this.handleClear } >{core.translate('Clear')}</Button>
+                        <Button style={{marginLeft:10}} onClick={ this.handleSave }  >{core.translate('Save')}</Button>
+                        <Button style={{marginLeft:10}} onClick={ this.handleClose }  >{core.translate('Cancel')}</Button>
                     </div>
                 )
             },
 
             renderContent(){
-                let {startDate,hoverDate} = this.state;
+                let {isRange} = this.props;
+                let {startDate,hoverDate,endDate} = this.state;
                 return(
                     <div>
                         <Calendar 
@@ -111,15 +119,17 @@ module.exports = {
                             ignoreYearChange={true}
                             ignoreMonthChange={true}
 
+                            isRange={isRange}
                             startDate={startDate}
+                            endDate={endDate} 
                             hoverDate={hoverDate}
                             onHoverDate={this.handleOnHoverDate}
 
-                            defaultDate={moment().subtract(7, 'days')} 
+                            defaultDate={ moment().subtract(7, 'days') } 
                             
                             
                             />
-                            { this.renderButtons() }
+                            { isRange ? this.renderButtons() : null }
                     </div>
 
                 )
