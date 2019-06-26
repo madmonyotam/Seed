@@ -48,6 +48,23 @@ module.exports = {
         let current = this.getCurrent()
         return moment(day).isSame(current, 'day')
       },
+
+      handleOnMouse(){
+        let {onHoverDate} = this.props;
+        if(onHoverDate) {
+          let day = this.getDay();
+          onHoverDate(day)
+        }
+      },
+
+      isInRange(){
+        let {startDate,hoverDate} = this.props;
+        let day = this.getDay();
+
+        if( moment(day).isBetween(startDate,hoverDate) || moment(day).isBetween(hoverDate,startDate)) return true;
+        else return false;
+      },
+
       render() {
         let { onSelect, dayDate } = this.props;
 
@@ -56,6 +73,7 @@ module.exports = {
         let formatted = day.format('DD'); 
         let textColor = this.isCurrent() ? units.colors.textSelected : units.colors.text; 
         textColor = disabled ? units.colors.textOutOfMonth : textColor; 
+        let isInRange = this.isInRange();
 
         return (
           <Center>
@@ -65,7 +83,10 @@ module.exports = {
                     textColor={ textColor }
                     width={ '100%' } 
                     height={ '100%' } 
-                    onClick={ e => { onSelect(dayDate) } }> 
+                    onClick={ e => { onSelect(dayDate) } }
+                    onMouseEnter={ this.handleOnMouse }
+                    backgroundColor={ isInRange? '#DD6A6A' : null }
+                    > 
 
               { formatted }
 

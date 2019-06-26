@@ -71,12 +71,15 @@ module.exports = {
       },
 
       renderDay(day, i){
-        let { currentDate, onSelect } = this.props;
+        let { currentDate, onSelect, startDate, onHoverDate, hoverDate } = this.props;
 
         return <Day key={ i } 
                     dayDate={ day } 
                     current={ currentDate } 
-                    onSelect={ onSelect } /> 
+                    onSelect={ onSelect } 
+                    startDate={ startDate }
+                    hoverDate={ hoverDate }
+                    onHoverDate={ onHoverDate }/> 
       },
 
       render() {
