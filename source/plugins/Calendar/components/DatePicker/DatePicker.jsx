@@ -3,8 +3,8 @@ import { Fragment, Children } from 'react';
 import { isEmpty as _isEmpty } from 'lodash';
 
 module.exports = {
-    dependencies: ['Decorators.Popover','Buttons.Button','Layouts.Column','Calendar.Calendar'],    
-    get(Popover,Button,Column,Calendar) {
+    dependencies: ['Decorators.Popover','Calendar.Calendar'],    
+    get(Popover,Calendar) {
         
         var core = this;
         var { React, PropTypes, ComponentMixin } = core.imports;
@@ -100,7 +100,7 @@ module.exports = {
                     
                         ignoreYearChange={true}
                         ignoreMonthChange={true}
-                        
+
                         startDate={startDate}
                         hoverDate={hoverDate}
                         onHoverDate={this.handleOnHoverDate}
