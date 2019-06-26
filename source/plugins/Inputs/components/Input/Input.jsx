@@ -62,7 +62,6 @@ module.exports = {
                 theme: 'default',
                 type: 'text',
                 value: '',
-                label: 'label',
                 autoFocus: false,
                 openOnFocus: false,
                 isMultipleValues: false,
@@ -138,7 +137,7 @@ module.exports = {
                 this.setState({ options: nextProps.options });
               }
 
-              if (nextProps.value && nextProps.value !== value && nextProps.value !== '') {
+              if (!core.isUndefined(nextProps.value) && nextProps.value !== value && nextProps.value !== '') {
                 this.setState({ value: nextProps.value });
               } 
               else if (nextProps.value == '' ) this.setState({ value: '' });
@@ -294,8 +293,8 @@ module.exports = {
 
             handleOnChange(value) {
               let {onChange,isMultipleValues} = this.props;
-              let { multiValues } = this.state;
-              this.setState({ value });
+              let { multiValues } = this.state; 
+              this.setState({ value: value } );
 
               if (isMultipleValues) {
                 let values = [ ...multiValues, value ];
@@ -454,8 +453,8 @@ module.exports = {
             renderInputs(type) {
               const itemToString = (item) => {
                 if ( item && item.hasOwnProperty('value') && !core.isUndefined(item.value)) {
-                  return item.value;
-                } return ''
+                  return item.value.toString();
+                } else  return ''
 
               }
               switch (type.toLowerCase()) {
@@ -525,6 +524,7 @@ module.exports = {
                   })
                 } else return { onChange: e => { this.handleOnChange(e.target.value) } }
               } 
+
               return (
                 <React.Fragment>
                   { this.renderChips() }
@@ -532,7 +532,7 @@ module.exports = {
                           type={ isAuotocomplete ? 'text' : type }
                           name={ uniqueName }
                           ref={ this.inputRef }
-                          value={ value }
+                          value={ value.toString() }
                           autoFocus={autoFocus}
                           onKeyDown={ this.handleKeyDown }
                           style={ this.styles('input') }

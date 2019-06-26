@@ -1,8 +1,8 @@
 
 module.exports = {
     name: 'LibraryPopup',
-    dependencies: [ 'Layouts.Row', 'Simple.Label', 'Simple.Icon' ],
-    get( Row, Label, Icon) {
+    dependencies: [ 'Layouts.Row', 'Inputs.Input' ],
+    get( Row, Input) {
 
         var core = this;
         var { React, PropTypes } = core.imports;
@@ -35,14 +35,11 @@ module.exports = {
               let { onClick, style, disabled } = this.props;
               let { hovered } = this.state;
               let styles = {
-                item: {
-                  background: 'transparent',
+                root: {
+                  padding: '15px 35px',
+                  height: '100%',
                   display: 'flex',
                   alignItems: 'center',
-                  cursor: Boolean(onClick) ? 'pointer' : 'default',
-                  opacity: disabled ? 0.75 : 1,
-                  pointerEvents: disabled ? 'none' : 'auto',
-                  ...style
                 },
               }
 
@@ -53,8 +50,13 @@ module.exports = {
 
               return (
 
-                <div { ...props }>
-                  Library
+                <div { ...props } style={{ ...this.styles('root'), ...style }}>
+                  
+                  <Input 
+                    type={ 'text' } 
+                    placeholder={ core.translate('Enter library name') } 
+                    theme={ 'outlined' } 
+                    isMultipleValues={ false } />
                 </div>
               )
             }
