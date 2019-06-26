@@ -3,8 +3,16 @@ dependencies: ['Layouts.Absolute', 'Layouts.Fixed', 'Popovers.PopupHandler', 'Po
                 'Buttons.IconButton', 'Layouts.Column', 'Layouts.Row'],
 get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
     IconButton, Column, Row) {
-    var core = this;
-    var { React, PropTypes, ComponentMixin, Branch } = core.imports;
+    const core = this;
+    const { React, PropTypes, ComponentMixin, Branch } = core.imports;
+    const units = {
+        dims: {
+            minWidth: 250,
+            minBodyHeight: 50,
+            minTitleHeight: 25,
+            minFooterHeight: 35,
+        },
+    };
 
     return {
         mixins: [ ComponentMixin, Branch ],
