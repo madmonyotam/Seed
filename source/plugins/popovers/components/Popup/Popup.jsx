@@ -1,7 +1,7 @@
 module.exports = {
-dependencies: ['Layouts.Absolute', 'Popovers.PopupHandler', 'Popovers.PopupButtons', 'Layouts.Center', 'Simple.Label',
+dependencies: ['Layouts.Absolute', 'Layouts.Fixed', 'Popovers.PopupHandler', 'Popovers.PopupButtons', 'Layouts.Center', 'Simple.Label',
                 'Buttons.IconButton', 'Layouts.Column', 'Layouts.Row'],
-get(Absolute, PopupHandler, PopupButtons, Center, Label,
+get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
     IconButton, Column, Row) {
     var core = this;
     var { React, PropTypes, ComponentMixin, Branch } = core.imports;
@@ -24,11 +24,13 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             backdropColor: PropTypes.string,
             background: PropTypes.string,
             footerBackground: PropTypes.string,
+            isAbsolute: PropTypes.bool
         },
 
         getDefaultProps() {
             return {
                 id: 'mainPopup',
+                isAbsolute: true,
                 width: 700,
                 height: 400,
                 titleHeight: 50,
@@ -52,7 +54,6 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
         },
 
         componentWillMount() {
-            this.initUnits();
         },
 
         componentDidMount() {
@@ -63,31 +64,23 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
             this.eventsHandler('off');
         },
 
-        initUnits(){
-            this.dims = {
-                minHeight: 50,
-            };
-            this.colors = {};
-            this.backgrounds = {};
-            this.icons = {};
-        },
-
         styles(propName) {
-            let {titleHeight, footerHeight} = this.props;
             let {modalStyle, bodyStyle} = this.state;
+            let tHeight = this.handleTitleHeight();
+            let fHeight = this.handleFooterHeight();
 
             let styles = {
                 root: {
-                    minHeight: 50 + titleHeight + footerHeight,
+                    minHeight: units.dims.minBodyHeight + tHeight + fHeight,
                     maxHeight: '100%',
                     ...modalStyle
                 },
                 title: {
-                    minHeight: titleHeight,
+                    minHeight: tHeight,
                     justifyContent:'space-between',
                 },
                 body: {
-                    maxHeight: `calc(100% - ${titleHeight + footerHeight}px)`,
+                    maxHeight: `calc(100% - ${tHeight + fHeight}px)`,
                     ...bodyStyle,
                 },
             };
@@ -142,27 +135,47 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
         handleBodyHeight() {
             let {height} = this.state;
-            let {titleHeight, footerHeight, id} = this.props;
+            let {id} = this.props;
             let localHeight = height;
+
+            let tHeight = this.handleTitleHeight();
+            let fHeight = this.handleFooterHeight();
 
             if (typeof localHeight == 'string' && localHeight.indexOf('%') === localHeight.length -1) {
                 let screen = document.getElementById(id);
                 let percent = Number(localHeight.slice(0,-1));
-                let maxHeight = screen.offsetHeight - titleHeight - footerHeight;
+                let maxHeight = screen.offsetHeight - tHeight - fHeight;
                 localHeight = maxHeight * percent/100;
             }
 
-            return localHeight < this.dims.minHeight ? this.dims.minHeight : localHeight;
+            return localHeight < units.dims.minBodyHeight ? units.dims.minBodyHeight : localHeight;
+        },
+
+        handleTitleHeight() {
+            let {titleHeight} = this.props;
+            return (titleHeight > units.dims.minTitleHeight) ? titleHeight : units.dims.minTitleHeight;
+        },
+
+        handleFooterHeight() {
+            let {footerHeight} = this.props;
+            return (footerHeight > units.dims.minFooterHeight) ? footerHeight : units.dims.minFooterHeight;
+        },
+
+        handleWidth() {
+            let {width} = this.state;
+            return (width > units.dims.minWidth) ? width : units.dims.minWidth;
         },
 
         renderTitle() {
             let {title} = this.state;
-            let {titleColor, titleLabelColor, titleHeight, id} = this.props;
+            let {titleColor, titleLabelColor, id} = this.props;
+
+            let tHeight = this.handleTitleHeight();
 
             return(
-                <Row color={titleColor} height={titleHeight} style={this.styles('title')}>
+                <Row color={titleColor} height={tHeight} style={this.styles('title')}>
                     <Label label={title} color={titleLabelColor} transform={'uppercase'}/>
-                    <IconButton 
+                    <IconButton
                         iconSize={18}
                         iconColor={titleLabelColor}
                         onClick={()=>{this.handleClose(id)}}
@@ -175,8 +188,9 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
 
         renderFooter() {
             let {btnTitle, btnFunc, buttons, popupTree} = this.state;
-            let {footerHeight, id, footerBackground} = this.props;
+            let {id, footerBackground} = this.props;
 
+            let fHeight = this.handleFooterHeight();
             let disabledOk = (popupTree && popupTree[id]) ? popupTree[id].disabled : true;
             let isLoading = (popupTree && popupTree[id]) ? popupTree[id].isLoading : false;
 
@@ -189,17 +203,20 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                     cancelCB={()=>{this.handleClose(id)}}
                     children={buttons}
                     background={footerBackground}
-                    height={footerHeight}
+                    height={fHeight}
                 />
             );
         },
 
         renderOpen() {
-            let {width, body} = this.state;
-            let {backdropColor, background, titleHeight, footerHeight, id} = this.props;
+            let {body} = this.state;
+            let {isAbsolute, backdropColor, background, id} = this.props;
 
+            let width = this.handleWidth();
+            let tHeight = this.handleTitleHeight();
+            let fHeight = this.handleFooterHeight();
             let bodyHeight = this.handleBodyHeight()
-            let popupHeight = bodyHeight + titleHeight + footerHeight;
+            let popupHeight = bodyHeight + tHeight + fHeight;
 
             const stopPropagation = (e) => {
                 e.stopPropagation();
@@ -218,30 +235,42 @@ get(Absolute, PopupHandler, PopupButtons, Center, Label,
                 this.setState({allowClose: false});
             }
 
-            return (
-                <Absolute id={id}>
-                    <Center color={backdropColor} onMouseDown={setClose} onMouseUp={doClose}>
+            const renderInside = () => {
+              return (
+                <Center color={backdropColor} onMouseDown={setClose} onMouseUp={doClose}>
 
-                        <Column 
-                            width={width}
-                            height={popupHeight}
-                            boxShadow={true}
-                            color={background}
-                            style={this.styles('root')}
-                            onMouseUp={cancelClose} onMouseDown={stopPropagation} onClick={stopPropagation}
-                        >
-                            {this.renderTitle()}
-                            <Column width={width} 
-                                height={bodyHeight}
-                                style={this.styles('bodyStyle')}>
-                                {body}
-                            </Column>
-                            {this.renderFooter()}
+                    <Column
+                        width={width}
+                        height={popupHeight}
+                        boxShadow={true}
+                        color={background}
+                        style={this.styles('root')}
+                        onMouseUp={cancelClose} onMouseDown={stopPropagation} onClick={stopPropagation}
+                    >
+                        {this.renderTitle()}
+                        <Column width={width}
+                            height={bodyHeight}
+                            style={this.styles('bodyStyle')}>
+                            {body}
                         </Column>
+                        {this.renderFooter()}
+                    </Column>
 
-                    </Center>
+                </Center>
+              )
+            }
+
+            if (isAbsolute) return (
+                <Absolute id={id}>
+                  { renderInside() }
                 </Absolute>
             );
+
+            return (
+              <Fixed id={id}>
+                { renderInside() }
+              </Fixed>
+            )
         },
 
         renderClosed() {

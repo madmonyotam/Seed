@@ -31,6 +31,13 @@ module.exports = {
 
                 return [
                     `/** at main render */`,
+                    `<Notify`,
+                    `    position={'${position}'} // optional, the default is 'bottomLeft'`,
+                    `    autoDismiss={${autoDismiss}} // optional, the default is 4`,
+                    `    distance={100} // from window corner - optional, the default is 100(px)`,
+                    `/>`,
+                    ` `,
+                    `/** at the caller*/`,
                     `emitAlert() {`,
                     `    let text = '${text}';`,
                     `    let alertKind = '${alertKind}';`,
@@ -40,9 +47,6 @@ module.exports = {
                     `}`,
                     ` `,
                     `<Button onClick={this.emitAlert}> Open </Button>`,
-                    ` `,
-                    `/** at the caller*/`,
-                    `<Notify/>`,
                 ].join('\n');
             },
 
@@ -58,8 +62,8 @@ module.exports = {
                         context={this} 
                         code={ this.getCode() } 
                         scheme={ this.propScheme() } 
-                        exampleHeight={ '70%' }
-                        codeHeight={ '30%' }
+                        exampleHeight={ '50%' }
+                        codeHeight={ '50%' }
                     >
 
                         <Button onClick={this.emitAlert}> Open </Button>

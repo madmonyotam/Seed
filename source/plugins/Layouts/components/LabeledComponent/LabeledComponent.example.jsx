@@ -47,11 +47,11 @@ module.exports = {
 
                 return [
                     `<LabeledComponent`,
-                    `    title={${title}}`,
-                    `    required={${required}}`,
-                    `    titlePosition={${titlePosition}} //['left' / 'top']`,
+                    `    title={'${title}'}`,
+                    `    required={ ${required} }`,
+                    `    titlePosition={'${titlePosition}'} //['left' / 'top']`,
                     `    textSize={${textSize}}`,
-                    `    background={${background}}`,
+                    `    background={'${background}'}`,
                     `    width={${width}}`,
                     `>`,
                     `    <Row color={'#ffffff'}>`,

@@ -13,7 +13,6 @@ module.exports = {
         require('./components/Label'),
         require('./components/Loader'),
         require('./components/NoResults'),
-        require('./components/TitleBar'),
     ],
     modules: [
         require('./modules/Helper'),

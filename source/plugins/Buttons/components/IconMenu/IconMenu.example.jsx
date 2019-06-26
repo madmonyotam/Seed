@@ -33,16 +33,16 @@ module.exports = {
 
                 return [
                     `<IconMenu`,
-                    `   icon={${icon}} iconSize={${iconSize}}`,
-                    `   menuTitle={${menuTitle}}`,
+                    `   icon={'${icon}'} iconSize={${iconSize}}`,
+                    `   menuTitle={'${menuTitle}'}`,
                     `   menuItems={[`,
                     `       { text: 'Table',  value: 'Table',  iconProps: {icon: 'genie.table',  onClick: ()=>{ this.print('table');  } },`,
                     `       { text: 'Code',   value: 'Code',   iconProps: {icon: 'genie.code',   onClick: ()=>{ this.print('code');   } },`,
                     `       { text: 'Create', value: 'Create', iconProps: {icon: 'genie.create', onClick: ()=>{ this.print('create'); } },`,
                     `   ] }`,
-                    `   dropDown={${dropDown}}`,
-                    `   iconColor={${iconColor}}`,
-                    `   background={${background}}`,
+                    `   dropDown={ ${dropDown} }`,
+                    `   iconColor={'${iconColor}'}`,
+                    `   background={'${background}'}`,
                     `/>`,
                     ``,
                     `>> log: ${clickResult}`

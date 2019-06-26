@@ -1,39 +1,44 @@
- 
+
 module.exports = {
     name: 'MenuItem',
     dependencies: [ 'Layouts.Row', 'Simple.Label', 'Simple.Icon'],
     get( Row, Label, Icon) {
 
-        var core = this; 
-        var { React, PropTypes } = core.imports; 
-        
-        var units = { 
-          colors: { 
-            hovered: core.theme('backgrounds.disabled'),
-            border: core.theme('borders.default')
+        var core = this;
+        var { React, PropTypes } = core.imports;
+
+        var units = {
+          colors: {
+            border: core.theme('borders.default'),
+            disabled: core.theme('texts.secondary'),
           },
-        } 
+          backgrounds: {
+            disabled: core.theme('backgrounds.disabled'),
+            hovered: core.theme('texts.background')
+          }
+        }
 
         return {
 
             propsTypes: {
-              icon: PropTypes.string, 
-              iconPosition: PropTypes.oneOf(['left', 'right']), 
-              iconSize: PropTypes.number, 
-              iconStyle: PropTypes.object, 
-              label: PropTypes.string, 
+              icon: PropTypes.string,
+              iconPosition: PropTypes.oneOf(['left', 'right']),
+              iconSize: PropTypes.number,
+              iconStyle: PropTypes.object,
+              label: PropTypes.string,
               labelColor: PropTypes.string,
               labelStyle: PropTypes.object,
               hasChildren: PropTypes.bool,
+              disabled: PropTypes.bool,
               divider: PropTypes.bool,
-              padding: PropTypes.oneOfType([
+              rowPadding: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number
-              ]), 
+              ]),
               height: PropTypes.oneOfType([
                 PropTypes.string,
                 PropTypes.number
-              ]), 
+              ]),
               onClick: PropTypes.func,
               onMouseEnter: PropTypes.func,
               onMouseLeave: PropTypes.func
@@ -42,14 +47,15 @@ module.exports = {
 
             getDefaultProps() {
                 return {
-                  iconPosition: 'left', 
-                  iconSize: 16, 
+                  iconPosition: 'left',
+                  iconSize: 16,
                   hasChildren: false,
-                  padding: '5px 10px', 
-                  height: 30, 
-                  label: core.translate('menu item'), 
+                  disabled: false,
+                  padding: '5px 10px',
+                  height: 30,
+                  label: core.translate('menu item'),
                 };
-            }, 
+            },
 
             getInitialState(){
               return {
@@ -58,20 +64,22 @@ module.exports = {
             },
 
             styles(s) {
-              let { onClick, style } = this.props;
+              let { onClick, style, disabled } = this.props;
               let { hovered } = this.state;
-              let styles = {  
+              let styles = {
                 item: {
-                  background: hovered ? units.colors.hovered : 'transparent',
-                  display: 'flex', 
+                  background: disabled ? units.backgrounds.disabled : hovered ? units.backgrounds.hovered : 'transparent',
+                  display: 'flex',
                   alignItems: 'center',
-                  cursor: Boolean(onClick) ? 'pointer' : 'default', 
+                  cursor: Boolean(onClick) ? 'pointer' : 'default',
+                  opacity: disabled ? 0.75 : 1,
+                  pointerEvents: disabled ? 'none' : 'auto',
                   ...style
-                }, 
+                },
               }
-              
+
               return(styles[s]);
-            },   
+            },
 
             onMouseEnter(e){
               let { onMouseEnter } = this.props;
@@ -87,40 +95,41 @@ module.exports = {
             },
 
             render() {
-              let { 
-                height, 
-                onClick, 
-                icon, 
-                iconColor, 
-                iconPosition, 
-                iconSize, 
+              let {
+                height,
+                onClick,
+                icon,
+                iconColor,
+                iconPosition,
+                iconSize,
                 iconStyle,
-                padding, 
-                label, 
-                labelColor, 
+                rowPadding,
+                label,
+                labelColor,
                 labelStyle,
-                divider, 
+                divider,
                 style,
                 hasChildren,
+                disabled,
                 ...props } = this.props;
               if (divider) {
                 return <Row height={ 1 } style={{ margin:'5px 0',borderBottom: `1px solid ${units.colors.border}`, ...style }} padding={ 0 } ></Row>
               }
               return (
-                <Row  height={ height } 
-                      style={ this.styles('item') } 
-                      padding={ padding } 
-                      onClick={ onClick } 
+                <Row  height={ height }
+                      style={ this.styles('item') }
+                      padding={ rowPadding }
+                      onClick={ onClick }
                       onMouseEnter={ this.onMouseEnter }
                       onMouseLeave={ this.onMouseLeave }
                       { ...props }>
-                  { icon && iconPosition === 'left' ? <Icon size={ iconSize } icon={ icon } color={ iconColor } style={ iconStyle } /> : null }
-                  <Label label={ label } color={ labelColor } style={ labelStyle }/>
-                  { icon && iconPosition === 'right' ? <Icon size={ iconSize } icon={ icon } color={ iconColor } style={ iconStyle } /> : null }
-                  
+                  { icon && iconPosition === 'left' ? <Icon size={ iconSize } icon={ icon } color={ disabled ? units.colors.disabled : iconColor } style={ iconStyle } /> : null }
+                  <Label label={ label } color={ disabled ? units.colors.disabled : labelColor } style={ labelStyle }/>
+                  { icon && iconPosition === 'right' ? <Icon size={ iconSize } icon={ icon } color={ disabled ? units.colors.disabled : iconColor } style={ iconStyle } /> : null }
+
                   { hasChildren ? <Icon size={ 16 } icon={ core.icons('navigate.right') }  /> : null }
                 </Row>
-              ) 
+              )
             }
         };
     }

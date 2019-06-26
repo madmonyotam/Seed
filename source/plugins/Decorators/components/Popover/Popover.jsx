@@ -25,6 +25,8 @@ module.exports = {
           }
         }
 
+        let anchors = []
+
         return {
             mixins: [ ComponentMixin ],
 
@@ -51,7 +53,7 @@ module.exports = {
                 position: 'bottom',
                 animation: 'pop',
                 offsetX: 0,
-                offsetY: 0, 
+                offsetY: 0,
                 anchorEl: undefined,
                 elevation: 4,
                 width: 150,
@@ -71,12 +73,16 @@ module.exports = {
               };
             },
 
+            componentWillMount() {
+              // this.anchors = []
+            },
+
             componentDidMount() {
               let { anchorEl } = this.props;
               if (anchorEl) this.setState({ anchorEl: anchorEl }, this.handleShow)
-            }, 
+            },
 
-            componentWillReceiveProps(nextProps) { 
+            componentWillReceiveProps(nextProps) {
               if (nextProps.anchorEl === this.props.anchorEl) return;
               if (nextProps.anchorEl ) this.setState({ anchorEl: nextProps.anchorEl }, this.handleShow)
               else this.setState({ anchorEl: null })
@@ -92,7 +98,7 @@ module.exports = {
                 bottom: 'top',
                 left: 'right',
                 right: 'left',
-              } 
+              }
 
               let anim = {
                 transformOrigin: oppo[position]
@@ -107,7 +113,7 @@ module.exports = {
                     anim.transform = show ? 'translateY(0)' : position === 'bottom' ? 'translateY(5%)' : 'translateY(-5%)'
                   }
                   break;
-              
+
                 default:
                   anim.transform = show ? 'scale(1)' : 'scale(1.1)'
                   break;
@@ -119,7 +125,7 @@ module.exports = {
             styles(s){
               let { style, theme, width, height, padding, elevation, backdrop, delay  } = this.props;
               let { showTp, visible } = this.state;
-              let isDark = theme === 'dark'; 
+              let isDark = theme === 'dark';
 
               const darkStyle = {
                 background: 'rgba(4, 4, 4, 1)',
@@ -129,7 +135,7 @@ module.exports = {
               const lightStyle = {
                 background: 'rgba(255, 255, 255, 1)',
                 color: units.colors.dark
-              }; 
+              };
 
               let styles = {
                 root: {
@@ -170,7 +176,7 @@ module.exports = {
                   cursor: 'pointer',
                   position: 'absolute',
                   right: 5,
-                  top: 5,  
+                  top: 5,
                 }
               }
 
@@ -184,7 +190,7 @@ module.exports = {
               let hoverRect = this.anchorEl.getBoundingClientRect();
               let wWidth =  window.innerWidth;
               let wHeight =  window.innerHeight;
-              
+
               this.measure = {}
               this.defaultWidth = width || hoverRect.width;
               let position = this.position;
@@ -194,7 +200,7 @@ module.exports = {
                 let ttWidth = ttRect.width;
                 let ttHeight = ttRect.height;
 
-                let hrLeft = hoverRect.left; 
+                let hrLeft = hoverRect.left;
                 let ttLeft = hoverRect.left - ttWidth;
                 let hrRight = hoverRect.right - ttWidth;
                 let hrBottom = hoverRect.bottom;
@@ -234,7 +240,7 @@ module.exports = {
                 }
                 if (position === 'left' || position === 'right' ) {
                   this.measure['top'] = hoverRect.top + offsetY;
-                  
+
                   if (center) {
                     this.measure['top'] = (hoverRect.top + offsetY) - (ttRect.height/2);
                   }
@@ -242,11 +248,11 @@ module.exports = {
                 }
                 else if (position === 'bottom' || position === 'top' ) {
                   this.measure['left'] = hrLeft + offsetX;
-                  
+
                   if (center) {
                     this.measure['left'] = (hrLeft + offsetX) - (hoverRect.width/2);
                   }
-                  
+
                 }
 
                 setMeasures(position, ()=>{
@@ -259,12 +265,13 @@ module.exports = {
             handleShow(event){
               let { position, interactive  } = this.props;
               let { anchorEl } = this.state;
-              let el = undefined; 
-              if (!anchorEl && event) el = event.currentTarget; 
-              else if (anchorEl)  el = anchorEl; 
+              let el = undefined;
+              if (!anchorEl && event) el = event.currentTarget;
+              else if (anchorEl)  el = anchorEl;
 
               this.position = position;
               this.anchorEl = el;
+              anchors.push(this.anchorEl)
               if (el && el !== null) {
                 this.setState({ visible: true }, ()=>{
                   this.calcPosition();
@@ -272,26 +279,32 @@ module.exports = {
                   document.addEventListener('keyup', this.handleKeyUp)
                 })
               }
-            }, 
+            },
 
             handleKeyUp(e){
               if(e.key === "Escape") this.safeState({ disableEvents: false }, () => { this.handleHide(e) })
             },
 
-            handleHide(e){ 
+            handleHide(e){
               let { disableEvents, anchorEl } = this.state;
               if ((!e || core.isUndefined(e) || disableEvents) && anchorEl) return;
               let { onClose } = this.props;
-              this.safeState({ 
-                showTp: false, 
-                disableEvents: false, 
-                visible: false, 
-                anchorEl: undefined, 
+
+              this.safeState({
+                showTp: false,
+                disableEvents: false,
+                visible: false,
+                anchorEl: undefined,
               })
               document.removeEventListener('click', this.handleHide)
               document.removeEventListener('keyup', this.handleKeyUp)
-              if (onClose) onClose(e) 
-            },  
+
+
+              // if (anchors && anchors.length > 1) {
+              //   // console.log(anchors.indexOf(anchorEl))
+              //   // console.dir([anchorEl])
+              if (onClose)  onClose(e);
+            },
 
             renderTtContainer(visible){
               let { interactive , theme } = this.props;
@@ -299,10 +312,10 @@ module.exports = {
               const enable = () => { this.setState({ disableEvents: false }) }
               if (!visible) return null;
               return (
-                <div id={ 'simple_popover-ref_container' } 
-                     ref={ ref => { this.tooltipRef = ref } } 
-                     onMouseEnter={ interactive ? null : disable } 
-                     onMouseLeave={ interactive ? null : enable } 
+                <div id={ 'simple_popover-ref_container' }
+                     ref={ ref => { this.tooltipRef = ref } }
+                     onMouseEnter={ interactive ? null : disable }
+                     onMouseLeave={ interactive ? null : enable }
                      style={ this.styles('container') }>
 
                   <div id={ 'simple_popover-inner' } style ={ this.styles('inner') } >
@@ -340,7 +353,7 @@ module.exports = {
                 animation,
                 padding,
                 center,
-                ...props } = this.props 
+                ...props } = this.props
 
               return (
                   <div  { ...props }

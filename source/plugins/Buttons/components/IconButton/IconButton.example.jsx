@@ -34,11 +34,11 @@ module.exports = {
 
                 return [
                     `<IconButton`,
-                    `   icon={${icon}}`,
-                    `   iconColor={${iconColor}}`,
+                    `   icon={'${icon}'}`,
+                    `   iconColor={'${iconColor}'}`,
                     `   iconSize={${iconSize}}`,
-                    `   background={${background}}`,
-                    `   variant={${variant}}`,
+                    `   background={'${background}'}`,
+                    `   variant={'${variant}'}`,
                     `   onClick={console.log('a: ', a)}`,
                     `/>`,
                     ``,
