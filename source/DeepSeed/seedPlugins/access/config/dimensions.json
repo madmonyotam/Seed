@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "top": {
+      "height": 60
+    }
+  },
+  "appBar": {
+    "height": 48,
+    "zIndex": 1102
+  },
+  "expandingMenu": {
+    "width": 260
+  }
+}

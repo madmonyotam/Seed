@@ -30,10 +30,10 @@ module.exports = {
 
                 return (`
 <Input 
-  type={ ${type} } 
-  placeholder={ ${placeholder} } 
-  label={ ${label} } 
-  theme={ ${theme} } 
+  type={ '${type}' } 
+  placeholder={ '${placeholder}' } 
+  label={ '${label}' } 
+  theme={ '${theme}' } 
   isMultipleValues={ ${isMultipleValues} } />
                 `)
             },

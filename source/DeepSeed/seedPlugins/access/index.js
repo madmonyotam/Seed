@@ -1,3 +1,4 @@
+
 module.exports = {
     name: 'access',
     tree: {
@@ -42,16 +43,25 @@ module.exports = {
         general(path) {
             return get(this,'general',path);
         },
+
+        setSystemDefaultConfig(next){
+            let systemConfig = require('./config');
+
+            for (let x in systemConfig) { 
+                this.plugins.access.set(['system',x], systemConfig[x]); 
+            };
+                
+            setTimeout(next);
+        },
         
         getInitialFiles(callback) {
-          this.plugins.access.run('loadSettings')
-              .then(( data ) => {
-                  let { menu } = data;
-                    
-                  if (menu) { this.plugins.access.set(['fileMenu'], menu); };
+            this.plugins.access.run('loadSettings').then(( data ) => {
+                    let { menu } = data;
+                        
+                    if (menu) { this.plugins.access.set(['fileMenu'], menu); };
 
-                  if (callback) { callback(data); };
-              }).catch(console.error)
+                    if (callback) { callback(data); };
+            }).catch(console.error)
         },
 
         setConfiguration(config) {
@@ -75,5 +85,11 @@ function get(seed, type, path) {
         path = path.split(/[\.,\/]/);
     }
     var value = data.get(path);
+
+    if(seed.isUndefined(value)){
+        data = seed.plugins.access.select(['system',type]);
+        value = data.get(path);
+    }
+
     return value 
 };

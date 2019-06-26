@@ -37,7 +37,8 @@ module.exports = {
             logo: core.theme('colors.grey070')
           },
           backgrounds: {
-            default: core.theme('colors.dark')
+            default: core.theme('colors.dark'),
+            primary: core.theme('colors.purple10')
           },
           dim: {
             height: core.dim('nav.top.height')
@@ -547,7 +548,8 @@ module.exports = {
 
             render() {
               let { menuItems, loading, useMongo, showSub, first, anchorEl, libraryAnchor } = this.state;
-              let expanded = Boolean(anchorEl)
+              let expanded = Boolean(anchorEl);
+
               return (
                 <div style={ this.styles('root') }>
                   <Button theme={ 'primary' }
@@ -586,7 +588,12 @@ module.exports = {
 
                   </Popover>
 
-                  <Popup id={ 'addlibrarypopup' } isAbsolute={ false }/>
+                  <Popup  id={ 'addlibrarypopup' } 
+                          height={125} 
+                          titleColor={units.colors.icon}
+                          isAbsolute={ false } 
+                          titleHeight={ 35 } 
+                          footerHeight={ 35 }/>
                 </div>
               )
             }

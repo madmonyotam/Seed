@@ -146,6 +146,7 @@ module.exports = {
                   right: 0,
                   background: backdrop && visible ? 'rgba(3, 3, 3, 0.25)' : 'transparent',
                   zIndex: visible ? 100 : -100,
+                  transition: `background ${delay-150}ms ease-in-out`,
                   ...style
                 },
                 container: {

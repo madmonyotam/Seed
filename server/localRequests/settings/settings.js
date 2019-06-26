@@ -55,7 +55,9 @@ module.exports = {
         });
         
         app.post('/loadSettings', (req, res) => { 
-          actions.load(res, this.path, this);
+          let path = req.body.path || this.path;
+          if(!req.body.path) path = this.path;
+          actions.load(res, path, this);
         });
 
         app.post('/loadServerConfig', (req, res) => {

@@ -4,13 +4,17 @@ var Seed = require('./DeepSeed');
 
 import { HashRouter , Route } from "react-router-dom";
 // const path = require('path')
-Seed.getInitialFiles( (DefaultFiles) => {
-    Seed.setConfiguration(DefaultFiles.config);
+Seed.setSystemDefaultConfig( ()=>{
 
-    loadUiPlugins();
-    Seed.plugins.Settings.setProjects( DefaultFiles, loadCurrentProject );
+    Seed.getInitialFiles( (DefaultFiles) => {
+        Seed.setConfiguration(DefaultFiles.config);
+    
+        loadUiPlugins();
+        Seed.plugins.Settings.setProjects( DefaultFiles, loadCurrentProject );
+    
+        loadCurrentProject()
+    });
 
-    loadCurrentProject()
 });
 
 function renderDOM() {
