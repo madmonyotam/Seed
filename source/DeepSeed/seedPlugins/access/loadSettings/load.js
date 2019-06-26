@@ -11,7 +11,9 @@ module.exports = {
         return (data, promise) => {
           var config = {};
           var menu = {};
-          core.request.post('/loadSettings').then( ({ response, results, error }) => {
+          var path =  data.path ? {path: data.path} : {};
+
+          core.request.post('/loadSettings',path).then( ({ response, results, error }) => {
 
             if (error && error.data) {
               console.error('error : ', error);

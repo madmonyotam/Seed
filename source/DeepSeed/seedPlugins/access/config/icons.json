@@ -1,0 +1,78 @@
+{
+  "connection":{
+    "db": "layers",
+    "power":"power",
+    "power_off":"power_off",
+    "refresh": "sync"
+  },
+  "files":{
+    "edit": "edit",
+    "copy": "file_copy",
+    "file": "insert_drive_file",
+    "project": "device_hub"
+  },
+  "general": {
+    "info": "info",
+    "save":"save",
+    "menu": "menu",
+    "more": "more_vert",
+    "more_horiz": "more_horiz",
+    "folder": "folder",
+    "addFolder": "create_new_folder",
+    "folderShared": "folder_shared",
+    "download": "file_download",
+    "upload": "publish",
+    "arrow_right": "arrow_right",
+    "clock": "access_time",
+    "delete": "close"
+  },
+  "calendar": {
+    "today": "today",
+    "calendar": "calendar_today"
+  },
+  "genie": {
+    "clear": "clear",
+    "mongo": "cloud_upload",
+    "save": "save",
+    "generate": "play_arrow",
+    "download": "fas fa-download",
+    "code": "code",
+    "create": "settings",
+    "add": "add",
+    "addCategory": "playlist_add",
+    "addLibrary": "create_new_folder",
+    "table": "view_comfy",
+    "upload": "publish",
+    "edit": "edit",
+    "done": "done",
+    "close": "close",
+    "search": "search",
+    "remove": "delete"
+  },
+  "nav": {
+    "home": "home",
+    "settings": "settings",
+    "examples": "school"
+  },
+  "navigate": {
+    "close": "close",
+    "up": "keyboard_arrow_up",
+    "arrow_up": "arrow_drop_up",
+    "down": "keyboard_arrow_down",
+    "arrow_down": "arrow_drop_down",
+    "left": "keyboard_arrow_left",
+    "arrow_left": "arrow_left",
+    "right": "keyboard_arrow_right",
+    "arrow_right": "arrow_right"
+  },
+  "notify":{
+    "error": "error",
+    "success": "check_circle",
+    "info": "info",
+    "warning": "warning"
+  },
+  "panel":{
+    "expandMore": "expand_more",
+    "expandLess": "expand_less"
+  }
+}
