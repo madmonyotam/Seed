@@ -53,6 +53,11 @@ module.exports = {
                         padding: padding,
                         zIndex: elevation,
                         ...style
+                    },
+                    inner: {
+                        position:'relative',
+                        width: '100%',
+                        height: '100%',
                     }
                 }
 
@@ -64,7 +69,9 @@ module.exports = {
 
                 return (
                     <div style={ this.styles('view') } {...props} >
-                        { children }
+                        <div style={this.styles('inner')}>
+                            { children }
+                        </div>
                     </div>
                 )
             }

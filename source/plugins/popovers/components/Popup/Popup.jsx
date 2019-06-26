@@ -10,7 +10,7 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
             minWidth: 250,
             minBodyHeight: 50,
             minTitleHeight: 25,
-            minFooterHeight: 35,
+            footerHeight: 50,
         },
     };
 
@@ -24,7 +24,6 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
         propsTypes: {
             id: PropTypes.string,
             titleHeight: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-            footerHeight: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             titleLabelColor: PropTypes.string,
@@ -42,7 +41,6 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
                 width: 700,
                 height: 400,
                 titleHeight: 50,
-                footerHeight: 50,
                 titleLabelColor: core.theme('texts.popupTitle'),
                 titleColor: core.theme('backgrounds.primary'),
                 backdropColor: core.theme('backgrounds.popupPane'),
@@ -65,7 +63,9 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
         },
 
         componentDidMount() {
+            let {id} = this.props;
             this.eventsHandler('on');
+            this.setState({screen: document.getElementById(id)});
         },
 
         componentWillUnmount() {
@@ -75,21 +75,22 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
         styles(propName) {
             let {modalStyle, bodyStyle} = this.state;
             let tHeight = this.handleTitleHeight();
-            let fHeight = this.handleFooterHeight();
 
             let styles = {
                 root: {
-                    minHeight: units.dims.minBodyHeight + tHeight + fHeight,
+                    ...modalStyle,
+                    minHeight: units.dims.minBodyHeight + tHeight + units.dims.footerHeight,
                     maxHeight: '100%',
-                    ...modalStyle
+                    position: 'relative'
                 },
                 title: {
                     minHeight: tHeight,
                     justifyContent:'space-between',
                 },
                 body: {
-                    maxHeight: `calc(100% - ${tHeight + fHeight}px)`,
                     ...bodyStyle,
+                    maxHeight: `calc(100% - ${tHeight + units.dims.footerHeight}px)`,
+                    overflow: 'auto'
                 },
             };
             return styles[propName]
@@ -142,31 +143,13 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
         },
 
         handleBodyHeight() {
-            let {height} = this.state;
-            let {id} = this.props;
-            let localHeight = height;
-
-            let tHeight = this.handleTitleHeight();
-            let fHeight = this.handleFooterHeight();
-
-            if (typeof localHeight == 'string' && localHeight.indexOf('%') === localHeight.length -1) {
-                let screen = document.getElementById(id);
-                let percent = Number(localHeight.slice(0,-1));
-                let maxHeight = screen.offsetHeight - tHeight - fHeight;
-                localHeight = maxHeight * percent/100;
-            }
-
-            return localHeight < units.dims.minBodyHeight ? units.dims.minBodyHeight : localHeight;
+            let {height} = this.props;
+            return (height > units.dims.minBodyHeight) ? height : units.dims.minBodyHeight;
         },
 
         handleTitleHeight() {
             let {titleHeight} = this.props;
             return (titleHeight > units.dims.minTitleHeight) ? titleHeight : units.dims.minTitleHeight;
-        },
-
-        handleFooterHeight() {
-            let {footerHeight} = this.props;
-            return (footerHeight > units.dims.minFooterHeight) ? footerHeight : units.dims.minFooterHeight;
         },
 
         handleWidth() {
@@ -198,7 +181,6 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
             let {btnTitle, btnFunc, buttons, popupTree} = this.state;
             let {id, footerBackground} = this.props;
 
-            let fHeight = this.handleFooterHeight();
             let disabledOk = (popupTree && popupTree[id]) ? popupTree[id].disabled : true;
             let isLoading = (popupTree && popupTree[id]) ? popupTree[id].isLoading : false;
 
@@ -211,7 +193,7 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
                     cancelCB={()=>{this.handleClose(id)}}
                     children={buttons}
                     background={footerBackground}
-                    height={fHeight}
+                    height={units.dims.footerHeight}
                 />
             );
         },
@@ -222,9 +204,8 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
 
             let width = this.handleWidth();
             let tHeight = this.handleTitleHeight();
-            let fHeight = this.handleFooterHeight();
-            let bodyHeight = this.handleBodyHeight()
-            let popupHeight = bodyHeight + tHeight + fHeight;
+            let bodyHeight = this.handleBodyHeight();
+            let popupHeight = bodyHeight + tHeight + units.dims.footerHeight;
 
             const stopPropagation = (e) => {
                 e.stopPropagation();
@@ -256,9 +237,7 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
                         onMouseUp={cancelClose} onMouseDown={stopPropagation} onClick={stopPropagation}
                     >
                         {this.renderTitle()}
-                        <Column width={width}
-                            height={bodyHeight}
-                            style={this.styles('bodyStyle')}>
+                        <Column width={width} height={bodyHeight} style={this.styles('bodyStyle')}>
                             {body}
                         </Column>
                         {this.renderFooter()}
