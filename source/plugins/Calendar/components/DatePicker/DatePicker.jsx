@@ -3,7 +3,7 @@ import { Fragment, Children } from 'react';
 import { isEmpty as _isEmpty } from 'lodash';
 
 module.exports = {
-    dependencies: ['Decorators.Popover','Inputs.Button','Layouts.Column','Calendar.Calendar'],    
+    dependencies: ['Decorators.Popover','Buttons.Button','Layouts.Column','Calendar.Calendar'],    
     get(Popover,Button,Column,Calendar) {
         
         var core = this;
@@ -94,15 +94,21 @@ module.exports = {
             renderContent(){
                 let {startDate,hoverDate} = this.state;
                 return(
-                    <Calendar defaultDate={moment().subtract(7, 'days')} 
-                            ignoreYearChange={true}
-                            ignoreMonthChange={true}
-                            onDaySelect={this.handleSelectDate} 
-                            dayCellRender={ this.renderDayCell } 
-                            startDate={startDate}
-                            hoverDate={hoverDate}
-                            onHoverDate={this.handleOnHoverDate}
-                            />
+                    <Calendar 
+                        onDaySelect={this.handleSelectDate} 
+                        dayCellRender={ this.renderDayCell } 
+                    
+                        ignoreYearChange={true}
+                        ignoreMonthChange={true}
+                        
+                        startDate={startDate}
+                        hoverDate={hoverDate}
+                        onHoverDate={this.handleOnHoverDate}
+
+                        defaultDate={moment().subtract(7, 'days')} 
+                        
+                        
+                        />
                 )
             },
 

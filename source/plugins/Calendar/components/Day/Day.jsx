@@ -49,7 +49,7 @@ module.exports = {
         return moment(day).isSame(current, 'day')
       },
 
-      handleOnMouse(){
+      handleOnMouseEnter(){
         let {onHoverDate} = this.props;
         if(onHoverDate) {
           let day = this.getDay();
@@ -84,7 +84,7 @@ module.exports = {
                     width={ '100%' } 
                     height={ '100%' } 
                     onClick={ e => { onSelect(dayDate) } }
-                    onMouseEnter={ this.handleOnMouse }
+                    onMouseEnter={ this.handleOnMouseEnter }
                     backgroundColor={ isInRange? '#DD6A6A' : null }
                     > 
 
