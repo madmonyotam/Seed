@@ -5,10 +5,16 @@ import {isEmpty} from 'lodash';
 
 module.exports = {
     name: 'MockTable',
-    dependencies: [ 'Layouts.Row', 'Simple.Label', 'Popovers.PopupHandler', 'Genie.CategoryItemEditor',
-                    'Buttons.IconButton'],
-    get(Row, Label, PopupHandler, CategoryItemEditor,
-        IconButton) {
+    dependencies: [ 
+        'Layouts.Row', 'Simple.Label', 'Popovers.PopupHandler', 'Genie.CategoryItemEditor',
+        'Buttons.IconButton', 'Layouts.Center', 'Simple.Chip', 'Decorators.Tooltip', 'Layouts.Column',
+        'Attributers.Margin'
+    ],
+    get(
+        Row, Label, PopupHandler, CategoryItemEditor,
+        IconButton, Center, Chip, Tooltip, Column,
+        Margin
+    ) {
         
         var core = this;
 
@@ -30,6 +36,7 @@ module.exports = {
             colors: {
                 border: core.theme('borders.default'),
                 text: core.theme('texts.default'),
+                whiteText: core.theme('texts.alternate'),
                 disabled: core.theme('texts.disabled'),
             },
             backgrounds: {
@@ -71,6 +78,12 @@ module.exports = {
                     root: {
                     },
                     valueString: {
+                    },
+                    arrayCellCenter: {
+                        minHeight: 20,
+                        minWidth: 'fit-content',
+                        maxWidth: 100,
+                        background: units.backgrounds.white,
                     },
                     arrayCell: {
                         display: 'flex',
@@ -147,13 +160,40 @@ module.exports = {
                         </React.Fragment>
                     );
                 };
+
                 const arrayRender = (value) => {
-                    return (
-                        <React.Fragment>
-                            {value.map((v, k) => <div key={k} style={this.styles('arrayCell')}><Label label={v} tooltip={v}/></div>)}
-                        </React.Fragment>
-                    );
+                    let len = value.length;
+                    const template = (tValue, key)=>{
+                        return (
+                            <Row key={key} height={25}>
+                                <Label label={tValue} tooltip={tValue}/>
+                            </Row>
+                        );
+                    }
+                    const tooltipContent = ()=>{
+                        return (
+                            <Column width={150} style={{maxHeight: 300, overflow: 'auto'}}>
+                                { value.map(template) }
+                            </Column>
+                        )
+                    }
+
+                    if (len == 1) {
+                        return (<Chip text={value[0]} variant={'outlined'}/>);
+                    } else {
+                        return (
+                            <Center>
+                                <Margin left={3}>
+                                    <Chip text={value[0]} variant={'outlined'}/>
+                                    <Tooltip position={'bottom-right'} theme={'light'} offsetX={-2} offsetY={-27} content={tooltipContent()}>
+                                        <Chip text={`+${value.length}`} variant={'outlined'} />
+                                    </Tooltip>
+                                </Margin>
+                            </Center>
+                        );
+                    }
                 };
+
                 const stringRender = (value)=>{
                     return (
                         <Label label={value} />

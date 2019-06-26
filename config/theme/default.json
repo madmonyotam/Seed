@@ -33,6 +33,7 @@
     },
     "texts": {
         "default":"colors.dark",
+        "alternate":"colors.white",
         "primary":"colors.blue015",
         "secondary":"colors.grey025",
         "background": "colors.grey080",
