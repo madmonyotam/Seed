@@ -1,0 +1,194 @@
+[33me7ad662[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull --progress origin: Fast-forward
+[33m9516aef[m HEAD@{1}: rebase finished: refs/heads/master onto 9516aef55ef3b9e3b67c482b42c417d98f1bd58c
+[33m79b9cea[m HEAD@{2}: rebase:
+[33m9516aef[m HEAD@{3}: rebase: checkout 9516aef55ef3b9e3b67c482b42c417d98f1bd58c
+[33m79b9cea[m HEAD@{4}: commit: added Fixed layout. changed Popup renders
+[33m6317f69[m HEAD@{5}: rebase finished: refs/heads/master onto 993e3a045d5fef0524e834fa269d43b731df2001
+[33m64f745a[m HEAD@{6}: pull --progress origin:
+[33m6317f69[m HEAD@{7}: pull --progress origin: floating menu
+[33m993e3a0[m HEAD@{8}: rebase: checkout 993e3a045d5fef0524e834fa269d43b731df2001
+[33m64f745a[m HEAD@{9}: commit: floating menu
+[33mf492580[m HEAD@{10}: rebase finished: returning to refs/heads/master
+[33mf492580[m HEAD@{11}: pull --tags origin master: center prop
+[33mf9d5832[m HEAD@{12}: pull --tags origin master: checkout f9d5832fa116bb40d3874450c13a473a0fbf394c
+[33m13e4018[m HEAD@{13}: commit: center prop
+[33m2a78cc1[m HEAD@{14}: rebase finished: returning to refs/heads/master
+[33m2a78cc1[m HEAD@{15}: pull --tags origin master: better default route selection
+[33m467c34d[m HEAD@{16}: pull --tags origin master: checkout 467c34d18c73e6a239340baef3dd6dcceec81bc8
+[33m2cd7379[m HEAD@{17}: commit: better default route selection
+[33ma0fca66[m HEAD@{18}: rebase finished: returning to refs/heads/master
+[33ma0fca66[m HEAD@{19}: pull --tags origin master: no lodash map. fix on onscroll/blur
+[33m54d977c[m HEAD@{20}: pull --tags origin master: checkout 54d977cc41e9fbf1c9f590df8c4350abf220b116
+[33mf269f2a[m HEAD@{21}: commit: no lodash map. fix on onscroll/blur
+[33m33e063d[m HEAD@{22}: rebase finished: refs/heads/master onto 3443d433240398f9c8dd58df66cfd1ae7aef442f
+[33m08f771e[m HEAD@{23}: pull --progress origin:
+[33m33e063d[m HEAD@{24}: pull --progress origin: loading projects
+[33m3443d43[m HEAD@{25}: rebase: checkout 3443d433240398f9c8dd58df66cfd1ae7aef442f
+[33m08f771e[m HEAD@{26}: commit: loading projects
+[33m83d7f7c[m HEAD@{27}: rebase finished: refs/heads/master onto e9a897229c86cbb952f523f3e376aa3a13879b1f
+[33m9247492[m HEAD@{28}: pull --progress origin:
+[33m83d7f7c[m HEAD@{29}: pull --progress origin: set and get projects
+[33me9a8972[m HEAD@{30}: rebase: checkout e9a897229c86cbb952f523f3e376aa3a13879b1f
+[33m9247492[m HEAD@{31}: commit: set and get projects
+[33m70834dd[m HEAD@{32}: pull --progress origin: Fast-forward
+[33m684afb5[m HEAD@{33}: rebase finished: refs/heads/master onto c6635aed79bf53260dc8be54a3cbad8ccdc830c1
+[33m99ad697[m HEAD@{34}: pull --progress origin:
+[33m684afb5[m HEAD@{35}: pull --progress origin: loading projects
+[33mc6635ae[m HEAD@{36}: rebase: checkout c6635aed79bf53260dc8be54a3cbad8ccdc830c1
+[33m99ad697[m HEAD@{37}: commit: loading projects
+[33mb951ae8[m HEAD@{38}: rebase finished: returning to refs/heads/master
+[33mb951ae8[m HEAD@{39}: pull --tags origin master: floating menu
+[33m6a67337[m HEAD@{40}: pull --tags origin master: checkout 6a67337677788ee7f3155da7204d9a3a74949c1e
+[33mf69ee8f[m HEAD@{41}: commit: floating menu
+[33m5249608[m HEAD@{42}: rebase finished: returning to refs/heads/master
+[33m5249608[m HEAD@{43}: pull --tags origin master: Settings menu - refactored. [mess]
+[33md6a7820[m HEAD@{44}: pull --tags origin master: checkout d6a7820f05b4f93e996892825f9410f1e01b0376
+[33med9ae0f[m HEAD@{45}: commit: Settings menu - refactored. [mess]
+[33maa812a1[m HEAD@{46}: pull --progress origin: Fast-forward
+[33m8d9d465[m HEAD@{47}: pull --progress origin: Fast-forward
+[33ma12955f[m HEAD@{48}: rebase finished: refs/heads/master onto 9dcf322585a6ad093f5acb486d2081f41957043e
+[33m451a1fe[m HEAD@{49}: pull --progress origin:
+[33ma12955f[m HEAD@{50}: pull --progress origin: Update Input.jsx
+[33m9dcf322[m HEAD@{51}: rebase: checkout 9dcf322585a6ad093f5acb486d2081f41957043e
+[33m451a1fe[m HEAD@{52}: commit: Update Input.jsx
+[33m5268a9c[m HEAD@{53}: pull --progress origin: Fast-forward
+[33md21d2dc[m HEAD@{54}: pull --progress origin: Fast-forward
+[33mfbaa749[m HEAD@{55}: pull --progress origin: Fast-forward
+[33ma621e78[m HEAD@{56}: pull --progress origin: Fast-forward
+[33mc2ab849[m HEAD@{57}: rebase finished: refs/heads/master onto 56dafc24356a17085be17a55102c06215d91ede1
+[33m26f3715[m HEAD@{58}: pull --progress origin:
+[33mc2ab849[m HEAD@{59}: pull --progress origin: Popovers animations
+[33m56dafc2[m HEAD@{60}: rebase: checkout 56dafc24356a17085be17a55102c06215d91ede1
+[33m26f3715[m HEAD@{61}: commit: Popovers animations
+[33mbc6ee33[m HEAD@{62}: pull --progress origin: Fast-forward
+[33m006ed80[m HEAD@{63}: commit: Popover anim
+[33m4e813c5[m HEAD@{64}: commit: Added backdrop / interactive elements
+[33m94b27cd[m HEAD@{65}: commit: Added Popover to decorator
+[33m919920c[m HEAD@{66}: pull --progress origin: Fast-forward
+[33mf91ece9[m HEAD@{67}: rebase finished: refs/heads/master onto 97a32d36cdad9497c0507f163ed659a271e02a4b
+[33mf718b8e[m HEAD@{68}: rebase:
+[33mf91ece9[m HEAD@{69}: am: small input fix
+[33m97a32d3[m HEAD@{70}: rebase: checkout 97a32d36cdad9497c0507f163ed659a271e02a4b
+[33mf718b8e[m HEAD@{71}: commit: small input fix
+[33mc71c35a[m HEAD@{72}: commit: refactoring. date props out
+[33mffcb7db[m HEAD@{73}: pull --tags origin master: Fast-forward
+[33m1f3b595[m HEAD@{74}: commit: better writing
+[33m1f284a4[m HEAD@{75}: pull --progress origin: Fast-forward
+[33m4658be6[m HEAD@{76}: rebase finished: refs/heads/master onto ee742da99ac2915e5117d155d191189653e37de4
+[33m02e72e7[m HEAD@{77}: rebase:
+[33m4658be6[m HEAD@{78}: am: better days, select today!
+[33mee742da[m HEAD@{79}: rebase: checkout ee742da99ac2915e5117d155d191189653e37de4
+[33m02e72e7[m HEAD@{80}: commit: better days, select today!
+[33m23711a5[m HEAD@{81}: pull --progress origin: Fast-forward
+[33mf717a45[m HEAD@{82}: rebase finished: refs/heads/master onto 455ca2df89144b40d41bcd57a29e6b5f0f139982
+[33mffe3e20[m HEAD@{83}: pull --progress origin:
+[33mf717a45[m HEAD@{84}: pull --progress origin: Days of the Calendar
+[33m455ca2d[m HEAD@{85}: rebase: checkout 455ca2df89144b40d41bcd57a29e6b5f0f139982
+[33mffe3e20[m HEAD@{86}: commit: Days of the Calendar
+[33mf81aa71[m HEAD@{87}: rebase finished: refs/heads/master onto e21103cd008ab5b4a8231c92f7041c2ee1460042
+[33mab25f37[m HEAD@{88}: rebase:
+[33mf81aa71[m HEAD@{89}: am: Calendar
+[33me21103c[m HEAD@{90}: rebase: checkout e21103cd008ab5b4a8231c92f7041c2ee1460042
+[33mab25f37[m HEAD@{91}: commit: Calendar
+[33mfc4fc52[m HEAD@{92}: pull --progress origin: Fast-forward
+[33mb3cfa32[m HEAD@{93}: rebase finished: refs/heads/master onto 6c108b43e41462d4889b8da2fd981f91fcf54d6b
+[33md5a9d00[m HEAD@{94}: pull --progress origin:
+[33mb3cfa32[m HEAD@{95}: pull --progress origin: Empty picker state.
+[33m6c108b4[m HEAD@{96}: rebase: checkout 6c108b43e41462d4889b8da2fd981f91fcf54d6b
+[33md5a9d00[m HEAD@{97}: commit: Empty picker state.
+[33mc2cf5e9[m HEAD@{98}: pull --progress origin: Fast-forward
+[33m864f393[m HEAD@{99}: rebase finished: refs/heads/master onto a7b81a4a3ba945bfcc328e81a695bf237a283f78
+[33m7506cc3[m HEAD@{100}: rebase:
+[33m864f393[m HEAD@{101}: am: Year Select. No outing for props
+[33ma7b81a4[m HEAD@{102}: rebase: checkout a7b81a4a3ba945bfcc328e81a695bf237a283f78
+[33m7506cc3[m HEAD@{103}: commit: Year Select. No outing for props
+[33mb4c08e8[m HEAD@{104}: pull --progress origin: Fast-forward
+[33m96a7ed6[m HEAD@{105}: pull --progress origin: Fast-forward
+[33m5a8ca96[m HEAD@{106}: commit: Update Input.jsx
+[33mb78f607[m HEAD@{107}: commit: Chips and styles and fish
+[33mc794d17[m HEAD@{108}: commit: Chip Input
+[33mc842b40[m HEAD@{109}: commit: changed drawer examples. removed padding
+[33m00b3113[m HEAD@{110}: pull --progress origin: Fast-forward
+[33m3ea0bce[m HEAD@{111}: commit: Tooltips
+[33ma998b24[m HEAD@{112}: pull --progress origin: Fast-forward
+[33ma94c15a[m HEAD@{113}: rebase finished: refs/heads/master onto 824ce57719e46ec8ae35d8cd7ecc5f7b4726978b
+[33m4cf2a1f[m HEAD@{114}: pull --progress origin:
+[33ma94c15a[m HEAD@{115}: pull --progress origin: Tooltips & Declarations
+[33m824ce57[m HEAD@{116}: rebase: checkout 824ce57719e46ec8ae35d8cd7ecc5f7b4726978b
+[33m4cf2a1f[m HEAD@{117}: commit: Tooltips & Declarations
+[33m1224ab4[m HEAD@{118}: commit: loading logic. restore defaults - works.
+[33m45800e3[m HEAD@{119}: commit: started fileMenu logic.
+[33m17a42ad[m HEAD@{120}: commit: ignored modified files. save works :+1:
+[33m6967051[m HEAD@{121}: rebase finished: refs/heads/master onto 044b83d5f9e1ae433c7d58cbd3077458e3d09ee2
+[33m4c4149e[m HEAD@{122}: pull --progress origin:
+[33m6967051[m HEAD@{123}: pull --progress origin: preperation for floating menu - files
+[33m044b83d[m HEAD@{124}: rebase: checkout 044b83d5f9e1ae433c7d58cbd3077458e3d09ee2
+[33m4c4149e[m HEAD@{125}: commit: preperation for floating menu - files
+[33m8d8669e[m HEAD@{126}: rebase finished: refs/heads/master onto 7d3a72ebd12a581a00ec6f87a798a0ba452ab187
+[33m863cdb3[m HEAD@{127}: pull --progress origin:
+[33m8d8669e[m HEAD@{128}: pull --progress origin: hot fixes., some styles issues
+[33m7d3a72e[m HEAD@{129}: rebase: checkout 7d3a72ebd12a581a00ec6f87a798a0ba452ab187
+[33m863cdb3[m HEAD@{130}: commit: hot fixes., some styles issues
+[33mf5806ca[m HEAD@{131}: commit: implement switch. some small padding/margin - fixes
+[33meaff5ad[m HEAD@{132}: rebase finished: refs/heads/master onto eddffc759510da07183f65bdd986a81eb500b424
+[33md559a81[m HEAD@{133}: pull --progress origin:
+[33meaff5ad[m HEAD@{134}: pull --progress origin: hot fix.
+[33meddffc7[m HEAD@{135}: rebase: checkout eddffc759510da07183f65bdd986a81eb500b424
+[33md559a81[m HEAD@{136}: commit: hot fix.
+[33ma6a3a61[m HEAD@{137}: commit: Examples renders. Added / Fixed inputs
+[33m7696f02[m HEAD@{138}: rebase finished: refs/heads/master onto 2f566e92b296ac5ae262c9503ed71d412a68e1d5
+[33m30f7607[m HEAD@{139}: pull --progress origin:
+[33m7696f02[m HEAD@{140}: pull --progress origin: Buttons
+[33m2f566e9[m HEAD@{141}: rebase: checkout 2f566e92b296ac5ae262c9503ed71d412a68e1d5
+[33m30f7607[m HEAD@{142}: commit: Buttons
+[33m8ef1b04[m HEAD@{143}: pull --progress origin: Fast-forward
+[33m081694c[m HEAD@{144}: rebase finished: refs/heads/master onto 1f6f83019eba12ace2381323683e9d41db68929c
+[33m88f857b[m HEAD@{145}: rebase:
+[33m081694c[m HEAD@{146}: am: Update routes.jsx
+[33m1f6f830[m HEAD@{147}: rebase: checkout 1f6f83019eba12ace2381323683e9d41db68929c
+[33m88f857b[m HEAD@{148}: commit: Update routes.jsx
+[33mbf722cc[m HEAD@{149}: commit: isactives, code editor fonts
+[33m97033b6[m HEAD@{150}: commit: first initial code editing view
+[33m855c593[m HEAD@{151}: commit: better routes
+[33maa345a6[m HEAD@{152}: commit: updated routes and gitignore
+[33m884ae14[m HEAD@{153}: rebase finished: refs/heads/master onto 75f1bad53f6d2d1c30e3aa222c0b15e1e3c009ca
+[33md7dba90[m HEAD@{154}: pull --progress origin:
+[33m884ae14[m HEAD@{155}: pull --progress origin: Settings new views, routes and links
+[33m75f1bad[m HEAD@{156}: rebase: checkout 75f1bad53f6d2d1c30e3aa222c0b15e1e3c009ca
+[33md7dba90[m HEAD@{157}: commit: Settings new views, routes and links
+[33ma6cba32[m HEAD@{158}: pull --progress origin: Fast-forward
+[33me857cf1[m HEAD@{159}: pull --progress origin: Fast-forward
+[33mb843d98[m HEAD@{160}: rebase finished: refs/heads/master onto f9a768b614981eea9dc6142d5cfa8b56adf1a557
+[33m8abef1f[m HEAD@{161}: pull --progress origin:
+[33mb843d98[m HEAD@{162}: pull --progress origin: better packaging
+[33mf9a768b[m HEAD@{163}: rebase: checkout f9a768b614981eea9dc6142d5cfa8b56adf1a557
+[33m8abef1f[m HEAD@{164}: commit: better packaging
+[33m3af9f8e[m HEAD@{165}: rebase finished: returning to refs/heads/master
+[33m3af9f8e[m HEAD@{166}: rebase: hot fix
+[33m70d5dfb[m HEAD@{167}: pull --tags origin master: checkout 70d5dfb03c5f81b49c414a3e7b20a710d4db52c2
+[33mf434f7f[m HEAD@{168}: commit: hot fix
+[33m53d18af[m HEAD@{169}: rebase finished: returning to refs/heads/master
+[33m53d18af[m HEAD@{170}: pull --tags origin master: hot fix
+[33m172cf21[m HEAD@{171}: pull --tags origin master: checkout 172cf21efb31790faca0dfbbdfa5ef5011a225e6
+[33m9d55e25[m HEAD@{172}: commit: hot fix
+[33ma2a3f67[m HEAD@{173}: commit: style
+[33md34f835[m HEAD@{174}: rebase finished: refs/heads/master onto bde2acd6709b536102a209061a156a38c95c04b1
+[33mae960d5[m HEAD@{175}: pull --progress origin:
+[33md34f835[m HEAD@{176}: pull --progress origin: Removed Obsolete Settings
+[33mbde2acd[m HEAD@{177}: rebase: checkout bde2acd6709b536102a209061a156a38c95c04b1
+[33mae960d5[m HEAD@{178}: commit: Removed Obsolete Settings
+[33m7a362ab[m HEAD@{179}: rebase finished: refs/heads/master onto 9085c8c7aca227852b53d61a0a1c77ae4e53738b
+[33me27906f[m HEAD@{180}: rebase:
+[33m7a362ab[m HEAD@{181}: am: navigation, routs
+[33m9085c8c[m HEAD@{182}: rebase: checkout 9085c8c7aca227852b53d61a0a1c77ae4e53738b
+[33me27906f[m HEAD@{183}: commit: navigation, routs
+[33med3e6d4[m HEAD@{184}: commit: changed styles , added props, ac and colors
+[33mf0fd0e8[m HEAD@{185}: pull --progress origin: Fast-forward
+[33mea9770f[m HEAD@{186}: rebase finished: refs/heads/master onto 3fcc00ffdcfbd9197a348c73753e1d16db2b9834
+[33m842dd28[m HEAD@{187}: pull --progress origin:
+[33mea9770f[m HEAD@{188}: pull --progress origin: autocomplete and simplePlugin examples changes
+[33m3fcc00f[m HEAD@{189}: rebase: checkout 3fcc00ffdcfbd9197a348c73753e1d16db2b9834
+[33m842dd28[m HEAD@{190}: commit: autocomplete and simplePlugin examples changes
+[33m6d45062[m HEAD@{191}: commit: My first Seed Component. added many colors
+[33mfd4a30d[m HEAD@{192}: pull --progress origin: Fast-forward
+[33m4fb1fde[m HEAD@{193}: clone: from https://github.com/madmonyotam/Seed.git
