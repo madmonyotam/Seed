@@ -209,7 +209,7 @@ get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
         },
 
         renderOpen() {
-            let {width, body} = this.state;
+            let {body} = this.state;
             let {isAbsolute, backdropColor, background, id} = this.props;
 
             let width = this.handleWidth();
