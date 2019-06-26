@@ -13,7 +13,7 @@ module.exports = {
                 this.okButtonStopLoad(id);
                 seed.plugins.Popovers.set(['popup', id, 'data'],{});
             },
-            
+
             getData(id){
                 if (!id) id = mainId;
                 return seed.plugins.Popovers.get(['popup', id, 'data']);

@@ -4,8 +4,20 @@
 import { find } from 'lodash';
 module.exports = {
     name: 'FloatingMenu',
-    dependencies: ['Simple.Loader', 'Settings.MenuItem', 'Layouts.Row', 'Simple.Label', 'Decorators.Tooltip', 'Decorators.Popover', 'Buttons.Button', 'Buttons.Switch', 'Simple.Icon'],
-    get(Loader, MenuItem, Row, Label, Tooltip, Popover, Button, Switch, Icon) {
+    dependencies: [
+      'Simple.Loader',
+      'Settings.MenuItem',
+      'Settings.LibraryPopup',
+      'Popovers.Popup',
+      'Popovers.PopupHandler',
+      'Layouts.Row',
+      'Simple.Label',
+      'Decorators.Tooltip',
+      'Decorators.Popover',
+      'Buttons.Button',
+      'Buttons.Switch',
+      'Simple.Icon'],
+    get(Loader, MenuItem, LibraryPopup, Popup, PopupHandler, Row, Label, Tooltip, Popover, Button, Switch, Icon) {
 
         var core = this;
         var { React, PropTypes } = core.imports;
@@ -32,7 +44,17 @@ module.exports = {
           },
           boxShadow: `4px -4px 10px -10px rgba(0,0,0,0.12), 4px -10px 16px -12px rgba(0,0,0,0.16)`,
           icons: {
-            active: core.icons('notify.success')
+            active: core.icons('notify.success'),
+            addFolder: core.icons('general.addFolder'),
+            folder: core.icons('general.folder'),
+            file: core.icons('files.file'),
+            upload: core.icons('general.upload'),
+            save: core.icons('general.save'),
+            project: core.icons('files.project'),
+            more: core.icons('general.more'),
+            more_horiz: core.icons('general.more_horiz'),
+            error: core.icons('notify.error'),
+            left: core.icons('navigate.left')
           }
 
 
@@ -72,7 +94,7 @@ module.exports = {
               this.menuItems = [
                 {
                   title: translate.projects,
-                  icon: core.icons('general.folder'),
+                  icon: units.icons.folder,
                   subItems: true,
                   key: 'projects',
                   onClick: e => { this.handelSubMenu(e, { key: 'projects', title: translate.projects }) }
@@ -81,13 +103,15 @@ module.exports = {
                 { divider: true },
                 {
                   title: translate.add,
-                  icon: core.icons('general.addFolder'),
+                  icon: units.icons.addFolder,
                   subItems: [{
                     title: translate.library,
-                    icon: core.icons('files.file'),
-                    onClick: () => {
+                    icon: units.icons.file,
+                    onClick: this.handleOpenLibraryPopup
+
                       // TODO: add library logic here
                       /**
+                        () => {
                        *
                        *   handleAddNewCategory(){
                             let { catNameToSave, activeTab } = this.state;
@@ -121,48 +145,12 @@ module.exports = {
                             }
                           },
                        *
+                       }
                        */
-                       console.log(`
-                         /**
-                          *
-                          *   handleAddNewCategory(){
-                               let { catNameToSave, activeTab } = this.state;
-
-                               let catName = catNameToSave && catNameToSave.length ? catNameToSave.trim() : null;
-                               if (catName) {
-                                 catName = Helpers.makeCamelCase(catName);
-
-                                 let activeTabData = activeTab.data;
-                                 let newData = { ...activeTabData, [ catName ]: {} }
-
-                                 let data = {
-                                   fileData: newData,
-                                   dir: activeTab.key,
-                                   notify: false
-                                 }
-
-                                 core.plugins.Settings.run('saveSettings', data)
-                                     .then(()=>{
-                                         core.emit('Popup.close');
-                                     });
-
-                               } else {
-                                 let notify = {
-                                     title: 'Category Name Error ',
-                                     text: 'Invalid category name',
-                                     alertKind: 'error'
-                                 }
-                                 core.emit('notify',notify);
-                                 return;
-                               }
-                             },
-                          *
-                          */`)
-                    }
                   },{
                     title: translate.project,
-                    icon: core.icons('files.project'),
-                    onClick: () => {  }
+                    icon: units.icons.project,
+                    onClick: undefined
                   }],
                   key: 'add',
                   onClick: e => { this.handelSubMenu(e, { key: 'add', title: translate.add }) }
@@ -172,13 +160,13 @@ module.exports = {
 
                 {
                   title: core.translate('Save'),
-                  icon: core.icons('general.save'),
+                  icon: units.icons.save,
                   key: 'save',
                   onClick: this.save
                 },
                 {
                   title: translate.load,
-                  icon: core.icons('general.upload'),
+                  icon: units.icons.upload,
                   subItems: true,
                   key: 'load',
                   onClick: e => { this.handelSubMenu(e, { key: 'load', title: translate.load }) }
@@ -189,7 +177,7 @@ module.exports = {
 
                 {
                   title: core.translate('Restore'),
-                  icon: core.icons('notify.error'),
+                  icon: units.icons.error,
                   onClick: this.restore
                 }
               ]
@@ -224,7 +212,7 @@ module.exports = {
                       ...item,
                       isActive: isActive,
                       title: proj.name,
-                      icon: core.icons('files.project'),
+                      icon: units.icons.project,
                       onClick: () => { this.handleSelectProject(proj) }
                     }
                   });
@@ -252,7 +240,9 @@ module.exports = {
             },
 
             styles(s) {
-              let { popupPosition } = this.state;
+              let { popupPosition, realShow, anchorEl } = this.state;
+              let expanded = Boolean(anchorEl)
+
               let flex = {
                 display: 'flex',
                 alignItems: 'center'
@@ -273,6 +263,12 @@ module.exports = {
                 menu: {
                   ...flex,
                 },
+                expandingButton: {
+                  width: 32,
+                  borderRadius: expanded ? 2 : '50%',
+                  justifyContent: expanded ? 'flex-start' : 'center',
+                  transition: 'all 0.15s ease-in-out',
+                },
                 info: {
                   ...flex,
                   position: 'relative',
@@ -283,6 +279,14 @@ module.exports = {
                 item: {
                   cursor: 'pointer',
                   marginRight: 10
+                },
+                subMenuList: {
+                  height: 'calc(100% - 40px)',
+                  maxHeight: '100%',
+                  overflow: 'auto',
+                  opacity: realShow ? 1 : 0,
+                  transform: realShow ? 'translateX(0)' : 'translateX(25px)',
+                  transition: 'all 0.05s ease-in'
                 },
                 popup: {
                   position: 'absolute',
@@ -306,20 +310,29 @@ module.exports = {
               // console.debug('fileMenu[dir] => ', fileMenu[dir]);
               let subItems = fileMenu[dir];
               let dev = items.map(item => {
-                if (item.subItems && item.key == 'load') {
-                  return {
+                if (item.subItems) {
+                  if (item.key == 'load') return {
                     ...item,
-                    subItems: subItems.map(item => {
+                    subItems: subItems.map(subItem => {
                       return {
-                        ...item,
-                        title: item.fileName,
-                        onClick: e => { this.load(item) }
+                        ...subItem,
+                        title: subItem.fileName,
+                        onClick: e => { this.load(subItem) }
                      }
                    }),
                   }
-                }
-                return item;
+                  else if (item.key == 'add') return {
+                    ...item,
+                    subItems: item.subItems.map(subItem => {
+                      return {
+                        ...subItem,
+                        disabled: !subItem.onClick
+                      }
+                    }),
+                  }
+                }  return item
               })
+
               this.setState({ menuItems: dev }, ()=>{
                 if (callback) setTimeout(callback, 150)
               })
@@ -334,7 +347,7 @@ module.exports = {
             },
 
             load(item) {
-              console.log('load -', item, this.props.parentKey)
+              // console.log('load -', item, this.props.parentKey)
               this.setState({ loading: true })
 
               let fileName = item.fileName;
@@ -343,7 +356,7 @@ module.exports = {
 
               core.plugins.Settings.run('LoadFile', { fileName, dir })
                   .then((newFile)=>{
-                    console.debug('newFile => ', newFile);
+                    // console.debug('newFile => ', newFile);
 
 
                     this.setState({ loading: false })
@@ -411,6 +424,7 @@ module.exports = {
                             icon={ item.icon }
                             iconColor={ units.colors.icon }
                             label={ item.title }
+                            disabled={ item.disabled }
                             hasChildren={ item.subItems && item.subItems.length }
                             labelStyle={{ marginLeft: 15 }}
                             onClick={ item.onClick } />
@@ -425,10 +439,11 @@ module.exports = {
 
                   <MenuItem key={ key }
                             label={ item.title }
+                            disabled={ item.disabled }
                             iconSize={ 14 }
                             iconColor={ units.colors.icon }
-                            icon={ item.icon || core.icons('files.file') }
-                            padding={ '0px 10px 0px 15px' }
+                            icon={ item.icon || units.icons.file }
+                            rowPadding={ '0px 10px 0px 15px' }
                             labelStyle={{ marginLeft: 5 }}
                             onClick={ item.onClick || console.warn('Missing sub item click function!') }/>
 
@@ -477,18 +492,11 @@ module.exports = {
               return (
                 <div style={{ width: '100%', height: 210 }}>
 
-                  <Row height={ 30 } style={{ cursor: 'pointer', backgroundColor: 'white' }} padding={ '0 10px' } onClick={ this.handelSubMenu }>
-                    <Icon size={ 16 } icon={ core.icons('navigate.left') } />
+                  <Row height={ 30 } style={{ cursor: 'pointer', backgroundColor: units.colors.white }} padding={ '0 10px' } onClick={ this.handelSubMenu }>
+                    <Icon size={ 16 } icon={ units.icons.left } />
                     <Label label={ subTitle } />
                   </Row>
-                  <div style={{
-                    height: "calc(100% - 40px)",
-                    maxHeight: "100%",
-                    overflow: "auto",
-                    opacity: realShow ? 1 : 0,
-                    transform: realShow ? 'translateX(0)' : 'translateX(25px)',
-                    transition: 'all 0.05s ease-in'
-                  }}>
+                  <div style={ this.styles('subMenuList') }>
                     { subMenuItems && subMenuItems.length ? subMenuItems.map(this.renderSubItem) : null }
                   </div>
                 </div>
@@ -516,9 +524,29 @@ module.exports = {
               }
             },
 
+            closeLibraryPopup(){
+              console.log('Done < clicked')
+              PopupHandler.close('ExamplePopup2')
+            },
+
+            handleOpenLibraryPopup(e){
+              PopupHandler.enableOkButton();
+              PopupHandler.open({
+                id: 'addlibrarypopup',
+                parameters: {
+                    title: seed.translate('Add Library'),
+                    body: <LibraryPopup />,
+                    okButton: {
+                        btnTitle: seed.translate('Done'),
+                        btnFunc: this.closeLibraryPopup
+                    }
+                }
+              });
+              // this.setState({ libraryAnchor: e.currentTarget })
+            },
 
             render() {
-              let { menuItems, loading, useMongo, showSub, first, anchorEl } = this.state;
+              let { menuItems, loading, useMongo, showSub, first, anchorEl, libraryAnchor } = this.state;
               let expanded = Boolean(anchorEl)
               return (
                 <div style={ this.styles('root') }>
@@ -529,19 +557,15 @@ module.exports = {
                           height={ 32 }
                           width={ expanded ? 280 : 32 }
                           onClick={ this.expandMenu }
-                          style={{
-                            width: 32,
-                            borderRadius: expanded ? 2 : '50%',
-                            justifyContent: expanded ? 'flex-start' : 'center',
-                            transition: 'all 0.15s ease-in-out',
-                          }}  >
+                          style={ this.styles('expandingButton') }  >
                     {
                       expanded ?
                         <Fragment>
-                          <Icon size={ 16 } color={ units.colors.white } icon={ core.icons('general.more') } style={{ marginRight: 5 }} />
+                          <Icon size={ 16 } color={ units.colors.white } icon={ units.icons.more } style={{ marginRight: 5 }} />
                           { core.translate('Menu') }
                         </Fragment>
-                        : <Icon size={ 16 } color={ units.colors.white } icon={ core.icons('general.more_horiz') } />
+
+                        : <Icon size={ 16 } color={ units.colors.white } icon={ units.icons.more_horiz } />
                     }
                   </Button>
                   <Popover  anchorEl={ anchorEl }
@@ -562,6 +586,7 @@ module.exports = {
 
                   </Popover>
 
+                  <Popup id={ 'addlibrarypopup' } isAbsolute={ false }/>
                 </div>
               )
             }

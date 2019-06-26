@@ -1,23 +1,10 @@
 module.exports = {
-dependencies: [
-    'Layouts.Absolute', 'Popovers.PopupHandler', 'Popovers.PopupButtons', 'Layouts.Center', 'Simple.Label',
-    'Buttons.IconButton', 'Layouts.Column', 'Layouts.Row'
-],
-get(
-    Absolute, PopupHandler, PopupButtons, Center, Label,
-    IconButton, Column, Row
-) {
-    const core = this;
-    const { React, PropTypes, ComponentMixin, Branch } = core.imports;
-
-    const units = {
-        dims: {
-            minWidth: 250,
-            minBodyHeight: 50,
-            minTitleHeight: 25,
-            minFooterHeight: 35,
-        },
-    };
+dependencies: ['Layouts.Absolute', 'Layouts.Fixed', 'Popovers.PopupHandler', 'Popovers.PopupButtons', 'Layouts.Center', 'Simple.Label',
+                'Buttons.IconButton', 'Layouts.Column', 'Layouts.Row'],
+get(Absolute, Fixed, PopupHandler, PopupButtons, Center, Label,
+    IconButton, Column, Row) {
+    var core = this;
+    var { React, PropTypes, ComponentMixin, Branch } = core.imports;
 
     return {
         mixins: [ ComponentMixin, Branch ],
@@ -37,11 +24,13 @@ get(
             backdropColor: PropTypes.string,
             background: PropTypes.string,
             footerBackground: PropTypes.string,
+            isAbsolute: PropTypes.bool
         },
 
         getDefaultProps() {
             return {
                 id: 'mainPopup',
+                isAbsolute: true,
                 width: 700,
                 height: 400,
                 titleHeight: 50,
@@ -186,7 +175,7 @@ get(
             return(
                 <Row color={titleColor} height={tHeight} style={this.styles('title')}>
                     <Label label={title} color={titleLabelColor} transform={'uppercase'}/>
-                    <IconButton 
+                    <IconButton
                         iconSize={18}
                         iconColor={titleLabelColor}
                         onClick={()=>{this.handleClose(id)}}
@@ -220,8 +209,8 @@ get(
         },
 
         renderOpen() {
-            let {body} = this.state;
-            let {backdropColor, background, id} = this.props;
+            let {width, body} = this.state;
+            let {isAbsolute, backdropColor, background, id} = this.props;
 
             let width = this.handleWidth();
             let tHeight = this.handleTitleHeight();
@@ -246,30 +235,42 @@ get(
                 this.setState({allowClose: false});
             }
 
-            return (
-                <Absolute id={id}>
-                    <Center color={backdropColor} onMouseDown={setClose} onMouseUp={doClose}>
+            const renderInside = () => {
+              return (
+                <Center color={backdropColor} onMouseDown={setClose} onMouseUp={doClose}>
 
-                        <Column 
-                            width={width}
-                            height={popupHeight}
-                            boxShadow={true}
-                            color={background}
-                            style={this.styles('root')}
-                            onMouseUp={cancelClose} onMouseDown={stopPropagation} onClick={stopPropagation}
-                        >
-                            {this.renderTitle()}
-                            <Column width={width} 
-                                height={bodyHeight}
-                                style={this.styles('bodyStyle')}>
-                                {body}
-                            </Column>
-                            {this.renderFooter()}
+                    <Column
+                        width={width}
+                        height={popupHeight}
+                        boxShadow={true}
+                        color={background}
+                        style={this.styles('root')}
+                        onMouseUp={cancelClose} onMouseDown={stopPropagation} onClick={stopPropagation}
+                    >
+                        {this.renderTitle()}
+                        <Column width={width}
+                            height={bodyHeight}
+                            style={this.styles('bodyStyle')}>
+                            {body}
                         </Column>
+                        {this.renderFooter()}
+                    </Column>
 
-                    </Center>
+                </Center>
+              )
+            }
+
+            if (isAbsolute) return (
+                <Absolute id={id}>
+                  { renderInside() }
                 </Absolute>
             );
+
+            return (
+              <Fixed id={id}>
+                { renderInside() }
+              </Fixed>
+            )
         },
 
         renderClosed() {

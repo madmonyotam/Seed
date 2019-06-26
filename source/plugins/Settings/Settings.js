@@ -11,12 +11,13 @@ module.exports = {
     components: [
       require('./components/menus/floating'),
       require('./components/menus/item'),
+      require('./components/popups/library'),
     ],
-    
+
     // modules: [
     //   require('./modules/...')
     // ],
-      
+
     views: [
       require('./views/editors/code.editor'),
       require('./views/root'),
