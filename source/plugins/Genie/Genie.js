@@ -30,6 +30,40 @@ module.exports = {
         require('./views/GenieUi')
     ],
 
+    config: {
+        theme: {
+            genie: {
+                "white_bg": "colors.white",
+                "title_bg": "colors.grey080",
+                "lib_bg": "colors.blue055",
+                "cat_bg":"colors.blue065",
+                "button_text": "colors.black",
+                "hover": "colors.blue070"
+            }
+        },
+        icons: {
+            genie: {
+                "clear": "clear",
+                "mongo": "cloud_upload",
+                "save": "save",
+                "generate": "play_arrow",
+                "download": "fas fa-download",
+                "code": "code",
+                "create": "settings",
+                "add": "add",
+                "addCategory": "playlist_add",
+                "addLibrary": "create_new_folder",
+                "table": "view_comfy",
+                "upload": "publish",
+                "edit": "edit",
+                "done": "done",
+                "close": "close",
+                "search": "search",
+                "remove": "delete"
+              },
+        }
+    },
+
     init(definition, done) {
         var seed = definition;
 

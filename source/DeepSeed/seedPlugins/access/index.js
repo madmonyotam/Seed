@@ -1,4 +1,3 @@
-
 module.exports = {
     name: 'access',
     tree: {
@@ -46,11 +45,9 @@ module.exports = {
 
         setSystemDefaultConfig(next){
             let systemConfig = require('./config');
-
             for (let x in systemConfig) { 
-                this.plugins.access.set(['system',x], systemConfig[x]); 
+                seed.plugins.access.set(['system',x], systemConfig[x]); 
             };
-                
             setTimeout(next);
         },
         
@@ -65,17 +62,48 @@ module.exports = {
         },
 
         setConfiguration(config) {
+
             if (config) { 
               for (let x in config) { 
-                  this.plugins.access.set([x], config[x]); 
-              }; 
-
+                    seed.plugins.access.set([x], config[x]); 
+              };
               this.plugins.access.set('config', config); 
             }
         },
-        
+
+        enrichConfig(pluginConfig){
+            let systemConfig = seed.plugins.access.get(['system']); 
+            let margedConfig = mergeDeep(systemConfig,pluginConfig)
+            seed.plugins.access.set(['system'], margedConfig); 
+        }
+
     }
 };
+
+function isObject(item) {
+    return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
+function mergeDeep(target, source) {
+    
+    var innerTarget = JSON.parse( JSON.stringify(target) );
+    if (!source) return innerTarget;
+  
+    if (isObject(innerTarget) && isObject(source)) {
+      for (const key in source) {
+
+        if (isObject(source[key])) {
+          if (!innerTarget[key]) Object.assign(innerTarget, { [key]: {} });
+          innerTarget[key] = mergeDeep(innerTarget[key], source[key]);
+        } else {
+          Object.assign(innerTarget, { [key]: source[key] });
+        }
+
+      }
+    }
+
+    return innerTarget;
+}
 
 function get(seed, type, path) {
     

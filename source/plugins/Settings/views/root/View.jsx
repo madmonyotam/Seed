@@ -37,12 +37,20 @@ module.exports = {
             componentDidMount() {
               let { menu } = this.state;
               let { match } = this.props; // match.path  = parent route path
+              core.on('reload:settings', this.reloadRoutes)
+
               if (menu) {
                 this.buildRoutes(menu,match)
               }
 
             },
-            buildRoutes(menu,match){
+
+            reloadRoutes(){
+              core.getInitialFiles(( { menu } )=>{
+                this.buildRoutes(menu, this.props.match)
+              })
+            },
+            buildRoutes(menu,match, callback){
 
               let menuKeys = Object.keys(menu)
               let routes = menuKeys.map((routeKey)=>{
@@ -59,10 +67,11 @@ module.exports = {
               this.setState({
                 routes: routes,
                 activeRoute: this.getCurrentRoute(routes)
-              })
+              }, callback)
             },
 
             componentWillUnmount() {
+              core.off('reload:settings', this.reloadRoutes)
             },
 
             componentWillReceiveProps(nextProps) {
@@ -70,8 +79,8 @@ module.exports = {
               let { match } = this.props;
 
               if(nextProps.match !== match) this.buildRoutes(menu,nextProps.match);
-            },
-
+            }, 
+            
             getCurrentRoute(routes){
               let afterHash = location.hash.split('#')[1];
               let found  = find(routes, { path: afterHash });

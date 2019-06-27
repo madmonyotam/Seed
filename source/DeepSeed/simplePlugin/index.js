@@ -6,6 +6,8 @@ class SimplePlugin {
 
         plugin.name = definition.name;
         plugin.tree = definition.tree;
+        plugin.enrichConfig(definition.config)
+        plugin.configPaths = plugin.getConfigPaths(definition.config)
 
         plugin.modules = {};
         plugin.views = {};
@@ -18,8 +20,7 @@ class SimplePlugin {
         plugin.setModules(definition.views,'views'); 
         plugin.setModules(definition.components,'components'); 
         plugin.setModules(definition.examples,'examples'); 
-
-
+  
         plugin.pluginInit(seed,definition);
     }
 
@@ -28,6 +29,43 @@ class SimplePlugin {
 
         if (definition.init) { definition.init(seed,(extendObject)=>{ plugin.extendsPlugin(plugin,extendObject) }) }
         if (plugin.tree) { plugin.extendsTree(seed) }
+    }
+
+    enrichConfig(config){
+        let plugin = this;
+        if(config){
+            plugin.seed.enrichConfig(config);
+        }
+    }
+
+    getConfigPaths(config){
+        let plugin = this;
+        let paths = []
+
+        const getPath = (target,path='') => {
+
+            if (plugin.seed.isObject(target)) {
+              for (const key in target) {
+                if (plugin.seed.isObject(target[key])) {
+                    path = path ? path+'.'+key : key;
+                    getPath(target[key], path);
+                } else {
+                    let myPath = path ? path+'.'+key : key;
+                    paths.push(myPath);
+                }
+        
+              }
+            }
+
+        }
+
+        if(config){
+            getPath(config)
+            return paths;
+        }
+
+        return [];
+
     }
 
     extendsPlugin(plugin,extendObject){
