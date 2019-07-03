@@ -62,7 +62,7 @@ module.exports = {
                 let {onDatesSelect,isRange} = this.props;
                 let {startDate,endDate} = this.state;
 
-                
+
                 if(!isRange) {
                     onDatesSelect(date)
                     this.setState({ anchorEl: undefined })
@@ -93,7 +93,17 @@ module.exports = {
 
             handleSave(){
                 let {onDatesSelect} = this.props;
-                if(onDatesSelect) onDatesSelect({ startDate: this.state.startDate, endDate: this.state.endDate })
+                let {startDate,endDate} = this.state;
+                let start, end;
+                if(moment(startDate).isSameOrBefore(endDate)){
+                    start = startDate;
+                    end = endDate;
+                } else {
+                    start = endDate;
+                    end = startDate;
+                }
+
+                if(onDatesSelect) onDatesSelect({ startDate: start, endDate: end })
                 this.handleClose()
             },
 
@@ -114,22 +124,17 @@ module.exports = {
                     <div>
                         <Calendar 
                             onDaySelect={this.handleSelectDate} 
-                            dayCellRender={ this.renderDayCell } 
-                        
-                            ignoreYearChange={true}
-                            ignoreMonthChange={true}
-
-                            isRange={isRange}
-                            startDate={startDate}
-                            endDate={endDate} 
-                            hoverDate={hoverDate}
-                            onHoverDate={this.handleOnHoverDate}
-
-                            defaultDate={ moment().subtract(7, 'days') } 
-                            
-                            
+                            datePickerProps={{
+                                isRange,
+                                startDate,
+                                endDate,
+                                hoverDate,
+                                onHoverDate: this.handleOnHoverDate,
+                            }}
                             />
+
                             { isRange ? this.renderButtons() : null }
+
                     </div>
 
                 )

@@ -62,7 +62,6 @@ module.exports = {
                 theme: 'default',
                 type: 'text',
                 value: '',
-                label: 'label',
                 autoFocus: false,
                 openOnFocus: false,
                 isMultipleValues: false,
