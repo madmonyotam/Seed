@@ -21,6 +21,7 @@ module.exports = {
                 monthShortName: PropTypes.bool,
                 width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
                 height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+                datePickerProps: PropTypes.object,
             },
 
             getDefaultProps(){
@@ -30,15 +31,15 @@ module.exports = {
                     firstDayInWeek: 0,
                     width: 400,
                     height: 400,
-                    onDaySelect: (date) => { console.log('onDaySelect -',date) }
+                    onDaySelect: (date) => { console.log('onDaySelect -',date) },
+                    datePickerProps: {},
                 };
             },
             
             getInitialState() {
-                let { defaultDate } = this.props;
                 return {
                     picker: DAY,
-                    currentDate: defaultDate || moment().format()
+                    currentDate: moment().format()
                 };
             }, 
  
@@ -63,21 +64,23 @@ module.exports = {
             },
 
             handleYearChange(newDate) {
-              let { onDaySelect,ignoreYearChange } = this.props; 
+              let { onDaySelect,datePickerProps } = this.props; 
+              let { isRange} = datePickerProps;
               let currentDate = moment([newDate.year, newDate.month, 1]).format();
               this.setState({ currentDate: currentDate })
-              if(ignoreYearChange) return;
+              if(isRange) return;
               onDaySelect(currentDate)
 
             },
 
             handleMonthChange(month){
               let { currentDate } = this.state;
-              let { onDaySelect,ignoreMonthChange } = this.props; 
+              let { onDaySelect,datePickerProps } = this.props; 
+              let { isRange} = datePickerProps;
               let year = moment(currentDate).year();
               let newDate = moment([year, month.key-1, 1]).format();
               this.setState({ currentDate: newDate }, this.handleToggleView)
-              if(ignoreMonthChange) return;
+              if(isRange) return;
               onDaySelect(newDate)
 
             },
@@ -106,17 +109,13 @@ module.exports = {
             },
 
             renderWeeks(){
-              let { firstDayInWeek, startDate, endDate ,onHoverDate, hoverDate,isRange } = this.props;
+              let { firstDayInWeek, datePickerProps } = this.props;
               return (
                 <DaySelect 
-                    onHoverDate={onHoverDate} 
-                    hoverDate={hoverDate} 
-                    startDate={startDate} 
-                    endDate={endDate} 
                     firstDayInWeek={firstDayInWeek} 
                     currentDate={ this.state.currentDate } 
                     onSelect={ this.handleDayChange }
-                    isRange={isRange}
+                    datePickerProps={datePickerProps}
                     />
               )
             },
