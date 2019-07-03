@@ -82,10 +82,10 @@ module.exports = {
 
             },
             
-            handleDayChange(date){
+            handleDayChange(date,isOnClick){
               let { onDaySelect } = this.props; 
               this.setState({ currentDate: moment(date).format() })
-              onDaySelect(moment(date).format())
+              onDaySelect(moment(date).format(),isOnClick)
             },
 
             handleSetToday(today){
@@ -106,15 +106,18 @@ module.exports = {
             },
 
             renderWeeks(){
-              let { firstDayInWeek, startDate, onHoverDate, hoverDate } = this.props;
+              let { firstDayInWeek, startDate, endDate ,onHoverDate, hoverDate,isRange } = this.props;
               return (
                 <DaySelect 
                     onHoverDate={onHoverDate} 
                     hoverDate={hoverDate} 
                     startDate={startDate} 
+                    endDate={endDate} 
                     firstDayInWeek={firstDayInWeek} 
                     currentDate={ this.state.currentDate } 
-                    onSelect={ this.handleDayChange }/>
+                    onSelect={ this.handleDayChange }
+                    isRange={isRange}
+                    />
               )
             },
 
