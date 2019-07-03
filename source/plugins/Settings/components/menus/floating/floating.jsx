@@ -534,15 +534,16 @@ module.exports = {
                           width={ expanded ? 280 : 32 }
                           onClick={ this.expandMenu }
                           style={ this.styles('expandingButton') }  >
-                    {
-                      expanded ?
+                    
                         <Fragment>
-                          <Icon size={ 16 } color={ units.colors.white } icon={ units.icons.more } style={{ marginRight: 5 }} />
-                          { core.translate('Menu') }
+                          <Icon size={ 16 } color={ units.colors.white } icon={ units.icons.more_horiz } 
+                                style={{ 
+                                  transition: 'all 0.20s ease-in-out .25s',
+                                  marginRight: expanded ? 5 : 0, 
+                                  transform: expanded ? 'rotateZ(90deg)' : 'rotateZ(0deg)'  
+                                }} />
+                          { expanded ? core.translate('Menu') : null }
                         </Fragment>
-
-                        : <Icon size={ 16 } color={ units.colors.white } icon={ units.icons.more_horiz } />
-                    }
                   </Button>
                   <Popover  anchorEl={ anchorEl }
                             width={ 280 }
