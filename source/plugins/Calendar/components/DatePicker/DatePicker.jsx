@@ -71,7 +71,7 @@ module.exports = {
                     if(startDate===''){
                         this.setState({ startDate: date })
                     } else if(startDate!=='' && endDate!==''){
-                        this.setState({ startDate: date, endDate: ''})
+                        this.setState({ startDate: date, endDate: '', hoverDate: ''})
                     } else if(startDate!=='' && endDate===''){
                         this.setState({endDate:date})
                     }
