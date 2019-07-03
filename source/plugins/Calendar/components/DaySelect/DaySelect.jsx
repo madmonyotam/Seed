@@ -71,13 +71,15 @@ module.exports = {
       },
 
       renderDay(day, i){
-        let { currentDate, onSelect, startDate, onHoverDate, hoverDate } = this.props;
+        let { currentDate, onSelect, startDate,endDate, onHoverDate, hoverDate,isRange } = this.props;
 
         return <Day key={ i } 
                     dayDate={ day } 
                     current={ currentDate } 
                     onSelect={ onSelect } 
+                    isRange={isRange}
                     startDate={ startDate }
+                    endDate={ endDate }
                     hoverDate={ hoverDate }
                     onHoverDate={ onHoverDate }/> 
       },
