@@ -15,7 +15,6 @@ get(Row, Button) {
             cancelCB: PropTypes.func,
             division: PropTypes.bool,
             children: PropTypes.object,
-            background: PropTypes.string,
             height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
             style: PropTypes.object,
         },
@@ -29,7 +28,6 @@ get(Row, Button) {
                 cancelCB: ()=>{},
                 division: false,
                 children: null,
-                background: core.theme('backgrounds.default'),
                 height: 50,
                 style: {},
             };
@@ -76,7 +74,7 @@ get(Row, Button) {
         },
 
         okButton() {
-            let {okLabel ,okDisabled ,okLoading ,okCB, background} = this.props;
+            let {okLabel ,okDisabled ,okLoading ,okCB} = this.props;
 
             if (!okLabel) return null;
 
@@ -85,8 +83,8 @@ get(Row, Button) {
 
             return (
                 <Button
-                    variant={'flat'}
-                    backgroundColor={background}
+                    variant={'raised'}
+                    theme={'primary'}
                     disabled={okDisabled}
                     isLoading={okLoading}
                     ripple={ripple}
@@ -98,15 +96,15 @@ get(Row, Button) {
         },
 
         render() {
-            let {children, cancelCB, height, background} = this.props;
+            let {children, cancelCB, height} = this.props;
 
             return (
-                <Row id={'PopupButtons'} padding={this.dims.rowPadding} height={height} color={background} style={this.styles('root')}>
+                <Row id={'PopupButtons'} padding={this.dims.rowPadding} height={height}  style={this.styles('root')}>
                     <Row id={'Left'} padding={0}>
                         {children}
                     </Row>
                     <Row width={185} id={'Right'} padding={0} style={this.styles('right')}>
-                        <Button theme={'secondary'} onClick={cancelCB}>{core.translate('Cancel')}</Button>
+                        <Button theme={ 'default' } variant={'outlined'} onClick={cancelCB}>{core.translate('Cancel')}</Button>
                         {this.okButton()}
                     </Row>
                 </Row>

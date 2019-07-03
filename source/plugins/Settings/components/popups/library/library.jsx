@@ -55,7 +55,7 @@ module.exports = {
                 Handler.enableOkButton('addlibrarypopup')
                 this.setState({ value }); 
                 Handler.addData({ id: 'addlibrarypopup', data: value }) 
-              }
+              } else Handler.disableOkButton('addlibrarypopup')
             },
 
             render() {
