@@ -11,6 +11,7 @@ module.exports = {
         require('./components/YearSelect'),
         require('./components/MonthPicker'),
         require('./components/DatePicker'),
+        require('./components/DatePickerDay'),
     ],
 
     config: {

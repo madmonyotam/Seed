@@ -1,10 +1,12 @@
 import moment from 'moment';
 window.moment = moment;
+import { isEmpty as _isEmpty } from 'lodash';
+
 module.exports = {
   
-  dependencies: ['Calendar.Day', 'Layouts.Row', 'Layouts.Column'],    
+  dependencies: ['Calendar.Day', 'Layouts.Row', 'Layouts.Column','Calendar.DatePickerDay'],
 
-  get(Day, Row, Column) {
+  get(Day, Row, Column, DatePickerDay) {
 
     var core = this;
     var { React, PropTypes, ComponentMixin } = core.imports; 
@@ -71,17 +73,18 @@ module.exports = {
       },
 
       renderDay(day, i){
-        let { currentDate, onSelect, startDate,endDate, onHoverDate, hoverDate,isRange } = this.props;
+        let { currentDate, onSelect, datePickerProps } = this.props;
 
-        return <Day key={ i } 
-                    dayDate={ day } 
-                    current={ currentDate } 
-                    onSelect={ onSelect } 
-                    isRange={isRange}
-                    startDate={ startDate }
-                    endDate={ endDate }
-                    hoverDate={ hoverDate }
-                    onHoverDate={ onHoverDate }/> 
+        if( _isEmpty(datePickerProps) ) return <Day key={ i } dayDate={ day } current={ currentDate } onSelect={ onSelect } />
+        
+        return (
+          <DatePickerDay 
+            key={ i } 
+            dayDate={ day } 
+            current={ currentDate } 
+            onSelect={ onSelect } 
+            datePickerProps={datePickerProps}/>
+        )
       },
 
       render() {
@@ -93,7 +96,6 @@ module.exports = {
           </Column>
         )
       } 
-
     }
   }
 }
