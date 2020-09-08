@@ -20,7 +20,7 @@
     "commander": "2.15.0",
     "express": "4.16.3",
     "fs": "0.0.1-security",
-    "http-proxy": "1.16.2",
+    "http-proxy": "1.18.1",
     "klaw": "3.0.0",
     "lodash": "4.17.11",
     "logform": "2.1.2",
